@@ -68,14 +68,25 @@ If you'd rather I do it: reply "yes, unhook" and I'll run the CLI command in one
 
 ```
 site/data/
-├── corpus.json          1.4 MB    100 posts, full body, themes, locations
-├── corpus-index.json     64 KB    Lightweight index (no body) for fast list
+├── corpus.json          1.4 MB    99 posts as paragraph arrays + themes + locations
+├── corpus-index.json     63 KB    Lightweight index (no body) for fast list
 ├── lexicon.json         9.5 KB    35 Nonism term definitions
 ├── chronos.json         4.9 KB    Timeline stations 1981–2026
 ├── voices.json          2.6 KB    Six speech-act posters
-├── bot-demos.json        18 KB    50 demo Q&A pairs for the chat
+├── bot-demos.json        18 KB    49 demo Q&A pairs for the chat
 └── voice-anchor.json    3.5 KB    System-prompt scaffold for the future bot
 ```
+
+**One numbering quirk to know:** the corpus assigns sequential IDs
+`day-001`...`day-099` in *date order*. The original nonharvard blog
+used non-sequential `DAY N` labels (skipped numbers — `DAY 5`, then
+`DAY 7`, then `DAY 12`...). Citations in lexicon, voices, and
+bot-demos use the original `DAY N` label for honesty to the source.
+That means clicking "Day 5, blog" in a citation would not map to
+`day-005` in my corpus. I removed the auto-link rather than ship a
+half-right one. If you want them clickable later, the right move is to
+build a `original-day-to-corpus-id` mapping from the PDF and
+re-render citations against it.
 
 ### Visual + Behavioural notes
 
