@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://100days.nonarkara.org/sitemap.xml
