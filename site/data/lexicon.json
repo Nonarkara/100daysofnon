@@ -176,6 +176,91 @@
       "term": "Writing",
       "definition": "The only cognitive technology that slows thought down enough to inspect it. Speech is too fast; thought is faster. Writing is the rest stop.",
       "source": "Day 1, blog · also Day 1, 100 Days of Non"
+    },
+    {
+      "term": "Anatta",
+      "definition": "Non-self. The Buddhist claim that the 'I' is a construction, not a substance. A precondition for design: if the user has no fixed self, the product is intervening in a process, not satisfying a stable customer. Most products do not know this.",
+      "source": "Day 4, blog · Buddhist non-self"
+    },
+    {
+      "term": "Aphorism",
+      "definition": "The shortest sentence that ends an argument. Practiced in this lexicon. The opposite of an aphorism is a paragraph that has not yet decided what it is.",
+      "source": "Working method"
+    },
+    {
+      "term": "Architect, the",
+      "definition": "What I was trained to be. Read space as evidence. Section before plan. The instrument outlasted the discipline.",
+      "source": "B.Arch · Day 8, blog · LEXICON: Anthropologist"
+    },
+    {
+      "term": "Anthropologist, the",
+      "definition": "What I became. Read the people inside the space as evidence too. The instrument is the same; what it measures is different. The pivot was complete in private long before the institutions noticed.",
+      "source": "PhD Harvard · Day 8, blog · Three Years in Shanghai"
+    },
+    {
+      "term": "Barthes",
+      "definition": "Roland. Writing Degree Zero. The argument that writing for the sake of writing is possible — writing as an end in itself, not as a performance for an imagined reader. Day 1 of the blog leans on him without naming the leaning until later.",
+      "source": "Day 1, blog · also Day 14, On Writing Fieldnotes"
+    },
+    {
+      "term": "Best of all possible worlds, the",
+      "definition": "Leibniz survives. The vice-versa is the move: because we live in this world, I bike — and because I bike, the world is what makes that act possible. The argument runs in both directions. That is how I know it is true.",
+      "source": "Day 3, blog · Because We Are Living in the Best of All Possible Worlds"
+    },
+    {
+      "term": "Cathay Pacific poll, the",
+      "definition": "The reflexivity lesson. A poll asks the question with the answer already inside it. Every metric on this site must show how the question was asked, who was asked, and what was excluded. The answer is downstream of the frame.",
+      "source": "SCITI methodology · CLAUDE.md §12.5"
+    },
+    {
+      "term": "Diploma",
+      "definition": "A receipt issued by an institution. Its meaning belongs to the institution, not to the holder. I have four. I will not list them as authority.",
+      "source": "Day 70, blog · On Professionalism"
+    },
+    {
+      "term": "Drop cap, the",
+      "definition": "The chartreuse letter that opens every post in the corpus reader. A small ceremonial act: this post is starting, pay attention. Borrowed from medieval manuscripts, which knew that books were also rooms.",
+      "source": "CORPUS reader · design decision, 2026-05-25"
+    },
+    {
+      "term": "Fieldnote",
+      "definition": "Writing for the writer first, reader maybe never. The anthropologist's private instrument. The blog is also fieldnotes, with the reader admitted to the room.",
+      "source": "Day 14, blog · On Writing Fieldnotes"
+    },
+    {
+      "term": "Hume",
+      "definition": "David. Of the Standard of Beauty. The Treatise. Stayed in the bibliography of every dissertation I started. Not because I agreed with him. Because his argument was the only one I could not finish disagreeing with.",
+      "source": "Day 41, blog · Of the Standard of Beauty"
+    },
+    {
+      "term": "Kodawari",
+      "definition": "Absolute precision within the scope you have chosen. Pixel alignment, hairline borders, exact mono numerals. The Japanese pair with wabi-sabi — ship the real thing, at the highest craft level you can manage.",
+      "source": "CLAUDE.md §12.5 · Antifragility-Resilience"
+    },
+    {
+      "term": "Mantra",
+      "definition": "Six of them. They sit at Layer 0 above every other rule. When in doubt, return. When two appear to conflict, that is the Central Tension — hold it, do not resolve.",
+      "source": "CLAUDE.md §12.1"
+    },
+    {
+      "term": "Mr. Non the skeptic",
+      "definition": "A seat in every design review. If a feature exists because that is how features work, he removes it. He is not me; he reports to me.",
+      "source": "Day 13, blog · On Being a Skeptic · LEXICON: Skeptic"
+    },
+    {
+      "term": "Pun, the",
+      "definition": "Permitted. Announced openly. The reader is told the pun was intentional even when (especially when) the joke was bad. (Pun not intended.)",
+      "source": "Voice rule · Working-Philosophy.md"
+    },
+    {
+      "term": "Shanghai",
+      "definition": "Yangpu District. Two years. The Huangpu River on the Puxi side, by bike. The coffee-shop essay was drafted there. Fuzhou Road for the books.",
+      "source": "Day 7, blog · Three Years in Shanghai"
+    },
+    {
+      "term": "Verified",
+      "definition": "First of the four claim categories. Public record agrees with the answer. The most boring entries in the project. They are the ones the bot can cite without hedging.",
+      "source": "METHOD · Four claim types"
     }
   ]
 }
