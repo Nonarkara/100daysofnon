@@ -384,6 +384,19 @@
         const safe = para.replace(/</g,'&lt;').replace(/>/g,'&gt;');
         return `<p>${safe}</p>`;
       }).join('');
+
+      // Prev/next based on n
+      const sortedIdx = index.slice().sort((a,b) => a.n - b.n);
+      const myIdx = sortedIdx.findIndex(x => x.id === p.id);
+      const prev = myIdx > 0 ? sortedIdx[myIdx - 1] : null;
+      const next = myIdx < sortedIdx.length - 1 ? sortedIdx[myIdx + 1] : null;
+      const navHtml = `
+        <div style="display:flex;justify-content:space-between;gap:16px;margin-top:48px;padding-top:32px;border-top:1px solid var(--faint);font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;">
+          ${prev ? `<a href="#${prev.id}" data-id="${prev.id}" class="post-row" style="border:none;padding:0;flex:1;text-align:left;background:transparent;text-decoration:none;color:var(--dim);"><div style="color:var(--accent);margin-bottom:4px;">← Day ${String(prev.n).padStart(3,'0')}</div><div style="color:var(--fg);text-transform:none;letter-spacing:0;font-family:var(--sans);font-size:14px;line-height:1.4;font-weight:500;">${prev.title}</div></a>` : '<span></span>'}
+          ${next ? `<a href="#${next.id}" data-id="${next.id}" class="post-row" style="border:none;padding:0;flex:1;text-align:right;background:transparent;text-decoration:none;color:var(--dim);"><div style="color:var(--accent);margin-bottom:4px;">Day ${String(next.n).padStart(3,'0')} →</div><div style="color:var(--fg);text-transform:none;letter-spacing:0;font-family:var(--sans);font-size:14px;line-height:1.4;font-weight:500;">${next.title}</div></a>` : '<span></span>'}
+        </div>
+      `;
+
       readEl.innerHTML = `
         <div class="read-meta">Post ${String(p.n).padStart(3,'0')} / 100 · ${p.date} · ${p.weekday}</div>
         <h2 class="read-title">${p.title}</h2>
@@ -393,6 +406,7 @@
           ${p.locations.length ? ' · ' + p.locations.join(' · ') : ''}
         </div>
         <div class="read-body">${paragraphs}</div>
+        ${navHtml}
       `;
       readEl.scrollTop = 0;
       // refresh active state
