@@ -321,7 +321,6 @@
     "themes": [
       "writing",
       "love",
-      "shanghai",
       "philosophy",
       "academy",
       "memory",
@@ -578,7 +577,6 @@
     "themes": [
       "writing",
       "love",
-      "shanghai",
       "academy",
       "memory",
       "time",
@@ -1109,7 +1107,6 @@
     "themes": [
       "writing",
       "love",
-      "shanghai",
       "academy",
       "time",
       "death",
@@ -1516,7 +1513,6 @@
     "themes": [
       "writing",
       "love",
-      "shanghai",
       "bangkok",
       "philosophy",
       "academy",
@@ -2166,28 +2162,6 @@
   {
     "n": 90,
     "id": "day-090",
-    "date": "2025-10-17",
-    "weekday": "Fri",
-    "title": "A Minimalist's Using Typewriters in",
-    "words": 1200,
-    "excerpt": "DECEMBER 31, 2020 THIS YEAR marks a very important milestone in my life: my ability to return to a retro tech that is still useful today. Let me explain. I had always been a tech savvy person. It's in the sense that, I like to keep myself u…",
-    "themes": [
-      "writing",
-      "love",
-      "bangkok",
-      "memory",
-      "time",
-      "morality",
-      "method"
-    ],
-    "locations": [
-      "Bangkok",
-      "Thailand"
-    ]
-  },
-  {
-    "n": 91,
-    "id": "day-091",
     "date": "2025-10-18",
     "weekday": "Sat",
     "title": "Minimalist Benefits of Working from Home",
@@ -2206,8 +2180,8 @@
     ]
   },
   {
-    "n": 92,
-    "id": "day-092",
+    "n": 91,
+    "id": "day-091",
     "date": "2025-10-19",
     "weekday": "Sun",
     "title": "Some Truly Useful Japanese Concepts",
@@ -2228,8 +2202,8 @@
     ]
   },
   {
-    "n": 93,
-    "id": "day-093",
+    "n": 92,
+    "id": "day-092",
     "date": "2025-10-20",
     "weekday": "Mon",
     "title": "'Kodawari' or an Attempt to Reach Perfection: A Quick Read about Japanese",
@@ -2246,8 +2220,8 @@
     "locations": []
   },
   {
-    "n": 94,
-    "id": "day-094",
+    "n": 93,
+    "id": "day-093",
     "date": "2025-10-21",
     "weekday": "Tue",
     "title": "On Design Thinking Part 7 -- Notes from My Personal Experience Working for a Top",
@@ -2256,7 +2230,6 @@
     "themes": [
       "writing",
       "love",
-      "shanghai",
       "bangkok",
       "philosophy",
       "academy",
@@ -2276,8 +2249,8 @@
     ]
   },
   {
-    "n": 95,
-    "id": "day-095",
+    "n": 94,
+    "id": "day-094",
     "date": "2025-10-22",
     "weekday": "Wed",
     "title": "Expo 2020 Dubai - An Ultimate Guide Part 1",
@@ -2301,8 +2274,8 @@
     ]
   },
   {
-    "n": 96,
-    "id": "day-096",
+    "n": 95,
+    "id": "day-095",
     "date": "2025-10-23",
     "weekday": "Thu",
     "title": "A Return to This Blog and Simulation Theory",
@@ -2327,8 +2300,8 @@
     ]
   },
   {
-    "n": 97,
-    "id": "day-097",
+    "n": 96,
+    "id": "day-096",
     "date": "2025-10-24",
     "weekday": "Fri",
     "title": "Daniel Kahneman",
@@ -2355,8 +2328,8 @@
     ]
   },
   {
-    "n": 98,
-    "id": "day-098",
+    "n": 97,
+    "id": "day-097",
     "date": "2025-10-25",
     "weekday": "Sat",
     "title": "Free Rides to Harvard, MIT, Oxford: How I Never Paid a Penny for My Education",
@@ -2382,8 +2355,8 @@
     ]
   },
   {
-    "n": 99,
-    "id": "day-099",
+    "n": 98,
+    "id": "day-098",
     "date": "2025-10-26",
     "weekday": "Sun",
     "title": "Finding Flow: Unlocking Joy and Efficiency in Work",
@@ -2409,8 +2382,8 @@
     ]
   },
   {
-    "n": 100,
-    "id": "day-100",
+    "n": 99,
+    "id": "day-099",
     "date": "2025-10-27",
     "weekday": "Mon",
     "title": "Confidence Is Built by Failing. Full Stop.",
