@@ -201,10 +201,17 @@
     }
     .read-body {
       font-family: var(--sans); font-size: 16px;
-      line-height: 1.7;
+      line-height: 1.75;
       max-width: 64ch;
-      white-space: pre-wrap;
-      color: rgba(255,255,255,0.85);
+      color: rgba(255,255,255,0.88);
+    }
+    .read-body p { margin-bottom: 1.3em; }
+    .read-body p:last-child { margin-bottom: 0; }
+    .read-body p:first-child::first-letter {
+      font-family: var(--sans); font-size: 64px;
+      font-weight: 700; line-height: 0.9;
+      float: left; margin: 2px 12px 0 0;
+      color: var(--accent);
     }
 
     .empty-list {
@@ -366,10 +373,17 @@
 
     async function openPost(id) {
       currentId = id;
+      const readEl = document.getElementById('read-col');
+      if (!fullCorpus) {
+        readEl.innerHTML = `<div class="read-empty">Loading post…<br><span style="color:rgba(255,255,255,0.2);">1.4MB · first read only</span></div>`;
+      }
       const full = await loadFullCorpus();
       const p = full.find(x => x.id === id);
       if (!p) return;
-      const readEl = document.getElementById('read-col');
+      const paragraphs = (p.paragraphs || []).map(para => {
+        const safe = para.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        return `<p>${safe}</p>`;
+      }).join('');
       readEl.innerHTML = `
         <div class="read-meta">Post ${String(p.n).padStart(3,'0')} / 100 · ${p.date} · ${p.weekday}</div>
         <h2 class="read-title">${p.title}</h2>
@@ -378,7 +392,7 @@
           ${p.themes.join(' · ')}
           ${p.locations.length ? ' · ' + p.locations.join(' · ') : ''}
         </div>
-        <div class="read-body">${p.body.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
+        <div class="read-body">${paragraphs}</div>
       `;
       readEl.scrollTop = 0;
       // refresh active state
