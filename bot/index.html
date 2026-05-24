@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bot — 100 Days of Non</title>
+  <meta name="description" content="Talk to Non. The second-brain bot. Trained on the nonharvard blog. Answers in his voice. Honest about what it cannot know.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #000; --fg: #fff; --accent: #CCFF00;
+      --dim: rgba(255,255,255,0.45); --faint: rgba(255,255,255,0.12);
+      --sans: 'Space Grotesk','Helvetica Neue',Helvetica,Arial,sans-serif;
+      --mono: 'JetBrains Mono','Courier New',monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    html { background: var(--bg); color: var(--fg); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    body { display: flex; flex-direction: column; min-height: 100vh; }
+
+    .nav {
+      flex: 0 0 40px;
+      border-bottom: 1px solid var(--faint);
+      display: flex; align-items: center;
+      padding: 0 32px; gap: 24px;
+      background: var(--bg); z-index: 100;
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+    }
+    .nav-brand { color: var(--dim); text-transform: uppercase; margin-right: auto; }
+    .nav a { color: var(--dim); text-decoration: none; text-transform: uppercase; white-space: nowrap; }
+    .nav a:hover { color: var(--fg); }
+    .nav a.here { color: var(--accent); }
+
+    /* Two-pane bot layout */
+    .bot-layout {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      min-height: 0;
+    }
+
+    /* Sidebar */
+    .side {
+      border-right: 1px solid var(--faint);
+      overflow-y: auto;
+      padding: 32px 24px;
+    }
+    .side-title {
+      font-family: var(--sans); font-size: 24px;
+      font-weight: 700; line-height: 1; letter-spacing: -0.015em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .side-sub {
+      font-family: var(--mono); font-size: 11px; color: var(--dim);
+      letter-spacing: 0.15em; text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .side-status {
+      padding: 12px 14px;
+      border: 1px solid var(--faint);
+      font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .side-status .pulse {
+      display: inline-block;
+      width: 6px; height: 6px;
+      background: #ffaa00; margin-right: 8px;
+      vertical-align: middle;
+    }
+    .side-status .pulse.live { background: var(--accent); }
+
+    .side-section {
+      margin-bottom: 24px;
+    }
+    .side-label {
+      font-family: var(--mono); font-size: 11px;
+      color: var(--accent); letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .demo-list {
+      list-style: none;
+    }
+    .demo-list li {
+      margin-bottom: 8px;
+    }
+    .demo-list button {
+      background: transparent;
+      border: 1px solid var(--faint);
+      color: var(--fg);
+      text-align: left;
+      width: 100%;
+      padding: 10px 12px;
+      min-height: 44px;
+      font-family: var(--sans); font-size: 13px;
+      line-height: 1.4;
+      cursor: pointer;
+    }
+    .demo-list button:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Chat */
+    .chat {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .chat-header {
+      padding: 24px 40px;
+      border-bottom: 1px solid var(--faint);
+    }
+    .chat-h1 {
+      font-family: var(--sans); font-size: clamp(28px, 5vw, 48px);
+      font-weight: 700; line-height: 1; letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+    .chat-h1 .dot {
+      display: inline-block; width: 12px; height: 12px;
+      background: var(--accent);
+      vertical-align: middle;
+      margin-right: 12px;
+    }
+    .chat-sub {
+      font-family: var(--mono); font-size: 11px;
+      color: var(--dim); letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-top: 8px;
+    }
+
+    .chat-stream {
+      flex: 1;
+      overflow-y: auto;
+      padding: 32px 40px;
+      min-height: 0;
+    }
+
+    .msg {
+      margin-bottom: 28px;
+      max-width: 680px;
+    }
+    .msg-meta {
+      font-family: var(--mono); font-size: 10px;
+      color: var(--dim); letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: flex; gap: 12px;
+    }
+    .msg-meta .kind {
+      color: var(--accent);
+    }
+    .msg-meta .kind.structural { color: var(--accent); }
+    .msg-meta .kind.not_known  { color: var(--dim); }
+    .msg-meta .kind.direct     { color: var(--accent); }
+    .msg-meta .kind.deduction  { color: var(--accent); }
+
+    .msg.user .msg-bubble {
+      font-family: var(--sans); font-size: 16px;
+      line-height: 1.5;
+      color: var(--fg);
+      padding: 16px 0;
+      border-top: 1px solid var(--faint);
+    }
+    .msg.user .msg-meta { color: var(--accent); }
+    .msg.user .msg-meta .who { color: var(--accent); }
+
+    .msg.bot {
+      margin-left: 0;
+    }
+    .msg.bot .msg-meta .who { color: var(--accent); font-weight: 700; }
+    .msg.bot .msg-bubble {
+      font-family: var(--sans); font-size: 16px;
+      line-height: 1.65;
+      color: var(--fg);
+      padding: 16px 0 12px;
+    }
+    .msg.bot .msg-cite {
+      font-family: var(--mono); font-size: 10px;
+      color: var(--dim); letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .msg.bot.structural .msg-bubble {
+      border-left: 2px solid var(--accent);
+      padding-left: 20px;
+    }
+
+    .composer {
+      border-top: 1px solid var(--faint);
+      padding: 16px 40px;
+      display: flex;
+      gap: 12px;
+      background: var(--bg);
+    }
+    .composer input {
+      flex: 1;
+      background: transparent;
+      border: 1px solid var(--faint);
+      color: var(--fg);
+      padding: 14px 18px;
+      min-height: 44px;
+      font-family: var(--sans); font-size: 15px;
+    }
+    .composer input:focus { outline: none; border-color: var(--accent); }
+    .composer button {
+      background: var(--accent);
+      color: #000;
+      border: 1px solid var(--accent);
+      padding: 14px 28px;
+      min-height: 44px;
+      font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .composer button:hover { background: #000; color: var(--accent); }
+
+    .empty-state {
+      padding: 60px 0;
+      text-align: left;
+      max-width: 560px;
+    }
+    .empty-state h2 {
+      font-family: var(--sans); font-size: 24px;
+      font-weight: 700; line-height: 1.2; letter-spacing: -0.01em;
+      margin-bottom: 16px;
+    }
+    .empty-state p {
+      font-family: var(--sans); font-size: 14px;
+      color: var(--dim); line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .empty-state ul {
+      list-style: none; margin-top: 16px;
+    }
+    .empty-state li {
+      font-family: var(--mono); font-size: 11px;
+      color: var(--accent); letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      padding: 4px 0;
+    }
+    .empty-state li::before {
+      content: '→ '; opacity: 0.5;
+    }
+
+    @media (max-width: 900px) {
+      .nav { padding: 0 20px; gap: 14px; overflow-x: auto; scrollbar-width: none; }
+      .nav::-webkit-scrollbar { display: none; }
+      .bot-layout { grid-template-columns: 1fr; }
+      .side { border-right: none; border-bottom: 1px solid var(--faint); padding: 20px 24px; max-height: 280px; }
+      .chat-header { padding: 20px 24px; }
+      .chat-stream { padding: 20px 24px; }
+      .composer { padding: 12px 16px; gap: 8px; }
+      .composer input { padding: 12px 14px; font-size: 14px; }
+      .composer button { padding: 12px 16px; font-size: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <span class="nav-brand">100 Days of Non</span>
+    <a href="/day/001/">RECORD</a>
+    <a href="/map/">MAP</a>
+    <a href="/corpus/">CORPUS</a>
+    <a href="/chronos/">CHRONOS</a>
+    <a href="/lexicon/">LEXICON</a>
+    <a href="/voices/">VOICES</a>
+    <a href="/archive/">ARCHIVE</a>
+    <a href="/method/">METHOD</a>
+    <a href="/game/">GAME</a>
+    <a href="/subject/">SUBJECT</a>
+    <a href="/bot/" class="here">BOT</a>
+  </nav>
+
+  <div class="bot-layout">
+
+    <aside class="side">
+      <h2 class="side-title">Talk to Non</h2>
+      <div class="side-sub">Room 11 of 11 · Docent</div>
+
+      <div class="side-status">
+        <span class="pulse"></span><strong>BOT NOT YET WIRED</strong><br>
+        Demo answers pre-loaded from the blog. Free-text replies use best-match. Claude API wiring coming.
+      </div>
+
+      <div class="side-section">
+        <div class="side-label">Try one of these</div>
+        <ul class="demo-list" id="demo-list"></ul>
+      </div>
+    </aside>
+
+    <div class="chat">
+      <div class="chat-header">
+        <h1 class="chat-h1"><span class="dot"></span>Non &middot; Second brain</h1>
+        <div class="chat-sub">A docent for this museum · He answers what the record allows · He guesses structurally where it doesn't</div>
+      </div>
+
+      <div class="chat-stream" id="stream">
+        <div class="empty-state">
+          <h2>What is this?</h2>
+          <p>
+            A chat that speaks in Dr Non's voice. It draws from his blog (one hundred posts, ~240,000
+            words), from this project's daily entries, and from a small set of working principles.
+          </p>
+          <p>
+            Three things it will do honestly:
+          </p>
+          <ul>
+            <li>Answer directly when the record allows it</li>
+            <li>Deduce, hedged, when the record points sideways</li>
+            <li>Refuse to invent — but offer a structural guess in his voice</li>
+          </ul>
+          <p style="margin-top:24px;">
+            Pick a starter on the left, or type your own question below.
+          </p>
+        </div>
+      </div>
+
+      <form class="composer" id="composer" autocomplete="off">
+        <input type="text" id="q" placeholder="Ask Non something. E.g. why this project?" required>
+        <button type="submit">Ask</button>
+      </form>
+    </div>
+
+  </div>
+
+  <script>
+    const KIND_LABEL = {
+      DIRECT:     'From the record',
+      DEDUCTION:  'Deduced',
+      STRUCTURAL: 'Structural guess',
+      NOT_KNOWN:  'Not in scope'
+    };
+
+    let qa = [];
+    let stream = document.getElementById('stream');
+    let initial = true;
+
+    fetch('/data/bot-demos.json').then(r => r.json()).then(data => {
+      qa = data.qa;
+      // Render demo list — pick a curated few starters
+      const starters = [
+        "What is 100 Days of Non?",
+        "What is Nonism?",
+        "What's your view on Harvard?",
+        "Why this project?",
+        "What's a Smart City?",
+        "Who killed Kennedy?",
+        "Should I do a PhD?",
+        "What is the structural guess?",
+        "How tall are you?"
+      ];
+      const demoList = document.getElementById('demo-list');
+      demoList.innerHTML = starters.map(s => `
+        <li><button data-q="${s.replace(/"/g,'&quot;')}">${s}</button></li>
+      `).join('');
+      demoList.addEventListener('click', (e) => {
+        const b = e.target.closest('button');
+        if (b) ask(b.dataset.q);
+      });
+    });
+
+    function bestMatch(question) {
+      const qLow = question.toLowerCase();
+      // Exact / near match first
+      for (const p of qa) {
+        if (p.q.toLowerCase() === qLow) return p;
+      }
+      // Score by word overlap
+      const qWords = new Set(qLow.split(/\W+/).filter(w => w.length > 2));
+      let best = null, bestScore = 0;
+      for (const p of qa) {
+        const pWords = new Set(p.q.toLowerCase().split(/\W+/).filter(w => w.length > 2));
+        let score = 0;
+        for (const w of qWords) if (pWords.has(w)) score += 2;
+        // Also count overlap with answer keywords
+        const aWords = new Set((p.a || '').toLowerCase().split(/\W+/).filter(w => w.length > 4));
+        for (const w of qWords) if (aWords.has(w)) score += 1;
+        if (score > bestScore) { best = p; bestScore = score; }
+      }
+      return bestScore >= 2 ? best : null;
+    }
+
+    function appendUser(text) {
+      const div = document.createElement('div');
+      div.className = 'msg user';
+      div.innerHTML = `
+        <div class="msg-meta"><span class="who">YOU</span></div>
+        <div class="msg-bubble">${escapeHtml(text)}</div>
+      `;
+      stream.appendChild(div);
+    }
+
+    function appendBot(answer, cite, kind) {
+      const div = document.createElement('div');
+      const kindLow = (kind || 'DIRECT').toLowerCase();
+      div.className = 'msg bot ' + kindLow;
+      div.innerHTML = `
+        <div class="msg-meta">
+          <span class="who">NON</span>
+          <span class="kind ${kindLow}">${KIND_LABEL[kind] || kind}</span>
+        </div>
+        <div class="msg-bubble">${escapeHtml(answer)}</div>
+        ${cite ? `<div class="msg-cite">— ${escapeHtml(cite)}</div>` : ''}
+      `;
+      stream.appendChild(div);
+    }
+
+    function appendNoMatch(question) {
+      const div = document.createElement('div');
+      div.className = 'msg bot structural';
+      div.innerHTML = `
+        <div class="msg-meta">
+          <span class="who">NON</span>
+          <span class="kind structural">${KIND_LABEL.STRUCTURAL}</span>
+        </div>
+        <div class="msg-bubble">
+          I don't have a direct answer in the record for this. The bot is not yet wired to the live
+          model, so I cannot improvise yet. The structural guess, though, is the move I would make:
+          ask not whether the answer exists, but which adjacent question the record could answer.
+          Try a related one from the list on the left — or rephrase yours toward something the
+          corpus has covered.
+        </div>
+        <div class="msg-cite">— Bot not yet wired · pre-loaded demo set only</div>
+      `;
+      stream.appendChild(div);
+    }
+
+    function escapeHtml(s) {
+      return (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    function ask(question) {
+      if (initial) {
+        stream.innerHTML = '';
+        initial = false;
+      }
+      appendUser(question);
+      // tiny pause so the user sees their message land first
+      const match = bestMatch(question);
+      if (match) {
+        appendBot(match.a, match.cite, match.kind);
+      } else {
+        appendNoMatch(question);
+      }
+      stream.scrollTop = stream.scrollHeight;
+    }
+
+    document.getElementById('composer').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const inp = document.getElementById('q');
+      const text = inp.value.trim();
+      if (!text) return;
+      inp.value = '';
+      ask(text);
+    });
+  </script>
+
+</body>
+</html>

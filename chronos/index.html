@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chronos — 100 Days of Non</title>
+  <meta name="description" content="The timeline. 1981 to 2026. One station per year, more when the year had more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #000; --fg: #fff; --accent: #CCFF00;
+      --dim: rgba(255,255,255,0.45); --faint: rgba(255,255,255,0.12);
+      --sans: 'Space Grotesk','Helvetica Neue',Helvetica,Arial,sans-serif;
+      --mono: 'JetBrains Mono','Courier New',monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { background: var(--bg); color: var(--fg); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 40px;
+      border-bottom: 1px solid var(--faint);
+      display: flex; align-items: center;
+      padding: 0 32px; gap: 24px;
+      background: var(--bg); z-index: 100;
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+    }
+    .nav-brand { color: var(--dim); text-transform: uppercase; margin-right: auto; }
+    .nav a { color: var(--dim); text-decoration: none; text-transform: uppercase; white-space: nowrap; }
+    .nav a:hover { color: var(--fg); }
+    .nav a.here { color: var(--accent); }
+
+    header.page {
+      margin-top: 40px;
+      padding: 48px 56px;
+      border-bottom: 1px solid var(--faint);
+    }
+    .room-num { font-family: var(--mono); font-size: 11px; color: var(--dim);
+      letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 24px; }
+    .room-title {
+      font-family: var(--sans); font-size: clamp(48px, 9vw, 96px);
+      font-weight: 700; line-height: 0.9; letter-spacing: -0.025em;
+      text-transform: uppercase;
+    }
+    .room-sub {
+      font-family: var(--sans); font-size: 14px; color: var(--dim);
+      line-height: 1.6; max-width: 640px; margin-top: 24px;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding: 48px 56px 80px;
+      max-width: 1200px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 48px; bottom: 80px;
+      left: 200px;
+      width: 1px;
+      background: var(--faint);
+    }
+
+    .station {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 0;
+      margin-bottom: 64px;
+      position: relative;
+    }
+    .station:last-child { margin-bottom: 0; }
+
+    .year-col {
+      padding-right: 40px;
+      text-align: right;
+    }
+    .year-num {
+      font-family: var(--mono);
+      font-size: 32px; font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .year-phase {
+      font-family: var(--mono); font-size: 11px;
+      color: var(--dim); letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    .station::before {
+      content: '';
+      position: absolute;
+      top: 12px; left: 197px;
+      width: 7px; height: 7px;
+      background: var(--accent);
+      border: 1px solid var(--bg);
+    }
+
+    .items-col {
+      padding-left: 32px;
+    }
+    .item {
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--faint);
+    }
+    .item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+
+    .item-date {
+      font-family: var(--mono); font-size: 11px; color: var(--dim);
+      letter-spacing: 0.15em; text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .item-label {
+      font-family: var(--sans); font-size: 20px;
+      font-weight: 700; line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    .item-detail {
+      font-family: var(--sans); font-size: 14px;
+      color: var(--dim); line-height: 1.6;
+      max-width: 60ch;
+    }
+
+    footer {
+      padding: 24px 56px; border-top: 1px solid var(--faint);
+      font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,0.2);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    }
+
+    .talk-widget {
+      position: fixed; bottom: 20px; right: 20px;
+      z-index: 99;
+      font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.15em; text-transform: uppercase;
+    }
+    .talk-widget a {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 16px; min-height: 44px;
+      background: var(--accent); color: #000;
+      text-decoration: none;
+      border: 1px solid var(--accent);
+    }
+    .talk-widget a:hover { background: #000; color: var(--accent); }
+    .talk-pulse { display: inline-block; width: 8px; height: 8px; background: #000; flex: 0 0 8px; }
+    .talk-widget a:hover .talk-pulse { background: var(--accent); }
+
+    @media (max-width: 720px) {
+      .nav { padding: 0 20px; gap: 14px; overflow-x: auto; scrollbar-width: none; }
+      .nav::-webkit-scrollbar { display: none; }
+      header.page { padding: 36px 24px; }
+      .timeline { padding: 32px 24px 64px; }
+      .timeline::before { left: 16px; top: 32px; bottom: 64px; }
+      .station { grid-template-columns: 1fr; gap: 16px; margin-bottom: 48px; }
+      .station::before { left: 13px; top: 8px; }
+      .year-col { padding-right: 0; padding-left: 32px; text-align: left; }
+      .year-num { font-size: 28px; }
+      .items-col { padding-left: 32px; }
+      footer { padding: 20px 24px; }
+      .talk-widget { bottom: 16px; right: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <span class="nav-brand">100 Days of Non</span>
+    <a href="/day/001/">RECORD</a>
+    <a href="/map/">MAP</a>
+    <a href="/corpus/">CORPUS</a>
+    <a href="/chronos/" class="here">CHRONOS</a>
+    <a href="/lexicon/">LEXICON</a>
+    <a href="/voices/">VOICES</a>
+    <a href="/archive/">ARCHIVE</a>
+    <a href="/method/">METHOD</a>
+    <a href="/game/">GAME</a>
+    <a href="/subject/">SUBJECT</a>
+    <a href="/bot/">BOT</a>
+  </nav>
+
+  <header class="page">
+    <div class="room-num">Room 04 of 11 · The Timeline</div>
+    <h1 class="room-title">Chronos</h1>
+    <p class="room-sub">
+      A station per year, more when the year had more. 1981 to 2026. The line is straight on the page;
+      it was crooked in practice. Where the line cuts through Cambridge, Oxford, Shanghai, and Bangkok
+      is where this museum has rooms.
+    </p>
+  </header>
+
+  <section class="timeline" id="timeline"></section>
+
+  <footer>
+    <span>100 Days of Non &nbsp;·&nbsp; Chronos &nbsp;·&nbsp; 1981 → 2026</span>
+    <span>Room 04 of 11</span>
+  </footer>
+
+  <div class="talk-widget">
+    <a href="/bot/"><span class="talk-pulse"></span> Talk to Non</a>
+  </div>
+
+  <script>
+    fetch('/data/chronos.json').then(r => r.json()).then(data => {
+      const html = data.stations.map(s => `
+        <div class="station">
+          <div class="year-col">
+            <div class="year-num">${s.year}</div>
+            <div class="year-phase">${s.phase}</div>
+          </div>
+          <div class="items-col">
+            ${s.items.map(it => `
+              <div class="item">
+                <div class="item-date">${it.date}</div>
+                <div class="item-label">${it.label}</div>
+                <div class="item-detail">${it.detail}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+      document.getElementById('timeline').innerHTML = html;
+    });
+  </script>
+
+</body>
+</html>
