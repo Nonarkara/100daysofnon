@@ -209,6 +209,14 @@
       document.getElementById('lex-total').textContent = entries.length;
     });
 
+    function linkify(text) {
+      // Auto-link "Day N, blog" → /corpus/#day-NNN
+      return text.replace(/Day\s+(\d{1,3})(?=,?\s+blog)/g, (m, n) => {
+        const pad = String(n).padStart(3, '0');
+        return `<a href="/corpus/#day-${pad}" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--faint);">Day ${n}</a>`;
+      });
+    }
+
     function render(q) {
       const filtered = q
         ? entries.filter(e =>
@@ -221,8 +229,8 @@
         ? filtered.map(e => `
             <article class="entry">
               <h3 class="entry-term">${e.term}</h3>
-              <p class="entry-def">${e.definition}</p>
-              <div class="entry-src">— ${e.source}</div>
+              <p class="entry-def">${linkify(e.definition)}</p>
+              <div class="entry-src">— ${linkify(e.source)}</div>
             </article>
           `).join('')
         : `<div class="no-results">No entries match "${q}". Try another term.</div>`;
