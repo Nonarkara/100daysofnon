@@ -1,0 +1,48 @@
+{
+  "title": "Voices",
+  "subtitle": "Six speech-acts that show the voice. Each one is a moment from the corpus the way a museum shows a single object.",
+  "speeches": [
+    {
+      "n": 1,
+      "tag": "Definition",
+      "headline": "TRADITION: ABSOLUTELY NOTHING.",
+      "footnote": "Day 5 of the blog. The shortest sentence in the corpus. Twenty-eight characters that took ten years to write.",
+      "source": "Day 5, Tradition: What's Good For? (2025-06-28)"
+    },
+    {
+      "n": 2,
+      "tag": "Definition",
+      "headline": "HARVARD: A FOR-PROFIT COMPANY IN MASSACHUSETTS AUTHORIZED BY LAW TO ACT AS A SINGLE ENTITY THAT THINKS OF ITSELF AS AN EDUCATIONAL INSTITUTION.",
+      "footnote": "Day 70 of the blog. A teaching tool by accident — the kind of sentence that ends arguments because it removes the warm air from the room.",
+      "source": "Day 70, On Professionalism (2025-09-02)"
+    },
+    {
+      "n": 3,
+      "tag": "Sermon",
+      "headline": "BECAUSE WE ARE LIVING IN THE BEST OF ALL POSSIBLE WORLDS, THEREFORE I BIKE. AND VICE VERSA.",
+      "footnote": "Day 3 of the blog. Leibniz survives. So does the Brompton. The vice-versa is the move: bicycling is the test, not the conclusion.",
+      "source": "Day 3, Because We Are Living in the Best of All Possible Worlds (2025-06-26)"
+    },
+    {
+      "n": 4,
+      "tag": "Observation",
+      "headline": "WHEN YOU MEET SOMEONE IN A SHANGHAI COFFEE SHOP, YOU ARE NOT MEETING OVER COFFEE. YOU ARE BOTH PERFORMING ACCESS TO MODERNITY.",
+      "footnote": "Day 5 of the blog, reprised in the Shanghai entries (Day 7, Day 53). The floor plan was inherited from authoritarianism; capitalism kept the layout. The performance is sincere. The set is borrowed.",
+      "source": "Day 5 · Day 7 · Day 53 of the blog"
+    },
+    {
+      "n": 5,
+      "tag": "Method",
+      "headline": "WRITING IS THE ONLY COGNITIVE TECHNOLOGY THAT SLOWS THOUGHT DOWN FAR ENOUGH TO INSPECT IT.",
+      "footnote": "Day 1 of the blog. Reused on Day 1 of this project. Speech is too fast. Thought is faster. Writing is the rest stop.",
+      "source": "Day 1, blog · Day 1, 100 Days of Non"
+    },
+    {
+      "n": 6,
+      "tag": "Structural guess",
+      "headline": "I DON'T KNOW WHO KILLED HIM. BUT IF I HAD TO LOOK SOMEWHERE, I WOULD LOOK AT WHOEVER COULD ABSORB THE AFTERMATH WITHOUT THEIR INSTITUTION BUCKLING.",
+      "footnote": "Not from the blog. From the working method of the bot that will live in this museum. The anthropologist's move: not the fact, but the shape of the answer. This is the signature.",
+      "source": "100 Days of Non · the structural-guess pattern"
+    }
+  ]
+}

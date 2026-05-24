@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corpus — 100 Days of Non</title>
+  <meta name="description" content="The full nonharvard blog corpus. 100 posts, 240,000 words. Browsable by theme, location, and month.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #000; --fg: #fff; --accent: #CCFF00;
+      --dim: rgba(255,255,255,0.45); --faint: rgba(255,255,255,0.12);
+      --sans: 'Space Grotesk','Helvetica Neue',Helvetica,Arial,sans-serif;
+      --mono: 'JetBrains Mono','Courier New',monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { background: var(--bg); color: var(--fg); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 40px;
+      border-bottom: 1px solid var(--faint);
+      display: flex; align-items: center;
+      padding: 0 32px; gap: 24px;
+      background: var(--bg); z-index: 100;
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+    }
+    .nav-brand { color: var(--dim); text-transform: uppercase; margin-right: auto; }
+    .nav a { color: var(--dim); text-decoration: none; text-transform: uppercase; white-space: nowrap; }
+    .nav a:hover { color: var(--fg); }
+    .nav a.here { color: var(--accent); }
+
+    header.page {
+      margin-top: 40px;
+      padding: 48px 56px;
+      border-bottom: 1px solid var(--faint);
+    }
+    .room-num { font-family: var(--mono); font-size: 11px; color: var(--dim);
+      letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 24px; }
+    .room-title {
+      font-family: var(--sans); font-size: clamp(48px, 9vw, 96px);
+      font-weight: 700; line-height: 0.9; letter-spacing: -0.025em;
+      text-transform: uppercase;
+    }
+    .room-sub {
+      font-family: var(--sans); font-size: 14px; color: var(--dim);
+      line-height: 1.6; max-width: 640px; margin-top: 24px;
+    }
+
+    /* Stats strip */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--faint);
+    }
+    .stat {
+      padding: 24px 32px;
+      border-right: 1px solid var(--faint);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-n {
+      font-family: var(--mono); font-size: 32px;
+      font-weight: 700; color: var(--accent);
+      line-height: 1; letter-spacing: -0.02em;
+    }
+    .stat-l {
+      font-family: var(--mono); font-size: 11px;
+      color: var(--dim); letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    /* Filter bar */
+    .filters {
+      padding: 20px 56px;
+      border-bottom: 1px solid var(--faint);
+      display: flex; align-items: center;
+      gap: 16px; flex-wrap: wrap;
+      font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.12em;
+    }
+    .filters label {
+      color: var(--dim); text-transform: uppercase;
+    }
+    .filters input,
+    .filters select {
+      background: transparent; color: var(--fg);
+      border: 1px solid var(--faint);
+      padding: 10px 14px; min-height: 44px;
+      font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .filters input { flex: 1; min-width: 200px; max-width: 360px; }
+    .filters input:focus,
+    .filters select:focus { outline: none; border-color: var(--accent); }
+    .filters select { cursor: pointer; }
+    .count-row {
+      color: var(--dim); margin-left: auto;
+    }
+    .count-row .count { color: var(--accent); }
+
+    /* Layout */
+    .body-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      min-height: calc(100vh - 240px);
+    }
+
+    .list-col {
+      border-right: 1px solid var(--faint);
+      overflow-y: auto;
+      max-height: calc(100vh - 240px);
+      position: sticky; top: 40px;
+    }
+    .list-col::-webkit-scrollbar { width: 4px; }
+    .list-col::-webkit-scrollbar-track { background: var(--bg); }
+    .list-col::-webkit-scrollbar-thumb { background: var(--faint); }
+
+    .post-row {
+      padding: 18px 28px;
+      border-bottom: 1px solid var(--faint);
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--fg);
+      display: block;
+    }
+    .post-row:hover { background: rgba(204,255,0,0.08); }
+    .post-row.active { background: var(--accent); color: #000; }
+    .post-row.active .pr-meta,
+    .post-row.active .pr-themes { color: rgba(0,0,0,0.65); }
+    .post-row.active .pr-n { color: #000; }
+
+    .pr-meta {
+      font-family: var(--mono); font-size: 10px;
+      color: var(--dim); letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: flex; gap: 12px;
+      margin-bottom: 6px;
+    }
+    .pr-n { color: var(--accent); }
+    .pr-title {
+      font-family: var(--sans); font-size: 16px;
+      font-weight: 500; line-height: 1.35;
+      letter-spacing: -0.01em;
+    }
+    .pr-themes {
+      font-family: var(--mono); font-size: 10px;
+      color: var(--dim); letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    /* Reader column */
+    .read-col {
+      padding: 48px 56px;
+      overflow-y: auto;
+      max-height: calc(100vh - 240px);
+    }
+    .read-empty {
+      text-align: center;
+      font-family: var(--mono); font-size: 11px;
+      color: var(--dim); letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 80px 24px;
+    }
+    .read-meta {
+      font-family: var(--mono); font-size: 11px;
+      color: var(--accent); letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .read-title {
+      font-family: var(--sans); font-size: 32px;
+      font-weight: 700; line-height: 1.1;
+      letter-spacing: -0.015em;
+      margin-bottom: 16px;
+      max-width: 24ch;
+    }
+    .read-sub {
+      font-family: var(--mono); font-size: 11px;
+      color: var(--dim); letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--faint);
+      margin-bottom: 32px;
+    }
+    .read-body {
+      font-family: var(--sans); font-size: 16px;
+      line-height: 1.7;
+      max-width: 64ch;
+      white-space: pre-wrap;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .empty-list {
+      padding: 40px 28px;
+      font-family: var(--mono); font-size: 11px;
+      color: var(--dim); letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    footer {
+      padding: 24px 56px; border-top: 1px solid var(--faint);
+      font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,0.2);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    }
+
+    .talk-widget {
+      position: fixed; bottom: 20px; right: 20px;
+      z-index: 99;
+      font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.15em; text-transform: uppercase;
+    }
+    .talk-widget a {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 16px; min-height: 44px;
+      background: var(--accent); color: #000;
+      text-decoration: none;
+      border: 1px solid var(--accent);
+    }
+    .talk-widget a:hover { background: #000; color: var(--accent); }
+    .talk-pulse { display: inline-block; width: 8px; height: 8px; background: #000; flex: 0 0 8px; }
+    .talk-widget a:hover .talk-pulse { background: var(--accent); }
+
+    @media (max-width: 900px) {
+      .nav { padding: 0 20px; gap: 14px; overflow-x: auto; scrollbar-width: none; }
+      .nav::-webkit-scrollbar { display: none; }
+      header.page { padding: 36px 24px; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .stat:nth-child(2) { border-right: none; }
+      .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid var(--faint); }
+      .filters { padding: 16px 24px; }
+      .body-layout { grid-template-columns: 1fr; }
+      .list-col { position: static; max-height: none; border-right: none; border-bottom: 1px solid var(--faint); max-height: 400px; }
+      .read-col { padding: 32px 24px; max-height: none; }
+      .read-title { font-size: 24px; }
+      footer { padding: 20px 24px; }
+      .talk-widget { bottom: 16px; right: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <span class="nav-brand">100 Days of Non</span>
+    <a href="/day/001/">RECORD</a>
+    <a href="/map/">MAP</a>
+    <a href="/corpus/" class="here">CORPUS</a>
+    <a href="/chronos/">CHRONOS</a>
+    <a href="/lexicon/">LEXICON</a>
+    <a href="/voices/">VOICES</a>
+    <a href="/archive/">ARCHIVE</a>
+    <a href="/method/">METHOD</a>
+    <a href="/game/">GAME</a>
+    <a href="/subject/">SUBJECT</a>
+    <a href="/bot/">BOT</a>
+  </nav>
+
+  <header class="page">
+    <div class="room-num">Room 03 of 11 · The Source</div>
+    <h1 class="room-title">Corpus</h1>
+    <p class="room-sub">
+      The nonharvard blog. One hundred posts, written daily from June to October 2025. About 240,000
+      words. The source the bot draws from. The raw material the daily entries refer back to. Browse,
+      filter, read.
+    </p>
+  </header>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-n" id="s-posts">—</div>
+      <div class="stat-l">Posts</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n" id="s-words">—</div>
+      <div class="stat-l">Words</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n" id="s-themes">—</div>
+      <div class="stat-l">Themes tagged</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n" id="s-days">—</div>
+      <div class="stat-l">Days span</div>
+    </div>
+  </div>
+
+  <div class="filters">
+    <label for="c-search">Search</label>
+    <input id="c-search" type="text" placeholder="harvard / brompton / shanghai / love…">
+    <label for="c-theme">Theme</label>
+    <select id="c-theme">
+      <option value="">All themes</option>
+    </select>
+    <label for="c-loc">Location</label>
+    <select id="c-loc">
+      <option value="">Anywhere</option>
+    </select>
+    <span class="count-row"><span class="count" id="c-count">—</span> / <span id="c-total">—</span></span>
+  </div>
+
+  <div class="body-layout">
+    <div class="list-col" id="list-col"><div class="empty-list">Loading corpus…</div></div>
+    <div class="read-col" id="read-col">
+      <div class="read-empty">Pick an entry on the left to read.<br>Or search above.</div>
+    </div>
+  </div>
+
+  <footer>
+    <span>100 Days of Non &nbsp;·&nbsp; Corpus &nbsp;·&nbsp; nonharvard blog, 2025</span>
+    <span>Room 03 of 11</span>
+  </footer>
+
+  <div class="talk-widget">
+    <a href="/bot/"><span class="talk-pulse"></span> Talk to Non</a>
+  </div>
+
+  <script>
+    let index = [];
+    let fullCorpus = null;
+    let currentId = null;
+
+    function renderList(items) {
+      const listEl = document.getElementById('list-col');
+      if (!items.length) {
+        listEl.innerHTML = `<div class="empty-list">No posts match. Try another filter.</div>`;
+        return;
+      }
+      listEl.innerHTML = items.map(p => `
+        <a class="post-row ${p.id===currentId?'active':''}" data-id="${p.id}" href="#${p.id}">
+          <div class="pr-meta">
+            <span class="pr-n">${String(p.n).padStart(3,'0')}</span>
+            <span>${p.date}</span>
+            <span>${p.words}w</span>
+          </div>
+          <div class="pr-title">${p.title}</div>
+          <div class="pr-themes">${p.themes.slice(0,4).join(' · ')}</div>
+        </a>
+      `).join('');
+    }
+
+    async function loadFullCorpus() {
+      if (fullCorpus) return fullCorpus;
+      const r = await fetch('/data/corpus.json');
+      fullCorpus = await r.json();
+      return fullCorpus;
+    }
+
+    async function openPost(id) {
+      currentId = id;
+      const full = await loadFullCorpus();
+      const p = full.find(x => x.id === id);
+      if (!p) return;
+      const readEl = document.getElementById('read-col');
+      readEl.innerHTML = `
+        <div class="read-meta">Post ${String(p.n).padStart(3,'0')} / 100 · ${p.date} · ${p.weekday}</div>
+        <h2 class="read-title">${p.title}</h2>
+        <div class="read-sub">
+          ${p.words.toLocaleString()} words ·
+          ${p.themes.join(' · ')}
+          ${p.locations.length ? ' · ' + p.locations.join(' · ') : ''}
+        </div>
+        <div class="read-body">${p.body.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
+      `;
+      readEl.scrollTop = 0;
+      // refresh active state
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const q = document.getElementById('c-search').value.trim().toLowerCase();
+      const theme = document.getElementById('c-theme').value;
+      const loc = document.getElementById('c-loc').value;
+      let items = index;
+      if (q) items = items.filter(p =>
+        p.title.toLowerCase().includes(q) ||
+        p.excerpt.toLowerCase().includes(q) ||
+        p.themes.some(t => t.includes(q)) ||
+        p.locations.some(l => l.toLowerCase().includes(q))
+      );
+      if (theme) items = items.filter(p => p.themes.includes(theme));
+      if (loc) items = items.filter(p => p.locations.includes(loc));
+      document.getElementById('c-count').textContent = items.length;
+      renderList(items);
+    }
+
+    fetch('/data/corpus-index.json').then(r => r.json()).then(data => {
+      index = data;
+      // Sort by n
+      index.sort((a,b) => a.n - b.n);
+      // Stats
+      document.getElementById('s-posts').textContent = data.length;
+      const totalWords = data.reduce((s,p) => s + p.words, 0);
+      document.getElementById('s-words').textContent = (totalWords/1000).toFixed(0) + 'k';
+      const themes = new Set();
+      data.forEach(p => p.themes.forEach(t => themes.add(t)));
+      document.getElementById('s-themes').textContent = themes.size;
+      const dates = data.map(p => p.date).sort();
+      const start = new Date(dates[0]);
+      const end = new Date(dates[dates.length-1]);
+      const days = Math.round((end - start) / 86400000);
+      document.getElementById('s-days').textContent = days;
+      document.getElementById('c-total').textContent = data.length;
+      document.getElementById('c-count').textContent = data.length;
+
+      // Populate filters
+      const themeSel = document.getElementById('c-theme');
+      [...themes].sort().forEach(t => {
+        const opt = document.createElement('option');
+        opt.value = t;
+        opt.textContent = t.charAt(0).toUpperCase() + t.slice(1);
+        themeSel.appendChild(opt);
+      });
+      const locs = new Set();
+      data.forEach(p => p.locations.forEach(l => locs.add(l)));
+      const locSel = document.getElementById('c-loc');
+      [...locs].sort().forEach(l => {
+        const opt = document.createElement('option');
+        opt.value = l;
+        opt.textContent = l;
+        locSel.appendChild(opt);
+      });
+
+      renderList(index);
+
+      // Auto-open first if hash present
+      const hash = location.hash.slice(1);
+      if (hash) openPost(hash);
+    });
+
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('.post-row');
+      if (a) {
+        e.preventDefault();
+        openPost(a.dataset.id);
+      }
+    });
+
+    document.getElementById('c-search').addEventListener('input', applyFilters);
+    document.getElementById('c-theme').addEventListener('change', applyFilters);
+    document.getElementById('c-loc').addEventListener('change', applyFilters);
+  </script>
+
+</body>
+</html>

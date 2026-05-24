@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voices — 100 Days of Non</title>
+  <meta name="description" content="Six speech-acts that show Dr Non's voice. Each one rendered as a poster. Quotable.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:     #000;
+      --fg:     #fff;
+      --accent: #CCFF00;
+      --dim:    rgba(255,255,255,0.45);
+      --faint:  rgba(255,255,255,0.12);
+      --sans:   'Space Grotesk','Helvetica Neue',Helvetica,Arial,sans-serif;
+      --mono:   'JetBrains Mono','Courier New',monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { background: var(--bg); color: var(--fg); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+
+    /* Nav */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 40px;
+      border-bottom: 1px solid var(--faint);
+      display: flex; align-items: center;
+      padding: 0 32px; gap: 24px;
+      background: var(--bg); z-index: 100;
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+    }
+    .nav-brand { color: var(--dim); text-transform: uppercase; margin-right: auto; }
+    .nav a { color: var(--dim); text-decoration: none; text-transform: uppercase; white-space: nowrap; }
+    .nav a:hover { color: var(--fg); }
+    .nav a.here { color: var(--accent); }
+
+    /* Header */
+    header.page {
+      margin-top: 40px;
+      padding: 48px 56px;
+      border-bottom: 1px solid var(--faint);
+    }
+    .room-num {
+      font-family: var(--mono); font-size: 11px; color: var(--dim);
+      letter-spacing: 0.18em; text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .room-title {
+      font-family: var(--sans); font-size: clamp(48px, 9vw, 96px);
+      font-weight: 700; line-height: 0.9; letter-spacing: -0.025em;
+      text-transform: uppercase;
+    }
+    .room-sub {
+      font-family: var(--sans); font-size: 14px; color: var(--dim);
+      line-height: 1.6; max-width: 640px; margin-top: 24px;
+    }
+
+    /* Voice posters */
+    .voices { display: block; }
+    .voice {
+      border-bottom: 1px solid var(--faint);
+      padding: 80px 56px 96px;
+      position: relative;
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .voice:nth-child(odd) {
+      background: var(--bg);
+    }
+    .voice:nth-child(2)  { background: linear-gradient(transparent, transparent); }
+    /* (no gradients — using bg solid; the nth-child is for variety via accent stripe) */
+
+    .v-meta {
+      position: absolute; top: 32px; left: 56px; right: 56px;
+      display: flex; justify-content: space-between;
+      font-family: var(--mono); font-size: 11px; color: var(--dim);
+      letter-spacing: 0.15em; text-transform: uppercase;
+    }
+    .v-tag { color: var(--accent); }
+
+    .v-headline {
+      font-family: var(--sans);
+      font-size: clamp(40px, 7vw, 96px);
+      font-weight: 700; line-height: 1.02;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      max-width: 1200px;
+    }
+    .voice.short .v-headline {
+      font-size: clamp(56px, 12vw, 160px);
+      line-height: 0.92;
+    }
+
+    .v-footnote {
+      font-family: var(--sans); font-size: 16px;
+      color: var(--dim); line-height: 1.6;
+      max-width: 640px;
+      margin-top: 40px;
+    }
+    .v-source {
+      font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,0.3);
+      letter-spacing: 0.15em; text-transform: uppercase;
+      margin-top: 24px;
+    }
+
+    /* Accent voice (the structural-guess one) */
+    .voice.accent {
+      background: var(--accent);
+      color: #000;
+    }
+    .voice.accent .v-meta,
+    .voice.accent .v-footnote,
+    .voice.accent .v-source { color: rgba(0,0,0,0.65); }
+    .voice.accent .v-tag { color: #000; font-weight: 700; }
+
+    /* Footer */
+    footer {
+      padding: 24px 56px; border-top: 1px solid var(--faint);
+      font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,0.2);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    }
+
+    /* Talk widget — common pattern */
+    .talk-widget {
+      position: fixed; bottom: 20px; right: 20px;
+      z-index: 99;
+      font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.15em; text-transform: uppercase;
+    }
+    .talk-widget a {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 16px; min-height: 44px;
+      background: var(--accent); color: #000;
+      text-decoration: none;
+      border: 1px solid var(--accent);
+    }
+    .talk-widget a:hover { background: #000; color: var(--accent); }
+    .talk-pulse {
+      display: inline-block; width: 8px; height: 8px;
+      background: #000; flex: 0 0 8px;
+    }
+    .talk-widget a:hover .talk-pulse { background: var(--accent); }
+
+    @media (max-width: 720px) {
+      .nav { padding: 0 20px; gap: 14px; overflow-x: auto; scrollbar-width: none; }
+      .nav::-webkit-scrollbar { display: none; }
+      header.page { padding: 36px 24px; }
+      .voice { padding: 72px 24px 80px; min-height: 60vh; }
+      .v-meta { top: 24px; left: 24px; right: 24px; }
+      footer { padding: 20px 24px; }
+      .talk-widget { bottom: 16px; right: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <span class="nav-brand">100 Days of Non</span>
+    <a href="/day/001/">RECORD</a>
+    <a href="/map/">MAP</a>
+    <a href="/corpus/">CORPUS</a>
+    <a href="/chronos/">CHRONOS</a>
+    <a href="/lexicon/">LEXICON</a>
+    <a href="/voices/" class="here">VOICES</a>
+    <a href="/archive/">ARCHIVE</a>
+    <a href="/method/">METHOD</a>
+    <a href="/game/">GAME</a>
+    <a href="/subject/">SUBJECT</a>
+    <a href="/bot/">BOT</a>
+  </nav>
+
+  <header class="page">
+    <div class="room-num">Room 07 of 11 · The Voice</div>
+    <h1 class="room-title">Voices</h1>
+    <p class="room-sub">
+      Six speech-acts that show how he sounds. Each one is a moment from the corpus, the way a museum
+      shows a single object: under glass, with light. Quotable, defensible, dated.
+    </p>
+  </header>
+
+  <section class="voices" id="voices"></section>
+
+  <footer>
+    <span>100 Days of Non &nbsp;·&nbsp; Voices &nbsp;·&nbsp; Six speech-acts</span>
+    <span>Room 07 of 11</span>
+  </footer>
+
+  <div class="talk-widget">
+    <a href="/bot/"><span class="talk-pulse"></span> Talk to Non</a>
+  </div>
+
+  <script>
+    fetch('/data/voices.json').then(r => r.json()).then(data => {
+      const html = data.speeches.map((s, i) => {
+        const short = s.headline.length < 80 ? 'short' : '';
+        const accent = s.tag.toLowerCase().includes('structural') ? 'accent' : '';
+        const num = String(s.n).padStart(2,'0');
+        return `
+          <article class="voice ${short} ${accent}">
+            <div class="v-meta">
+              <span>Voice ${num} / 06</span>
+              <span class="v-tag">${s.tag}</span>
+            </div>
+            <h2 class="v-headline">${s.headline}</h2>
+            <p class="v-footnote">${s.footnote}</p>
+            <div class="v-source">${s.source}</div>
+          </article>
+        `;
+      }).join('');
+      document.getElementById('voices').innerHTML = html;
+    });
+  </script>
+
+</body>
+</html>
