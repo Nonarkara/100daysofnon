@@ -414,15 +414,6 @@
       stream.appendChild(div);
     }
 
-    function linkifyCite(text) {
-      const safe = escapeHtml(text);
-      // Auto-link "Day NN, blog" or "Day NN blog" → corpus
-      return safe.replace(/Day\s+(\d{1,3})(?=,?\s+blog)/g, (m, n) => {
-        const pad = String(n).padStart(3, '0');
-        return `<a href="/corpus/#day-${pad}" style="color:#CCFF00;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.2);">Day ${n}</a>`;
-      });
-    }
-
     function appendBot(answer, cite, kind) {
       const div = document.createElement('div');
       const kindLow = (kind || 'DIRECT').toLowerCase();
@@ -432,8 +423,8 @@
           <span class="who">NON</span>
           <span class="kind ${kindLow}">${KIND_LABEL[kind] || kind}</span>
         </div>
-        <div class="msg-bubble">${linkifyCite(answer)}</div>
-        ${cite ? `<div class="msg-cite">— ${linkifyCite(cite)}</div>` : ''}
+        <div class="msg-bubble">${escapeHtml(answer)}</div>
+        ${cite ? `<div class="msg-cite">— ${escapeHtml(cite)}</div>` : ''}
       `;
       stream.appendChild(div);
     }
