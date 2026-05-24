@@ -369,12 +369,18 @@
 
   <!-- ── Global nav ────────────────────────────────────────── -->
   <nav class="nav" aria-label="Site navigation">
-    <span class="nav-brand">100 Days of Non</span>
+    <a href="/" class="nav-brand" style="text-decoration:none;">100 Days of Non</a>
     <a href="/day/001/" class="here">RECORD</a>
     <a href="/map/">MAP</a>
+    <a href="/corpus/">CORPUS</a>
+    <a href="/chronos/">CHRONOS</a>
+    <a href="/lexicon/">LEXICON</a>
+    <a href="/voices/">VOICES</a>
     <a href="/archive/">ARCHIVE</a>
+    <a href="/method/">METHOD</a>
     <a href="/game/">GAME</a>
     <a href="/subject/">SUBJECT</a>
+    <a href="/bot/">BOT</a>
   </nav>
 
   <!-- ── Day-index strip ─────────────────────────────────────── -->
@@ -682,6 +688,34 @@
     </footer>
 
   </main>
+
+
+  <style>
+    .talk-widget {
+      position: fixed; bottom: 20px; right: 20px; z-index: 99;
+      font-family: 'JetBrains Mono','Courier New',monospace; font-size: 11px;
+      letter-spacing: 0.15em; text-transform: uppercase;
+    }
+    .talk-widget a {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 16px; min-height: 44px;
+      background: #CCFF00; color: #000;
+      text-decoration: none;
+      border: 1px solid #CCFF00;
+    }
+    .talk-widget a:hover { background: #000; color: #CCFF00; }
+    .talk-pulse { display: inline-block; width: 8px; height: 8px; background: #000; flex: 0 0 8px; }
+    .talk-widget a:hover .talk-pulse { background: #CCFF00; }
+    .nav { overflow-x: auto; scrollbar-width: none; }
+    .nav::-webkit-scrollbar { display: none; }
+    @media (max-width: 720px) {
+      .talk-widget { bottom: 16px; right: 16px; }
+      .nav { gap: 14px !important; padding: 0 16px !important; }
+    }
+  </style>
+  <div class="talk-widget">
+    <a href="/bot/"><span class="talk-pulse"></span> Talk to Non</a>
+  </div>
 
 </body>
 </html>
