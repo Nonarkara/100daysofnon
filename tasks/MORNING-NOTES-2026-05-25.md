@@ -58,11 +58,25 @@ If you'd rather I do it: reply "yes, unhook" and I'll run the CLI command in one
 
 **Persistent widget:** Bottom-right of every page (except BOT itself). Bright chartreuse "Talk to Non" button. One click opens the BOT room.
 
-**When you want to wire it to Claude:**
-- Voice anchor is at `/site/data/voice-anchor.json` — already structured as a system-prompt scaffold.
-- Corpus is at `/site/data/corpus.json` (1.4MB, lazy-loaded) and `/site/data/corpus-index.json` (64KB metadata).
-- Demo answers at `/site/data/bot-demos.json` — use as few-shot examples.
-- Suggested backend: a `/api/ask` endpoint (Cloudflare Worker fits, given the rest of the stack). System prompt = voice-anchor + the 50 demo answers + ~10 relevant corpus excerpts retrieved by keyword.
+**When you want to wire it to Claude — three commands:**
+
+I already wrote the Cloudflare Worker. It's at `bot-worker/` in this repo, with its own README.
+
+```bash
+cd bot-worker/
+npx wrangler login
+npx wrangler secret put ANTHROPIC_API_KEY     # paste your sk-ant-... key
+npx wrangler deploy
+```
+
+Wrangler returns a worker URL. Open `site/bot/index.html`, find the `ask()` function, replace the local best-match logic with a `fetch` to that URL (snippet in `bot-worker/README.md`). Commit. Push. The bot is live.
+
+The worker:
+- Loads `voice-anchor.json` + `bot-demos.json` + `corpus-index.json` from the live site (1-hour edge cache).
+- Retrieves the top 3 most-relevant corpus posts by keyword overlap (cheap RAG).
+- Builds a system prompt that forces JSON-only reply with one of four `kind` values.
+- Calls `claude-sonnet-4-5` by default. ~$0.015 per chat. Cloudflare Workers free tier covers museum-scale traffic.
+- No conversation memory by design (stateless). No analytics. No moderation. Add when needed.
 
 ### Data files (the RAG layer)
 
@@ -100,10 +114,9 @@ re-render citations against it.
 
 ## What's not done (for later)
 
-- **Bot ↔ Claude wiring.** Frontend ready. Needs `/api/ask` endpoint with anthropic API key. See above.
-- **Day 002+ records.** Day strip already shows future days as dim/unclickable, which is the right UX for now. When you write Day 002, just clone `site/day/001/` to `site/day/002/`, update content, set the day-strip active class. The 100-day strip will light up automatically as you ship each.
-- **Cross-links between rooms.** Lexicon entries cite "Day N, blog" but don't link to `/corpus/#day-N`. Easy follow-up; rendering tweak in lexicon's render function. (~15 min.)
-- **More lexicon entries.** 35 today. The plan was 50. Cut for time — quality-driven.
+- **Bot ↔ Claude key.** Worker is built; just needs your API key (3 commands, above).
+- **Day 002+ records.** Day strip already shows future days as dim/unclickable, which is the right UX for now. When you write Day 002, just clone `site/day/001/` to `site/day/002/`, update content, move the `.day-num.active` class one step to the right.
+- **Cross-links by Day N number.** The lexicon and bot cite "Day N" using the original nonharvard numbering, which doesn't match my date-sequential corpus IDs. I removed the auto-link rather than ship a half-right one. Reconcile the numbering and turn them back on later (~30 min).
 - **Cloudflare custom domain.** Blocked on you (§1 above).
 
 ---
