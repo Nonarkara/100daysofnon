@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>001 — 100 Days of Non</title>
+  <meta name="description" content="100 Days of Non. One question per day. The answers are fact-checked publicly. Memory and record side by side.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── Design tokens ──────────────────────────────────────────── */
+    :root {
+      --bg:     #000000;
+      --fg:     #FFFFFF;
+      --accent: #CCFF00;
+      --dim:    rgba(255,255,255,0.45);
+      --faint:  rgba(255,255,255,0.12);
+
+      --sans:  'Space Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --mono:  'JetBrains Mono', 'Courier New', monospace;
+
+      --micro:   11px;
+      --body:    14px;
+      --emph:    18px;
+      --pull:    clamp(56px, 14vw, 180px);
+      --counter: clamp(80px, 20vw, 144px);
+
+      --strip-h: 40px;
+      --col-x:   24px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--sans);
+      font-size: var(--body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Day-index strip ────────────────────────────────────────── */
+    .strip {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--strip-h);
+      background: var(--bg);
+      border-bottom: 1px solid var(--faint);
+      display: flex;
+      align-items: center;
+      padding: 0 48px 0 48px;
+      gap: 6px;
+      overflow-x: auto;
+      z-index: 100;
+      font-family: var(--mono);
+      font-size: var(--micro);
+      letter-spacing: 0.08em;
+      scrollbar-width: none;
+    }
+    .strip::-webkit-scrollbar { display: none; }
+
+    .strip-title {
+      color: var(--dim);
+      margin-right: 16px;
+      white-space: nowrap;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .day-num {
+      color: var(--faint);
+      text-decoration: none;
+      padding: 2px 4px;
+      white-space: nowrap;
+      transition: color 0.1s;
+    }
+    .day-num:hover { color: rgba(255,255,255,0.5); }
+    .day-num.done  { color: rgba(255,255,255,0.55); }
+    .day-num.active { color: var(--accent); }
+
+    /* ─── 1px vertical architecture column ──────────────────────── */
+    .col-rule {
+      position: fixed;
+      top: var(--strip-h);
+      left: var(--col-x);
+      bottom: 0;
+      width: 1px;
+      background: var(--faint);
+      z-index: 10;
+    }
+
+    /* ─── Page layout ────────────────────────────────────────────── */
+    main {
+      margin-top: var(--strip-h);
+      padding: 56px 56px 120px 56px;
+    }
+
+    /* ─── Day counter ────────────────────────────────────────────── */
+    .day-counter {
+      font-family: var(--mono);
+      font-size: var(--counter);
+      font-weight: 700;
+      line-height: 0.85;
+      letter-spacing: -0.04em;
+      color: var(--fg);
+    }
+
+    .day-meta {
+      font-family: var(--mono);
+      font-size: var(--micro);
+      color: var(--dim);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-top: 10px;
+    }
+
+    /* ─── Type-as-image ──────────────────────────────────────────── */
+    .pull-image {
+      font-family: var(--sans);
+      font-size: var(--pull);
+      font-weight: 700;
+      line-height: 0.88;
+      letter-spacing: -0.025em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: clip;
+      color: var(--fg);
+      margin-top: 64px;
+      margin-left: -56px;    /* intentional bleed */
+      padding-left: 56px;
+    }
+
+    /* ─── Phase / question ───────────────────────────────────────── */
+    .phase-row {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-top: 72px;
+    }
+
+    .phase-tag {
+      font-family: var(--mono);
+      font-size: var(--micro);
+      color: var(--dim);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .rule-h { width: 100%; height: 1px; background: var(--faint); }
+
+    .q-label {
+      font-family: var(--mono);
+      font-size: var(--micro);
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-top: 20px;
+    }
+
+    .q-text {
+      font-size: var(--emph);
+      line-height: 1.5;
+      color: rgba(255,255,255,0.8);
+      max-width: 660px;
+      margin-top: 10px;
+    }
+
+    /* ─── Content grid: answer | fact-check ─────────────────────── */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 0 64px;
+      margin-top: 56px;
+      align-items: start;
+    }
+
+    /* ─── Answer column ──────────────────────────────────────────── */
+    .col-label {
+      font-family: var(--mono);
+      font-size: var(--micro);
+      color: var(--dim);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .answer-text p {
+      font-size: var(--body);
+      line-height: 1.8;
+      color: rgba(255,255,255,0.88);
+    }
+    .answer-text p + p { margin-top: 1.4em; }
+
+    /* ─── Narration ──────────────────────────────────────────────── */
+    .narration {
+      margin-top: 56px;
+      padding-left: 28px;
+      border-left: 1px solid var(--faint);
+    }
+
+    .narration .col-label { margin-bottom: 14px; }
+
+    .narration-text p {
+      font-size: var(--body);
+      line-height: 1.8;
+      color: rgba(255,255,255,0.45);
+    }
+    .narration-text p + p { margin-top: 1.3em; }
+
+    /* ─── Fact-check column ──────────────────────────────────────── */
+    .fc-col {
+      font-family: var(--mono);
+      font-size: 11px;
+      position: sticky;
+      top: calc(var(--strip-h) + 16px);
+    }
+
+    .claim {
+      display: grid;
+      grid-template-columns: 14px 80px 1fr;
+      column-gap: 6px;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      align-items: start;
+    }
+
+    .c-glyph { color: var(--dim); line-height: 1.4; }
+    .c-glyph.cx { color: var(--accent); }
+
+    .c-tag {
+      color: rgba(255,255,255,0.25);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      line-height: 1.4;
+    }
+    .c-tag.cx { color: var(--accent); }
+
+    .c-text { color: rgba(255,255,255,0.7); line-height: 1.4; }
+
+    .c-sub {
+      grid-column: 3;
+      color: rgba(255,255,255,0.3);
+      font-size: 10px;
+      margin-top: 2px;
+      line-height: 1.4;
+    }
+    .c-sub.cx { color: var(--accent); }
+
+    /* summary tally */
+    .fc-tally {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 0;
+      margin-top: 20px;
+      padding-top: 14px;
+      border-top: 1px solid var(--faint);
+    }
+
+    .tally-n {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1;
+      color: rgba(255,255,255,0.85);
+    }
+    .tally-n.cx { color: var(--accent); }
+
+    .tally-l {
+      font-size: 9px;
+      color: rgba(255,255,255,0.25);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 4px;
+    }
+
+    .fc-overflow {
+      font-size: 10px;
+      color: rgba(255,255,255,0.2);
+      margin-top: 12px;
+    }
+
+    /* ─── Telemetry ──────────────────────────────────────────────── */
+    .telemetry {
+      margin-top: 88px;
+      padding-top: 32px;
+      border-top: 1px solid var(--faint);
+    }
+
+    .t-number {
+      font-family: var(--mono);
+      font-size: var(--counter);
+      font-weight: 700;
+      line-height: 0.85;
+      letter-spacing: -0.04em;
+      color: rgba(255,255,255,0.08);
+    }
+
+    .t-meta {
+      font-family: var(--mono);
+      font-size: var(--micro);
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 10px;
+    }
+
+    /* ─── Footer ─────────────────────────────────────────────────── */
+    footer {
+      margin-top: 80px;
+      padding-top: 24px;
+      border-top: 1px solid var(--faint);
+      font-family: var(--mono);
+      font-size: var(--micro);
+      color: rgba(255,255,255,0.18);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ─── Mobile ─────────────────────────────────────────────────── */
+    @media (max-width: 720px) {
+      main { padding: 40px 24px 80px 24px; }
+
+      .strip { padding: 0 24px; }
+
+      .col-rule { left: 8px; }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .fc-col { position: static; }
+
+      .pull-image {
+        margin-left: -24px;
+        padding-left: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Day-index strip ─────────────────────────────────────── -->
+  <nav class="strip" aria-label="100 Days navigation">
+    <span class="strip-title">100 Days of Non</span>
+    <a href="/day/001/" class="day-num active">001</a>
+    <!-- Days 002–100: rendered faint; will activate as they land -->
+    <span class="day-num">002</span><span class="day-num">003</span><span class="day-num">004</span><span class="day-num">005</span>
+    <span class="day-num">006</span><span class="day-num">007</span><span class="day-num">008</span><span class="day-num">009</span><span class="day-num">010</span>
+    <span class="day-num">011</span><span class="day-num">012</span><span class="day-num">013</span><span class="day-num">014</span><span class="day-num">015</span>
+    <span class="day-num">016</span><span class="day-num">017</span><span class="day-num">018</span><span class="day-num">019</span><span class="day-num">020</span>
+    <span class="day-num">021</span><span class="day-num">022</span><span class="day-num">023</span><span class="day-num">024</span><span class="day-num">025</span>
+    <span class="day-num">026</span><span class="day-num">027</span><span class="day-num">028</span><span class="day-num">029</span><span class="day-num">030</span>
+    <span class="day-num">031</span><span class="day-num">032</span><span class="day-num">033</span><span class="day-num">034</span><span class="day-num">035</span>
+    <span class="day-num">036</span><span class="day-num">037</span><span class="day-num">038</span><span class="day-num">039</span><span class="day-num">040</span>
+    <span class="day-num">041</span><span class="day-num">042</span><span class="day-num">043</span><span class="day-num">044</span><span class="day-num">045</span>
+    <span class="day-num">046</span><span class="day-num">047</span><span class="day-num">048</span><span class="day-num">049</span><span class="day-num">050</span>
+    <span class="day-num">051</span><span class="day-num">052</span><span class="day-num">053</span><span class="day-num">054</span><span class="day-num">055</span>
+    <span class="day-num">056</span><span class="day-num">057</span><span class="day-num">058</span><span class="day-num">059</span><span class="day-num">060</span>
+    <span class="day-num">061</span><span class="day-num">062</span><span class="day-num">063</span><span class="day-num">064</span><span class="day-num">065</span>
+    <span class="day-num">066</span><span class="day-num">067</span><span class="day-num">068</span><span class="day-num">069</span><span class="day-num">070</span>
+    <span class="day-num">071</span><span class="day-num">072</span><span class="day-num">073</span><span class="day-num">074</span><span class="day-num">075</span>
+    <span class="day-num">076</span><span class="day-num">077</span><span class="day-num">078</span><span class="day-num">079</span><span class="day-num">080</span>
+    <span class="day-num">081</span><span class="day-num">082</span><span class="day-num">083</span><span class="day-num">084</span><span class="day-num">085</span>
+    <span class="day-num">086</span><span class="day-num">087</span><span class="day-num">088</span><span class="day-num">089</span><span class="day-num">090</span>
+    <span class="day-num">091</span><span class="day-num">092</span><span class="day-num">093</span><span class="day-num">094</span><span class="day-num">095</span>
+    <span class="day-num">096</span><span class="day-num">097</span><span class="day-num">098</span><span class="day-num">099</span><span class="day-num">100</span>
+  </nav>
+
+  <!-- ── 1px vertical rule ───────────────────────────────────── -->
+  <div class="col-rule" aria-hidden="true"></div>
+
+  <main>
+
+    <!-- ── Day counter ──────────────────────────────────────── -->
+    <div class="day-counter" aria-label="Day 001">001</div>
+    <div class="day-meta">25 MAY 2026 &nbsp;·&nbsp; PHASE I — ORIGIN &amp; PLACE &nbsp;·&nbsp; DAY 1 OF 100</div>
+
+    <!-- ── Type-as-image ────────────────────────────────────── -->
+    <div class="pull-image" aria-hidden="true">NEAR SIAM PARAGON</div>
+
+    <!-- ── Phase row ────────────────────────────────────────── -->
+    <div class="phase-row">
+      <span class="phase-tag">Phase 1 &nbsp;/&nbsp; Origin &amp; Place</span>
+      <div class="rule-h"></div>
+    </div>
+
+    <!-- ── Question ─────────────────────────────────────────── -->
+    <div class="q-label">Question</div>
+    <p class="q-text">
+      Born 1981. That's the claim. We start there. Give me: day, month, year.
+      Hospital. City. Who was in the room. The version your family tells of that
+      day — verbatim if you remember the exact words, paraphrased if not. And one
+      detail from that version that you've never quite believed.
+    </p>
+
+    <!-- ── Content grid ─────────────────────────────────────── -->
+    <div class="content-grid">
+
+      <!-- Left column: answer + narration -->
+      <div>
+
+        <div class="col-label">Answer &mdash; Non Arkara</div>
+
+        <div class="answer-text">
+          <p>So it was November 1st, 1981, a Sunday. The hospital was Payatai in
+          the city, close to where we lived at the time, which was near Siam
+          Square. We moved out when I was probably a couple of years old to this
+          current house I've been living in for the past 42 years.</p>
+
+          <p>It was on a Sunday that I was born. The pictures of the baby look
+          kind of strange and didn't look like me at all. I feel like I'm
+          definitely much more handsome than that baby. Strange head shape. I
+          didn't remember much about anything when I was young. The only time that
+          I remember was probably when I got lost in a mall and no one actually
+          found me for a while. That got me worried and may have become part of my
+          psychological scar until now.</p>
+
+          <p>I was born six years after my brother. That's all I got from my mom
+          and from people around me.</p>
+
+          <p>Well, first of all, that wouldn't be Siam Paragon back then. It would
+          have been this hotel called Siam Intercontinental. The hotel itself was
+          designed to look like a hat, because the architect himself was actually a
+          direct student of Frank Lloyd Wright. Surrounded by a park. A small
+          portion of it is hotel rooms, and that's actually where my mom usually
+          goes to get her dry cleaning. They hosted a number of events I took part
+          in, especially weddings. I think the last event that I went there before
+          they tore down the buildings and built this gigantic structure called
+          Siam Paragon was probably an international student affair expo for
+          Australia. Around 2002 or so. Only a few months after that they decided
+          to tear down the buildings.</p>
+
+          <p>Back then, Siam Square was calm. Not as hipsterish as the 90s, not as
+          Gen Z as today. Lots of interesting stores, comic book stores,
+          three big theatres. My mom mentioned we would cross this elephant-headed
+          bridge over a small canal, over to the area of the Princess Palace — a
+          beer garden, then the science center, then Siam Square. My mother also
+          worked down the road at the headquarters of Krung Thai Bank on
+          Sukhumvit. She could commute by bus from there to the row house.</p>
+
+          <p>My maternal grandmother is the one who was more visionary. She saved
+          every penny in order to buy property in the city center, which later on
+          was taken by eminent domain for an expressway landing. We had to move
+          out. That's how we got the money to build this house — the land was
+          already bought by the visionary grandmother, who understood what it takes
+          to have a piece of land in the capital.</p>
+
+          <p>The mall was called Pantip Plaza. My mom would go there with me in
+          the baby carrier, my dad and brother too sometimes. I got lost for a
+          while and then was found by my mom and brother. I still remember that
+          moment. I still remember the interior — very Roman-esque classical, with
+          lots of columns. I later on, as an architecture student, learned these
+          were called Doric and Ionic columns. Everything was moving around me.
+          Everything was so big, so frightening. The acoustics were not fun. I
+          remember that as well.</p>
+        </div>
+
+        <!-- Narration -->
+        <div class="narration">
+          <div class="col-label">Narration &mdash; Biographer</div>
+          <div class="narration-text">
+            <p>Day one. He gave a date, a hospital, an area, a brother six years
+            older, a house his father built. The calendar agreed: November 1st,
+            1981 was a Sunday. The hospital exists at the address the geography
+            implied. One detail tripped — he placed his infancy "near Siam
+            Paragon," a mall that wouldn't exist for another twenty-four years.
+            Not a memory error. A grammar error. The system logged it anyway
+            because that is the system.</p>
+
+            <p>He pushed back. Cleared his throat in writing — <em>Ahem!</em> —
+            and went back in time. Where Siam Paragon now stands, there was a
+            hotel. The Siam Intercontinental. A roof shaped like a hat. An
+            American architect in the Wright tradition. Gardens. His mother's dry
+            cleaner. Wedding receptions. An Australian student-affairs expo in
+            2002 — the last event he attended before they tore it down. He gave it
+            all back to the page with the precision of someone who had been waiting
+            for a system patient enough to ask.</p>
+
+            <p>Two slips surfaced. "Siam Paragon" — a present-day anchor applied
+            to a 1981 geography. And "Paris style of Frank Lloyd Wright" — Wright
+            had no Paris style; Prairie, Usonian, Organic only. The system logged
+            both. Non is reaching for nearby anchors at the level of specificity he
+            naturally thinks at. The fact-check shows where the reach happens.
+            That is the mechanic.</p>
+          </div>
+        </div>
+
+      </div><!-- /left col -->
+
+      <!-- Right column: fact-check (sticky) -->
+      <div class="fc-col">
+
+        <div class="col-label">Fact-check &nbsp;&middot;&nbsp; 27 claims</div>
+
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Birth date 1 Nov 1981</span>
+          <span class="c-sub">Calendar arithmetic &mdash; confirmed Sunday</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Hospital: Phyathai / Payatai</span>
+          <span class="c-sub">Phyathai Hospital Group, Ratchathewi</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Siam Intercontinental (1966–2002)</span>
+          <span class="c-sub">Demolished for Siam Paragon, opened Dec 2005</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Hat-shaped / sloped roof</span>
+          <span class="c-sub">Documented in Bangkok modernist architecture</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph cx">&#10007;</span>
+          <span class="c-tag cx">CONTRADICTED</span>
+          <span class="c-text">Near Siam Paragon (1981)</span>
+          <span class="c-sub cx">Siam Paragon opened 2005 &rarr; self-corrected to Siam Intercontinental</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph cx">&#10007;</span>
+          <span class="c-tag cx">CONTRADICTED</span>
+          <span class="c-text">Paris style of Frank Lloyd Wright</span>
+          <span class="c-sub cx">Wright: Prairie / Usonian / Organic only &mdash; no Paris style</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Scala, Lido, Siam theatres</span>
+          <span class="c-sub">All three operated in Siam Square</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Krung Thai Bank HQ on Sukhumvit</span>
+          <span class="c-sub">KTB headquarters confirmed</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Sra Pathum Palace location</span>
+          <span class="c-sub">Pathumwan, consistent with route described</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Pantip Plaza on Petchaburi Rd</span>
+          <span class="c-sub">Open since 1980s, ~2 km from Siam corridor</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">?</span>
+          <span class="c-tag">UNVERIFIED</span>
+          <span class="c-text">Architect: direct student of FLW</span>
+          <span class="c-sub">Salerno / Taliesin plausible &mdash; needs primary source</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">?</span>
+          <span class="c-tag">UNVERIFIED</span>
+          <span class="c-text">Father built the current house</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">?</span>
+          <span class="c-tag">UNVERIFIED</span>
+          <span class="c-text">Eminent domain &rarr; expressway &rarr; new house</span>
+          <span class="c-sub">Bangkok expressway land history &mdash; resolvable</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">?</span>
+          <span class="c-tag">UNVERIFIED</span>
+          <span class="c-text">Pantip Plaza: Doric / Ionic columns</span>
+          <span class="c-sub">1980s interior &mdash; period photos needed</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#8709;</span>
+          <span class="c-tag">UN-VERIFIABLE</span>
+          <span class="c-text">Brother six years older</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#8709;</span>
+          <span class="c-tag">UN-VERIFIABLE</span>
+          <span class="c-text">Mall-loss incident</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#8709;</span>
+          <span class="c-tag">UN-VERIFIABLE</span>
+          <span class="c-text">Acoustics of Pantip Plaza</span>
+        </div>
+
+        <div class="fc-overflow">+ 10 additional claims in full record</div>
+
+        <div class="fc-tally">
+          <div>
+            <div class="tally-n">9</div>
+            <div class="tally-l">&#10003; Verified</div>
+          </div>
+          <div>
+            <div class="tally-n cx">2</div>
+            <div class="tally-l">&#10007; Contradicted</div>
+          </div>
+          <div>
+            <div class="tally-n">7</div>
+            <div class="tally-l">? Unverified</div>
+          </div>
+          <div>
+            <div class="tally-n">6</div>
+            <div class="tally-l">&#8709; Unveri&shy;fiable</div>
+          </div>
+        </div>
+
+      </div><!-- /right col -->
+
+    </div><!-- /content-grid -->
+
+    <!-- ── Telemetry ─────────────────────────────────────────── -->
+    <div class="telemetry">
+      <div class="t-number">&mdash;:&mdash;:&mdash;</div>
+      <div class="t-meta">Response latency pending &mdash; Telegram bot not yet wired &nbsp;&middot;&nbsp; 999 words across 2 messages &nbsp;&middot;&nbsp; 2026-05-25 Asia/Bangkok</div>
+    </div>
+
+    <footer>
+      <span>100 Days of Non &nbsp;&middot;&nbsp; Non Arkara</span>
+      <span>Day 001 of 100 &nbsp;&middot;&nbsp; Phase I: Origin &amp; Place</span>
+    </footer>
+
+  </main>
+
+</body>
+</html>
