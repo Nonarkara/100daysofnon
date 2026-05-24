@@ -1,0 +1,23 @@
+{
+  "day": 1,
+  "phase": "1 — Origin & place",
+  "T0_approx": "2026-05-25T??:??:??Z",
+  "T0_local_approx": "2026-05-25 evening Asia/Bangkok",
+  "T2": null,
+  "T3_approx": "2026-05-25T??:??:??Z",
+  "T4_approx": "2026-05-25T??:??:??Z",
+  "latency_ms_approx": null,
+  "composition_ms_approx": null,
+  "answer_word_count": 999,
+  "answer_message_count": 2,
+  "expansion_after_factcheck": true,
+  "notes": "Two messages: initial answer + expansion-after-fact-check (Non doubled the texture when the system flagged the Siam Paragon anachronism). Precise timestamps cannot be recorded until the Biographer persona on @DrNonOpenClaw_bot is wired. Word-count and message-count are exact.",
+  "fact_check_summary": {
+    "verified": 9,
+    "contradicted": 2,
+    "unverified": 7,
+    "unverifiable": 6,
+    "total_claims": 27,
+    "self_corrected_after_factcheck": 1
+  }
+}

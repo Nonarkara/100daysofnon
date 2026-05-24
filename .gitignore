@@ -1,0 +1,33 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# build
+.next/
+dist/
+build/
+out/
+
+# env
+.env
+.env.local
+.env.*.local
+
+# voice training material — never commit
+voice/samples/
+voice/models/
+*.wav
+*.mp3
+*.pt
+*.pth
+*.safetensors
+
+# OS
+.DS_Store
+
+# editor
+.vscode/
+.idea/
+
+# scaffold probe
+.scaffold-test
