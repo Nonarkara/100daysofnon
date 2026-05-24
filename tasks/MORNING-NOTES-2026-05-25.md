@@ -1,6 +1,6 @@
 # Morning Notes — 2026-05-25
 
-Built overnight while you slept. Six new museum rooms, 50-answer bot, 100 blog posts indexed, OG metadata everywhere. Three commits pushed. One thing needs your hand for 30 seconds.
+Built overnight while you slept. Six new museum rooms, 49-answer bot, 99 blog posts indexed, OG metadata everywhere, a drop-in Cloudflare Worker for the Claude wiring, sitemap+robots, 404 page. **Fifteen commits pushed.** One thing needs your hand for 30 seconds.
 
 ---
 
@@ -143,3 +143,46 @@ If anything looks broken, the gh-pages branch has the source; `git log gh-pages`
 ---
 
 The journal is a journey. Day 002 is yours to write.
+
+---
+
+## Quick inventory of what's on disk
+
+```
+100daysofnon/
+├── .github/workflows/deploy.yml      (already configured, working)
+├── site/                              ← the museum (deploys to gh-pages)
+│   ├── index.html                     LOBBY — 11-room directory
+│   ├── 404.html                       Museum-style not-found
+│   ├── robots.txt + sitemap.xml       SEO
+│   ├── day/001/index.html             Today's record + Day 001-100 strip
+│   ├── map/index.html                 8 districts, 32 landmarks
+│   ├── corpus/index.html              99 posts, paragraph reader, drop cap
+│   ├── chronos/index.html             1981-2026 timeline
+│   ├── lexicon/index.html             52 Nonism term definitions
+│   ├── voices/index.html              6 speech-act posters
+│   ├── archive/index.html             10 uncomfortable facts + paintings
+│   ├── method/index.html              Trust page · four claim types
+│   ├── game/index.html                Claim Check · 6 claims
+│   ├── subject/index.html             Portrait + bio data
+│   ├── bot/index.html                 Chat UI · 49 demo answers
+│   ├── assets/portrait.jpg            GITEX photo
+│   └── data/                          ← the RAG layer
+│       ├── README.md                  How to use these files
+│       ├── corpus.json                99 posts as paragraph arrays
+│       ├── corpus-index.json          Lightweight index (no body)
+│       ├── lexicon.json               52 entries
+│       ├── chronos.json               15 stations, 21 events
+│       ├── voices.json                6 posters
+│       ├── bot-demos.json             49 Q&A pairs across 4 kinds
+│       └── voice-anchor.json          System-prompt scaffold
+├── bot-worker/                        ← drop-in Claude wiring (not deployed)
+│   ├── README.md                      3-command setup
+│   ├── wrangler.toml
+│   └── src/index.js                   Stateless POST /api/ask worker
+└── tasks/
+    ├── todo.md                        Plan from overnight session
+    ├── lessons.md                     What went wrong, how to recognise
+    └── MORNING-NOTES-2026-05-25.md    This file
+```
+
