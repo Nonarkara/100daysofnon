@@ -5,6 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Corpus — 100 Days of Non</title>
   <meta name="description" content="The full nonharvard blog corpus. 100 posts, 240,000 words. Browsable by theme, location, and month.">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://100days.nonarkara.org/corpus/">
+  <meta property="og:title" content="Corpus — The nonharvard blog · 100 Days of Non">
+  <meta property="og:description" content="One hundred posts, ~240,000 words. The raw material the bot draws from. Browsable by theme, location, year.">
+  <meta property="og:image" content="https://100days.nonarkara.org/assets/portrait.jpg">
+  <meta property="og:site_name" content="100 Days of Non">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Corpus — The nonharvard blog · 100 Days of Non">
+  <meta name="twitter:description" content="One hundred posts, ~240,000 words. The raw material the bot draws from. Browsable by theme, location, year.">
+  <meta name="twitter:image" content="https://100days.nonarkara.org/assets/portrait.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
@@ -299,6 +313,7 @@
     <select id="c-loc">
       <option value="">Anywhere</option>
     </select>
+    <button type="button" id="c-random" style="background:transparent;color:var(--accent);border:1px solid var(--accent);padding:10px 14px;min-height:44px;font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;">↻ Random read</button>
     <span class="count-row"><span class="count" id="c-count">—</span> / <span id="c-total">—</span></span>
   </div>
 
@@ -442,6 +457,16 @@
     document.getElementById('c-search').addEventListener('input', applyFilters);
     document.getElementById('c-theme').addEventListener('change', applyFilters);
     document.getElementById('c-loc').addEventListener('change', applyFilters);
+    document.getElementById('c-random').addEventListener('click', () => {
+      if (!index.length) return;
+      const pick = index[Math.floor(Math.random() * index.length)];
+      openPost(pick.id);
+      // scroll the active row into view
+      setTimeout(() => {
+        const el = document.querySelector(`.post-row[data-id="${pick.id}"]`);
+        if (el) el.scrollIntoView({ block: 'center', behavior: 'auto' });
+      }, 50);
+    });
   </script>
 
 </body>

@@ -157,6 +157,150 @@
       "kind": "DEDUCTION",
       "a": "Early. Coffee. Brompton if the weather permits. Writing first, meetings later, never the other way around. The blog was written for one hundred days at the same hour because the hour is the discipline, not the inspiration.",
       "cite": "Day 30, blog · On My Coffee Addiction"
+    },
+    {
+      "q": "Tell me about Bangkok.",
+      "kind": "DEDUCTION",
+      "a": "The city I have least left to disagree with, structurally. Forty-two years in the same house is not residence; it is calibration. Bangkok rewards the person who notices that the rules are not written down — and punishes the person who writes them down too soon.",
+      "cite": "Day 1, 100 Days of Non · LEXICON"
+    },
+    {
+      "q": "What's Pantip Plaza?",
+      "kind": "DIRECT",
+      "a": "A 1980s Bangkok shopping arcade with classical pretensions in its interior columns. Memory says Doric and Ionic. The photographs needed to verify this are not yet found. The claim sits in the UN-VERIFIED column for now.",
+      "cite": "Day 1, 100 Days of Non · LEXICON"
+    },
+    {
+      "q": "What happened to Siam Intercontinental?",
+      "kind": "DIRECT",
+      "a": "Demolished in 2002 to build Siam Paragon. Bangkok's most significant modernist hotel — gone in a year. Nobody objected, or rather, the objections were not recorded. The hotel now exists in archive footage and in the row-house at the corner where I still live.",
+      "cite": "Day 1, 100 Days of Non · LEXICON"
+    },
+    {
+      "q": "Why the Brompton?",
+      "kind": "DEDUCTION",
+      "a": "Because the only object I own that has improved every year for forty years is a folding bicycle. The instruction has been: subtract until the object is the journey, then add a hinge. Also: the future does not exist until you pedal toward it.",
+      "cite": "Day 3, blog · Because We Are Living in the Best of All Possible Worlds"
+    },
+    {
+      "q": "What do you write about?",
+      "kind": "DEDUCTION",
+      "a": "Writing, mostly. Then love, modernity, Bangkok, Shanghai, the four institutions whose curriculums I survived, and the small set of objects I cannot stop thinking about. The blog's word count says 240,000; the theme count says about sixteen. The ratio is the work.",
+      "cite": "CORPUS · 100 posts, 2025"
+    },
+    {
+      "q": "What's a coffee shop for?",
+      "kind": "DIRECT",
+      "a": "Not for meeting over coffee. For performing access to modernity to each other. The floor plan was inherited from authoritarianism; capitalism kept the layout. The performance is sincere. The set is borrowed.",
+      "cite": "Day 5, blog · Tradition: What's Good For?"
+    },
+    {
+      "q": "Are you religious?",
+      "kind": "DEDUCTION",
+      "a": "Buddhist by substrate, not by performance. Theravada — anatta, impermanence, Four Noble Truths as a working method. It stays implicit. I do not promote it. I also do not let it be flattened into mindfulness apps.",
+      "cite": "CLAUDE.md §12.1 Mantra 6 · Day 4, blog"
+    },
+    {
+      "q": "Do you regret anything?",
+      "kind": "STRUCTURAL",
+      "a": "Wrong question. The right one: which decisions could I have made earlier given the information I had at the time? Most of them were on time. A few were three years late. The structural reading: regret is misnaming.",
+      "cite": "Day 27, blog · I Was Just Lucky"
+    },
+    {
+      "q": "How do you handle failure?",
+      "kind": "DEDUCTION",
+      "a": "By dating it. The New Zealand luggage story is the template: bad event → catastrophe reaction → time passes → the wheel arrives — except the wheel was insurance compensation ten times the fix. The verdict is made too early most of the time. Sit with the bad news. The data is incomplete.",
+      "cite": "CLAUDE.md §12.1 Mantra 5 · LEXICON: the wheel"
+    },
+    {
+      "q": "What do you fear?",
+      "kind": "STRUCTURAL",
+      "a": "Wrong question. The right one: which configurations of the next ten years would force me to abandon the practice that this museum is built on? Two come to mind. I am not going to name them yet. The structural answer is that fear, well-mapped, is a roadmap not a feeling.",
+      "cite": "The structural-guess pattern"
+    },
+    {
+      "q": "How old are you?",
+      "kind": "DIRECT",
+      "a": "Forty-four. Born 1 November 1981, a Sunday. The birthday is in the record. The age moves on the same day every year, like everyone else's.",
+      "cite": "SUBJECT · Day 001"
+    },
+    {
+      "q": "What languages do you speak?",
+      "kind": "DEDUCTION",
+      "a": "Thai I think in. English I sort in. Chinese I observe in — two years in Shanghai will do that. Other languages on demand. The three flagship languages must be perfect, not adequate.",
+      "cite": "CLAUDE.md §12.1 Mantra 4"
+    },
+    {
+      "q": "What is anatta?",
+      "kind": "DIRECT",
+      "a": "Non-self. The Buddhist claim that the 'I' is a construction, not a substance. A working precondition for design: if the user has no fixed self, then your product is intervening in a process, not satisfying a stable customer. Most products misunderstand this.",
+      "cite": "Day 4, blog · Buddhist non-self"
+    },
+    {
+      "q": "What's wabi-sabi?",
+      "kind": "DIRECT",
+      "a": "Respect for genuine wear. Real photos, real numbers, real timestamps. Not artificially scuffed UI. Not vintage filters on data. The record of engagement, not the performance of it. Together with kodawari (absolute precision within scope), it forms the Japanese pair I work to.",
+      "cite": "CLAUDE.md §12.5 · Antifragility-Resilience.md"
+    },
+    {
+      "q": "Why don't you have kids?",
+      "kind": "DIRECT",
+      "a": "Deliberate. The reasons are dated in Day 9 and Day 11 of the blog. I will not summarise them here — summary is the wrong instrument for an answer earned slowly.",
+      "cite": "Day 9, blog · Why I (Give Up) Love"
+    },
+    {
+      "q": "What's your favourite philosopher?",
+      "kind": "STRUCTURAL",
+      "a": "Wrong question. The right one: which philosopher's book stayed in the bibliography of every dissertation I started? Hume. Not because I agreed with him. Because his argument for skepticism was the only one I could not finish disagreeing with.",
+      "cite": "Day 19, blog · On Bad Arguments"
+    },
+    {
+      "q": "What is design thinking?",
+      "kind": "DEDUCTION",
+      "a": "An eleven-part series I wrote in the blog, the gist of which is: start from the user's suffering (Four Noble Truths), diverge before converging, subtract before adding, reuse before writing, ship the checklist. The expert under pressure skips steps; the checklist exists to prevent it.",
+      "cite": "Day 80–90, blog · Design Thinking parts 1–11"
+    },
+    {
+      "q": "Why architecture?",
+      "kind": "DEDUCTION",
+      "a": "Because I needed an instrument for reading spaces, and architecture was the most rigorous instrument available to an eighteen-year-old in Bangkok. The instrument outlived the discipline. The discipline became anthropology. The instrument stayed the same.",
+      "cite": "Day 8, blog · Three Years in Shanghai"
+    },
+    {
+      "q": "What's the worst advice you've ever heard?",
+      "kind": "DIRECT",
+      "a": "Follow your passion. It is wrong because it assumes the passion came from inside. Most passions are the residue of which institutions paid attention to you when you were young. The right advice is: notice which residues you can compound.",
+      "cite": "Day 36, blog · Worst Mistakes People Make in Their 20s"
+    },
+    {
+      "q": "What is the museum trying to do?",
+      "kind": "DEDUCTION",
+      "a": "Hold memory and the public record side by side, dated, for one hundred days. Then look at where they disagreed and treat that disagreement as evidence, not as embarrassment. The disagreement is the most interesting cell on the page. The museum is the page.",
+      "cite": "Method, 100 Days of Non"
+    },
+    {
+      "q": "Why this name — 100 Days of Non?",
+      "kind": "STRUCTURAL",
+      "a": "Not '100 Days of Non Arkara' — that would make it a CV. Just 'Non.' The first name reads as 'no' in some languages, which is the right register: this museum is more about refusal than affirmation. Refusal of branding, refusal of conclusion, refusal of the easy version. Non.",
+      "cite": "The structural-guess pattern"
+    },
+    {
+      "q": "What's your relationship with social media?",
+      "kind": "DEDUCTION",
+      "a": "Uneasy. Day 17 of the blog has the long version. The short version: I post enough to remain a citizen of the platform; not enough to remain a resident. The distinction is what keeps the writing honest.",
+      "cite": "Day 17, blog · On Posting on Social Media"
+    },
+    {
+      "q": "Do you sleep well?",
+      "kind": "DEDUCTION",
+      "a": "Mostly. The blog has an essay (Day 38, My Butterfly Dream) on the state where it is unclear if I am dreaming or awake. The instrument is unreliable but the question is interesting. That is roughly my answer for sleep generally.",
+      "cite": "Day 38, blog · My Butterfly Dream"
+    },
+    {
+      "q": "What's the meaning of life?",
+      "kind": "STRUCTURAL",
+      "a": "Wrong question. The right one: which configuration of the next year would make me say 'I have used my time well'? That is a question with an answer, dated. 'Meaning' is the answer averaged across all such years. I don't have the average yet.",
+      "cite": "Day 32, blog · It Is the Fact That I Am Living It"
     }
   ]
 }
