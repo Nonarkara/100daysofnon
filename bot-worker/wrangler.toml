@@ -1,0 +1,16 @@
+name = "100days-bot"
+main = "src/index.js"
+compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
+# account_id = "74ad6bf8dfaaccf82de6f0847f7d2d54"  # uncomment + use your Cloudflare account_id
+
+# To wire this up:
+#   1. cd bot-worker/
+#   2. npx wrangler secret put ANTHROPIC_API_KEY        # paste your sk-ant-... key
+#   3. npx wrangler deploy
+#   4. (Optional) Add a route: api.100days.nonarkara.org/* → this worker
+#   5. In site/bot/index.html, change the fetch URL to your worker endpoint
+
+# [[routes]]
+# pattern = "api.100days.nonarkara.org/*"
+# zone_name = "nonarkara.org"
