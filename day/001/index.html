@@ -193,6 +193,21 @@
       margin-top: 20px;
     }
 
+    /* ─── Question drop intro ───────────────────────────────────── */
+    .q-drop {
+      display: block;
+      font-family: var(--sans);
+      font-size: clamp(48px, 8vw, 76px);
+      font-weight: 800;
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--fg);
+      margin-top: 24px;
+      margin-bottom: 28px;
+      max-width: 900px;
+    }
+
     .q-text {
       font-size: var(--emph);
       line-height: 1.5;
@@ -376,6 +391,10 @@
         margin-left: -24px;
         padding-left: 24px;
       }
+
+      .q-drop {
+        font-size: clamp(36px, 11vw, 56px);
+      }
     }
   
     /* ── Artifact Images ────────────────────────────────────── */
@@ -451,8 +470,9 @@
 
     <!-- ── Question ─────────────────────────────────────────── -->
     <div class="q-label">Question</div>
+    <p class="q-drop">Born 1981.<br>That's the claim.</p>
     <p class="q-text">
-      Born 1981. That's the claim. We start there. Give me: day, month, year.
+      We start there. Give me: day, month, year.
       Hospital. City. Who was in the room. The version your family tells of that
       day — verbatim if you remember the exact words, paraphrased if not. And one
       detail from that version that you've never quite believed.
