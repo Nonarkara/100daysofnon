@@ -237,6 +237,9 @@
       .chat-stream { padding: 20px 24px; }
       .composer { padding: 16px 24px; gap: 8px; }
     }
+
+    /* Thinking state ellipsis animation */
+    .msg.thinking .msg-bubble { letter-spacing: 0.05em; }
   </style>
 </head>
 <body>
@@ -254,6 +257,7 @@
     <a href="/game/">GAME</a>
     <a href="/subject/">SUBJECT</a>
     <a href="/bot/" class="here">BOT</a>
+    <a href="/notes/">NOTES</a>
   </nav>
 
   <div class="layout-grid">
@@ -266,9 +270,9 @@
         <h2 class="side-title">Talk to Non</h2>
         <div class="side-sub">Room 11 of 11 · Docent</div>
 
-        <div class="side-status">
-          <span class="pulse"></span><strong class="text-yellow">BOT NOT YET WIRED</strong><br>
-          <span style="display:inline-block; margin-top:8px;">Demo answers pre-loaded from the blog. Free-text replies use best-match. Claude API wiring coming.</span>
+        <div class="side-status" style="border-color: var(--accent); background: rgba(204,255,0,0.05);">
+          <span class="pulse" style="background: var(--accent);"></span><strong class="text-accent">BOT LIVE</strong><br>
+          <span style="display:inline-block; margin-top:8px; color: rgba(255,255,255,0.7);">Claude API · Voice-anchored · 99 posts · ~240k words</span>
         </div>
 
         <div class="side-section">
@@ -389,41 +393,63 @@
       stream.appendChild(div);
     }
 
-    function appendNoMatch(question) {
+    function appendThinking() {
+      const id = 'thinking-' + Date.now();
       const div = document.createElement('div');
-      div.className = 'msg bot structural';
+      div.id = id;
+      div.className = 'msg bot thinking';
       div.innerHTML = `
-        <div class="msg-meta">
-          <span class="who">NON</span>
-          <span class="kind structural">${KIND_LABEL.STRUCTURAL}</span>
-        </div>
-        <div class="msg-bubble">
-          I don't have a direct answer in the record for this. The bot is not yet wired to the live
-          model, so I cannot improvise yet. The structural guess, though, is the move I would make:
-          ask not whether the answer exists, but which adjacent question the record could answer.
-          Try a related one from the list on the left — or rephrase yours toward something the
-          corpus has covered.
-        </div>
-        <div class="msg-cite">— Bot not yet wired · pre-loaded demo set only</div>
+        <div class="msg-meta"><span class="who">NON</span><span class="kind direct" style="color:var(--dim);">…</span></div>
+        <div class="msg-bubble" style="color:var(--dim); font-style:italic;">Searching the record<span class="ellipsis">.</span></div>
       `;
       stream.appendChild(div);
+      // Animate ellipsis
+      let dots = 1;
+      div._interval = setInterval(() => {
+        dots = (dots % 3) + 1;
+        const el = div.querySelector('.ellipsis');
+        if (el) el.textContent = '.'.repeat(dots);
+      }, 400);
+      return id;
+    }
+
+    function removeThinking(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        if (el._interval) clearInterval(el._interval);
+        el.remove();
+      }
     }
 
     function escapeHtml(s) {
       return (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     }
 
-    function ask(question) {
+    async function ask(question) {
       if (initial) {
         stream.innerHTML = '';
         initial = false;
       }
       appendUser(question);
-      const match = bestMatch(question);
-      if (match) {
-        appendBot(match.a, match.cite, match.kind);
-      } else {
-        appendNoMatch(question);
+      const thinkingId = appendThinking();
+      stream.scrollTop = stream.scrollHeight;
+      try {
+        const res = await fetch('/api/ask', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ question })
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        removeThinking(thinkingId);
+        if (data.error) {
+          appendBot('The record is temporarily unavailable. Try again in a moment.', '', 'NOT_KNOWN');
+        } else {
+          appendBot(data.answer, data.cite || '', data.kind || 'DEDUCTION');
+        }
+      } catch(e) {
+        removeThinking(thinkingId);
+        appendBot('The bot is thinking. Try again in a moment.', '', 'NOT_KNOWN');
       }
       stream.scrollTop = stream.scrollHeight;
     }

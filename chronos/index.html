@@ -107,6 +107,27 @@
       max-width: 60ch;
     }
 
+    .station-photo-wrap {
+      margin-top: 16px;
+      display: inline-block;
+    }
+    .station-photo {
+      width: 200px;
+      max-width: 100%;
+      display: block;
+      filter: grayscale(1) contrast(1.1);
+      transition: filter 0.3s ease;
+    }
+    .station-photo:hover { filter: none; }
+    .station-photo-cap {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--dim);
+      letter-spacing: 0.06em;
+      margin-top: 6px;
+      max-width: 200px;
+    }
+
     @media (max-width: 900px) {
       .timeline { padding: 48px 24px 64px; }
       .timeline::before { left: 24px; top: 48px; bottom: 64px; }
@@ -170,6 +191,10 @@
                 <div class="item-detail">${it.detail}</div>
               </div>
             `).join('')}
+            ${s.photo ? `<div class="station-photo-wrap">
+              <img src="${s.photo}" alt="${s.photo_caption || ''}" class="station-photo" loading="lazy">
+              <div class="station-photo-cap">${s.photo_caption || ''}</div>
+            </div>` : ''}
           </div>
         </div>
       `).join('');
