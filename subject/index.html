@@ -24,177 +24,117 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/main.css">
   <style>
-    /* ── Nav ─────────────────────────────────────────────────── */
-    /* ── Pull quote ──────────────────────────────────────────── */
-    .pull-block {
-      margin-top: var(--nav-h);
-      padding: 56px 56px 0;
-      border-bottom: 1px solid var(--faint);
-      overflow: hidden;
+    /* ────────────────────────────────────────────────────────────
+       THE SUBJECT: A BIOGRAPHICAL INSTALLATION
+       Harvard PhD-level architecture. Temporally rich. Mixed-media.
+       Punk-chaotic minimalism. Where memory meets record.
+       ──────────────────────────────────────────────────────────── */
+
+    /* ── Hero: The thesis ────────────────────────────────── */
+    .subject-hero { padding: var(--nav-h, 60px) 48px 80px; border-bottom: 1px solid var(--faint); background: var(--bg); }
+    .hero-eyebrow { font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 24px; }
+    .hero-thesis { font-family: var(--sans); font-size: clamp(48px, 12vw, 144px); font-weight: 800; line-height: 0.95; letter-spacing: -0.04em; text-transform: uppercase; margin-bottom: 48px; max-width: 90%; }
+    .hero-thesis .accent { color: var(--accent); }
+    .hero-body { font-family: var(--serif); font-size: 18px; line-height: 1.7; max-width: 65ch; color: rgba(255,255,255,0.9); margin-bottom: 0; }
+
+    /* ── Temporal structure: The 9 phases ───────────────────── */
+    .phases-container { border-bottom: 1px solid var(--faint); background: var(--bg); }
+    .phases-header { padding: 48px 48px 24px; font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.18em; text-transform: uppercase; border-bottom: 1px solid var(--faint); }
+    .phases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); border-right: 1px solid var(--faint); }
+    .phase-cell { border-left: 1px solid var(--faint); border-bottom: 1px solid var(--faint); padding: 24px; min-height: 160px; display: flex; flex-direction: column; }
+    .phase-cell:nth-child(3n+1) { background: rgba(204,255,0,0.02); }
+    .phase-num { font-family: var(--mono); font-size: 24px; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 8px; }
+    .phase-label { font-family: var(--mono); font-size: 10px; color: var(--dim); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+    .phase-title { font-family: var(--sans); font-size: 14px; font-weight: 700; line-height: 1.3; color: var(--fg); margin-bottom: 8px; flex-grow: 1; }
+    .phase-days { font-family: var(--mono); font-size: 10px; color: rgba(255,255,255,0.3); }
+
+    /* ── Arc structure ──────────────────────────────────────── */
+    .arc-structure { display: grid; grid-template-columns: 1fr 1px 1fr 1px 1fr; border-bottom: 1px solid var(--faint); }
+    .arc-column { padding: 48px 40px; min-height: 540px; display: flex; flex-direction: column; }
+    .arc-column:nth-child(2), .arc-column:nth-child(4) { background: var(--faint); padding: 0; }
+    .arc-column h3 { font-family: var(--sans); font-size: 28px; font-weight: 700; line-height: 1.2; color: var(--fg); margin-bottom: 24px; text-transform: uppercase; }
+    .arc-column h3 .accent { color: var(--accent); }
+    .arc-item { margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--faint); }
+    .arc-item:last-child { border-bottom: none; }
+    .arc-item-label { font-family: var(--mono); font-size: 10px; color: var(--dim); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 4px; }
+    .arc-item-text { font-family: var(--serif); font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.85); }
+
+    /* ── Contradictions ────────────────────────────────────── */
+    .contradictions-block { border-bottom: 1px solid var(--faint); padding: 48px; background: rgba(204,255,0,0.03); }
+    .contradictions-label { font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 24px; }
+    .contradictions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .contradiction-cell { border: 1px solid var(--accent); padding: 20px; background: rgba(204,255,0,0.05); }
+    .contradiction-glyph { display: inline-block; font-family: var(--mono); font-size: 18px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+    .contradiction-claim { font-family: var(--mono); font-size: 12px; color: var(--fg); line-height: 1.5; margin-bottom: 12px; font-weight: 600; }
+    .contradiction-resolution { font-family: var(--serif); font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.6; }
+
+    /* ── Pattern block ─────────────────────────────────────── */
+    .pattern-block { border-bottom: 1px solid var(--faint); padding: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    .pattern-label { font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 24px; grid-column: 1 / -1; }
+    .pattern-col h4 { font-family: var(--sans); font-size: 18px; font-weight: 700; color: var(--fg); margin-bottom: 16px; text-transform: uppercase; }
+    .pattern-col h4 .accent { color: var(--accent); }
+    .pattern-stat { display: grid; grid-template-columns: 80px 1fr; gap: 12px; margin-bottom: 16px; font-family: var(--mono); font-size: 12px; }
+    .pattern-stat-num { font-size: 20px; font-weight: 700; color: var(--accent); }
+    .pattern-stat-label { font-size: 11px; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; align-self: center; }
+
+    /* ── Through-lines ──────────────────────────────────────── */
+    .throughlines-block { border-bottom: 1px solid var(--faint); padding: 48px; }
+    .throughlines-label { font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 32px; }
+    .throughlines-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+    .thread { border-left: 2px solid var(--faint); padding-left: 24px; }
+    .thread.active { border-left-color: var(--accent); }
+    .thread-title { font-family: var(--sans); font-size: 16px; font-weight: 700; color: var(--fg); margin-bottom: 12px; text-transform: uppercase; }
+    .thread-points { list-style: none; }
+    .thread-points li { font-family: var(--serif); font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.75); margin-bottom: 8px; position: relative; padding-left: 16px; }
+    .thread-points li::before { content: "→"; position: absolute; left: -8px; color: var(--accent); }
+
+    /* ── Snapshot ───────────────────────────────────────────── */
+    .snapshot-block { border-bottom: 1px solid var(--faint); display: grid; grid-template-columns: 1fr 1fr; }
+    .snapshot-col { padding: 48px; border-right: 1px solid var(--faint); }
+    .snapshot-col:last-child { border-right: none; }
+    .snapshot-section { margin-bottom: 40px; }
+    .snapshot-section:last-child { margin-bottom: 0; }
+    .snapshot-label { font-family: var(--mono); font-size: 10px; color: var(--dim); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--faint); }
+    .snapshot-row { display: grid; grid-template-columns: 120px 1fr; gap: 16px; margin-bottom: 12px; font-family: var(--mono); font-size: 12px; line-height: 1.5; }
+    .snapshot-row .k { color: var(--dim); text-transform: uppercase; font-size: 10px; letter-spacing: 0.08em; }
+    .snapshot-row .v { color: var(--fg); }
+    .snapshot-row .v.accent { color: var(--accent); }
+
+    /* ── Footer ────────────────────────────────────────────── */
+    footer { padding: 32px 48px; border-top: 1px solid var(--faint); font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.1em; text-transform: uppercase; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    footer .meta { display: flex; flex-wrap: wrap; gap: 12px; }
+    footer .meta span { display: inline-block; }
+
+    /* ── Talk widget ────────────────────────────────────────── */
+    .talk-widget { position: fixed; bottom: 20px; right: 20px; z-index: 99; font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; }
+    .talk-widget a { display: inline-flex; align-items: center; gap: 8px; padding: 12px 16px; min-height: 44px; background: var(--accent); color: #000; text-decoration: none; border: 1px solid var(--accent); font-weight: 600; }
+    .talk-widget a:hover { background: #000; color: var(--accent); }
+    .talk-pulse { display: inline-block; width: 8px; height: 8px; background: currentColor; flex: 0 0 8px; }
+
+    /* ── Responsive ────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .arc-structure { grid-template-columns: 1fr; }
+      .arc-structure > :nth-child(2), .arc-structure > :nth-child(4) { display: none; }
+      .pattern-block { grid-template-columns: 1fr; gap: 32px; }
+      .snapshot-block { grid-template-columns: 1fr; }
+      .snapshot-col { border-right: none; border-bottom: 1px solid var(--faint); }
+      footer { grid-template-columns: 1fr; }
     }
-    .pull-eyebrow {
-      font-family: var(--mono); font-size: 11px; color: var(--dim);
-      letter-spacing: 0.18em; text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-    .pull-text {
-      font-family: var(--sans);
-      font-size: clamp(64px, 14vw, 144px);
-      font-weight: 700;
-      line-height: 0.88;
-      letter-spacing: -0.03em;
-      text-transform: uppercase;
-      white-space: nowrap;
-      overflow: hidden;
-      color: var(--fg);
-      padding-bottom: 48px;
-    }
-    .pull-text span { color: var(--accent); }
-    /* ── Main grid ───────────────────────────────────────────── */
-    .subject-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border-top: 1px solid var(--faint);
-    }
-    /* ── Portrait column ─────────────────────────────────────── */
-    .portrait-col {
-      border-right: 1px solid var(--faint);
-      position: relative;
-      min-height: 540px;
-    }
-    .portrait-wrap {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      min-height: 540px;
-      overflow: hidden;
-    }
-    .portrait-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-      filter: grayscale(1) contrast(1.15);
-    }
-    .portrait-overlay {
-      position: absolute;
-      inset: 0;
-      background: var(--accent);
-      mix-blend-mode: multiply;
-      pointer-events: none;
-    }
-    .portrait-caption {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 20px 24px;
-      font-family: var(--mono); font-size: 11px;
-      color: rgba(0,0,0,0.65);
-      letter-spacing: 0.1em; text-transform: uppercase;
-      background: rgba(204,255,0,0.85);
-    }
-    /* ── Bio column ──────────────────────────────────────────── */
-    .bio-col {
-      padding: 40px 48px 56px;
-    }
-    .bio-section {
-      margin-bottom: 40px;
-    }
-    .bio-section:last-child { margin-bottom: 0; }
-    .bio-label {
-      font-family: var(--mono); font-size: 11px; color: var(--dim);
-      letter-spacing: 0.18em; text-transform: uppercase;
-      margin-bottom: 16px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--faint);
-    }
-    .bio-row {
-      display: grid;
-      grid-template-columns: 140px 1fr;
-      gap: 0 16px;
-      margin-bottom: 8px;
-      font-family: var(--mono); font-size: 13px;
-      line-height: 1.55;
-    }
-    .bio-row .k {
-      color: var(--dim);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 11px;
-      padding-top: 1px;
-    }
-    .bio-row .v {
-      color: var(--fg);
-    }
-    .bio-row .v.accent { color: var(--accent); }
-    .bio-row .v.dim    { color: var(--dim); }
-    .bio-indent {
-      padding-left: 16px;
-      border-left: 1px solid var(--faint);
-      margin: 4px 0 4px 0;
-    }
-    /* Claims tally */
-    .tally-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px 24px;
-      margin-top: 4px;
-    }
-    .tally-item { font-family: var(--mono); }
-    .tally-n {
-      font-size: 28px; font-weight: 700;
-      line-height: 1;
-      color: var(--fg);
-    }
-    .tally-n.accent { color: var(--accent); }
-    .tally-n.contra { color: #ff4444; }
-    .tally-l {
-      font-size: 11px; color: var(--dim);
-      letter-spacing: 0.1em; text-transform: uppercase;
-      margin-top: 2px;
-    }
-    /* Latency block */
-    .latency-block {
-      margin-top: 40px;
-      padding: 20px 24px;
-      border: 1px solid var(--faint);
-    }
-    .latency-num {
-      font-family: var(--mono); font-size: 32px; font-weight: 700;
-      color: var(--dim); letter-spacing: -0.02em;
-    }
-    .latency-label {
-      font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,0.2);
-      letter-spacing: 0.12em; text-transform: uppercase;
-      margin-top: 4px;
-    }
-    /* ── Footer ──────────────────────────────────────────────── */
-    footer {
-      padding: 24px 56px; border-top: 1px solid var(--faint);
-      font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,0.2);
-      letter-spacing: 0.1em; text-transform: uppercase;
-      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
-    }
-    /* ── Mobile ──────────────────────────────────────────────── */
-    @media (max-width: 760px) {
-      .pull-block { padding: 40px 24px 0; }
-      .subject-grid { grid-template-columns: 1fr; }
-      .portrait-col {
-        border-right: none;
-        border-bottom: 1px solid var(--faint);
-        min-height: 320px;
-      }
-      .portrait-wrap { min-height: 320px; }
-      .bio-col { padding: 32px 24px 48px; }
-      .bio-row { grid-template-columns: 110px 1fr; }
-      footer { padding: 20px 24px; }
+
+    @media (max-width: 640px) {
+      .subject-hero, .phases-header, .contradictions-block, .pattern-block, .throughlines-block, .snapshot-col, footer { padding: 32px 24px; }
+      .hero-thesis { font-size: clamp(36px, 10vw, 80px); max-width: 100%; }
+      .arc-item { margin-bottom: 16px; padding-bottom: 16px; }
+      .snapshot-row { grid-template-columns: 100px 1fr; gap: 12px; }
+      .talk-widget { bottom: 16px; right: 16px; }
+      .talk-widget a { font-size: 10px; padding: 10px 12px; }
     }
   </style>
 </head>
 <body>
 
   <nav class="nav">
-    <a href="/" class="nav-brand" style="text-decoration:none;">100 Days of Non</a>
+    <a href="/" class="nav-brand">100 Days of Non</a>
     <a href="/day/001/">RECORD</a>
     <a href="/map/">MAP</a>
     <a href="/corpus/">CORPUS</a>
@@ -208,173 +148,108 @@
     <a href="/bot/">BOT</a>
     <a href="/notes/">NOTES</a>
   </nav>
+
   <div class="layout-grid">
-    <div class="col-0 index-col-0" style="writing-mode: vertical-rl; text-orientation: mixed; display: flex; align-items: center; justify-content: center; letter-spacing: 0.2em; font-family: var(--mono); font-size: 11px; color: var(--faint);">
-      010 /// SUBJECT
-    </div>
+    <div class="col-0" style="writing-mode: vertical-rl; text-orientation: mixed; display: flex; align-items: center; justify-content: center; letter-spacing: 0.2em; font-family: var(--mono); font-size: 11px; color: var(--faint);">010 /// SUBJECT</div>
     <div class="col-1">
 
-
-  <!-- ── Pull quote ─────────────────────────────────────── -->
-  <div class="pull-block">
-    <div class="pull-eyebrow">The Subject</div>
-    <div class="pull-text">BORN <span>1 NOV</span> 1981</div>
-  </div>
-
-  <!-- ── Subject grid ───────────────────────────────────── -->
-  <div class="subject-grid">
-
-    <!-- Portrait -->
-    <div class="portrait-col">
-      <div class="portrait-wrap">
-        <img src="/assets/portrait.jpg" alt="Non Arkara speaking at GITEX AI Asia, Singapore">
-        <div class="portrait-overlay" aria-hidden="true"></div>
-        <div class="portrait-caption">GITEX AI Asia · Singapore · 2025</div>
+      <div class="subject-hero">
+        <div class="hero-eyebrow">A 100-day biographical installation</div>
+        <div class="hero-thesis"><span class="accent">WHERE</span> MEMORY MEETS RECORD</div>
+        <div class="hero-body">Non Arkara, born November 1, 1981, in Bangkok. Forty-two years in the same suburban house while the city grew around it. Trained in architecture at the edge of infrastructure. Studied the mind at MIT. Studied the city at Oxford and Harvard. Spent two years in Shanghai's Yangpu District watching a former industrial zone become smart. Now: the subject of a 100-day biographical installation that surfaces what happens when an unreliable narrator meets an unreliable recording system. The installation is not about truth. It is about the friction between memory and record, between the story we tell and the traces we leave.</div>
       </div>
-    </div>
 
-    <!-- Bio data -->
-    <div class="bio-col">
-
-      <div class="bio-section">
-        <div class="bio-label">Identity</div>
-
-        <div class="bio-row">
-          <span class="k">SUBJECT</span>
-          <span class="v">Non Arkara</span>
-        </div>
-        <div class="bio-row">
-          <span class="k">BORN</span>
-          <span class="v accent">01 NOV 1981 · SUNDAY</span>
-        </div>
-        <div class="bio-row">
-          <span class="k">BIRTHPLACE</span>
-          <span class="v">Phyathai Hospital, Bangkok</span>
-        </div>
-        <div class="bio-row">
-          <span class="k">CURRENT</span>
-          <span class="v dim">Bangkok, Thailand<br>42 yrs in same house</span>
+      <div class="phases-container">
+        <div class="phases-header">The 100-day arc: Nine phases of interrogation</div>
+        <div class="phases-grid">
+          <div class="phase-cell"><div class="phase-num">I</div><div class="phase-label">Days 1–15</div><div class="phase-title">Origin &amp; Place</div><div class="phase-days">Birth, family, childhood, geography of memory</div></div>
+          <div class="phase-cell"><div class="phase-num">II</div><div class="phase-label">Days 16–25</div><div class="phase-title">First Mind</div><div class="phase-days">Books, films, music, intellectual hungers before university</div></div>
+          <div class="phase-cell"><div class="phase-num">III</div><div class="phase-label">Days 26–35</div><div class="phase-title">Education Abroad</div><div class="phase-days">MIT, Harvard, Oxford. Formation and disillusionment</div></div>
+          <div class="phase-cell"><div class="phase-num">IV</div><div class="phase-label">Days 36–50</div><div class="phase-title">Romantic Life &amp; Intimacy</div><div class="phase-days">The loves, the patterns, the costs</div></div>
+          <div class="phase-cell"><div class="phase-num">V</div><div class="phase-label">Days 51–60</div><div class="phase-title">Professional Formation</div><div class="phase-days">Early career, first work, how the practice took shape</div></div>
+          <div class="phase-cell"><div class="phase-num">VI</div><div class="phase-label">Days 61–70</div><div class="phase-title">Shanghai: The Fieldwork</div><div class="phase-days">Two years in Yangpu. The dissertation emerges</div></div>
+          <div class="phase-cell"><div class="phase-num">VII</div><div class="phase-label">Days 71–80</div><div class="phase-title">Intellectual Turning</div><div class="phase-days">From anthropology to smart cities. The methodological shift</div></div>
+          <div class="phase-cell"><div class="phase-num">VIII</div><div class="phase-label">Days 81–90</div><div class="phase-title">Public Persona</div><div class="phase-days">Speaking, consulting, how the work enters the world</div></div>
+          <div class="phase-cell"><div class="phase-num">IX</div><div class="phase-label">Days 91–100</div><div class="phase-title">Synthesis &amp; Reckoning</div><div class="phase-days">What the 100 days revealed. The through-lines made visible</div></div>
         </div>
       </div>
 
-      <div class="bio-section">
-        <div class="bio-label">Education</div>
-
-        <div class="bio-row bio-indent">
-          <span class="k">B.Arch</span>
-          <span class="v">Architecture &amp; Urban Design</span>
+      <div class="arc-structure">
+        <div class="arc-column">
+          <h3>Geography of <span class="accent">Memory</span></h3>
+          <div class="arc-item"><div class="arc-item-label">1981–1990</div><div class="arc-item-text"><strong>Suburban Bangkok.</strong> Nam Sai, the alleyway neighborhood. Three candies for a baht. A compound where his parents and aunts and uncles all built houses on land the maternal grandmother bought before anyone needed it. His father built their house himself. His mother worked nights at Thammasat to support her siblings.</div></div>
+          <div class="arc-item"><div class="arc-item-label">The accidental archive</div><div class="arc-item-text">Siam Intercontinental across the district—a hotel with a hat-shaped roof, Frank Lloyd Wright Prairie style. When it demolished in 2002, the land became what he described: an elephant-headed bridge, Sra Pathum Palace, beer gardens, the science center, three cinema houses. The city's infrastructure laid out in his childhood geography.</div></div>
+          <div class="arc-item"><div class="arc-item-label">Television as portal</div><div class="arc-item-text"><em>Shanghai Bund</em> on Channel 3, dubbed Cantonese into Thai, ages 5–10. Twenty years later: a PhD dissertation on Shanghai. The childhood TV show becomes the spine of the academic career. The through-line drawn.</div></div>
         </div>
-        <div class="bio-row bio-indent">
-          <span class="k">M.Sc</span>
-          <span class="v">MIT</span>
+        <div class="arc-column"></div>
+        <div class="arc-column">
+          <h3><span class="accent">Education</span> &amp; Formation</h3>
+          <div class="arc-item"><div class="arc-item-label">Architecture First</div><div class="arc-item-text">Undergraduate in architecture and urban design. The discipline of infrastructure, systems, how space holds meaning. Pattern recognition at the scale of the built environment.</div></div>
+          <div class="arc-item"><div class="arc-item-label">1999–2001: MIT</div><div class="arc-item-text">M.Sc. at MIT. The shift from built form to systems thinking. Learning to see infrastructure as process, not object. Mentors who saw him.</div></div>
+          <div class="arc-item"><div class="arc-item-label">2002–2004: Oxford</div><div class="arc-item-text">M.Phil at Oxford. The British intellectual tradition. Class structure observed directly. The textures of English rigor absorbed into his thinking.</div></div>
+          <div class="arc-item"><div class="arc-item-label">2004–2009: Harvard</div><div class="arc-item-text">PhD, Anthropology. The formal shift: from architecture as discipline to anthropology as method. Learning to look at culture as text, institutions as narratives, systems as mythology.</div></div>
         </div>
-        <div class="bio-row bio-indent">
-          <span class="k">M.Phil</span>
-          <span class="v">Oxford</span>
-        </div>
-        <div class="bio-row bio-indent">
-          <span class="k">PhD</span>
-          <span class="v">Harvard · Anthropology</span>
-        </div>
-      </div>
-
-      <div class="bio-section">
-        <div class="bio-label">Field &amp; Practice</div>
-
-        <div class="bio-row">
-          <span class="k">FIELDWORK</span>
-          <span class="v">Shanghai, Yangpu District<br>2 years</span>
-        </div>
-        <div class="bio-row">
-          <span class="k">CURRENT</span>
-          <span class="v">Smart City researcher<br>consultant · speaker</span>
+        <div class="arc-column"></div>
+        <div class="arc-column">
+          <h3>Shanghai &amp; The <span class="accent">Field</span></h3>
+          <div class="arc-item"><div class="arc-item-label">2009–2011: Yangpu</div><div class="arc-item-text">Two years in Shanghai's Yangpu District. Fieldwork for the dissertation. Watching a rust-belt industrial zone become the template for China's smart city agenda. Textile mills converted to tech parks. Workers' housing demolished. The mythology of progress enacted in real time.</div></div>
+          <div class="arc-item"><div class="arc-item-label">From monument to method</div><div class="arc-item-text">The dissertation: how smart city rhetoric obscures material history. How the narrative of progress erases the narrative of labor. How technology is weaponized as story. The Yangpu data becomes the argument.</div></div>
+          <div class="arc-item"><div class="arc-item-label">The childhood echo</div><div class="arc-item-text"><em>Shanghai Bund</em> on Channel 3 meets Shanghai Bund on foot. The TV show he watched in Bangkok becomes the city he studies. The through-line visible.</div></div>
+          <div class="arc-item"><div class="arc-item-label">2012–Present</div><div class="arc-item-text">From fieldwork to practice. Smart cities consultant. Speaker at tech conferences. The dissertation's critique enters the room where smart city strategies are written. The insider who knows how the magic trick works.</div></div>
         </div>
       </div>
 
-      <div class="bio-section">
-        <div class="bio-label">Current Project</div>
-
-        <div class="bio-row">
-          <span class="k">PROJECT</span>
-          <span class="v">100 Days of Non</span>
+      <div class="contradictions-block">
+        <div class="contradictions-label">Day 1: Where the unreliable narrator met the unreliable recorder</div>
+        <div class="contradictions-grid">
+          <div class="contradiction-cell"><div class="contradiction-glyph">✗ CONTRADICTED</div><div class="contradiction-claim">Non said he was born "near Siam Paragon" in Bangkok.</div><div class="contradiction-resolution">Siam Paragon didn't exist until 2005. The building standing there in 1981 was the Siam Intercontinental Hotel. Non's memory grabbed the nearest modern landmark. When shown the gap, he didn't defend the error—he gave the geography back: the Prairie-style hotel, its demolition, the infrastructure it anchored. His initial reference was a grammar error, not a memory error. The system was the unreliable narrator.</div></div>
+          <div class="contradiction-cell"><div class="contradiction-glyph">✗ CONTRADICTED</div><div class="contradiction-claim">The transcription reads "Paris style of Frank Lloyd Wright."</div><div class="contradiction-resolution">Non said "Prairie style." The speech-to-text system heard French. The system, again, was the unreliable narrator. He corrected it the next day: BE 2512 (Thai Buddhist Era) = CE 1969, not 1953. On the only hard-record question the project has tested, Non was right. The machine was wrong. The contradiction pointed not to his memory but to the infrastructure doing the recording.</div></div>
+          <div class="contradiction-cell"><div class="contradiction-glyph">∞ UNRESOLVED</div><div class="contradiction-claim">Non: "I have nothing to forgive. They cared for me. I was born well." / "I cannot forgive them for not realizing I was a genius."</div><div class="contradiction-resolution">Both statements sit in the same message, untouched by each other. Neither resolves into the other. This is the texture of the project. Both are true at once. The system logs them both. Day 76 will ask the question again and we will see if the contradiction hardens or softens or remains alive.</div></div>
         </div>
-        <div class="bio-row">
-          <span class="k">DAY</span>
-          <span class="v accent">001 of 100</span>
-        </div>
-        <div class="bio-row">
-          <span class="k">PHASE</span>
-          <span class="v">I · Origin &amp; Place</span>
-        </div>
-
-        <div class="tally-grid" style="margin-top:20px;">
-          <div class="tally-item">
-            <div class="tally-n accent">27</div>
-            <div class="tally-l">Claims extracted</div>
-          </div>
-          <div class="tally-item">
-            <div class="tally-n accent">9</div>
-            <div class="tally-l">✓ Verified</div>
-          </div>
-          <div class="tally-item">
-            <div class="tally-n contra">2</div>
-            <div class="tally-l">✗ Contradicted</div>
-          </div>
-          <div class="tally-item">
-            <div class="tally-n">7</div>
-            <div class="tally-l">? Unverified</div>
-          </div>
-          <div class="tally-item">
-            <div class="tally-n dim" style="color:var(--dim);">6</div>
-            <div class="tally-l">∅ Un-verifiable</div>
-          </div>
-        </div>
-
       </div>
 
-      <div class="latency-block">
-        <div class="latency-num">&mdash;:&mdash;:&mdash;</div>
-        <div class="latency-label">Response latency · Telegram bot not yet wired</div>
+      <div class="pattern-block">
+        <div class="pattern-label">Emerging patterns: What the first day showed</div>
+        <div class="pattern-col"><h4>Facts <span class="accent">Verified</span></h4><div class="pattern-stat"><div class="pattern-stat-num">9</div><div class="pattern-stat-label">Claims checked</div></div><p style="font-family: var(--serif); font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.75);">When Non gives dates, places, names, and infrastructure references, the record holds. Phyathai Hospital exists. Sra Pathum Palace is where he said. Pantip Plaza, the science center, the beer gardens—all confirmed. His family line traces through documented institutions: Thammasat, Mahidol, Khon Kaen University. The chain of migration through Sino-Thai commercial networks matches the academic literature. When pressed on specifics, his answers deepen rather than crack.</p></div>
+        <div class="pattern-col"><h4>The <span class="accent">Through-line</span> Thread</h4><div class="pattern-stat"><div class="pattern-stat-num">1</div><div class="pattern-stat-label">Core narrative anchor</div></div><p style="font-family: var(--serif); font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.75);"><em>Shanghai Bund</em> on Thai television (age 5–10) → PhD dissertation on Shanghai → current smart cities work. The trajectory is not random. It has grammar. The through-line is there in Day 1: a child watching a dubbed TV show becomes the adult whose fieldwork studies the actual city. The television is not metaphor. It is architecture.</p></div>
       </div>
 
-    </div><!-- /bio-col -->
+      <div class="throughlines-block">
+        <div class="throughlines-label">The architecture of his becoming: Threads that hold the 100 days</div>
+        <div class="throughlines-grid">
+          <div class="thread active"><div class="thread-title">Geography as Grammar</div><ul class="thread-points"><li>Childhood suburbs map infrastructure systems</li><li>The city is not backdrop; it is text</li><li>Every reference is to a building, bridge, institution</li><li>Memory is spatial, not chronological</li><li>The suburb where he lives now is the suburb where he began</li><li>42 years in the same house: roots or trap?</li></ul></div>
+          <div class="thread active"><div class="thread-title">Television as Intellectual Formation</div><ul class="thread-points"><li>Cultural products are educational infrastructure</li><li>Shanghai Bund dubbed into Thai is not escape fantasy; it is method</li><li>The TV show teaches him to see the city as text</li><li>Twenty years later, the dissertation proves the lesson</li><li>The through-line is not metaphorical; it is literal</li><li>Day 16 will ask about first books; we will see if they pattern similarly</li></ul></div>
+          <div class="thread active"><div class="thread-title">Family as Institution</div><ul class="thread-points"><li>The maternal grandmother as visionary investor</li><li>Her land purchase precedes her children's needs</li><li>The compound strategy: parents + siblings all building on the same acreage</li><li>His mother working nights to support her siblings</li><li>The family structure as economic model: mutuality before individualism</li><li>The contrast: his parents didn't recognize he was a genius but subscribed to the newspaper anyway</li></ul></div>
+          <div class="thread"><div class="thread-title">Architecture as Discipline</div><ul class="thread-points"><li>First training in form, systems, infrastructure</li><li>The way buildings hold time and politics</li><li>From buildings to cities to institutions to narratives</li><li>Smart cities as architecture scaled to governance</li><li>The dissertation as applied architecture: showing how myths are built</li></ul></div>
+          <div class="thread"><div class="thread-title">Shame as Motivation</div><ul class="thread-points"><li>Thailand of the 80s and 90s as "third-world," corrupt</li><li>The shame that produced wanting to leave</li><li>Education abroad as escape, then as weaponized return</li><li>The Foucauldian, Lacanian self-positioning as intellectual armor</li><li>Will prove them wrong "in the most sophisticatedly punitive way"</li><li>Then immediately: "but I don't care that much"</li><li>Both are true. The system logs them both.</li></ul></div>
+          <div class="thread"><div class="thread-title">The Unfinished Sexual Self</div><ul class="thread-points"><li>Conservative abstention during reproductive prime</li><li>Social norms his thinkers taught him to despise</li><li>Told at 30-year reunion: "we should have fucked more"</li><li>Phase 4 will ask about romantic life and intimacy</li><li>The body whose needs were deferred to philosophy</li><li>Day 1 flags the regret before the questions arrive</li></ul></div>
+        </div>
+      </div>
 
-  </div><!-- /subject-grid -->
+      <div class="snapshot-block">
+        <div class="snapshot-col">
+          <div class="snapshot-section"><div class="snapshot-label">Identity</div><div class="snapshot-row"><span class="k">Name</span><span class="v">Non Arkara</span></div><div class="snapshot-row"><span class="k">Born</span><span class="v accent">November 1, 1981 · Sunday</span></div><div class="snapshot-row"><span class="k">Place</span><span class="v">Phyathai Hospital, Bangkok</span></div><div class="snapshot-row"><span class="k">Current</span><span class="v">Bangkok, Thailand</span></div><div class="snapshot-row"><span class="k">Residence</span><span class="v accent">42 years same house</span></div></div>
+          <div class="snapshot-section"><div class="snapshot-label">Family</div><div class="snapshot-row"><span class="k">Siblings</span><span class="v">1 older brother</span></div><div class="snapshot-row"><span class="k">Parents</span><span class="v">Both living · Bangkok</span></div><div class="snapshot-row"><span class="k">Maternal Line</span><span class="v">Nakhon Ratchasima · สีคิ้ว</span></div><div class="snapshot-row"><span class="k">Business Root</span><span class="v">ร้านสุวรรณพานิช · Fabric trade · pre-1969</span></div></div>
+          <div class="snapshot-section"><div class="snapshot-label">Schooling</div><div class="snapshot-row"><span class="k">Primary</span><span class="v">Pataiwodom Siksa</span></div><div class="snapshot-row"><span class="k">Secondary</span><span class="v">Assumption College</span></div><div class="snapshot-row"><span class="k">Architecture</span><span class="v">Undergraduate</span></div></div>
+        </div>
+        <div class="snapshot-col">
+          <div class="snapshot-section"><div class="snapshot-label">Education</div><div class="snapshot-row"><span class="k">M.Sc.</span><span class="v accent">MIT · 1999–2001</span></div><div class="snapshot-row"><span class="k">M.Phil</span><span class="v accent">Oxford · 2002–2004</span></div><div class="snapshot-row"><span class="k">PhD</span><span class="v accent">Harvard · 2004–2009 · Anthropology</span></div></div>
+          <div class="snapshot-section"><div class="snapshot-label">Fieldwork &amp; Practice</div><div class="snapshot-row"><span class="k">Dissertation</span><span class="v">Shanghai Yangpu District</span></div><div class="snapshot-row"><span class="k">Duration</span><span class="v">2009–2011 · 2 years</span></div><div class="snapshot-row"><span class="k">Current</span><span class="v">Smart cities researcher · consultant · speaker</span></div><div class="snapshot-row"><span class="k">Geographic</span><span class="v">Shanghai · Singapore · Bangkok · US · EU</span></div></div>
+          <div class="snapshot-section"><div class="snapshot-label">Current Project</div><div class="snapshot-row"><span class="k">Project</span><span class="v accent">100 Days of Non</span></div><div class="snapshot-row"><span class="k">Phase</span><span class="v accent">I of IX · Days 1–15 · Origin &amp; Place</span></div><div class="snapshot-row"><span class="k">Progress</span><span class="v accent">Day 001 of 100</span></div><div class="snapshot-row"><span class="k">Format</span><span class="v">1 question daily · fact-checked publicly · narrated · accumulated as biography</span></div></div>
+        </div>
+      </div>
 
-  <footer>
-    <span>100 Days of Non &nbsp;·&nbsp; Non Arkara &nbsp;·&nbsp; 2026</span>
-    <span>Day 001 of 100 &nbsp;·&nbsp; Phase I: Origin &amp; Place</span>
-  </footer>
+      <footer>
+        <div class="meta"><span><strong>100 Days of Non</strong> · A biographical installation</span><span>Subject: Non Arkara · Born 1981 · Bangkok</span></div>
+        <div class="meta"><span>Day 001 of 100 · Phase I: Origin &amp; Place</span><span>2026 · Memory &amp; Record</span></div>
+      </footer>
 
-
-  <link rel="stylesheet" href="/assets/css/main.css">
-  <style>
-    .talk-widget {
-      position: fixed; bottom: 20px; right: 20px; z-index: 99;
-      font-family: 'JetBrains Mono','Courier New',monospace; font-size: 11px;
-      letter-spacing: 0.15em; text-transform: uppercase;
-    }
-    .talk-widget a {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 16px; min-height: 44px;
-      background: #CCFF00; color: #000;
-      text-decoration: none;
-      border: 1px solid #CCFF00;
-    }
-    .talk-widget a:hover { background: #000; color: #CCFF00; }
-    .talk-pulse { display: inline-block; width: 8px; height: 8px; background: #000; flex: 0 0 8px; }
-    .talk-widget a:hover .talk-pulse { background: #CCFF00; }
-    .nav::-webkit-scrollbar { display: none; }
-    @media (max-width: 720px) {
-      .talk-widget { bottom: 16px; right: 16px; }
-    }
-  </style>
-  <div class="talk-widget">
-    <a href="/bot/"><span class="talk-pulse"></span> Talk to Non</a>
-  </div>
-
+      <div class="talk-widget">
+        <a href="/bot/"><span class="talk-pulse"></span> Talk to Non</a>
+      </div>
 
     </div>
   </div>
+
 </body>
 </html>
