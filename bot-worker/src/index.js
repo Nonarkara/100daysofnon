@@ -16,9 +16,9 @@
 //   ANTHROPIC_MODEL     — defaults to "claude-sonnet-4-5"
 //   ALLOWED_ORIGIN      — defaults to "*" (set to your domain for tighter CORS)
 
-const VOICE_ANCHOR_URL = 'https://100days.nonarkara.org/data/voice-anchor.json';
-const BOT_DEMOS_URL    = 'https://100days.nonarkara.org/data/bot-demos.json';
-const CORPUS_INDEX_URL = 'https://100days.nonarkara.org/data/corpus-index.json';
+const VOICE_ANCHOR_URL = 'https://100.nonarkara.org/data/voice-anchor.json';
+const BOT_DEMOS_URL    = 'https://100.nonarkara.org/data/bot-demos.json';
+const CORPUS_INDEX_URL = 'https://100.nonarkara.org/data/corpus-index.json';
 
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',

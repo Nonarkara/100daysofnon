@@ -45,7 +45,7 @@ Then commit and push. The bot is live.
 
 ## Optional: own subdomain
 
-Add a DNS CNAME `api.100days → 100days-bot.<your-handle>.workers.dev` in Cloudflare and uncomment the `[[routes]]` block in `wrangler.toml`. Then the worker answers at `https://api.100days.nonarkara.org/api/ask`.
+Add a DNS CNAME `api.100 → 100days-bot.<your-handle>.workers.dev` in Cloudflare and uncomment the `[[routes]]` block in `wrangler.toml`. Then the worker answers at `https://api.100.nonarkara.org/api/ask`.
 
 ## Cost notes
 
