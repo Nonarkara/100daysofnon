@@ -1,0 +1,1 @@
+Your obligations to Thailand — civic, professional, none. What you actually owe a place that made you.

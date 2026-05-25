@@ -1,0 +1,1 @@
+Harvard versus MIT, in your direct experience. Not the rankings — the texture of the people.

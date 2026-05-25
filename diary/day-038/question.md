@@ -1,0 +1,1 @@
+The Bangkok 2006 girlfriend — the one whose house is near your current office. Sketch her — not for the public surface, for the archive. Then choose: pseudonym, first name only, or full redaction for the public version.

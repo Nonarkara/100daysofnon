@@ -1,0 +1,1 @@
+Your earliest political memory. Not your political opinion — a moment when you understood that the country had a politics. Where you were, who told you, what they said.

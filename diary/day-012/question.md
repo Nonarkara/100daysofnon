@@ -1,0 +1,1 @@
+Your first close friend. Their name. What happened to them. The last time you spoke.

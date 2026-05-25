@@ -1,0 +1,1 @@
+A peer abroad who outclassed you intellectually. What they had that you didn't. Whether you've caught up.

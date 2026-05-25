@@ -1,0 +1,1 @@
+The first death that meant something to you. Whose, when, how you found out, what changed in the household after.

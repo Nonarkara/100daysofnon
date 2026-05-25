@@ -1,0 +1,1 @@
+The first time you wrote something you were proud of. What it was. Whether it still exists. Whether it holds up.

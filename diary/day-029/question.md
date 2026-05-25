@@ -1,0 +1,1 @@
+The intellectual position you went in with that didn't survive. What replaced it.

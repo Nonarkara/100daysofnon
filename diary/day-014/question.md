@@ -1,0 +1,1 @@
+A childhood obsession that adults dismissed but you still remember the texture of. Why you cared. What it told you about yourself.

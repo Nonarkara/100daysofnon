@@ -1,0 +1,1 @@
+The architectural background — how it still shapes the way you think now. One specific example from the work you're doing this week.

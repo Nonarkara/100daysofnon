@@ -1,0 +1,1 @@
+Your first week abroad. The cold or heat. The food. The accent you couldn't parse. A specific scene.

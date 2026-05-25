@@ -1,0 +1,1 @@
+The day trading dashboard. Are you trading. Honestly. What the P&L looks like.

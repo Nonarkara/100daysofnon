@@ -1,0 +1,1 @@
+Someone you'd want at your funeral who probably won't come. Why.

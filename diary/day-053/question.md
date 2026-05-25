@@ -1,0 +1,1 @@
+IDEO Shanghai — what you brought, what they wanted, what actually shipped.

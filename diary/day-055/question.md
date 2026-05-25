@@ -1,0 +1,1 @@
+Poland half-year — what looked like waste, what turned out to matter.

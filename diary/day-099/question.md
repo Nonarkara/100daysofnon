@@ -1,0 +1,1 @@
+The biography you'd write of yourself in a single page. (You write it; the system fact-checks it.)

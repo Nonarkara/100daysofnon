@@ -1,0 +1,1 @@
+Religion in the household. Buddhist, animist, syncretic, ambivalent? What rituals were observed, what was performed for appearance, what was actually believed. Who in the family took it seriously.

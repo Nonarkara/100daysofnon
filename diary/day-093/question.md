@@ -1,0 +1,1 @@
+The version of you that an obituary would describe. Versus the version you'd want.

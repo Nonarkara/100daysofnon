@@ -1,0 +1,1 @@
+A pattern across all 95 prior days that you didn't expect to see.

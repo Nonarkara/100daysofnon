@@ -1,0 +1,1 @@
+The Chonburi / Bangkok / Thailand smart-city work. The client behind it. What you tell them versus what you actually believe about whether smart-city tech helps.

@@ -1,0 +1,23 @@
+{
+  "day": 94,
+  "phase": "",
+  "T0_approx": null,
+  "T0_local_approx": null,
+  "T2": null,
+  "T3_approx": null,
+  "T4_approx": null,
+  "latency_ms_approx": null,
+  "composition_ms_approx": null,
+  "answer_word_count": 0,
+  "answer_message_count": 0,
+  "artifact_count": 0,
+  "notes": "",
+  "fact_check_summary": {
+    "verified": 0,
+    "contradicted": 0,
+    "unverified": 0,
+    "unverifiable": 0,
+    "total_claims": 0,
+    "hard_record_contradictions": 0
+  }
+}

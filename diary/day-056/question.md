@@ -1,0 +1,1 @@
+Golden Panda Design Award judging — who else was on the panel, what won, whether the right thing won.

@@ -1,0 +1,1 @@
+The memory palace (nonarkara.org). The "second nervous system" framing — is the system actually changing your behavior, or are you the system telling yourself it is?

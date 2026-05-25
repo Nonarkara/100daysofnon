@@ -1,0 +1,1 @@
+Sydney University — the year you quit. The specific moment that made the decision.

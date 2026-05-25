@@ -1,0 +1,1 @@
+The first intellectual you idolized. What you wanted from them. Whether you still respect them.

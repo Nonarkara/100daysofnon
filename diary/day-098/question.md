@@ -1,0 +1,1 @@
+The most contradicted day in the fact-check log. What you'd say about that now.

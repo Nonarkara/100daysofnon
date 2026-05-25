@@ -1,0 +1,1 @@
+Money in the household when you were eight. Were you rich, comfortable, getting by, struggling? What did your parents say versus what was actually true? The first time you understood what your family's money situation actually was.

@@ -1,0 +1,1 @@
+The credentials check moment (this is a fact-check day on Phase 3): the program names, degree titles, conferral years, advisors of record. I'll cross-reference.

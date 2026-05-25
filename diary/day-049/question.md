@@ -1,0 +1,1 @@
+A relationship currently active that you haven't named in any prior day. Or — the choice to keep one private. Either choice is fine; both get logged.

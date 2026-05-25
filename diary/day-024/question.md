@@ -1,0 +1,1 @@
+Languages you tried to learn before you actually needed to. Which stuck, which didn't, why.

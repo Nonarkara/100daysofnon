@@ -1,0 +1,1 @@
+The day you understood you were going to leave Thailand someday. Where you were, what triggered it, whether you told anyone.

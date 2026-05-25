@@ -1,0 +1,1 @@
+Pataiwodom Siksa. Full Thai name of the school. The years you attended. Your daily walk to school — landmarks, distance, who you walked with. One teacher who saw you. One who didn't.

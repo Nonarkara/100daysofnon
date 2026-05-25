@@ -1,0 +1,1 @@
+A belief about meaning you held at twenty-five that you've abandoned.

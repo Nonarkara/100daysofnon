@@ -1,0 +1,1 @@
+A consulting client who hired you and then didn't listen to you. What they did instead. Whether they were right.

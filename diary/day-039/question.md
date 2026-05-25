@@ -1,0 +1,1 @@
+Shanghai 2010. You wrote about the small apartment, the projector, the company. The truth, however you want to frame it.
