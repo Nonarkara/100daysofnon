@@ -69,7 +69,7 @@
       margin-bottom: 24px;
     }
     .qr-text {
-      font-family: var(--sans); font-size: clamp(22px, 4vw, 36px);
+      font-family: var(--sans); font-size: clamp(26px, 4.5vw, 48px);
       font-weight: 700; line-height: 1.3; color: var(--fg);
       margin: 0 0 16px 0; max-width: 900px;
       transition: opacity 0.4s ease;
@@ -199,22 +199,27 @@
     </div>
     
     <div class="col-1">
-      <header class="hero-container">
-        <div class="hero-eyebrow">A museum of Dr Non's mind &nbsp;·&nbsp; Eleven rooms &nbsp;·&nbsp; One docent</div>
-        <div class="type-as-image">
-          <span class="text-red">100</span> DAYS OF NON
-        </div>
-        
-        <div class="editorial-body hero-desc">
-          <p>A 100-day biographical installation. One question per day, answered and fact-checked in public. <strong class="text-accent">Memory and record, side by side.</strong> Where they disagree is the most interesting cell on the page.</p>
-          <p>A journal that is also a journey. The museum opens on Day 001 and accumulates from there. Eleven rooms map the mind that wrote the blog the bot will draw from.</p>
-        </div>
-
-        <div class="hero-meta">
-          <div><b>Day 001 of 100</b>Today's record</div>
-          <div><b>2026</b>Bangkok</div>
-          <div><b>99 posts</b>Blog corpus, 2025</div>
-          <div><b>~240k words</b>Available to the bot</div>
+      <!-- TUNNEL HERO: the subject at age one is the museum's foundation image -->
+      <header class="tunnel" id="hero">
+        <img src="/assets/photos/Non Young 1982.jpg"
+             alt="Non Arkara, age one, Bangkok 1982"
+             class="tunnel-bg"
+             loading="eager">
+        <div class="tunnel-overlay"></div>
+        <div class="tunnel-content">
+          <div class="tunnel-eyebrow">A museum of Dr Non's mind &nbsp;·&nbsp; 12 rooms &nbsp;·&nbsp; One docent</div>
+          <h1 class="type-tunnel type-bleed">
+            <span class="text-red">100</span> DAYS<br>OF NON
+          </h1>
+          <div class="editorial-body" style="max-width: 55ch; margin-top: 20px; color: rgba(255,255,255,0.8); font-size: 16px; line-height: 1.65;">
+            A 100-day biographical installation. One question per day, answered and fact-checked in public. <strong style="color:#fff;">Memory and record, side by side.</strong> Where they disagree is the most interesting cell on the page.
+          </div>
+          <div class="tunnel-stats">
+            <div class="tunnel-stat"><b id="hero-day-count">1</b>Day of 100</div>
+            <div class="tunnel-stat"><b>2026</b>Bangkok</div>
+            <div class="tunnel-stat"><b>99</b>Posts · ~240k words</div>
+            <div class="tunnel-stat"><b>12</b>Rooms</div>
+          </div>
         </div>
       </header>
 
@@ -242,7 +247,7 @@
       </div>
 
       <div class="rooms-matrix">
-        <a href="/day/001/" class="room-cell" style="background:var(--accent); color:#000; border-color:#000;">
+        <a href="/day/001/" class="room-cell" style="background:var(--accent); color:#000; border-color:#000; grid-column: span 2;">
           <span class="room-meta" style="color:rgba(0,0,0,0.6)">Room 01 · Record</span>
           <div class="room-title">Day 001</div>
           <div class="room-desc" style="color:#000">Today's entry · Phase I · Origin &amp; Place. Where do you remember first standing in Bangkok?</div>
@@ -398,6 +403,18 @@
         }
       }
       grid.innerHTML = html;
+    }
+
+    // Animate the hero day counter
+    const heroDay = document.getElementById('hero-day-count');
+    if (heroDay) {
+      let n = 0;
+      const target = DAYS_LIVE;
+      const tick = setInterval(() => {
+        n = Math.min(n + 1, target);
+        heroDay.textContent = n;
+        if (n >= target) clearInterval(tick);
+      }, 80);
     }
   </script>
 
