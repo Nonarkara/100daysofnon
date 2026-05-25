@@ -31,7 +31,7 @@
        ──────────────────────────────────────────────────────────── */
 
     /* ── Hero: The thesis ────────────────────────────────── */
-    .subject-hero { padding: var(--nav-h, 60px) 48px 80px; border-bottom: 1px solid var(--faint); background: var(--bg); }
+    .subject-hero { min-height: 85vh; padding: 0; border-bottom: 1px solid var(--faint); }
     .hero-eyebrow { font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 24px; }
     .hero-thesis { font-family: var(--sans); font-size: clamp(48px, 12vw, 144px); font-weight: 800; line-height: 0.95; letter-spacing: -0.04em; text-transform: uppercase; margin-bottom: 48px; max-width: 90%; }
     .hero-thesis .accent { color: var(--accent); }
@@ -209,11 +209,18 @@
     <div class="col-0" style="writing-mode: vertical-rl; text-orientation: mixed; display: flex; align-items: center; justify-content: center; letter-spacing: 0.2em; font-family: var(--mono); font-size: 11px; color: var(--faint);">010 /// SUBJECT</div>
     <div class="col-1">
 
-      <div class="subject-hero">
-        <div class="hero-eyebrow">A 100-day biographical installation</div>
-        <div class="hero-thesis"><span class="accent">WHERE</span> MEMORY MEETS RECORD</div>
-        <div class="hero-body">Non Arkara, born November 1, 1981, in Bangkok. Forty-two years in the same suburban house while the city grew around it. Trained in architecture at the edge of infrastructure. Studied the mind at MIT. Studied the city at Oxford and Harvard. Spent two years in Shanghai's Yangpu District watching a former industrial zone become smart. Now: the subject of a 100-day biographical installation that surfaces what happens when an unreliable narrator meets an unreliable recording system. The installation is not about truth. It is about the friction between memory and record, between the story we tell and the traces we leave.</div>
-      </div>
+      <header class="subject-hero tunnel">
+        <img src="/assets/photos/Non Young 1982.jpg"
+             alt="Non Arkara, age one, Bangkok 1982 — the subject at origin"
+             class="tunnel-bg"
+             loading="eager">
+        <div class="tunnel-overlay"></div>
+        <div class="tunnel-content" style="padding-top: 80px;">
+          <div class="hero-eyebrow">A 100-day biographical installation</div>
+          <div class="hero-thesis"><span class="accent">WHERE</span> MEMORY MEETS RECORD</div>
+          <div class="hero-body">Non Arkara, born November 1, 1981, in Bangkok. Forty-two years in the same suburban house while the city grew around it. Trained in architecture at the edge of infrastructure. Studied the mind at MIT. Studied the city at Oxford and Harvard. Spent two years in Shanghai's Yangpu District watching a former industrial zone become smart. Now: the subject of a 100-day biographical installation that surfaces what happens when an unreliable narrator meets an unreliable recording system. The installation is not about truth. It is about the friction between memory and record, between the story we tell and the traces we leave.</div>
+        </div>
+      </header>
 
       <!-- PHOTO ESSAY: THE ORPHANED RECORD -->
       <div class="photo-essay">
