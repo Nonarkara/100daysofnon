@@ -253,6 +253,17 @@ img {
   }
 }
 
+/* Nav stability on mobile — stop the left/right drift */
+@media (max-width: 768px) {
+  .nav {
+    overflow: hidden; /* clip instead of scroll — nav stays locked */
+    padding: 14px 20px;
+    gap: 16px;
+  }
+  /* Hide lower-priority links on small screens */
+  .nav a:nth-of-type(n+7) { display: none; }
+}
+
 /* Utilities */
 .mono { font-family: var(--mono); }
 .serif { font-family: var(--serif); }
