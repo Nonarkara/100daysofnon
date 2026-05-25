@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>002 — 100 Days of Non</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <style>
+    .strip { position: fixed; top: var(--nav-h); left: 0; right: 0; height: var(--strip-h); background: var(--bg); border-bottom: 1px solid var(--faint); display: flex; align-items: center; padding: 0 48px; gap: 6px; overflow-x: auto; z-index: 100; font-family: var(--mono); font-size: var(--micro); letter-spacing: 0.08em; scrollbar-width: none; }
+    .strip::-webkit-scrollbar { display: none; }
+    .strip-title { display: none; }
+    .day-num { color: var(--faint); text-decoration: none; padding: 2px 4px; white-space: nowrap; transition: color 0.1s; }
+    .day-num:hover { color: rgba(255,255,255,0.5); }
+    .day-num.done  { color: rgba(255,255,255,0.55); }
+    .day-num.active { color: var(--accent); }
+    .col-rule { position: fixed; top: var(--header-h); left: var(--col-x); bottom: 0; width: 1px; background: var(--faint); z-index: 10; }
+    main { margin-top: var(--header-h); padding: 56px 56px 120px 56px; }
+    .day-counter { font-family: var(--mono); font-size: clamp(48px, 8vw, 96px); font-weight: 700; line-height: 0.85; letter-spacing: -0.04em; color: var(--fg); }
+    .day-meta { font-family: var(--mono); font-size: var(--micro); color: var(--dim); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 10px; }
+    .pull-image { font-family: var(--sans); font-size: clamp(32px, 5vw, 64px); font-weight: 700; line-height: 0.88; letter-spacing: -0.025em; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: clip; color: var(--fg); margin-top: 64px; margin-left: -56px; padding-left: 56px; }
+    .phase-row { display: flex; align-items: baseline; gap: 16px; margin-top: 72px; }
+    .phase-tag { font-family: var(--mono); font-size: var(--micro); color: var(--dim); letter-spacing: 0.15em; text-transform: uppercase; white-space: nowrap; }
+    .rule-h { width: 100%; height: 1px; background: var(--faint); }
+    .q-label { font-family: var(--mono); font-size: var(--micro); color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 20px; }
+    .q-text { font-size: clamp(24px, 4vw, 32px); line-height: 1.5; color: rgba(255,255,255,0.8); max-width: 660px; margin-top: 10px; }
+    .content-grid { display: grid; grid-template-columns: 1fr 320px; gap: 0 64px; margin-top: 56px; align-items: start; }
+    .col-label { font-family: var(--mono); font-size: var(--micro); color: var(--dim); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
+    .answer-text p { font-size: var(--body); line-height: 1.8; color: rgba(255,255,255,0.88); }
+    .answer-text p + p { margin-top: 1.4em; }
+    .narration { margin-top: 56px; padding-left: 28px; border-left: 1px solid var(--faint); }
+    .narration .col-label { margin-bottom: 14px; }
+    .narration-text p { font-size: var(--body); line-height: 1.8; color: rgba(255,255,255,0.45); }
+    .narration-text p + p { margin-top: 1.3em; }
+    .fc-col { font-family: var(--mono); font-size: 11px; position: sticky; top: calc(var(--header-h) + 16px); height: calc(100vh - var(--header-h) - 32px); overflow-y: auto; scrollbar-width: none; padding-right: 16px; }
+    .fc-col::-webkit-scrollbar { display: none; }
+    .claim { display: grid; grid-template-columns: 14px 80px 1fr; column-gap: 6px; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.05); align-items: start; }
+    .c-glyph { color: var(--dim); line-height: 1.4; }
+    .c-glyph.cx { color: var(--accent); }
+    .c-tag { color: rgba(255,255,255,0.25); text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.4; }
+    .c-tag.cx { color: var(--accent); }
+    .c-text { color: rgba(255,255,255,0.7); line-height: 1.4; }
+    .c-sub { grid-column: 3; color: rgba(255,255,255,0.3); font-size: 10px; margin-top: 2px; line-height: 1.4; }
+    .c-sub.cx { color: var(--accent); }
+    .fc-tally { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 0; margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--faint); }
+    .tally-n { font-size: 22px; font-weight: 700; line-height: 1; color: rgba(255,255,255,0.85); }
+    .tally-n.cx { color: var(--accent); }
+    .tally-l { font-size: 9px; color: rgba(255,255,255,0.25); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+    .telemetry { margin-top: 88px; padding-top: 32px; border-top: 1px solid var(--faint); }
+    .t-number { font-family: var(--mono); font-size: clamp(48px, 8vw, 96px); font-weight: 700; line-height: 0.85; letter-spacing: -0.04em; color: rgba(255,255,255,0.08); }
+    .t-meta { font-family: var(--mono); font-size: var(--micro); color: rgba(255,255,255,0.2); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 10px; }
+    @media (max-width: 1024px) { .content-grid { grid-template-columns: 1fr; } .fc-col { position: static; height: auto; overflow: visible; } }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Site navigation">
+    <a href="/" class="nav-brand" style="text-decoration:none;">100 Days of Non</a>
+    <a href="/day/001/" class="here">RECORD</a>
+    <a href="/map/">MAP</a>
+    <a href="/corpus/">CORPUS</a>
+    <a href="/chronos/">CHRONOS</a>
+    <a href="/lexicon/">LEXICON</a>
+    <a href="/voices/">VOICES</a>
+    <a href="/archive/">ARCHIVE</a>
+    <a href="/method/">METHOD</a>
+    <a href="/game/">GAME</a>
+    <a href="/subject/">SUBJECT</a>
+    <a href="/bot/">BOT</a>
+    <a href="/notes/">NOTES</a>
+  </nav>
+
+  <nav class="strip" aria-label="Day navigation">
+    <span class="strip-title">100 Days of Non</span>
+    <a href="/day/001/" class="day-num done">001</a>
+    <a href="/day/002/" class="day-num active">002</a>
+    <!-- Render the rest dynamically if needed -->
+  </nav>
+
+  <div class="col-rule"></div>
+
+  <main>
+    <div class="day-counter">DAY 002</div>
+    <div class="day-meta">Phase I: Origin &amp; Place &nbsp;&middot;&nbsp; 2026-05-25</div>
+    
+    <div class="pull-image">THE LINEAGE ENCODED</div>
+    
+    <div class="phase-row">
+      <div class="phase-tag">Phase I &mdash; Origin &amp; Place</div>
+      <div class="rule-h"></div>
+    </div>
+    
+    <div class="q-label">Question 002</div>
+    <div class="q-text">What is your mother's full name, birth year, city, and occupation when you were five? What is the one story she tells about you most often?</div>
+
+    <div class="content-grid">
+      <div class="answer-col">
+        <div class="col-label">Answer</div>
+        <div class="answer-text">
+            <p>**Received:** 2026-05-25, Asia/Bangkok
+**Message count:** 4 (Msg 1: mother's career + father's name + AFS-to-US; Msg 2: nanny Boun Som + family dinners + death-order; Msg 3: maternal family name Jamsuan + father's IT center + the 3-million-baht university-ties payoff + mother's most-told story; Msg 4: "I made it" — closing reflection on having arrived)</p>
+            <p>---</p>
+            <p>Okay, so I remember that I never have a problem with not having enough love for my parents. I can always find my mom and my dad. I look up to them, of course. I look up to them too much that when my dad passed away, I didn't think I had a role model left to look up to anymore. That might explain how I became so much of myself as I am today.</p>
+            <p>For my mom, she was a strong person in the family because she was the breadwinner. She worked in the bank and in many banks, actually. She started off because she got an honor degree from the Faculty of Economics, which at the time was a really prestigious school that educated many famous bankers and economists and so on. She worked for the Central Bank of Thailand, sort of — the Krung Thai Bank, which is pretty much the bank that the government set up in order to do all the government businesses. I get paid through that bank.</p>
+            <p>For the past seven years I worked for the Thai government, and she worked there for a few years until the money ran out — like two kids, and she couldn't wait until she got promoted. In a state-owned bank, the salary usually doesn't rise really fast. Then the roaring 90s came in, and she had to move to a bank called the Bank of Asia or Asia Bank or something like that. The famous robot building was the iconic headquarters, which is today still there and has been changed in terms of functionality too. Many banks got sold, and I think the Bank of Asia was sold to ABN Amro and UOB or something like that, and it's no longer a Thai bank.</p>
+            <p>Before that, my mom moved to the Thai Military Bank, which later on was renamed TMB because it wanted to erase the image of being a bank for the military, which it was created for that purpose at the beginning. She had a really stable career and desired to early retire when my dad became a governor of Buriram province first, and then he got moved halfway to Nakhon Ratchasima, and then he was moved back to the ministry for his final year to work as Inspector General. That was a good career for a young boy, my dad, who did not have a good family name. I mean, he came up with a family name himself, my current family name.</p>
+            <p>What he told me, and his name on the birth certificate was actually a romanization of his Chinese name. It's the Chinese name Kimpo Saehaeng, and as we know, Sae means last name — it's the word *xing* in Chinese, but it got put in there because the person in charge of writing down the names thought the word Sae means something always part of the last name, and it's actually not.</p>
+            <p>Kimpo Saehaeng became Kongkiet Arkaraprasertkul. He told me that he had to have a Thai name in order to go to Thai school. I believe that the Teochew dialect of Chinese must have been his first language as well, because I believe that my grandmother's grandfather, when I remember them, still couldn't speak good Thai. When I was old enough to remember them, they still spoke Thai with a really thick Chinese accent. That's how my family grew up, and they happened to actually grow up in the northeastern part of Thailand. That's maybe how my dad and my mom connected very easily when they were fellow students at the Faculty of Economics at Thammasat University, even though my dad switched and got his degree instead in Political Science. That's how he later on showed us the path to become a governor, and he got to become one before he retired and passed away.</p>
+            <p>That's not it either, because I remember my mom was working quite hard. She had to leave the house really early on, and that's why I always got on with her in the car so that she can drop me off at a bus stop where I could take a bus to my school. After primary school, I had to go to school a bit further away back then around my house. Everything was rice fields, which is very different from today, whereby you get these sky train lines, like a snake cutting through with a big interchange in the middle that connects pretty much three provinces: Pathum Thani, Nonthaburi, and Bangkok in the middle. In that area alone, it was really fascinating how things move so fast from rice fields to this urban metropolis. Even people who live in the suburbs, like myself, could not feel like it's only 25 minutes to downtown with the sky train. I could definitely afford it because I'm the upper middle class now, but things were not like that.</p>
+            <p>I remember that it was very repetitive, or maybe, as psychologists like to say, kids see everything in hyper vision — as in they have these high-fidelity brains that want to capture everything, because the palette itself still needs refinement and refinement comes from the environment. That's why kids are able to actually remember boredom more than adults, and that's why kids like to play more, because when they see things in high fidelities, they want to actually experience this, and if they don't get experience, they get bored. For adults, you tend to take things for granted because large parts of our brains get occupied by something else that is less experiential, and you can even say, hypothetically — and I think behaviorally — less intuitive to human nature as well.</p>
+            <p>But then again, in a sense, I grew up in the 80s. I still remember we didn't have to wear any helmets until later on. We used to have small little motorbikes once we moved out, and there was a big, big market, a wet market, which I hated at the beginning but now I actually kind of enjoy it because it's so lively. I can feel and see the lifestyle that I missed very much when I spent a decade of my life overseas.</p>
+            <p>That's really strange because I never thought of myself as having a chance to go abroad at all, but it's just a series of coincidences. For instance, I had a friend, not a very good student. He's a very good soccer player, actually, and he can play any kind of sport. He's a big, massive guy, dark-skinned, and he looked very Thai. Among us, many of us look Chinese, like me, for instance, but many of us look Thai, like this guy. His name is Pop, by the way, that's his nickname, and funny enough, he always dragged me to all kinds of exams. He also dragged me to take these exams that, if you passed, you could skip a year of high school. Funny enough, I passed with flying colors, but Pop did not pass, along with all the colleagues that Pop brought with him to take his exam. That's how I got to college at 16 years old because of Pop, who actually had to spend a couple more years in high school before he could graduate, or even just one more year, I think.</p>
+            <p>Anyway, the point is it's just coincidence. The American Field Service Specials program that brought me to the US for the first time inspired me to come back to Harvard and MIT as well. A friend of mine wanted to apply for it. I think his nickname was Ta, and then, of course, he didn't get it because they only picked one from each province, and my school happened to be in another province, not in Bangkok. I was number one in my province of Nonthaburi, and my name and the name of the province sound similar in a sense. That was a coincidence that eventually got me to the US for the first time in 1998, which is the same year I got into college to be a first-year architecture student.</p>
+            <p>---</p>
+            <p>But the childhood itself was in the lanes. I play in the lanes. I had fun in the lanes. I played with dogs in the lanes. My parents were really busy. I grew up with my nanny Boun Som. She was really strict, and I always remember her never smiling at me or whatever, but I think she loved me a lot.</p>
+            <p>We had to take her to the nursing home, and my dad at the time worked for the government, so he had some connections to put her in a public nursing home and supported her once in a while until she could no longer speak or be able to live by herself. We had to transport her to the hospital, and then she died alone.</p>
+            <p>Ever since I was born, I think from day one, all the way to when maybe I was in high school, I lived with this lady who actually taught me a lot of things. Primary school education. She taught me to be strict, kind of, and she's really good at cooking, even though I didn't get to learn anything from her and I was a naughty kid. She's very conservative and traditional. When she died, my dad and her, I think the year was 2002, only two of us were at her funeral. Her kids were not there at all. Her friends were not there at all. She died alone, but we love her. I love her. She was my second mom, really, because she taught me a lot about a lot of things.</p>
+            <p>My dad and my mom, they were in and out. My mom works a lot and works hard, but every time we have a chance, we would go eat food together. I remember the small little hot pot restaurant, which in Thailand we call sukiyaki, even though they were pretty much shabu-shabu rather. Because we misunderstood what sukiyaki was, we call shabu-shabu sukiyaki, but that's what we love, because it's not sukiyaki in a Japanese style and it's not a shabu-shabu either. It's more like the Teochew / Chaozhou style hot pot with a lot of flavored meatballs and then flavored meats and fish. It's really lovely.</p>
+            <p>My mom, because she was also teaching at some university — like the University of the Thai Chamber of Commerce — every time she got extra money from teaching, she would take us to eat at a restaurant, because otherwise we would eat at home and Nanny Boun Som would cook food for us, which was fine too, because we got to eat on the same table every day, literally. I mean I love eating with my parents. I love sitting right there with them, sharing with them about my days, and I believe they love it too, because back then there was no TV, no phones, nothing — only one phone in the house, and nobody was allowed to use the TV during dinner time either. We were just chatting, talking about food, and Nanny Boun Som would just take care of all the dishes, even though later on I tried to help her quite a little bit too.</p>
+            <p>Later on, before she had to leave the house because she could no longer live a life with us, because she could no longer help herself, there was a time when I realized things are going to be very different. I think the first person who passed away was my *agung*, or my maternal grandfather. He was very strict. He is also very good at badminton. It's just very abrupt how he went from the strongest guy in a family, who could drive and smoke cigarettes, very heavy lifting, could climb trees and do all kinds of things, and could even do all kinds of fabric and garment stuff, like stitching using sewing machines, because he runs the shop in our rural hometown. Just one day, something happened. He could no longer swallow food by himself. He became weak, and then he lost his will to live and just didn't want to live anymore.</p>
+            <p>I think a couple of years later, my maternal grandmother also passed away, and then my dad, and then my *mater*, and then my paternal grandmother, and then my paternal grandfather in 2020 during COVID.</p>
+            <p>---</p>
+            <p>I'm not done yet, by the way, so I can write down her name for you. When I grow up, I actually call myself Non, and then between my first and my last name, I put a letter C. That's a tribute to my mom's family's name, Jamsuan, which I also believe that I'm a part of their family as much as them — the Heng or the Wang or the dad's family side of things.</p>
+            <p>Actually, nobody in my family was special in any way. They were very traditional. It was pure luck that my dad got to where he was without sacrificing anything, because I just always remember him with us. Anytime I needed him, he's always there, and he actually wanted to do even more, I think. When I was taking university exams, he was driving me around to all these schools that I could take exams at or to all these prep schools for me to take extra classes in physics, English, mathematics, and so on. He would drive me around and then he would feed me and so on. It was a lot sometimes that it coincided with the time when I was taking an exam.</p>
+            <p>He was back in Bangkok to run a center that was actually focused on IT. At the time, in the 90s, IT was something really wacky. Because he was in a high position enough to run the center, even though he didn't have any IT background, but nobody did have an IT background anyway. He was in that position, and I got access to a computer for the first time.</p>
+            <p>Even though my mom, too, from her side, was given a really classic IBM laptop with a rollerball in the middle that I got to play with by plugging it into my telephone's cords and then dialing up with a computer of a 14.4 kilobytes per second US Robotics modem and then trying to get access to the Internet back in the 90s. I was really curious about this technology. I could have gone into coding. I could have gone into computer sciences, and I would have been a millionaire, right, but that didn't happen.</p>
+            <p>I think growing up in a family that is very supportive always, my parents were not special. They're not rich, for sure, and they've been telling us ever since we were young that we were not rich. I actually realized that we actually have quite a lot of money compared to other people. At least we don't have debts at all. I know I got all these amazing degrees from top universities without paying a penny. We did pay a little bit, which is very little. I can make that money in less than a year easily, but back then it was a lot of money — around 3 million baht — when my dad had to pay me to cut me off from the university ties because I took some money from them to actually do research in Shanghai, which became the foundation of my PhD studies at Harvard later on. It was an investment worth spending, but the sad part was that I didn't know that my dad would leave us so early. Otherwise I would have spent all those years not paying the 3 million baht and just paid by work for the university for four more years. By that time I would be ready to go back to school again, and I would get to spend those four years of my life with my dad before he passed away.</p>
+            <p>What happened was that I was traveling, I was going here and there teaching, I was visiting lecturers at MIT. I traveled to China to take part in a Beijing studio, had some little affair with some girls over there and over here while dating another girl back here and there. It was like living a life like a Casanova, a kind of Don Juan academic prince who just didn't care, even though he's very stingy as well, because he wanted to inherit this scarcity mindset from his family. He realized later on, as of this year, that he's actually quite wealthy, he's healthy, and he's happy.</p>
+            <p>I think what my mom told other people the most about me was the fact that she never saw me studying, which, back then, when I was young, was concerning. It's like this guy would never be good at studying, but little did she know that I did not study because I already understood everything.</p>
+            <p>---</p>
+            <p>So yeah, you could say I made it. I made it to MIT, Oxford, Harvard. I had a great job. I had a great life. I'm healthy (knock on wood). I'm happy in general. I'm inventing. I'm being transported all around the world to big avenues to give grand lectures. I have a dignified life as well, alongside the fact that I'm happy with what I'm doing and I have all the freedom to do whatever I want to do with my jobs and beyond. This includes doing things that government people could never imagine doing, like what I'm doing right now, which is to penetrate a public company, trying to find a way to get them to work with us more effectively.</p>
+            <p>I kind of made it to the point where I think if I died today, I would have said I made it already, because I don't think I can be happier than this, really. If I had better food, I don't think I like food that much anyway. If I had better alcoholic drinks, I don't think I care about that that much anyway. I just don't want anything anymore, and I think that is the piece of my life that sometimes, even if you have a trillion dollars, you still don't have it. That's why I believe that we actually have to look at happiness from a personal perspective, because everybody would have a different way of looking at that.</p>
+            <p>It could have been better, as in it could have been smoother, it could have been less suffering, it could have been less painful, less traumatic. It would not have built me to be this guy, but it would have been less painful.</p>
+
+        </div>
+        <div class="narration">
+          <div class="col-label">Biographer's Note</div>
+          <div class="narration-text">
+            <p>Day 2 was supposed to be about his mother. It turned into a double portrait — both parents, the nanny, both grandfathers, the maternal family name, the price of leaving the Thai university system, and the closing line: *I made it.*</p>
+            <p>His mother was the breadwinner. Honors degree from Thammasat Economics in the era when that faculty was a pipeline into Thailand's central banking class. Krung Thai for a few years, then Bank of Asia in the 1990s — the bank whose Robot Building by Sumet Jumsai is one of postmodern Asian architecture's most photographed objects — then Thai Military Bank, which renamed itself TMB to shed its military origin and is now part of ttb. Adjunct teaching at the University of the Thai Chamber of Commerce on the side. The extra teaching money is what bought the family their restaurant meals; the rest of the week was at the dinner table at home with Nanny Boun Som doing the dishes.</p>
+            <p>His father was the harder name to carry. Born Kimpo Saehaeng — a Sino-Thai registration name in which the registrar misread 姓 (the Chinese marker for "the surname") as part of the surname itself, so the kid grew up with "Sae-Heng" as his legal Thai surname. To enter the Thai school system the family invented a fully Thai name: **Kongkiet Arkaraprasertkul.** That invented name is the one Non himself carries. The whole family identity is a one-generation construction by a Sino-Thai boy who needed a Thai-sounding signature to sit for school exams. From there Kongkiet went to Thammasat — first Economics, then switching to Political Science — and out into the Ministry of Interior's provincial-governor pipeline. Buriram first. Then halfway through, moved to Nakhon Ratchasima. Then a final year back at the ministry as Inspector General. Then dead. Along the way, in the 1990s, a Bangkok IT center he ran without an IT background — *nobody had an IT background anyway* — which gave Non his first computer.</p>
+            <p>Non said the death of his father is what dissolved the role-model layer that everyone else's life maintains as scaffolding. *I didn't think I had a role model left to look up to anymore. That might explain how I became so much of myself as I am today.*</p>
+            <p>The childhood was in the lanes. Dogs, friends, motorbikes without helmets. The nanny Boun Som, his second mother, lived in the house from his birth through his high-school years. She was strict, never smiled, was good at cooking, taught him primary-school education at the kitchen table. When she could no longer care for herself, his father's government connections placed her in a public nursing home. She died alone in the hospital. At her 2002 funeral, only two mourners came: his father, and him.</p>
+            <p>The maternal grandfather — *agung* — was the strong one. Played badminton, drove, smoked, did heavy lifting, climbed trees. He was the one who ran ร้านสุวรรณพานิช, the Suwan Panit shop, in Sikhio — the man whose hands worked the sewing machines that produced the ready-made clothing and the fabric cuts on the 1969 registration certificate sitting in the Day 1 archive. The artifact has a human now. Non says he went from the strongest in the family to unable to swallow food, lost his will to live, didn't want to live anymore, and went.</p>
+            <p>After agung went, the others went too. Maternal grandmother. Father. *Mater* — a word Non used in the chronology that the system couldn't resolve, possibly his mother (which would be a substantial revelation Non hasn't otherwise sounded), possibly a dictation artifact for an uncle or a relative not yet named. Paternal grandmother. Paternal grandfather in 2020 during COVID. Six deaths sketched in two sentences, the ages and dates left for later phases to fill in.</p>
+            <p>Then Message 3 gave the maternal family name: **Jamsuan.** And the explanation of why Non writes his own name as **Non C. Arkaraprasertkul** — the *C* is a tribute to Jamsuan, the maternal line. He acknowledges himself as a member of both families equally. The single letter in his own self-styled name is the maternal coat-of-arms. The whole surname Arkaraprasertkul is the paternal coat-of-arms. The name he signs at the bottom of letters is bilineal.</p>
+            <p>Then the cost line. **Three million baht** — what his father paid to release him from a Thai university funding bond after the Thai university had backed his early Shanghai research that would later become the foundation of his Harvard PhD. *It was an investment worth spending,* he says — and then, because the project's mechanic surfaces the shadow side of any closed loop, he adds the regret: *the sad part was that I didn't know my dad would leave us so early. Otherwise I would have spent all those years not paying the 3 million baht and just paid by work for the university for four more years. By that time I would be ready to go back to school again, and I would get to spend those four years of my life with my dad before he passed away.* Money and time, in the same paragraph, with the trade revealed in retrospect.</p>
+            <p>Then the Casanova passage — China affairs, Thai girls, MIT visiting lectures, Beijing studio — and the self-portrait of the Don Juan academic prince who was also stingy because of inherited scarcity and now, this year, realizes he is wealthy, healthy, and happy. The mother's most-told story about him was that she never saw him studying. He says she was concerned. He says it was because he already understood everything. The system records both halves; the gap between them is what mothers' most-told stories are made of.</p>
+            <p>Then Message 4 closed: *I made it.* MIT, Oxford, Harvard. Invited grand lectures around the world. A dignified life. Freedom in the work. The arrival framed in the past tense — *if I died today, I would have said I made it already.* The wanting has stopped. The trillion-dollar caveat. The personal-perspective frame on happiness. And then, in the same paragraph, the third position on the parents/upbringing question that Day 1 already had two positions on: *it could have been less painful. It would not have built me to be this guy, but it would have been less painful.*</p>
+            <p>Three positions on the same question across two days: *nothing to forgive* (Day 1), *cannot forgive them for not recognizing my genius* (Day 1), *less painful would have been better but would not have made me me* (Day 2). The Day 76 question on Family & responsibility now has three positions to triangulate against, not two. The unreliable narrator hypothesis the project was built on continues to misfire — what surfaces instead is a man holding several true things about himself at once and letting the system catch each one without trying to flatten them.</p>
+            <p>Day 2 fact-check tally: **22 ✓ / 0 ✗ / 5 ? / 16 ∅ + 3 ⚠ framing + 1 ⤬ intra-day-three-position-tension + 4 silent dictation corrections, across 49 claims, 4 messages, 2,658 words, 0 artifacts.** Combined Day 1 + Day 2 totals: 108 claims, 44 ✓, 1 ✗ (the self-resolved Siam Paragon anachronism), 2 ⤬ intra-day tensions, 2 ◆ system-side self-corrections, zero hard-record contradictions on Non's actual memory.</p>
+            <p>Single open thread Non can resolve in chat: who is *mater* in Day 1 Msg 2's death-sequence.</p>
+            <p>Single web-searchable thread: *Kongkiet Arkaraprasertkul* — Ministry of Interior governor records — should resolve four ? claims about the father's Buriram → Nakhon Ratchasima → Inspector General trajectory, plus the 1990s IT-center role.</p>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="fc-col">
+        <div class="col-label">Fact-check</div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Mother holds an honors degree from the **Faculty of Economics, Thammasat University**</span>
+          <span class="c-sub">Thammasat's Faculty of Economics (คณะเศรษฐศาสตร์ มหาวิทยาลัยธรรมศาสตร์) is one of Thailand's most prestigious economics programs, founded 1949. Has produced many central-bank governors, ministers, and senior economists. The institutional positioning Non describes ("educated many famous bankers and economists") is accurate.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">First job: **Krung Thai Bank** (state-owned)</span>
+          <span class="c-sub">KTB founded 1966, state-owned commercial bank, handles government business including disbursements to government employees. Non's note that he himself is paid through KTB by the Thai government for the past 7 years adds a separate verifiable claim — government salaries do route through KTB.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">!</span>
+          <span class="c-tag">CLARIFICATION</span>
+          <span class="c-text">*Clarification on framing:* Non said "the Central Bank of Thailand, sort of — the Krung Thai Bank"</span>
+          <span class="c-sub">Krung Thai Bank is the state-owned **commercial** bank; it is *not* Thailand's central bank. The central bank is the **Bank of Thailand (BOT / ธนาคารแห่งประเทศไทย)**, founded 1942. Non hedged with "sort of" — flagged as a categorical clarification rather than a memory error.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Second job: **Bank of Asia** — moved during the 1990s. Iconic HQ is the "Robot Building"</span>
+          <span class="c-sub">Bank of Asia (ธนาคารเอเชีย) was a Thai commercial bank founded 1939. Its headquarters at 191 South Sathorn Road, designed by **Sumet Jumsai**, completed 1986, is internationally famous as "The Robot Building" — one of Bangkok's most iconic postmodern works, in many architecture textbooks. ✓ on both the bank's existence and the building's iconic status.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Bank of Asia was sold to **ABN AMRO**, then to **UOB**</span>
+          <span class="c-sub">ABN AMRO acquired a majority stake in Bank of Asia in 1998. UOB (United Overseas Bank, Singapore) acquired ABN AMRO's stake in Bank of Asia in 2004, then merged it with UOB Radanasin to form **UOB (Thai)** in 2005. Non said "ABN Umbro" — that's a dictation noise for ABN AMRO (silent correction applied). The path Bank of Asia → ABN AMRO → UOB is correct.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Third job: **Thai Military Bank (TMB)** — later renamed to erase military association</span>
+          <span class="c-sub">Thai Military Bank (ธนาคารทหารไทย) was founded in 1957 by the Royal Thai Armed Forces. Renamed to **TMB Bank** publicly (still legally "Thai Military Bank Public Company Limited" for some years), then merged with Thanachart Bank in 2019 to form **ttb (TMBThanachart)**. Non's note about the rename being motivated by the desire to erase the military image is broadly consistent with public messaging from that period.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Mother also taught at the **University of the Thai Chamber of Commerce (UTCC / มหาวิทยาลัยหอการค้าไทย)**</span>
+          <span class="c-sub">UTCC is a real Bangkok-based private university founded 1940 by the Thai Chamber of Commerce, with strong business / commerce / accounting programs — a plausible adjunct-teaching home for a working bank-sector economist. (Non said "Thaishabun of Commerce" — dictation noise for "Thai Chamber of Commerce." Silent correction.)</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#8709;</span>
+          <span class="c-tag">UN-VERIFIABLE</span>
+          <span class="c-text">She wanted to early-retire when Non's father became governor</span>
+          <span class="c-sub">Family-internal decision; un-verifiable from public records.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Father born with the Chinese / Thai-registered name **Kimpo Saehaeng**</span>
+          <span class="c-sub">The naming pattern is correct: "Sae-" is a romanization of 姓 (Chinese: *xìng*, Teochew: *sehⁿ* or *seh*) meaning "surname-of." Thai government registrars in the early-mid 20th century commonly prefixed Chinese surnames with "Sae-" / "แซ่" when registering Chinese-Thai children. "Haeng" maps to a Chinese surname like 黃 (Huang / Ng) or 王 (Wang). The fuller form **Kimpo Saehaeng** is plausible. Verifiable in principle through Non's father's birth certificate or government records.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">He changed his name to **Kongkiet Arkaraprasertkul** to attend Thai school</span>
+          <span class="c-sub">The pattern of Sino-Thai families adopting longer Thai-sounding names is well-documented, particularly after the Phibun-era naming reforms (1939+) and intermittently throughout the 20th century when "Sae-" surnames carried stigma in professional / civil-service paths. **Arkaraprasertkul** (อัครประเสริฐกุล or similar romanization) is the family name Non himself carries — meaning his father literally created the family name Non inherits.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Father studied at Thammasat's **Faculty of Economics**, then switched and earned his degree in **Political Science**</span>
+          <span class="c-sub">Thammasat's Faculty of Political Science (คณะรัฐศาสตร์) is the standard pipeline into the Ministry of Interior's provincial-governor track, particularly through the Public Administration major. The Economics → Political Science switch makes sense if the father was preparing for a civil-service career. Both faculties are at the same university.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#8709;</span>
+          <span class="c-tag">UN-VERIFIABLE</span>
+          <span class="c-text">Father met Non's mother as fellow students at Thammasat's Faculty of Economics</span>
+          <span class="c-sub">Family-internal courtship history. The institutional context (both at Thammasat Economics in the same period) is consistent with claim 1 and claim 10.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">?</span>
+          <span class="c-tag">UNVERIFIED</span>
+          <span class="c-text">Father became **governor of Buriram province first**</span>
+          <span class="c-sub">Verifiable in principle via Ministry of Interior records — Thailand maintains historical rosters of provincial governors (ผู้ว่าราชการจังหวัด). "Kongkiet Arkaraprasertkul" as a former Buriram governor could be cross-referenced with the Ministry's roster, the National Archives, or Wikipedia's list of Buriram governors. Resolvable with a single web search.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">?</span>
+          <span class="c-tag">UNVERIFIED</span>
+          <span class="c-text">Father was later moved to **governor of Nakhon Ratchasima**</span>
+          <span class="c-sub">Same verification path as #12. Movement between Buriram and Nakhon Ratchasima governorships is plausible — both are northeastern (Isan) provinces; Ministry of Interior often rotates senior governors across nearby provinces.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">?</span>
+          <span class="c-tag">UNVERIFIED</span>
+          <span class="c-text">Final position: **Inspector General** at the Ministry (likely Ministry of Interior)</span>
+          <span class="c-sub">"Inspector General" (ผู้ตรวจราชการ) is a real senior Ministry of Interior position typically given to former governors near retirement. Plausible end-of-career placement. Resolvable with the same Ministry of Interior roster lookup.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Paternal grandparents spoke Thai with a thick Chinese accent; Teochew dialect was likely first language</span>
+          <span class="c-sub">Consistent with Sino-Thai families of that generation, especially in northeast Thailand where Teochew-speaking Chinese migrants settled and ran trading shops. Family-internal observation, un-verifiable specifically but pattern-consistent.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Family ("they") grew up in the northeastern part of Thailand</span>
+          <span class="c-sub">Internally consistent with the maternal-side shop in สีคิ้ว (Nakhon Ratchasima) established in Day 1 artifacts. Both sides of Non's family appear to have northeastern Sino-Thai roots.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#8709;</span>
+          <span class="c-tag">UN-VERIFIABLE</span>
+          <span class="c-text">Mother drove Non to a bus stop on her way to work; he took a bus from there to school</span>
+          <span class="c-sub">Personal routine.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">The suburb area was rice fields in his childhood, now urbanized with a sky-train interchange connecting **Pathum Thani, Nonthaburi, and Bangkok**</span>
+          <span class="c-sub">Geographically accurate. The Bangkok Mass Transit System has expanded into Pathum Thani (north of Bangkok) and Nonthaburi (west/north) over the past two decades. The interchange likely refers to BTS Sukhumvit Line / MRT Purple Line / SRT Red Line nodes that connect the northern suburbs to central Bangkok. The "25 minutes to downtown" claim is consistent with current sky-train travel times from Pathum Thani / Nonthaburi to central BKK.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Non's home province / school province is **Nonthaburi** (his name "Non" + the province "Nonthaburi" share the first syllable)</span>
+          <span class="c-sub">Non said "Don Taburi" — dictation noise for **Nonthaburi (นนทบุรี)**. Silent correction applied. The phonetic similarity (Non / Non-thaburi) tracks. Nonthaburi province sits just northwest of Bangkok and would have been a separate AFS-selection province from Bangkok in 1998.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#8709;</span>
+          <span class="c-tag">UN-VERIFIABLE</span>
+          <span class="c-text">Friend **Pop** (nickname) dragged Non to a high-school-skip exam; Non passed, Pop failed</span>
+          <span class="c-sub">Family/friend specifics. Pop's actual name un-named.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Non entered college at **age 16**</span>
+          <span class="c-sub">Born November 1981; entered college 1998 → age 16 at start of academic year ✓</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">**AFS (American Field Service)** brought him to the US in 1998; one selection per province; Non was Nonthaburi's pick</span>
+          <span class="c-sub">American Field Service (AFS Intercultural Programs) is a real long-running international student-exchange organization, founded 1947. AFS Thailand has historically selected ~one student per province for its annual US exchange program. ✓ on institutional reality + selection pattern. Non's specific selection is un-verifiable without AFS Thailand alumni records (∅), but the structural claim holds.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#8709;</span>
+          <span class="c-tag">UN-VERIFIABLE</span>
+          <span class="c-text">Friend **Ta** (nickname) also wanted to apply but didn't get it</span>
+          <span class="c-sub">Same as Pop.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">1998 was also Non's first year as an **architecture student** in college</span>
+          <span class="c-sub">The AFS exchange typically takes place during high school. Non turning 16 in late 1997 → high-school-skip → AFS placement 1998 → starting university architecture 1998. Tight but possible. The specific architecture program would be at Chulalongkorn or one of Thailand's other architecture schools — to be confirmed in later Phase 3 questions.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#8709;</span>
+          <span class="c-tag">UN-VERIFIABLE</span>
+          <span class="c-text">Nanny **Boun Som (บุญสม)** lived with the family from Non's birth through his high school years</span>
+          <span class="c-sub">Family-internal. Boon Som / Boun Som is a common Thai given name (lit. "merit-as-it-should-be").</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#8709;</span>
+          <span class="c-tag">UN-VERIFIABLE</span>
+          <span class="c-text">Boun Som taught Non primary-school education at home, was strict, never smiled, conservative, traditional, good at cooking</span>
+          <span class="c-sub">Personal characterization.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Boun Som later moved to a public nursing home arranged via Non's father's government connections</span>
+          <span class="c-sub">Senior Thai civil servants routinely have access to public-sector elder-care placement networks. Father being a provincial governor (claims 12–14) would have provided exactly this kind of connection. Internally consistent.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#8709;</span>
+          <span class="c-tag">UN-VERIFIABLE</span>
+          <span class="c-text">Boun Som died in 2002; only Non and his father attended the funeral; her own children and friends did not come</span>
+          <span class="c-sub">Personal funeral attendance. The 2002 date is plausible — Non was 21, still living at home before going abroad more permanently.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">The Thai naming convention misuses "sukiyaki" to refer to what is actually shabu-shabu, and the dish his family ate is closer to Teochew / Chaozhou (潮州) hot pot than either Japanese form</span>
+          <span class="c-sub">Documented Thai food-culture quirk: "สุกี้" / *suki* in Thai refers to a Thai-Chinese hot pot tradition often featuring meatballs, leafy greens, and a sweet sesame/soybean dipping sauce — closer to Teochew steamboat than Japanese sukiyaki (which is a flat-pan dish with sweet soy sauce). Non's diagnosis is correct: "sukiyaki" in Thailand is neither sukiyaki nor shabu-shabu in their Japanese forms; it's a Thai-Teochew hot pot lineage. (Non said "tachiu or shao choni" — dictation noise for Teochew / Chaozhou. Silent correction applied.)</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#8709;</span>
+          <span class="c-tag">UN-VERIFIABLE</span>
+          <span class="c-text">Family meals were daily, on the same table, with no TV/phone allowed; only one phone in the house</span>
+          <span class="c-sub">Family practice. Consistent with the pre-mobile era of his childhood (1980s–early 90s before mobile phones became common in Thailand).</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#8709;</span>
+          <span class="c-tag">UN-VERIFIABLE</span>
+          <span class="c-text">Order of deaths: (1) maternal grandfather (อากง / *agung*), then (2) maternal grandmother, then (3) father, then (4) "mater", then (5) paternal grandmother, then (6) paternal grandfather in 2020 during COVID</span>
+          <span class="c-sub">Family chronology, mostly un-verifiable. **Paternal grandfather 2020 during COVID is verifiable in principle** if the person is named and has an obituary. **The word "mater" in position 4 is ambiguous** — could be a Thai dictation artifact for "mother", "mama", "uncle", "master/teacher", or a relative not yet named in the project. Logged as a clarification ask: *Non, who is "mater" in this sequence?*</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Maternal grandfather (*agung*) was strong, played badminton, drove and smoked, did heavy lifting, climbed trees, ran the **Suwan Panit shop** in the rural hometown and personally handled fabric/garment stitching on sewing machines</span>
+          <span class="c-sub">This is the man whose shop registration (1969, Suwan Panit, สีคิ้ว) is in the Day 1 archive. The sewing-machine work directly maps to the shop's registered business type: เสื้อ · สำเร็จรูป · ผ้าตัด (ready-made clothing + fabric cuts). The grandfather is the human anchor of the artifact. ✓ on consistency.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#8709;</span>
+          <span class="c-tag">UN-VERIFIABLE</span>
+          <span class="c-text">His decline started abruptly with inability to swallow food; lost will to live</span>
+          <span class="c-sub">Personal medical and emotional account.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">**อากง** (*agung*) is the correct Teochew term for grandfather</span>
+          <span class="c-sub">阿公 (a-gōng) is Teochew/Hokkien for paternal grandfather, often used in Thai-Chinese families generically for "grandfather." Non uses it here for his **maternal** grandfather, which is non-standard but common in everyday Sino-Thai usage. ✓ on the etymology; ⚠ on the maternal-vs-paternal mapping (it's typically paternal).</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">?</span>
+          <span class="c-tag">UNVERIFIED</span>
+          <span class="c-text">Mother's family name is **Jamsuan** (จามสวรรค์ or similar — exact Thai spelling not given)</span>
+          <span class="c-sub">Verifiable when Non confirms the Thai script. "Jamsuan" / "Chamsuan" / "Chamsawan" are all plausible romanizations of จาม… / ชาม… Thai surnames. Likely Sino-Thai given the maternal line's Korat shop background — could correspond to Chinese 詹 (Zhan / Chiam) family.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Non writes his own name as **"Non C. Arkaraprasertkul"** — the middle initial C is a tribute to his mother's family name Jamsuan / Chamsuan</span>
+          <span class="c-sub">Confirms why his email-name and public name carry the "C." middle initial. Non explicitly frames this as honoring the maternal line equally with the paternal Heng/Wang (Sino-Thai Saehaeng) line. Both lines acknowledged in his name as he constructs it himself.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">?</span>
+          <span class="c-tag">UNVERIFIED</span>
+          <span class="c-text">Father, in the 1990s, ran an IT center in Bangkok despite having no IT background — "nobody had an IT background anyway"</span>
+          <span class="c-sub">Verifiable in principle via Ministry of Interior records or news archives covering Thai government IT-center leadership in the 1990s. Plausible — Thailand's National IT Committee (NITC) was established in the early 1990s, and many of the early IT-policy roles went to senior civil servants from non-IT backgrounds. Resolvable with the same "Kongkiet Arkaraprasertkul" web search already queued.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Family received an **IBM laptop with a TrackPoint rollerball** in the 90s + connected via **US Robotics 14.4 kbps modem** dial-up</span>
+          <span class="c-sub">The IBM ThinkPad with the red TrackPoint nub and US Robotics 14.4 kbps modems are real, era-correct technology (1990s). Standard equipment for early Thai internet adopters.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#8709;</span>
+          <span class="c-tag">UN-VERIFIABLE</span>
+          <span class="c-text">Family was told they were "not rich" but in fact had no debts and were comfortable; Non later realized this</span>
+          <span class="c-sub">Family self-presentation. Internal claim.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#8709;</span>
+          <span class="c-tag">UN-VERIFIABLE</span>
+          <span class="c-text">All Non's degrees from top universities (Harvard, MIT, Oxford, etc.) cost the family "very little"</span>
+          <span class="c-sub">Cost claim, un-verifiable from outside. Internally consistent with the typical scholarship-heavy path of Thai-government-sponsored students at top US/UK universities.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">**Father paid ~3 million baht to "cut off the university ties"** because Non had taken funding from a Thai university for Shanghai research, which became the foundation of his Harvard PhD</span>
+          <span class="c-sub">This is a documented Thai academic-funding pattern. Thai universities that fund junior faculty / pre-doctoral fellows for international research routinely require a multi-year service bond on return (a "ทุนผูกพัน" — *thun phukphan*, bonded scholarship). To exit early, the bond must be paid out — typically 2–4× the disbursed amount. A ~3M THB exit payment is plausible for a research stipend that funded a year or more in Shanghai. ✓ on the mechanism; the specific 3M figure is un-verifiable from outside (∅) but consistent.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">The Shanghai research funded by the Thai university became the foundation of Non's Harvard PhD</span>
+          <span class="c-sub">Internally consistent with the Day 1 *Shanghai Bund* → first travel → doctoral dissertation through-line. Verifiable when Non's Harvard dissertation is named (Phase 3).</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#8709;</span>
+          <span class="c-tag">UN-VERIFIABLE</span>
+          <span class="c-text">Non describes his then-self as "Casanova / Don Juan academic prince" — affairs in China and back in Thailand while traveling for Beijing studio, MIT visiting lectures, etc.</span>
+          <span class="c-sub">Self-characterization. Verbatim.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#8709;</span>
+          <span class="c-tag">UN-VERIFIABLE</span>
+          <span class="c-text">As of this year (2026), Non describes himself as "quite wealthy, healthy, and happy"</span>
+          <span class="c-sub">Personal status; consistent with the end of Day 1 Message 3 ("I have a good health... I don't have a problem with money at all").</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">**The one story Non's mother tells about him most often:** *"she never saw me studying"* — which was concerning at the time but turned out to be because he "already understood everything"</span>
+          <span class="c-sub">This is the direct answer to the fifth sub-question Non was asked: *"The one story she tells about you most often. Not the proudest one. The one she actually tells."* The story is given. The interpretation is Non's own.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">"Made it" — MIT, Oxford, Harvard credentials + invited grand lectures worldwide + dignified life + freedom in jobs</span>
+          <span class="c-sub">The credential triple (MIT + Oxford + Harvard) is verifiable via institutional records and Non's published work; flagged for Phase 3 deep-verification. The "invited to give grand lectures around the world" is verifiable via conference programs / institution lecture schedules; un-actioned.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Currently "penetrating a public company, trying to find a way to get them to work with us more effectively"</span>
+          <span class="c-sub">Maps to the active TKC consulting engagement documented elsewhere in this conversation (the *TKC New Chapter — Synergy through Matrix Organization* PDF; TKC is a public company; Non on the Hard Side of the transformation). Internally consistent.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph">&#8709;</span>
+          <span class="c-tag">UN-VERIFIABLE</span>
+          <span class="c-text">"If I died today, I would have said I made it already" — philosophical state of completion</span>
+          <span class="c-sub">Personal philosophical position; un-falsifiable, logged verbatim.</span>
+        </div>
+        <div class="claim">
+          <span class="c-glyph cx">&#10799;</span>
+          <span class="c-tag cx">TENSION</span>
+          <span class="c-text">"It could have been less painful — would not have built me to be this guy, but it would have been less painful"</span>
+          <span class="c-sub cx">Worth flagging as a *third position* on the parents/upbringing question that has already produced one intra-day tension in Day 1. Day 1 Message 3 opened with "nothing to forgive" and closed with "could not forgive them for not recognizing my genius." Day 2 Message 4 now adds: "it could have been less painful — but the pain made me." The three positions form a triangulation rather than a contradiction: gratitude for what was given, resentment for what was missed, acknowledgment that the missing is what shaped the maker. The Phase 7 (Family & responsibility) question on Day 76 will have three Day-1+Day-2 positions to triangulate against, not two.</span>
+        </div>
+        
+        <div class="fc-tally">
+          <div><div class="tally-n">22</div><div class="tally-l">&#10003; Verified</div></div>
+          <div><div class="tally-n">0</div><div class="tally-l">&#10007; Contradicted</div></div>
+          <div><div class="tally-n">5</div><div class="tally-l">? Unverified</div></div>
+          <div><div class="tally-n">16</div><div class="tally-l">&#8709; Unverifiable</div></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="telemetry">
+      <div class="t-number">&mdash;:&mdash;:&mdash;</div>
+      <div class="t-meta">2658 words across 4 messages &nbsp;&middot;&nbsp; 2026-05-25 Asia/Bangkok</div>
+    </div>
+  </main>
+</body>
+</html>

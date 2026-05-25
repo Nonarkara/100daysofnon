@@ -5,19 +5,47 @@
   "T0_local_approx": "2026-05-25 evening Asia/Bangkok",
   "T2": null,
   "T3_approx": "2026-05-25T??:??:??Z",
-  "T4_approx": "2026-05-25T??:??:??Z",
+  "T4_approx": "2026-05-25T??:??:??Z (multiple expansion rounds throughout the day)",
   "latency_ms_approx": null,
   "composition_ms_approx": null,
-  "answer_word_count": 999,
-  "answer_message_count": 2,
+  "answer_word_count": 6716,
+  "answer_message_count": 4,
+  "artifact_count": 2,
+  "artifacts": [
+    {
+      "file": "suwan-panit-shop-registration.png",
+      "type": "Thai Commercial Registration Certificate",
+      "submitted": "2026-05-25",
+      "year_on_document": "พ.ศ. ๒๕๑๒ (1969 CE) — confirmed by Non after the system mis-read it as ๒๔๙๖/1953",
+      "year_per_subject_memory": "1969",
+      "agreement": "subject and document agree",
+      "shop_name_thai": "ร้านสุวรรณพานิช (Suwan Panit)",
+      "location": "สีคิ้ว, นครราชสีมา (Sikhio, Nakhon Ratchasima)",
+      "business_type": "ready-made clothing + fabric cuts"
+    },
+    {
+      "file": "suwan-panit-shop-frontage.png",
+      "type": "current photograph of the concrete shop-house (post-fire rebuild, aunt's home today)",
+      "submitted": "2026-05-25",
+      "shop_name_thai": "สุวรรณพานิช",
+      "shop_name_chinese_hao": "發祥 (Fā Xiáng / Fat Cheung / Hoat Siong) — auspicious-trading-house compound, standard Sino-Thai mercantile naming",
+      "house_number_visible": "186 — Non confirmed difference from registration's ๑๓ is explained by Thai postal-system renumbering"
+    }
+  ],
   "expansion_after_factcheck": true,
-  "notes": "Two messages: initial answer + expansion-after-fact-check (Non doubled the texture when the system flagged the Siam Paragon anachronism). Precise timestamps cannot be recorded until the Biographer persona on @DrNonOpenClaw_bot is wired. Word-count and message-count are exact.",
+  "third_message_modality": "Otter.ai voice transcript (~30 min, dictated while driving home)",
+  "fourth_message_modality": "typed expansion on maternal family history after the artifact threads",
+  "notes": "Four messages + two photographic artifacts in Day 1. Two system-side errors caught and corrected by Non (Prairie/Paris audio, ๒๕๑๒-vs-๒๔๙๖ visual). Plus one silent dictation correction (Hamasat→Thammasat). Zero confirmed hard-record memory errors. Standing rule established 2026-05-25: trust Non's statements first, verify the system's reading second. Maternal family history adds 4 university institutional anchors (Khon Kaen, Chiang Mai, Thammasat, Mahidol). Single web-searchable open thread: identity of current Thai Minister of Education and home-province corroboration.",
   "fact_check_summary": {
-    "verified": 9,
-    "contradicted": 2,
-    "unverified": 7,
-    "unverifiable": 6,
-    "total_claims": 27,
-    "self_corrected_after_factcheck": 1
+    "verified": 22,
+    "contradicted": 1,
+    "unverified": 13,
+    "unverifiable": 20,
+    "intra_day_tensions": 1,
+    "system_transcription_self_corrections": 2,
+    "silent_dictation_corrections": 1,
+    "total_claims": 59,
+    "self_corrected_by_subject_after_factcheck": 1,
+    "hard_record_contradictions": 0
   }
 }

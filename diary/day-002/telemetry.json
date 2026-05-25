@@ -1,0 +1,28 @@
+{
+  "day": 2,
+  "phase": "1 — Origin & place",
+  "T0_approx": "2026-05-25T??:??:??Z",
+  "T0_local_approx": "2026-05-25 late evening Asia/Bangkok (Day 2 fired same calendar day as Day 1 — Non requested it ahead of schedule)",
+  "T2": null,
+  "T3_approx": "2026-05-25T??:??:??Z",
+  "T4_approx": "2026-05-25T??:??:??Z",
+  "latency_ms_approx": null,
+  "composition_ms_approx": null,
+  "answer_word_count": 2658,
+  "answer_message_count": 4,
+  "artifact_count": 0,
+  "notes": "Day 2 ran wide — covered both parents' lives, paternal grandparents, nanny Boun Som, chronological order of family deaths, the maternal family name (Jamsuan, encoded as the C middle initial in Non's own self-styled name 'Non C. Arkaraprasertkul'), the 3M baht university-tie payoff, and a closing 'I made it' reflection. New through-line surfaced: Non's name itself encodes both lineages (paternal Saehaeng/Heng/Wang via Arkaraprasertkul, maternal Jamsuan via the C initial). New ⤬ intra-day tension on parents/upbringing: 'nothing to forgive' (Day 1) + 'could not forgive parents for not recognizing my genius' (Day 1) + 'it could have been less painful — but the pain made me' (Day 2). Three positions triangulate rather than contradict — Phase 7 (Day 76) has richer material to ask from.",
+  "fact_check_summary": {
+    "verified": 22,
+    "contradicted": 0,
+    "unverified": 5,
+    "unverifiable": 16,
+    "framing_clarifications": 3,
+    "intra_day_tensions": 1,
+    "silent_dictation_corrections": 4,
+    "total_claims": 49,
+    "hard_record_contradictions": 0,
+    "web_searchable_open_threads": 1,
+    "subject_ambiguity_clarifications_requested": 2
+  }
+}
