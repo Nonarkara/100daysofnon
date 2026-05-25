@@ -1008,9 +1008,40 @@
       <div class="post-head">
         <div class="post-meta">Site Log · 100 Days of Non · 100.nonarkara.org</div>
         <div class="post-title">Update History</div>
-        <div class="post-stats">3 entries · screenshots archived before every deployment · nothing leaves this repo</div>
+        <div class="post-stats">4 entries · screenshots archived before every deployment · nothing leaves this repo</div>
         <div class="editor-note">ARCHIVE PROTOCOL — Every update to this site is logged here before deployment. Screenshots are taken first. The record accumulates. Nothing is deleted. Nothing is smoothed over. The maintenance log is part of the museum.</div>
       </div>
+
+      <!-- UPDATE 03 -->
+      <div class="log-section">
+        <div class="log-header-row">
+          <div class="th-flag">
+            <div class="f-r"></div>
+            <div class="f-w"></div>
+            <div class="f-b"></div>
+            <div class="f-w"></div>
+            <div class="f-r"></div>
+          </div>
+          <div>
+            <div class="log-update-num">Update 03</div>
+            <div class="log-date">26 May 2026 · Corpus Redesign + Mobile Fix</div>
+          </div>
+        </div>
+        <div class="log-title">Corpus Redesign: The Raw Material Lives. Mobile Layout Repaired.</div>
+        <ul class="log-items">
+          <li>Corpus completely redesigned — was "paragraphs stuck together," now has ghost day numbers, theme chips, count-up stats, reading progress, drop cap, pull quotes</li>
+          <li>Stats strip: 99 POSTS · 239k WORDS · 16 THEMES · 125 DAYS SPAN — each with ghost background number and count-up animation</li>
+          <li>14 theme chips as clickable filters (TIME 99, MORALITY 90, WRITING 84…) — chartreuse active state, replaces old dropdown</li>
+          <li>Post cards: ghost day number as background, reading-time badge (~N MIN), word-density bar proportional to max 15,200 words</li>
+          <li>Reader pane: drop cap on first paragraph, pull quotes for 40–130 char paragraphs, fade-in animation, reading progress bar tracks scroll</li>
+          <li>Splash state: "99" ghost text + random excerpt + hint before any post selected</li>
+          <li>Random button with spin-once animation; all animations use @keyframes (global reset has transition: none !important)</li>
+          <li>Mobile layout bug fixed: CSS cascade conflict — duplicate .layout-grid rule in @media block silently overrode 1fr grid back to 40px sidebar; fix: remove duplicate + add display:none !important</li>
+          <li>Nav brand wrapping to 4 lines on mobile fixed: added white-space:nowrap + flex-shrink:0</li>
+          <li>Hero title bleeding off right edge on mobile fixed: .type-bleed white-space set to normal at ≤768px</li>
+          <li>Session process + Capital Market Caravan teaching memory captured to Obsidian Second Brain vault</li>
+        </ul>
+      </div><!-- /update-03 -->
 
       <!-- UPDATE 02 -->
       <div class="log-section">
