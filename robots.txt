@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://100days.nonarkara.org/sitemap.xml
+Sitemap: https://100.nonarkara.org/sitemap.xml
