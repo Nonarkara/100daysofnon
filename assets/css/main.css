@@ -122,7 +122,7 @@ img {
   scrollbar-width: none;
 }
 .nav::-webkit-scrollbar { display: none; }
-.nav-brand { color: var(--accent-red); margin-right: auto; font-weight: 700; }
+.nav-brand { color: var(--accent-red); margin-right: auto; font-weight: 700; white-space: nowrap; flex-shrink: 0; }
 .nav a { color: var(--dim); }
 .nav a:hover { color: var(--fg); background: var(--bg); }
 .nav a.here { color: var(--accent); }
@@ -245,10 +245,7 @@ img {
     grid-template-columns: 1fr;
   }
   .col-0 {
-    display: none; /* Hide the architectural 1px line on small screens to prioritize content, or keep it? DESIGN.md says "The 1px day-column stays 1px". Let's keep it but thin. */
-  }
-  .layout-grid {
-    grid-template-columns: 40px 1fr;
+    display: none !important; /* defeats per-page inline style="display:flex" redeclarations */
   }
 }
 
@@ -397,9 +394,14 @@ img {
 
 @media (max-width: 768px) {
   .tunnel { min-height: 75vh; }
-  .tunnel-content { padding: 24px 24px 32px; }
+  .tunnel-content { padding: 24px 24px 32px; overflow: hidden; }
   .type-tunnel { font-size: clamp(40px, 13vw, 80px); }
-  .tunnel-stats { gap: 20px; }
+  .type-bleed { white-space: normal; }
+  .tunnel-stats { gap: 16px; flex-wrap: wrap; }
+  .tunnel-stat { min-width: calc(50% - 8px); }
+  .tunnel-desc { font-size: 14px !important; line-height: 1.6 !important; max-width: 100% !important; }
+  /* On mobile, shift the lobby photo left to show the child's face, not the doorframe */
+  .tunnel .tunnel-bg { object-position: top 20%; }
 }
 
 /* ══════════════════════════════════════════════════════
