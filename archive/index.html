@@ -5,156 +5,149 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Archive — 100 Days of Non</title>
   
-  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://100days.nonarkara.org/archive/">
   <meta property="og:title" content="Archive — Things people prefer not to know · 100 Days of Non">
   <meta property="og:description" content="Ten facts. Sources cited. Each paired with a public-domain painting.">
   <meta property="og:image" content="https://100days.nonarkara.org/assets/portrait.jpg">
-  <meta property="og:site_name" content="100 Days of Non">
-
-  <!-- Twitter -->
+  
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Archive — Things people prefer not to know · 100 Days of Non">
   <meta name="twitter:description" content="Ten facts. Sources cited. Each paired with a public-domain painting.">
   <meta name="twitter:image" content="https://100days.nonarkara.org/assets/portrait.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/assets/css/main.css">
   <style>
-    :root {
-      --bg: #000; --fg: #fff; --accent: #CCFF00;
-      --dim: rgba(255,255,255,0.45); --faint: rgba(255,255,255,0.12);
-      --sans: 'Space Grotesk','Helvetica Neue',Helvetica,Arial,sans-serif;
-      --mono: 'JetBrains Mono','Courier New',monospace;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { background: var(--bg); color: var(--fg); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
-
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; height: 40px;
-      border-bottom: 1px solid var(--faint);
-      display: flex; align-items: center;
-      padding: 0 32px; gap: 24px;
-      background: var(--bg); z-index: 100;
-      font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
-    }
-    .nav-brand { color: var(--dim); text-decoration: none; text-transform: uppercase; margin-right: auto; }
-    .nav a { color: var(--dim); text-decoration: none; text-transform: uppercase; }
-    .nav a:hover { color: var(--fg); }
-    .nav a.here { color: var(--accent); }
-
-    /* ── Page header ─────────────────────────────── */
     .page-header {
-      margin-top: 40px;
-      padding: 48px 56px 40px;
+      padding: 64px 32px 40px;
       border-bottom: 1px solid var(--faint);
     }
     .header-label {
       font-family: var(--mono); font-size: 11px; color: var(--accent);
-      letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px;
+      letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 24px;
     }
     .header-title {
-      font-size: clamp(32px, 8vw, 64px); font-weight: 700;
-      text-transform: uppercase; letter-spacing: -0.02em; line-height: 0.9;
+      font-family: var(--sans);
+      font-size: clamp(48px, 8vw, 96px); font-weight: 800;
+      text-transform: uppercase; letter-spacing: -0.04em; line-height: 0.9;
+      max-width: 800px;
     }
     .header-desc {
-      font-size: 14px; color: var(--dim); max-width: 520px;
-      margin-top: 20px; line-height: 1.75;
+      margin-top: 32px;
     }
-
-    /* ── Fact entries ────────────────────────────── */
-    .facts { }
 
     .fact-entry {
       border-bottom: 1px solid var(--faint);
       display: grid;
-      grid-template-columns: 80px 1fr 280px;
-      grid-template-rows: auto;
-      min-height: 280px;
+      grid-template-columns: 120px 1fr 360px;
+      min-height: 320px;
     }
-
-    /* Left rail */
     .fact-rail {
-      padding: 32px 24px 32px 56px;
+      padding: 32px 24px;
       border-right: 1px solid var(--faint);
-      display: flex; flex-direction: column; gap: 10px;
+      display: flex; flex-direction: column; gap: 10px; align-items: center;
     }
     .fact-num {
       font-family: var(--mono); font-size: 11px; color: var(--accent);
       letter-spacing: 0.1em;
     }
     .fact-tag {
-      font-family: var(--mono); font-size: 9px; color: var(--dim);
+      font-family: var(--mono); font-size: 11px; color: var(--dim);
       letter-spacing: 0.12em; text-transform: uppercase;
       writing-mode: vertical-rl; transform: rotate(180deg);
       margin-top: auto;
     }
 
-    /* Center: the fact */
     .fact-body {
-      padding: 32px 40px;
+      padding: 40px 48px;
       display: flex; flex-direction: column; justify-content: space-between;
     }
     .fact-statement {
-      font-size: clamp(20px, 2.5vw, 28px); font-weight: 500;
+      font-family: var(--serif);
+      font-size: clamp(24px, 3vw, 32px);
       line-height: 1.4; color: var(--fg);
     }
     .fact-footer {
-      margin-top: 24px;
-      font-family: var(--mono); font-size: 10px; color: var(--dim);
+      margin-top: 40px;
+      font-family: var(--mono); font-size: 11px; color: var(--dim);
       letter-spacing: 0.08em; display: flex; gap: 16px; flex-wrap: wrap;
-      align-items: center;
+      align-items: center; text-transform: uppercase;
     }
-    .fact-source { color: rgba(255,255,255,0.3); }
     .fact-badge {
-      border: 1px solid var(--faint); padding: 2px 7px;
-      font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+      border: 1px solid var(--faint); padding: 4px 8px;
     }
-    .fact-badge.avoid { border-color: var(--accent); color: var(--accent); }
+    .fact-badge.avoid { border-color: var(--accent-red); color: var(--accent-red); }
 
-    /* Right: painting */
     .fact-image-wrap {
       border-left: 1px solid var(--faint);
       position: relative; overflow: hidden;
       min-height: 280px;
+      display: flex;
     }
     .fact-image-wrap img {
       width: 100%; height: 100%;
       object-fit: cover;
-      filter: grayscale(1) contrast(1.1) brightness(0.9);
-      display: block;
-    }
-    .fact-image-wrap::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: var(--accent);
-      mix-blend-mode: multiply;
-      pointer-events: none;
     }
     .painting-credit {
-      position: absolute; bottom: 8px; right: 10px;
+      position: absolute; bottom: 12px; right: 16px;
       font-family: var(--mono); font-size: 9px;
-      color: rgba(0,0,0,0.5); z-index: 2;
+      color: #000; z-index: 2;
       letter-spacing: 0.06em;
+      background: var(--accent);
+      padding: 2px 6px;
+      text-transform: uppercase;
     }
 
-    /* ── Mobile ──────────────────────────────────── */
-    @media (max-width: 840px) {
+    @media (max-width: 1024px) {
       .fact-entry {
-        grid-template-columns: 56px 1fr;
+        grid-template-columns: 80px 1fr;
         grid-template-rows: auto auto;
       }
       .fact-image-wrap {
         grid-column: 1 / -1;
-        min-height: 200px;
+        min-height: 240px;
         border-left: none; border-top: 1px solid var(--faint);
       }
-      .fact-rail { padding: 24px 16px 24px 24px; }
-      .fact-body { padding: 24px 24px; }
-      .page-header { padding: 40px 24px 32px; }
-      .nav { padding: 0 20px; gap: 16px; }
     }
+  
+    .gallery-section {
+      border-top: 1px solid var(--faint);
+      padding: 64px 48px;
+    }
+    .gallery-title {
+      font-family: var(--mono); font-size: 11px; color: var(--accent);
+      letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 40px;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1px;
+      background: var(--faint);
+      border-top: 1px solid var(--faint);
+      border-bottom: 1px solid var(--faint);
+    }
+    .gallery-item {
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+    }
+    .gallery-item img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+    .gallery-label {
+      padding: 12px 16px;
+      font-family: var(--mono); font-size: 9px; color: var(--dim);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      border-top: 1px solid var(--faint);
+      flex: 1;
+    }
+    @media (max-width: 1024px) {
+      .gallery-section { padding: 48px 24px; }
+      .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+    }
+
   </style>
 </head>
 <body>
@@ -174,246 +167,431 @@
     <a href="/bot/">BOT</a>
   </nav>
 
-  <header class="page-header">
-    <div class="header-label">03 · Archive</div>
-    <div class="header-title">Things People<br>Prefer Not<br>To Know</div>
-    <p class="header-desc">
-      10 facts drawn from the nonharvard blog (2015–2025), Day 1 of the
-      100-day installation, and a decade of smart city research.
-      Sources cited. Avoidance confirmed.
-    </p>
-  </header>
+  <div class="layout-grid">
+    <div class="col-0 index-col-0" style="writing-mode: vertical-rl; text-orientation: mixed; display: flex; align-items: center; justify-content: center; letter-spacing: 0.2em; font-family: var(--mono); font-size: 11px; color: var(--faint);">
+      006 /// ARCHIVE
+    </div>
+    
+    <div class="col-1">
+      <header class="page-header">
+        <div class="header-label">Room 06 · The Library</div>
+        <div class="header-title">Things People<br>Prefer Not<br>To Know</div>
+        <div class="editorial-body header-desc">
+          <p>10 facts drawn from the nonharvard blog (2015–2025), Day 1 of the 100-day installation, and a decade of smart city research. Sources cited. Avoidance confirmed.</p>
+        </div>
+      </header>
 
-  <div class="facts">
+      <div class="facts">
+        <!-- 01 -->
+        <div class="fact-entry">
+          <div class="fact-rail">
+            <div class="fact-num">01</div>
+            <div class="fact-tag">Institutions</div>
+          </div>
+          <div class="fact-body">
+            <div class="fact-statement">"Tradition: Absolutely nothing."</div>
+            <div class="fact-footer">
+              <span class="fact-source">nonharvard · Day 5, 28 Jun 2025 · Shanghai</span>
+              <span class="fact-badge avoid">Avoidable</span>
+              <span class="fact-badge">Verifiable</span>
+            </div>
+          </div>
+          <div class="fact-image-wrap artifact-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Hiroshige%2C_Sudden_shower_over_Shin-Ohashi_bridge_and_Atake%2C_1857_expanded.jpg/800px-Hiroshige%2C_Sudden_shower_over_Shin-Ohashi_bridge_and_Atake%2C_1857_expanded.jpg" alt="Hiroshige: Sudden Shower over Shin-Ohashi Bridge, 1857" class="artifact-img" loading="lazy">
+            <div class="painting-credit">Hiroshige · 1857</div>
+          </div>
+        </div>
 
-    <!-- 01 -->
-    <div class="fact-entry">
-      <div class="fact-rail">
-        <div class="fact-num">01</div>
-        <div class="fact-tag">Institutions</div>
-      </div>
-      <div class="fact-body">
-        <div class="fact-statement">"Tradition: Absolutely nothing."</div>
-        <div class="fact-footer">
-          <span class="fact-source">nonharvard · Day 5, 28 Jun 2025 · Shanghai</span>
-          <span class="fact-badge avoid">Avoidable</span>
-          <span class="fact-badge">Verifiable</span>
+        <!-- 02 -->
+        <div class="fact-entry">
+          <div class="fact-rail">
+            <div class="fact-num">02</div>
+            <div class="fact-tag">Academy</div>
+          </div>
+          <div class="fact-body">
+            <div class="fact-statement">"Harvard is a for-profit company in Massachusetts authorized by law to act as a single entity that thinks of itself as an educational institution."</div>
+            <div class="fact-footer">
+              <span class="fact-source">nonharvard · Day 70 · Cambridge, MA</span>
+              <span class="fact-badge avoid">Avoidable</span>
+              <span class="fact-badge">Verifiable</span>
+            </div>
+          </div>
+          <div class="fact-image-wrap artifact-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Beat_the_Whites_with_the_Red_Wedge.jpg/800px-Beat_the_Whites_with_the_Red_Wedge.jpg" alt="El Lissitzky: Beat the Whites with the Red Wedge, 1919" class="artifact-img" loading="lazy">
+            <div class="painting-credit">El Lissitzky · 1919</div>
+          </div>
+        </div>
+
+        <!-- 03 -->
+        <div class="fact-entry">
+          <div class="fact-rail">
+            <div class="fact-num">03</div>
+            <div class="fact-tag">Cities</div>
+          </div>
+          <div class="fact-body">
+            <div class="fact-statement">In 2002, Bangkok's most architecturally significant modernist hotel — the Siam Intercontinental — was demolished to build a mall. Nobody objected.</div>
+            <div class="fact-footer">
+              <span class="fact-source">100 Days of Non · Day 1 · 25 May 2026</span>
+              <span class="fact-badge avoid">Avoidable</span>
+              <span class="fact-badge" style="border-color: var(--accent); color: var(--accent);">Verified ✓</span>
+            </div>
+          </div>
+          <div class="fact-image-wrap artifact-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Gustave_Caillebotte_-_Paris_Street%3B_Rainy_Day_-_Google_Art_Project.jpg/800px-Gustave_Caillebotte_-_Paris_Street%3B_Rainy_Day_-_Google_Art_Project.jpg" alt="Caillebotte: Paris Street; Rainy Day, 1877" class="artifact-img" loading="lazy">
+            <div class="painting-credit">Caillebotte · 1877</div>
+          </div>
+        </div>
+
+        <!-- 04 -->
+        <div class="fact-entry">
+          <div class="fact-rail">
+            <div class="fact-num">04</div>
+            <div class="fact-tag">Smart City</div>
+          </div>
+          <div class="fact-body">
+            <div class="fact-statement">Most cities that call themselves Smart score below 55 out of 100 on independent indices. The branding precedes the performance by a decade.</div>
+            <div class="fact-footer">
+              <span class="fact-source">SCITI 2024–25 research · Smart City Thailand Index</span>
+              <span class="fact-badge avoid">Avoidable</span>
+              <span class="fact-badge">Verifiable</span>
+            </div>
+          </div>
+          <div class="fact-image-wrap artifact-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Kandinsky_-_Composition_8%2C_July_1923.jpg/800px-Kandinsky_-_Composition_8%2C_July_1923.jpg" alt="Kandinsky: Composition VIII, 1923" class="artifact-img" loading="lazy">
+            <div class="painting-credit">Kandinsky · 1923</div>
+          </div>
+        </div>
+
+        <!-- 05 -->
+        <div class="fact-entry">
+          <div class="fact-rail">
+            <div class="fact-num">05</div>
+            <div class="fact-tag">Culture</div>
+          </div>
+          <div class="fact-body">
+            <div class="fact-statement">When you meet someone in a coffee shop in Shanghai, you are not meeting over coffee. You are both performing access to modernity.</div>
+            <div class="fact-footer">
+              <span class="fact-source">nonharvard · Day 5 · Shanghai · 2025</span>
+              <span class="fact-badge avoid">Avoidable</span>
+              <span class="fact-badge">Argued</span>
+            </div>
+          </div>
+          <div class="fact-image-wrap artifact-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Berthe_Morisot_-_The_Cradle_-_Google_Art_Project.jpg/800px-Berthe_Morisot_-_The_Cradle_-_Google_Art_Project.jpg" alt="Berthe Morisot: The Cradle, 1872" class="artifact-img" loading="lazy">
+            <div class="painting-credit">Morisot · 1872</div>
+          </div>
+        </div>
+
+        <!-- 06 -->
+        <div class="fact-entry">
+          <div class="fact-rail">
+            <div class="fact-num">06</div>
+            <div class="fact-tag">Writing</div>
+          </div>
+          <div class="fact-body">
+            <div class="fact-statement">Writing is the only cognitive technology that slows thought down far enough to inspect it.</div>
+            <div class="fact-footer">
+              <span class="fact-source">nonharvard · Day 1 · 24 Jun 2025 · Puxi</span>
+              <span class="fact-badge avoid">Avoidable</span>
+              <span class="fact-badge">Argued</span>
+            </div>
+          </div>
+          <div class="fact-image-wrap artifact-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tsunami_by_hokusai_19th_century.jpg/800px-Tsunami_by_hokusai_19th_century.jpg" alt="Hokusai: The Great Wave, c.1831" class="artifact-img" loading="lazy">
+            <div class="painting-credit">Hokusai · c.1831</div>
+          </div>
+        </div>
+
+        <!-- 07 -->
+        <div class="fact-entry">
+          <div class="fact-rail">
+            <div class="fact-num">07</div>
+            <div class="fact-tag">Self</div>
+          </div>
+          <div class="fact-body">
+            <div class="fact-statement">"The self is something that I construct, with the help of the society into which I was born, simply to make myself miserable."</div>
+            <div class="fact-footer">
+              <span class="fact-source">nonharvard · Day 4 · 2025</span>
+              <span class="fact-badge avoid">Avoidable</span>
+              <span class="fact-badge">Argued</span>
+            </div>
+          </div>
+          <div class="fact-image-wrap artifact-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Krumau_on_the_Moldova_%28Small_town_IV%29_Egon_Schiele_1914.jpg/800px-Krumau_on_the_Moldova_%28Small_town_IV%29_Egon_Schiele_1914.jpg" alt="Egon Schiele: City on the Blue River, c.1910" class="artifact-img" loading="lazy">
+            <div class="painting-credit">Schiele · c.1910</div>
+          </div>
+        </div>
+
+        <!-- 08 -->
+        <div class="fact-entry">
+          <div class="fact-rail">
+            <div class="fact-num">08</div>
+            <div class="fact-tag">Memory</div>
+          </div>
+          <div class="fact-body">
+            <div class="fact-statement">You cannot know a path until you have walked on it. The future path does not yet exist as a path.</div>
+            <div class="fact-footer">
+              <span class="fact-source">nonharvard · Day 2 · 25 Jun 2025 · Shanghai</span>
+              <span class="fact-badge">Argued</span>
+            </div>
+          </div>
+          <div class="fact-image-wrap artifact-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/F%C3%A9lix_Vallotton_-_The_Ball_-_Google_Art_Project.jpg/800px-F%C3%A9lix_Vallotton_-_The_Ball_-_Google_Art_Project.jpg" alt="Félix Vallotton: The Ball, 1899" class="artifact-img" loading="lazy">
+            <div class="painting-credit">Vallotton · 1899</div>
+          </div>
+        </div>
+
+        <!-- 09 -->
+        <div class="fact-entry">
+          <div class="fact-rail">
+            <div class="fact-num">09</div>
+            <div class="fact-tag">Fact-check</div>
+          </div>
+          <div class="fact-body">
+            <div class="fact-statement">Memory and public record agree roughly 60% of the time. The other 40% is not lying — it is the mind's grammar reaching for nearby anchors.</div>
+            <div class="fact-footer">
+              <span class="fact-source">Method · 100 Days of Non · 2026</span>
+              <span class="fact-badge avoid">Avoidable</span>
+              <span class="fact-badge">Observed</span>
+            </div>
+          </div>
+          <div class="fact-image-wrap artifact-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Evening_on_Karl_Johan_Street.jpg/800px-Evening_on_Karl_Johan_Street.jpg" alt="Edvard Munch: Evening on Karl Johan, 1892" class="artifact-img" loading="lazy">
+            <div class="painting-credit">Munch · 1892</div>
+          </div>
+        </div>
+
+        <!-- 10 -->
+        <div class="fact-entry">
+          <div class="fact-rail">
+            <div class="fact-num">10</div>
+            <div class="fact-tag">History</div>
+          </div>
+          <div class="fact-body">
+            <div class="fact-statement">The Communist Party's removal of private entertaining space after 1949 created the conditions for the public coffee shop. Capitalism learned the floor plan from authoritarianism.</div>
+            <div class="fact-footer">
+              <span class="fact-source">nonharvard · Day 5 · 28 Jun 2025</span>
+              <span class="fact-badge avoid">Avoidable</span>
+              <span class="fact-badge">Argued</span>
+            </div>
+          </div>
+          <div class="fact-image-wrap artifact-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Night_Rain_at_Karasaki_LACMA_54.50.6.jpg" alt="Hiroshige: Night Rain at Karasaki, 1834" class="artifact-img" loading="lazy">
+            <div class="painting-credit">Hiroshige · 1834</div>
+          </div>
         </div>
       </div>
-      <div class="fact-image-wrap">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Hiroshige_Ohashi_Atake_no_Yudachi.jpg/640px-Hiroshige_Ohashi_Atake_no_Yudachi.jpg" alt="Hiroshige: Sudden Shower over Shin-Ohashi Bridge, 1857" loading="lazy">
-        <div class="painting-credit">Hiroshige · 1857</div>
-      </div>
-    </div>
 
-    <!-- 02 -->
-    <div class="fact-entry">
-      <div class="fact-rail">
-        <div class="fact-num">02</div>
-        <div class="fact-tag">Academy</div>
-      </div>
-      <div class="fact-body">
-        <div class="fact-statement">"Harvard is a for-profit company in Massachusetts authorized by law to act as a single entity that thinks of itself as an educational institution."</div>
-        <div class="fact-footer">
-          <span class="fact-source">nonharvard · Day 70 · Cambridge, MA</span>
-          <span class="fact-badge avoid">Avoidable</span>
-          <span class="fact-badge">Verifiable</span>
-        </div>
-      </div>
-      <div class="fact-image-wrap">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/El_Lissitzky_-_Beat_the_Whites_with_the_Red_Wedge_-_1919.jpg/800px-El_Lissitzky_-_Beat_the_Whites_with_the_Red_Wedge_-_1919.jpg" alt="El Lissitzky: Beat the Whites with the Red Wedge, 1919" loading="lazy">
-        <div class="painting-credit">El Lissitzky · 1919</div>
-      </div>
+<div class="gallery-section">
+  <div class="gallery-title">Archive Appendices / 01 Photographs</div>
+  <div class="gallery-grid">
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/132893_158098647570669_2716335_o.jpg" alt="132893 158098647570669 2716335 o" class="artifact-img" loading="lazy">
+      <div class="gallery-label">132893 158098647570669 2716335 o</div>
     </div>
-
-    <!-- 03 -->
-    <div class="fact-entry">
-      <div class="fact-rail">
-        <div class="fact-num">03</div>
-        <div class="fact-tag">Cities</div>
-      </div>
-      <div class="fact-body">
-        <div class="fact-statement">In 2002, Bangkok's most architecturally significant modernist hotel — the Siam Intercontinental — was demolished to build a mall. Nobody objected.</div>
-        <div class="fact-footer">
-          <span class="fact-source">100 Days of Non · Day 1 · 25 May 2026</span>
-          <span class="fact-badge avoid">Avoidable</span>
-          <span class="fact-badge">Verified ✓</span>
-        </div>
-      </div>
-      <div class="fact-image-wrap">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Gustave_Caillebotte_-_Paris_Street%3B_Rainy_Day_-_Google_Art_Project.jpg/1024px-Gustave_Caillebotte_-_Paris_Street%3B_Rainy_Day_-_Google_Art_Project.jpg" alt="Caillebotte: Paris Street; Rainy Day, 1877" loading="lazy">
-        <div class="painting-credit">Caillebotte · 1877</div>
-      </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/132929_158097727570761_6039581_o.jpg" alt="132929 158097727570761 6039581 o" class="artifact-img" loading="lazy">
+      <div class="gallery-label">132929 158097727570761 6039581 o</div>
     </div>
-
-    <!-- 04 -->
-    <div class="fact-entry">
-      <div class="fact-rail">
-        <div class="fact-num">04</div>
-        <div class="fact-tag">Smart City</div>
-      </div>
-      <div class="fact-body">
-        <div class="fact-statement">Most cities that call themselves Smart score below 55 out of 100 on independent indices. The branding precedes the performance by a decade.</div>
-        <div class="fact-footer">
-          <span class="fact-source">SCITI 2024–25 research · Smart City Thailand Index</span>
-          <span class="fact-badge avoid">Avoidable</span>
-          <span class="fact-badge">Verifiable</span>
-        </div>
-      </div>
-      <div class="fact-image-wrap">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Kandinsky_Composition_8%2C_huile_sur_toile%2C_1923.jpg/800px-Kandinsky_Composition_8%2C_huile_sur_toile%2C_1923.jpg" alt="Kandinsky: Composition VIII, 1923" loading="lazy">
-        <div class="painting-credit">Kandinsky · 1923</div>
-      </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/133072_158097324237468_2981525_o.jpg" alt="133072 158097324237468 2981525 o" class="artifact-img" loading="lazy">
+      <div class="gallery-label">133072 158097324237468 2981525 o</div>
     </div>
-
-    <!-- 05 -->
-    <div class="fact-entry">
-      <div class="fact-rail">
-        <div class="fact-num">05</div>
-        <div class="fact-tag">Culture</div>
-      </div>
-      <div class="fact-body">
-        <div class="fact-statement">When you meet someone in a coffee shop in Shanghai, you are not meeting over coffee. You are both performing access to modernity.</div>
-        <div class="fact-footer">
-          <span class="fact-source">nonharvard · Day 5 · Shanghai, Yangpu District · 2025</span>
-          <span class="fact-badge avoid">Avoidable</span>
-          <span class="fact-badge">Argued</span>
-        </div>
-      </div>
-      <div class="fact-image-wrap">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Berthe_Morisot_-_The_Cradle.jpg/640px-Berthe_Morisot_-_The_Cradle.jpg" alt="Berthe Morisot: The Cradle, 1872" loading="lazy">
-        <div class="painting-credit">Morisot · 1872</div>
-      </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/133774_158100270903840_4640380_o.jpg" alt="133774 158100270903840 4640380 o" class="artifact-img" loading="lazy">
+      <div class="gallery-label">133774 158100270903840 4640380 o</div>
     </div>
-
-    <!-- 06 -->
-    <div class="fact-entry">
-      <div class="fact-rail">
-        <div class="fact-num">06</div>
-        <div class="fact-tag">Writing</div>
-      </div>
-      <div class="fact-body">
-        <div class="fact-statement">Writing is the only cognitive technology that slows thought down far enough to inspect it.</div>
-        <div class="fact-footer">
-          <span class="fact-source">nonharvard · Day 1 · 24 Jun 2025 · Huangpu River, Puxi</span>
-          <span class="fact-badge avoid">Avoidable</span>
-          <span class="fact-badge">Argued</span>
-        </div>
-      </div>
-      <div class="fact-image-wrap">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tsunami_by_hokusai_19th_century.jpg/1024px-Tsunami_by_hokusai_19th_century.jpg" alt="Hokusai: The Great Wave, c.1831" loading="lazy">
-        <div class="painting-credit">Hokusai · c.1831</div>
-      </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/135648_158098390904028_165507_o.jpg" alt="135648 158098390904028 165507 o" class="artifact-img" loading="lazy">
+      <div class="gallery-label">135648 158098390904028 165507 o</div>
     </div>
-
-    <!-- 07 -->
-    <div class="fact-entry">
-      <div class="fact-rail">
-        <div class="fact-num">07</div>
-        <div class="fact-tag">Self</div>
-      </div>
-      <div class="fact-body">
-        <div class="fact-statement">"The self is something that I construct, with the help of the society into which I was born, simply to make myself miserable."</div>
-        <div class="fact-footer">
-          <span class="fact-source">nonharvard · Day 4 · after Hume + Buddhist anatta · 2025</span>
-          <span class="fact-badge avoid">Avoidable</span>
-          <span class="fact-badge">Argued</span>
-        </div>
-      </div>
-      <div class="fact-image-wrap">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Egon_Schiele_-_Stein_an_der_Donau_%28Small_City_II%29_-_Google_Art_Project.jpg/640px-Egon_Schiele_-_Stein_an_der_Donau_%28Small_City_II%29_-_Google_Art_Project.jpg" alt="Egon Schiele: City on the Blue River, c.1910" loading="lazy">
-        <div class="painting-credit">Schiele · c.1910</div>
-      </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/559300506.082831.jpg" alt="559300506.082831" class="artifact-img" loading="lazy">
+      <div class="gallery-label">559300506.082831</div>
     </div>
-
-    <!-- 08 -->
-    <div class="fact-entry">
-      <div class="fact-rail">
-        <div class="fact-num">08</div>
-        <div class="fact-tag">Memory</div>
-      </div>
-      <div class="fact-body">
-        <div class="fact-statement">You cannot know a path until you have walked on it. The future path does not yet exist as a path.</div>
-        <div class="fact-footer">
-          <span class="fact-source">nonharvard · Day 2 · 25 Jun 2025 · Shanghai</span>
-          <span class="fact-badge">Argued</span>
-        </div>
-      </div>
-      <div class="fact-image-wrap">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Felix_Vallotton%2C_1899%2C_The_Ball_%28Corner_of_the_Park_with_Child_Playing_with_a_Ball%29%2C_oil_on_board%2C_48_x_61_cm.jpg/800px-Felix_Vallotton%2C_1899%2C_The_Ball_%28Corner_of_the_Park_with_Child_Playing_with_a_Ball%29%2C_oil_on_board%2C_48_x_61_cm.jpg" alt="Félix Vallotton: The Ball, 1899" loading="lazy">
-        <div class="painting-credit">Vallotton · 1899</div>
-      </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/559301867.535542.jpg" alt="559301867.535542" class="artifact-img" loading="lazy">
+      <div class="gallery-label">559301867.535542</div>
     </div>
-
-    <!-- 09 -->
-    <div class="fact-entry">
-      <div class="fact-rail">
-        <div class="fact-num">09</div>
-        <div class="fact-tag">Fact-check</div>
-      </div>
-      <div class="fact-body">
-        <div class="fact-statement">Memory and public record agree roughly 60% of the time. The other 40% is not lying — it is the mind's grammar reaching for nearby anchors.</div>
-        <div class="fact-footer">
-          <span class="fact-source">Method · 100 Days of Non · 2026</span>
-          <span class="fact-badge avoid">Avoidable</span>
-          <span class="fact-badge">Observed</span>
-        </div>
-      </div>
-      <div class="fact-image-wrap">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Munch_-_Aften_on_Karl_Johan.jpg/640px-Munch_-_Aften_on_Karl_Johan.jpg" alt="Edvard Munch: Evening on Karl Johan, 1892" loading="lazy">
-        <div class="painting-credit">Munch · 1892</div>
-      </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/559561783.763362.jpg" alt="559561783.763362" class="artifact-img" loading="lazy">
+      <div class="gallery-label">559561783.763362</div>
     </div>
-
-    <!-- 10 -->
-    <div class="fact-entry">
-      <div class="fact-rail">
-        <div class="fact-num">10</div>
-        <div class="fact-tag">History</div>
-      </div>
-      <div class="fact-body">
-        <div class="fact-statement">The Communist Party's removal of private entertaining space after 1949 created the conditions for the public coffee shop. Capitalism learned the floor plan from authoritarianism.</div>
-        <div class="fact-footer">
-          <span class="fact-source">nonharvard · Day 5 · 28 Jun 2025 · Shanghai observation</span>
-          <span class="fact-badge avoid">Avoidable</span>
-          <span class="fact-badge">Argued</span>
-        </div>
-      </div>
-      <div class="fact-image-wrap">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Hiroshige_Night_Rain_Karasaki.jpg/640px-Hiroshige_Night_Rain_Karasaki.jpg" alt="Hiroshige: Night Rain at Karasaki, 1834" loading="lazy">
-        <div class="painting-credit">Hiroshige · 1834</div>
-      </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/559561897.444563.jpg" alt="559561897.444563" class="artifact-img" loading="lazy">
+      <div class="gallery-label">559561897.444563</div>
     </div>
-
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/629372219.536533.jpg" alt="629372219.536533" class="artifact-img" loading="lazy">
+      <div class="gallery-label">629372219.536533</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/IMG_0949.JPG" alt="IMG 0949" class="artifact-img" loading="lazy">
+      <div class="gallery-label">IMG 0949</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/IMG_0951.JPG" alt="IMG 0951" class="artifact-img" loading="lazy">
+      <div class="gallery-label">IMG 0951</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/IMG_0957.JPG" alt="IMG 0957" class="artifact-img" loading="lazy">
+      <div class="gallery-label">IMG 0957</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/IMG_0960.JPG" alt="IMG 0960" class="artifact-img" loading="lazy">
+      <div class="gallery-label">IMG 0960</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/IMG_0961.JPG" alt="IMG 0961" class="artifact-img" loading="lazy">
+      <div class="gallery-label">IMG 0961</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/IMG_0962.JPG" alt="IMG 0962" class="artifact-img" loading="lazy">
+      <div class="gallery-label">IMG 0962</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/IMG_0963.JPG" alt="IMG 0963" class="artifact-img" loading="lazy">
+      <div class="gallery-label">IMG 0963</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/IMG_0964.JPG" alt="IMG 0964" class="artifact-img" loading="lazy">
+      <div class="gallery-label">IMG 0964</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/IMG_0965.JPG" alt="IMG 0965" class="artifact-img" loading="lazy">
+      <div class="gallery-label">IMG 0965</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/IMG_0966.JPG" alt="IMG 0966" class="artifact-img" loading="lazy">
+      <div class="gallery-label">IMG 0966</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/IMG_0976.JPG" alt="IMG 0976" class="artifact-img" loading="lazy">
+      <div class="gallery-label">IMG 0976</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/IMG_0979.JPG" alt="IMG 0979" class="artifact-img" loading="lazy">
+      <div class="gallery-label">IMG 0979</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/IMG_0988.JPG" alt="IMG 0988" class="artifact-img" loading="lazy">
+      <div class="gallery-label">IMG 0988</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/IMG_1058.jpg" alt="IMG 1058" class="artifact-img" loading="lazy">
+      <div class="gallery-label">IMG 1058</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/IMG_1061.jpg" alt="IMG 1061" class="artifact-img" loading="lazy">
+      <div class="gallery-label">IMG 1061</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/IMG_1067.JPG" alt="IMG 1067" class="artifact-img" loading="lazy">
+      <div class="gallery-label">IMG 1067</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/IMG_1069.JPG" alt="IMG 1069" class="artifact-img" loading="lazy">
+      <div class="gallery-label">IMG 1069</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/IMG_6128.JPG" alt="IMG 6128" class="artifact-img" loading="lazy">
+      <div class="gallery-label">IMG 6128</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/IMG_6144.JPG" alt="IMG 6144" class="artifact-img" loading="lazy">
+      <div class="gallery-label">IMG 6144</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/IMG_6145.JPG" alt="IMG 6145" class="artifact-img" loading="lazy">
+      <div class="gallery-label">IMG 6145</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/IMG_6442.HEIC" alt="IMG 6442" class="artifact-img" loading="lazy">
+      <div class="gallery-label">IMG 6442</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/IMG_6458.HEIC" alt="IMG 6458" class="artifact-img" loading="lazy">
+      <div class="gallery-label">IMG 6458</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/Non Just Born For Real.jpg" alt="Non Just Born For Real" class="artifact-img" loading="lazy">
+      <div class="gallery-label">Non Just Born For Real</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/Non Just Born.jpg" alt="Non Just Born" class="artifact-img" loading="lazy">
+      <div class="gallery-label">Non Just Born</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/Non Preschool.jpg" alt="Non Preschool" class="artifact-img" loading="lazy">
+      <div class="gallery-label">Non Preschool</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/Non Young 1980s.jpg" alt="Non Young 1980s" class="artifact-img" loading="lazy">
+      <div class="gallery-label">Non Young 1980s</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/Non Young 1982.jpg" alt="Non Young 1982" class="artifact-img" loading="lazy">
+      <div class="gallery-label">Non Young 1982</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/Non Young Family Just Born.jpg" alt="Non Young Family Just Born" class="artifact-img" loading="lazy">
+      <div class="gallery-label">Non Young Family Just Born</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/Non Young Family.jpg" alt="Non Young Family" class="artifact-img" loading="lazy">
+      <div class="gallery-label">Non Young Family</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/Non Young House 2.jpg" alt="Non Young House 2" class="artifact-img" loading="lazy">
+      <div class="gallery-label">Non Young House 2</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/Non Young House.jpg" alt="Non Young House" class="artifact-img" loading="lazy">
+      <div class="gallery-label">Non Young House</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/Non Young JacksonPollock.jpg" alt="Non Young JacksonPollock" class="artifact-img" loading="lazy">
+      <div class="gallery-label">Non Young JacksonPollock</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/Non Young Just Born2.jpg" alt="Non Young Just Born2" class="artifact-img" loading="lazy">
+      <div class="gallery-label">Non Young Just Born2</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/Non Young Siam Square 2.jpg" alt="Non Young Siam Square 2" class="artifact-img" loading="lazy">
+      <div class="gallery-label">Non Young Siam Square 2</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/Non Young Siam Square.jpg" alt="Non Young Siam Square" class="artifact-img" loading="lazy">
+      <div class="gallery-label">Non Young Siam Square</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/Non Young at Themed Park.jpg" alt="Non Young at Themed Park" class="artifact-img" loading="lazy">
+      <div class="gallery-label">Non Young at Themed Park</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/Non Young by the sea.jpg" alt="Non Young by the sea" class="artifact-img" loading="lazy">
+      <div class="gallery-label">Non Young by the sea</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/Non Young with Dad.jpg" alt="Non Young with Dad" class="artifact-img" loading="lazy">
+      <div class="gallery-label">Non Young with Dad</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/Sikiew1+Grandma.JPG" alt="Sikiew1 Grandma" class="artifact-img" loading="lazy">
+      <div class="gallery-label">Sikiew1 Grandma</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/Sikiew2.JPG" alt="Sikiew2" class="artifact-img" loading="lazy">
+      <div class="gallery-label">Sikiew2</div>
+    </div>
+    <div class="gallery-item artifact-container">
+      <img src="/assets/photos/Sikiew3.JPG" alt="Sikiew3" class="artifact-img" loading="lazy">
+      <div class="gallery-label">Sikiew3</div>
+    </div>
   </div>
-
-
-  <style>
-    .talk-widget {
-      position: fixed; bottom: 20px; right: 20px; z-index: 99;
-      font-family: 'JetBrains Mono','Courier New',monospace; font-size: 11px;
-      letter-spacing: 0.15em; text-transform: uppercase;
-    }
-    .talk-widget a {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 16px; min-height: 44px;
-      background: #CCFF00; color: #000;
-      text-decoration: none;
-      border: 1px solid #CCFF00;
-    }
-    .talk-widget a:hover { background: #000; color: #CCFF00; }
-    .talk-pulse { display: inline-block; width: 8px; height: 8px; background: #000; flex: 0 0 8px; }
-    .talk-widget a:hover .talk-pulse { background: #CCFF00; }
-    .nav { overflow-x: auto; scrollbar-width: none; }
-    .nav::-webkit-scrollbar { display: none; }
-    @media (max-width: 720px) {
-      .talk-widget { bottom: 16px; right: 16px; }
-      .nav { gap: 14px !important; padding: 0 16px !important; }
-    }
-  </style>
-  <div class="talk-widget">
-    <a href="/bot/"><span class="talk-pulse"></span> Talk to Non</a>
+</div>
+    </div>
   </div>
-
 </body>
 </html>
