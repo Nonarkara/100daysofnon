@@ -205,6 +205,73 @@
     }
     .widget-btn:hover { background: #b8e600; }
 
+    /* ── SITE LOG ── */
+    .log-section {
+      padding: 40px 48px 48px;
+      border-bottom: 1px solid var(--faint);
+    }
+    .log-section:last-child { border-bottom: none; padding-bottom: 64px; }
+    .log-header-row {
+      display: flex; align-items: center; gap: 16px; margin-bottom: 12px;
+    }
+    .log-update-num {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--accent);
+    }
+    .log-date {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--dim); margin-top: 2px;
+    }
+    .log-title {
+      font-family: var(--sans); font-size: 20px; font-weight: 700;
+      letter-spacing: -0.01em; margin-bottom: 20px; color: var(--fg);
+      line-height: 1.2;
+    }
+    .log-items {
+      list-style: none; padding: 0; margin: 0 0 32px;
+    }
+    .log-items li {
+      font-family: var(--mono); font-size: 11px; color: var(--dim);
+      padding: 7px 0; border-bottom: 1px solid var(--faint);
+      display: flex; align-items: flex-start; gap: 10px;
+      letter-spacing: 0.02em; line-height: 1.5;
+    }
+    .log-items li::before {
+      content: '—'; color: var(--accent); flex-shrink: 0;
+    }
+    .log-screenshots {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 8px;
+      margin-top: 24px;
+    }
+    .log-thumb {
+      display: block;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border: 1px solid var(--faint);
+      background: #111;
+    }
+    .log-thumb img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block;
+      filter: grayscale(0.25) contrast(1.05);
+      transition: filter 0.2s;
+    }
+    .log-thumb:hover img { filter: none; }
+    .log-thumb-label {
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--dim); margin-top: 4px;
+    }
+    /* Thailand flag — 5 solid divs, no gradient */
+    .th-flag {
+      display: flex; flex-direction: column;
+      width: 40px; height: 26px; flex-shrink: 0; overflow: hidden;
+    }
+    .th-flag .f-r { background: #A51931; flex: 1; }
+    .th-flag .f-w { background: #FFFFFF; flex: 1; }
+    .th-flag .f-b { background: #2D2A4A; flex: 2; }
+
     /* ── MOBILE ── */
     @media (max-width: 600px) {
       .room-header { padding: 32px 16px 24px; }
@@ -212,6 +279,8 @@
       .post-body { padding: 24px 16px; font-size: 14px; }
       .annotations-section { padding: 0 16px 40px; }
       .post-title { font-size: 20px; }
+      .log-section { padding: 32px 16px 40px; }
+      .log-screenshots { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -256,6 +325,9 @@
       </div>
       <div class="post-tab" data-post="bike">
         <span class="tab-num">05</span>Bike · Day 3
+      </div>
+      <div class="post-tab" data-post="sitelog">
+        <span class="tab-num">06</span>Site Log · 2026
       </div>
     </div>
 
@@ -928,6 +1000,166 @@
 
       </div><!-- /anns-bike -->
     </div><!-- /panel-bike -->
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- POST 06: SITE LOG                                           -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div class="post-panel" id="panel-sitelog">
+      <div class="post-head">
+        <div class="post-meta">Site Log · 100 Days of Non · 100.nonarkara.org</div>
+        <div class="post-title">Update History</div>
+        <div class="post-stats">3 entries · screenshots archived before every deployment · nothing leaves this repo</div>
+        <div class="editor-note">ARCHIVE PROTOCOL — Every update to this site is logged here before deployment. Screenshots are taken first. The record accumulates. Nothing is deleted. Nothing is smoothed over. The maintenance log is part of the museum.</div>
+      </div>
+
+      <!-- UPDATE 02 -->
+      <div class="log-section">
+        <div class="log-header-row">
+          <div class="th-flag">
+            <div class="f-r"></div>
+            <div class="f-w"></div>
+            <div class="f-b"></div>
+            <div class="f-w"></div>
+            <div class="f-r"></div>
+          </div>
+          <div>
+            <div class="log-update-num">Update 02</div>
+            <div class="log-date">26 May 2026 · Maintenance Sprint</div>
+          </div>
+        </div>
+        <div class="log-title">Systematic Maintenance: §0 Compliance + Visual DNA Alignment</div>
+        <ul class="log-items">
+          <li>§0 photo fix — 13 named childhood photos removed from archive gallery; archive is now raw document only (IMG_* and numeric files)</li>
+          <li>Lobby tunnel hero changed: Non Young 1982.jpg → Non Young House 2.jpg (§0: 1982 photo was in both lobby and subject essay)</li>
+          <li>Chronos timeline photos updated: Non Just Born.jpg → Non Young Just Born2.jpg; Non Young Siam Square.jpg → Non Young Siam Square 2.jpg</li>
+          <li>portrait.jpg compressed in-place: 3.5MB → 245KB (og:image on all pages — mobile sharing impact)</li>
+          <li>HEIC → JPG: IMG_6442 and IMG_6458 converted (HEIC files unservable on web)</li>
+          <li>SEO meta completion: archive, game, map (description tags); chronos, notes (twitter:card tags)</li>
+          <li>Tunnel photo filter: brightness 0.30 → 0.38, contrast 1.7 → 1.9 (Araki register: blown-out whites + pure blacks, not grey soup)</li>
+          <li>Room openers added: map, method, voices — committed album-cover statements at 68px before content</li>
+          <li>Ghost gradient rule deleted from voices.html (cosmetic rule with no visual effect)</li>
+          <li>Day 001 drop-intro: "Born 1981. That's the claim." rendered at 76px magazine drop-intro scale</li>
+          <li>–sans fallback unified across day/001 and main.css</li>
+          <li>10 screenshots archived to /assets/history/ before deployment</li>
+        </ul>
+        <div class="log-screenshots">
+          <div>
+            <a class="log-thumb" href="/assets/history/2026-05-26-lobby.jpg" target="_blank">
+              <img src="/assets/history/2026-05-26-lobby.jpg" alt="Lobby · 26 May 2026" loading="lazy">
+            </a>
+            <div class="log-thumb-label">Lobby</div>
+          </div>
+          <div>
+            <a class="log-thumb" href="/assets/history/2026-05-26-archive.jpg" target="_blank">
+              <img src="/assets/history/2026-05-26-archive.jpg" alt="Archive · 26 May 2026" loading="lazy">
+            </a>
+            <div class="log-thumb-label">Archive</div>
+          </div>
+          <div>
+            <a class="log-thumb" href="/assets/history/2026-05-26-subject.jpg" target="_blank">
+              <img src="/assets/history/2026-05-26-subject.jpg" alt="Subject · 26 May 2026" loading="lazy">
+            </a>
+            <div class="log-thumb-label">Subject</div>
+          </div>
+          <div>
+            <a class="log-thumb" href="/assets/history/2026-05-26-chronos.jpg" target="_blank">
+              <img src="/assets/history/2026-05-26-chronos.jpg" alt="Chronos · 26 May 2026" loading="lazy">
+            </a>
+            <div class="log-thumb-label">Chronos</div>
+          </div>
+          <div>
+            <a class="log-thumb" href="/assets/history/2026-05-26-corpus.jpg" target="_blank">
+              <img src="/assets/history/2026-05-26-corpus.jpg" alt="Corpus · 26 May 2026" loading="lazy">
+            </a>
+            <div class="log-thumb-label">Corpus</div>
+          </div>
+          <div>
+            <a class="log-thumb" href="/assets/history/2026-05-26-map.jpg" target="_blank">
+              <img src="/assets/history/2026-05-26-map.jpg" alt="Map · 26 May 2026" loading="lazy">
+            </a>
+            <div class="log-thumb-label">Map</div>
+          </div>
+          <div>
+            <a class="log-thumb" href="/assets/history/2026-05-26-method.jpg" target="_blank">
+              <img src="/assets/history/2026-05-26-method.jpg" alt="Method · 26 May 2026" loading="lazy">
+            </a>
+            <div class="log-thumb-label">Method</div>
+          </div>
+          <div>
+            <a class="log-thumb" href="/assets/history/2026-05-26-voices.jpg" target="_blank">
+              <img src="/assets/history/2026-05-26-voices.jpg" alt="Voices · 26 May 2026" loading="lazy">
+            </a>
+            <div class="log-thumb-label">Voices</div>
+          </div>
+          <div>
+            <a class="log-thumb" href="/assets/history/2026-05-26-notes.jpg" target="_blank">
+              <img src="/assets/history/2026-05-26-notes.jpg" alt="Notes · 26 May 2026" loading="lazy">
+            </a>
+            <div class="log-thumb-label">Notes</div>
+          </div>
+          <div>
+            <a class="log-thumb" href="/assets/history/2026-05-26-game.jpg" target="_blank">
+              <img src="/assets/history/2026-05-26-game.jpg" alt="Game · 26 May 2026" loading="lazy">
+            </a>
+            <div class="log-thumb-label">Game</div>
+          </div>
+        </div>
+      </div><!-- /update-02 -->
+
+      <!-- UPDATE 01 -->
+      <div class="log-section">
+        <div class="log-header-row">
+          <div class="th-flag">
+            <div class="f-r"></div>
+            <div class="f-w"></div>
+            <div class="f-b"></div>
+            <div class="f-w"></div>
+            <div class="f-r"></div>
+          </div>
+          <div>
+            <div class="log-update-num">Update 01</div>
+            <div class="log-date">25 May 2026 · Design Sprint</div>
+          </div>
+        </div>
+        <div class="log-title">Tunnel Repaint: Inter → Space Grotesk + Museum Rooms Built</div>
+        <ul class="log-items">
+          <li>Font system replaced: Inter → Space Grotesk + JetBrains Mono (§11.11 compliance — Inter is banned)</li>
+          <li>Lobby tunnel hero built: full-viewport photo with grayscale filter, stats bar, quote rotator</li>
+          <li>Subject page built: biographical photo essay — 14 photographs, 6 arcs, full captions</li>
+          <li>Chronos page built: data-driven timeline, 11 stations, 1965–2026, photo at each station</li>
+          <li>Notes posts 03–05 added: Tradition (Day 4), Nonism Dictionary (Day 52), Bike (Day 3)</li>
+          <li>Obsidian vault catalogued: Visual-DNA.md, Working-Philosophy.md, Core-Mantra.md indexed</li>
+          <li>Archive photo gallery: broken HEIC paths resolved, 51 photos serving correctly</li>
+        </ul>
+      </div><!-- /update-01 -->
+
+      <!-- FOUNDATION -->
+      <div class="log-section">
+        <div class="log-header-row">
+          <div class="th-flag">
+            <div class="f-r"></div>
+            <div class="f-w"></div>
+            <div class="f-b"></div>
+            <div class="f-w"></div>
+            <div class="f-r"></div>
+          </div>
+          <div>
+            <div class="log-update-num">Foundation</div>
+            <div class="log-date">25 May 2026 · Museum Opens</div>
+          </div>
+        </div>
+        <div class="log-title">100 Days of Non Opens at 100.nonarkara.org</div>
+        <ul class="log-items">
+          <li>12 rooms built: Record, Map, Corpus, Chronos, Lexicon, Voices, Archive, Method, Game, Subject, Bot, Notes</li>
+          <li>Day 001 published: the full transcript, annotated, fact-checked against public record</li>
+          <li>Data layer: voices.json, corpus.json, chronos.json, map-nodes.json, lexicon.json</li>
+          <li>Bot worker deployed on Cloudflare Workers + Claude API</li>
+          <li>GitHub Actions CI: push to main → gh-pages deploy → 100.nonarkara.org live</li>
+          <li>Design system finalised: #000 black, #CCFF00 chartreuse, Space Grotesk, JetBrains Mono, zero rounded corners, hairline borders only</li>
+        </ul>
+      </div><!-- /foundation -->
+
+    </div><!-- /panel-sitelog -->
 
   </div><!-- /page -->
 
