@@ -315,7 +315,7 @@ img {
   height: 100%;
   object-fit: cover;
   object-position: top center;
-  filter: grayscale(1) contrast(1.7) brightness(0.30);
+  filter: grayscale(1) contrast(1.9) brightness(0.38);
   pointer-events: none;
   z-index: 0;
 }
@@ -400,4 +400,32 @@ img {
   .tunnel-content { padding: 24px 24px 32px; }
   .type-tunnel { font-size: clamp(40px, 13vw, 80px); }
   .tunnel-stats { gap: 20px; }
+}
+
+/* ══════════════════════════════════════════════════════
+   ROOM OPENER — Album-cover statement. One sentence at scale.
+   The album-cover principle: pick one thing and commit.
+   ══════════════════════════════════════════════════════ */
+.room-opener {
+  font-family: var(--sans);
+  font-size: clamp(40px, 7vw, 68px);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--fg);
+  max-width: 100%;
+  margin-bottom: 56px;
+  padding-top: 48px;
+  border-bottom: 1px solid var(--faint);
+  padding-bottom: 32px;
+}
+
+@media (max-width: 720px) {
+  .room-opener {
+    font-size: clamp(32px, 10vw, 48px);
+    margin-bottom: 40px;
+    padding-top: 32px;
+    padding-bottom: 24px;
+  }
 }
