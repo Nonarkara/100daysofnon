@@ -11,6 +11,10 @@
   --accent-blue: #0044FF;
   --accent-yellow: #FFD700;
 
+  /* V2 additions */
+  --neon-pink: #FF0077;   /* hyper pink — the chaos register */
+  --deep: #06050F;        /* mythical navy — the abyss */
+
   /* Translucents */
   --dim: rgba(255,255,255,0.45);
   --faint: rgba(255,255,255,0.12);
