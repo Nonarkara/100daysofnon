@@ -100,6 +100,13 @@
     .snapshot-row .v { color: var(--fg); }
     .snapshot-row .v.accent { color: var(--accent); }
 
+    /* ── Artifact Images ────────────────────────────────────── */
+    .artifact-img-container { margin: 40px 0; border: 1px solid var(--faint); background: var(--bg); display: block; }
+    .artifact-img-container.bleed { margin-left: -48px; margin-right: -48px; border-left: none; border-right: none; }
+    .artifact-img { display: block; width: 100%; height: auto; filter: grayscale(100%) contrast(1.2) brightness(0.9); mix-blend-mode: luminosity; }
+    .artifact-caption { font-family: var(--mono); font-size: 10px; color: var(--dim); padding: 12px 16px; text-transform: uppercase; letter-spacing: 0.15em; border-top: 1px solid var(--faint); }
+
+
     /* ── Footer ────────────────────────────────────────────── */
     footer { padding: 32px 48px; border-top: 1px solid var(--faint); font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.1em; text-transform: uppercase; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
     footer .meta { display: flex; flex-wrap: wrap; gap: 12px; }
@@ -110,6 +117,55 @@
     .talk-widget a { display: inline-flex; align-items: center; gap: 8px; padding: 12px 16px; min-height: 44px; background: var(--accent); color: #000; text-decoration: none; border: 1px solid var(--accent); font-weight: 600; }
     .talk-widget a:hover { background: #000; color: var(--accent); }
     .talk-pulse { display: inline-block; width: 8px; height: 8px; background: currentColor; flex: 0 0 8px; }
+
+    /* ── Photo Essay ────────────────────────────────────────── */
+    .photo-essay {
+      border-bottom: 1px solid var(--faint);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      background: #050505;
+    }
+    .photo-essay::-webkit-scrollbar { display: none; }
+    .photo-strip {
+      display: flex;
+      gap: 0;
+      min-width: max-content;
+      padding: 0;
+    }
+    .photo-frame {
+      flex: 0 0 auto;
+      width: 280px;
+      border-right: 1px solid var(--faint);
+      display: flex;
+      flex-direction: column;
+    }
+    .photo-frame:last-child { border-right: none; }
+    .photo-frame img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      filter: grayscale(1) contrast(1.1);
+      transition: filter 0.3s ease;
+    }
+    .photo-frame:hover img { filter: none; }
+    .photo-frame figcaption {
+      font-family: var(--mono);
+      font-size: 10px;
+      line-height: 1.6;
+      color: var(--dim);
+      padding: 12px 14px;
+      letter-spacing: 0.05em;
+      flex-grow: 1;
+      border-top: 1px solid var(--faint);
+    }
+    @media (max-width: 768px) {
+      .photo-essay { overflow-x: auto; }
+      .photo-frame { width: 240px; }
+      .photo-frame img { height: 260px; }
+    }
 
     /* ── Responsive ────────────────────────────────────────── */
     @media (max-width: 900px) {
@@ -159,6 +215,45 @@
         <div class="hero-body">Non Arkara, born November 1, 1981, in Bangkok. Forty-two years in the same suburban house while the city grew around it. Trained in architecture at the edge of infrastructure. Studied the mind at MIT. Studied the city at Oxford and Harvard. Spent two years in Shanghai's Yangpu District watching a former industrial zone become smart. Now: the subject of a 100-day biographical installation that surfaces what happens when an unreliable narrator meets an unreliable recording system. The installation is not about truth. It is about the friction between memory and record, between the story we tell and the traces we leave.</div>
       </div>
 
+      <!-- PHOTO ESSAY: THE ORPHANED RECORD -->
+      <div class="photo-essay">
+        <div class="photo-essay-label" style="padding: 16px 24px 0; font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.18em; text-transform: uppercase;">The photographic record &nbsp;·&nbsp; Scroll →</div>
+        <div class="photo-strip" role="list">
+          <figure class="photo-frame">
+            <img src="/assets/photos/Non Just Born.jpg" alt="Non Arkara, just born, Phyathai Hospital, 1981" loading="lazy">
+            <figcaption>Phyathai Hospital. 01 November 1981. A Sunday. This is before memory begins.</figcaption>
+          </figure>
+          <figure class="photo-frame">
+            <img src="/assets/photos/Non Just Born For Real.jpg" alt="Non Arkara newborn, 1981" loading="lazy">
+            <figcaption>This is the record. Memory begins later. The gap between them is the subject of this project.</figcaption>
+          </figure>
+          <figure class="photo-frame">
+            <img src="/assets/photos/Non Young Family Just Born.jpg" alt="Non Arkara with family, newborn" loading="lazy">
+            <figcaption>The house on Grandmother's land. Not yet taken by eminent domain. Not yet rebuilt. The family, assembled.</figcaption>
+          </figure>
+          <figure class="photo-frame">
+            <img src="/assets/photos/Non Young 1982.jpg" alt="Non Arkara, age 1, Bangkok 1982" loading="lazy">
+            <figcaption>Age one. Bangkok. The city that would later be demolished around him — the Siam Intercontinental still standing two kilometres away.</figcaption>
+          </figure>
+          <figure class="photo-frame">
+            <img src="/assets/photos/Non Young with Dad.jpg" alt="Non Arkara as a child with father" loading="lazy">
+            <figcaption>The architect who didn't know he would become an architect. The son who didn't know he would become an anthropologist.</figcaption>
+          </figure>
+          <figure class="photo-frame">
+            <img src="/assets/photos/Non Young Family.jpg" alt="Non Arkara young, with family" loading="lazy">
+            <figcaption>42 years later: same house, same address. The family held the ground the expressway could not take the second time.</figcaption>
+          </figure>
+          <figure class="photo-frame">
+            <img src="/assets/photos/Non Young Siam Square.jpg" alt="Non Arkara young at Siam Square" loading="lazy">
+            <figcaption>Siam Square. The Intercontinental was still standing. Pantip Plaza was already there with its columns, Doric, possibly Ionic.</figcaption>
+          </figure>
+          <figure class="photo-frame">
+            <img src="/assets/photos/Non Preschool.jpg" alt="Non Arkara at preschool age" loading="lazy">
+            <figcaption>Before school, before credentials, before MIT, Oxford, Harvard. Before the blog. Before the pivot. Before the 100 days.</figcaption>
+          </figure>
+        </div>
+      </div>
+
       <div class="phases-container">
         <div class="phases-header">The 100-day arc: Nine phases of interrogation</div>
         <div class="phases-grid">
@@ -178,12 +273,24 @@
         <div class="arc-column">
           <h3>Geography of <span class="accent">Memory</span></h3>
           <div class="arc-item"><div class="arc-item-label">1981–1990</div><div class="arc-item-text"><strong>Suburban Bangkok.</strong> Nam Sai, the alleyway neighborhood. Three candies for a baht. A compound where his parents and aunts and uncles all built houses on land the maternal grandmother bought before anyone needed it. His father built their house himself. His mother worked nights at Thammasat to support her siblings.</div></div>
+          
+          <div class="artifact-img-container bleed">
+            <img class="artifact-img" src="/assets/photos/Non Young 1980s.jpg" alt="Non in the 1980s">
+            <div class="artifact-caption">FIG. 1 — Suburban Bangkok (Circa 1980s)</div>
+          </div>
+          
           <div class="arc-item"><div class="arc-item-label">The accidental archive</div><div class="arc-item-text">Siam Intercontinental across the district—a hotel with a hat-shaped roof, Frank Lloyd Wright Prairie style. When it demolished in 2002, the land became what he described: an elephant-headed bridge, Sra Pathum Palace, beer gardens, the science center, three cinema houses. The city's infrastructure laid out in his childhood geography.</div></div>
           <div class="arc-item"><div class="arc-item-label">Television as portal</div><div class="arc-item-text"><em>Shanghai Bund</em> on Channel 3, dubbed Cantonese into Thai, ages 5–10. Twenty years later: a PhD dissertation on Shanghai. The childhood TV show becomes the spine of the academic career. The through-line drawn.</div></div>
         </div>
         <div class="arc-column"></div>
         <div class="arc-column">
           <h3><span class="accent">Education</span> &amp; Formation</h3>
+          
+          <div class="artifact-img-container bleed">
+            <img class="artifact-img" src="/assets/photos/Non Young Family.jpg" alt="Non's family">
+            <div class="artifact-caption">FIG. 2 — The Institution of Family</div>
+          </div>
+          
           <div class="arc-item"><div class="arc-item-label">Architecture First</div><div class="arc-item-text">Undergraduate in architecture and urban design. The discipline of infrastructure, systems, how space holds meaning. Pattern recognition at the scale of the built environment.</div></div>
           <div class="arc-item"><div class="arc-item-label">1999–2001: MIT</div><div class="arc-item-text">M.Sc. at MIT. The shift from built form to systems thinking. Learning to see infrastructure as process, not object. Mentors who saw him.</div></div>
           <div class="arc-item"><div class="arc-item-label">2002–2004: Oxford</div><div class="arc-item-text">M.Phil at Oxford. The British intellectual tradition. Class structure observed directly. The textures of English rigor absorbed into his thinking.</div></div>

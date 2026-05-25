@@ -11,6 +11,6 @@ compatibility_flags = ["nodejs_compat"]
 #   4. (Optional) Add a route: api.100days.nonarkara.org/* → this worker
 #   5. In site/bot/index.html, change the fetch URL to your worker endpoint
 
-# [[routes]]
-# pattern = "api.100days.nonarkara.org/*"
-# zone_name = "nonarkara.org"
+[[routes]]
+pattern = "100.nonarkara.org/api/*"
+zone_name = "nonarkara.org"

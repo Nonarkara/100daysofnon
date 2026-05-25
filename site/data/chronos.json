@@ -5,6 +5,8 @@
     {
       "year": 1981,
       "phase": "Origin",
+      "photo": "/assets/photos/Non Just Born.jpg",
+      "photo_caption": "Phyathai Hospital. 01 November 1981. A Sunday.",
       "items": [
         { "date": "1981-11-01", "label": "Born", "detail": "Phyathai Hospital, Bangkok. A Sunday." }
       ]
@@ -12,6 +14,8 @@
     {
       "year": 1987,
       "phase": "Origin",
+      "photo": "/assets/photos/Non Young Siam Square.jpg",
+      "photo_caption": "Siam Square. The columns. Age six.",
       "items": [
         { "date": "1987", "label": "First memory", "detail": "Pantip Plaza, near Siam Paragon, age six. Classical columns in the interior — Doric, possibly Ionic. Still unverified." }
       ]
@@ -19,6 +23,8 @@
     {
       "year": 1995,
       "phase": "Place",
+      "photo": "/assets/photos/Non Young House.jpg",
+      "photo_caption": "The rebuilt house. Grandmother's land, after the expressway.",
       "items": [
         { "date": "1995", "label": "The house", "detail": "The current house was built. Grandmother's land had been taken by eminent domain for expressway construction. The family rebuilt. Forty-two years and counting at the same address." }
       ]
@@ -54,6 +60,8 @@
     {
       "year": 2013,
       "phase": "Fieldwork",
+      "photo": "/assets/photos/Sikiew1+Grandma.JPG",
+      "photo_caption": "Grandmother. The land before the loss.",
       "items": [
         { "date": "2013", "label": "Shanghai, Yangpu District", "detail": "Two years of fieldwork. Huangpu River on one side, Fudan on the other. Fuzhou Road for the books." },
         { "date": "2013", "label": "First coffee-shop essay", "detail": "Drafted on the Yangtze. The line about access to modernity was written there." }
@@ -99,6 +107,8 @@
     {
       "year": 2025,
       "phase": "Public",
+      "photo": "/assets/portrait.jpg",
+      "photo_caption": "GITEX AI Asia, Singapore, 2025.",
       "items": [
         { "date": "2025-06-24", "label": "Blog Day 1", "detail": "What Does Writing Do to Me. 1,888 words. The instrument announced." },
         { "date": "2025-10-27", "label": "Blog Day 100", "detail": "The 100-day writing project concludes. The corpus stands at ~240,000 words." },
