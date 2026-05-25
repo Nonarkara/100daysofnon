@@ -74,8 +74,8 @@
       font-size: var(--micro);
       letter-spacing: 0.12em;
     }
-    .nav-brand { color: var(--dim); text-transform: uppercase; margin-right: auto; }
-    .nav a { color: var(--dim); text-decoration: none; text-transform: uppercase; }
+    .nav-brand { color: var(--dim); text-transform: uppercase; margin-right: auto; white-space: nowrap; flex-shrink: 0; }
+    .nav a { color: var(--dim); text-decoration: none; text-transform: uppercase; display: inline-flex; align-items: center; align-self: stretch; padding: 0 2px; }
     .nav a:hover { color: var(--fg); }
     .nav a.here { color: var(--accent); }
 
@@ -751,7 +751,8 @@
     .nav::-webkit-scrollbar { display: none; }
     @media (max-width: 720px) {
       .talk-widget { bottom: 16px; right: 16px; }
-      .nav { gap: 14px !important; padding: 0 16px !important; }
+      .nav { overflow: hidden !important; gap: 14px !important; padding: 0 16px !important; }
+      .nav a:nth-of-type(n+7) { display: none; }
     }
   
     /* ── Artifact Images ────────────────────────────────────── */

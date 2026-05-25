@@ -127,7 +127,13 @@ img {
 }
 .nav::-webkit-scrollbar { display: none; }
 .nav-brand { color: var(--accent-red); margin-right: auto; font-weight: 700; white-space: nowrap; flex-shrink: 0; }
-.nav a { color: var(--dim); }
+.nav a {
+  color: var(--dim);
+  display: inline-flex;
+  align-items: center;
+  align-self: stretch;  /* fills nav bar height — lifts tap target to ~48px */
+  padding: 0 2px;
+}
 .nav a:hover { color: var(--fg); background: var(--bg); }
 .nav a.here { color: var(--accent); }
 
