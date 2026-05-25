@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=JetBrains+Mono:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
   /* Core Colors */
@@ -16,7 +16,7 @@
   --faint: rgba(255,255,255,0.12);
 
   /* Typography */
-  --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --sans: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
   --serif: 'Lora', Georgia, 'Times New Roman', serif;
   --mono: 'JetBrains Mono', 'Courier New', monospace;
 }
@@ -291,4 +291,113 @@ img {
 .btn-accent:hover {
   background: var(--accent);
   color: var(--bg);
+}
+
+/* ══════════════════════════════════════════════════════
+   THE TUNNEL — Full-viewport photo environments
+   Design DNA: Araki × WKW × Braun — one decision, committed.
+   Photo fills frame. Text lives ON the photo, not beside it.
+   ══════════════════════════════════════════════════════ */
+
+.tunnel {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow: hidden;
+  background: #000;
+}
+
+.tunnel-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: grayscale(1) contrast(1.7) brightness(0.30);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.tunnel-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.92) 0%,
+    rgba(0,0,0,0.4) 50%,
+    rgba(0,0,0,0.05) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.tunnel-content {
+  position: relative;
+  z-index: 2;
+  padding: 40px 48px 48px;
+  align-self: end;
+}
+
+/* TYPE-TUNNEL: the wall. Text at scale that becomes texture. */
+.type-tunnel {
+  font-family: var(--sans);
+  font-size: clamp(52px, 11vw, 172px);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+
+/* TYPE-BLEED: implies more text beyond the edge */
+.type-bleed {
+  overflow: visible;
+  white-space: nowrap;
+  margin-left: -0.02em;
+}
+
+/* Tunnel eyebrow — the room label inside a tunnel section */
+.tunnel-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+/* Tunnel stat row — data beneath the big type */
+.tunnel-stats {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+.tunnel-stat {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.tunnel-stat b {
+  display: block;
+  font-family: var(--sans);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--fg);
+  letter-spacing: -0.02em;
+  text-transform: none;
+  margin-bottom: 2px;
+}
+
+@media (max-width: 768px) {
+  .tunnel { min-height: 75vh; }
+  .tunnel-content { padding: 24px 24px 32px; }
+  .type-tunnel { font-size: clamp(40px, 13vw, 80px); }
+  .tunnel-stats { gap: 20px; }
 }
