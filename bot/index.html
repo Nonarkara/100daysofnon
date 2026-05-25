@@ -6,47 +6,19 @@
   <title>Bot — 100 Days of Non</title>
   <meta name="description" content="Talk to Non. The second-brain bot. Trained on the nonharvard blog. Answers in his voice. Honest about what it cannot know.">
   
-  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://100days.nonarkara.org/bot/">
   <meta property="og:title" content="Bot — Talk to Non · 100 Days of Non">
   <meta property="og:description" content="A chat that speaks in Dr Non's voice. Direct from the record where it can. Deduced where it must. Structural guess where the record stops.">
   <meta property="og:image" content="https://100days.nonarkara.org/assets/portrait.jpg">
-  <meta property="og:site_name" content="100 Days of Non">
-
-  <!-- Twitter -->
+  
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Bot — Talk to Non · 100 Days of Non">
   <meta name="twitter:description" content="A chat that speaks in Dr Non's voice. Direct from the record where it can. Deduced where it must. Structural guess where the record stops.">
   <meta name="twitter:image" content="https://100days.nonarkara.org/assets/portrait.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/assets/css/main.css">
   <style>
-    :root {
-      --bg: #000; --fg: #fff; --accent: #CCFF00;
-      --dim: rgba(255,255,255,0.45); --faint: rgba(255,255,255,0.12);
-      --sans: 'Space Grotesk','Helvetica Neue',Helvetica,Arial,sans-serif;
-      --mono: 'JetBrains Mono','Courier New',monospace;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
-    html { background: var(--bg); color: var(--fg); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
-    body { display: flex; flex-direction: column; min-height: 100vh; }
-
-    .nav {
-      flex: 0 0 40px;
-      border-bottom: 1px solid var(--faint);
-      display: flex; align-items: center;
-      padding: 0 32px; gap: 24px;
-      background: var(--bg); z-index: 100;
-      font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
-    }
-    .nav-brand { color: var(--dim); text-transform: uppercase; margin-right: auto; }
-    .nav a { color: var(--dim); text-decoration: none; text-transform: uppercase; white-space: nowrap; }
-    .nav a:hover { color: var(--fg); }
-    .nav a.here { color: var(--accent); }
-
     /* Two-pane bot layout */
     .bot-layout {
       flex: 1;
@@ -60,6 +32,8 @@
       border-right: 1px solid var(--faint);
       overflow-y: auto;
       padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
     }
     .side-title {
       font-family: var(--sans); font-size: 24px;
@@ -73,7 +47,7 @@
       margin-bottom: 24px;
     }
     .side-status {
-      padding: 12px 14px;
+      padding: 16px 14px;
       border: 1px solid var(--faint);
       font-family: var(--mono); font-size: 11px;
       letter-spacing: 0.1em; text-transform: uppercase;
@@ -84,7 +58,7 @@
     .side-status .pulse {
       display: inline-block;
       width: 6px; height: 6px;
-      background: #ffaa00; margin-right: 8px;
+      background: var(--accent-yellow); margin-right: 8px;
       vertical-align: middle;
     }
     .side-status .pulse.live { background: var(--accent); }
@@ -118,7 +92,8 @@
     }
     .demo-list button:hover {
       border-color: var(--accent);
-      color: var(--accent);
+      color: #000;
+      background: var(--accent);
     }
 
     /* Chat */
@@ -129,12 +104,12 @@
     }
 
     .chat-header {
-      padding: 24px 40px;
+      padding: 32px 40px;
       border-bottom: 1px solid var(--faint);
     }
     .chat-h1 {
-      font-family: var(--sans); font-size: clamp(28px, 5vw, 48px);
-      font-weight: 700; line-height: 1; letter-spacing: -0.02em;
+      font-family: var(--sans); font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800; line-height: 1; letter-spacing: -0.02em;
       text-transform: uppercase;
     }
     .chat-h1 .dot {
@@ -147,7 +122,7 @@
       font-family: var(--mono); font-size: 11px;
       color: var(--dim); letter-spacing: 0.15em;
       text-transform: uppercase;
-      margin-top: 8px;
+      margin-top: 12px;
     }
 
     .chat-stream {
@@ -168,13 +143,8 @@
       margin-bottom: 8px;
       display: flex; gap: 12px;
     }
-    .msg-meta .kind {
-      color: var(--accent);
-    }
-    .msg-meta .kind.structural { color: var(--accent); }
-    .msg-meta .kind.not_known  { color: var(--dim); }
-    .msg-meta .kind.direct     { color: var(--accent); }
-    .msg-meta .kind.deduction  { color: var(--accent); }
+    .msg-meta .kind { color: var(--accent); }
+    .msg-meta .kind.not_known { color: var(--dim); }
 
     .msg.user .msg-bubble {
       font-family: var(--sans); font-size: 16px;
@@ -184,15 +154,11 @@
       border-top: 1px solid var(--faint);
     }
     .msg.user .msg-meta { color: var(--accent); }
-    .msg.user .msg-meta .who { color: var(--accent); }
 
-    .msg.bot {
-      margin-left: 0;
-    }
     .msg.bot .msg-meta .who { color: var(--accent); font-weight: 700; }
     .msg.bot .msg-bubble {
-      font-family: var(--sans); font-size: 16px;
-      line-height: 1.65;
+      font-family: var(--serif); font-size: 18px;
+      line-height: 1.6;
       color: var(--fg);
       padding: 16px 0 12px;
     }
@@ -208,9 +174,9 @@
 
     .composer {
       border-top: 1px solid var(--faint);
-      padding: 16px 40px;
+      padding: 24px 40px;
       display: flex;
-      gap: 12px;
+      gap: 16px;
       background: var(--bg);
     }
     .composer input {
@@ -219,22 +185,20 @@
       border: 1px solid var(--faint);
       color: var(--fg);
       padding: 14px 18px;
-      min-height: 44px;
-      font-family: var(--sans); font-size: 15px;
+      font-family: var(--mono); font-size: 13px;
     }
     .composer input:focus { outline: none; border-color: var(--accent); }
     .composer button {
-      background: var(--accent);
-      color: #000;
+      background: transparent;
+      color: var(--accent);
       border: 1px solid var(--accent);
-      padding: 14px 28px;
-      min-height: 44px;
+      padding: 14px 32px;
       font-family: var(--mono); font-size: 11px;
       letter-spacing: 0.18em; text-transform: uppercase;
       cursor: pointer;
       font-weight: 700;
     }
-    .composer button:hover { background: #000; color: var(--accent); }
+    .composer button:hover { background: var(--accent); color: #000; }
 
     .empty-state {
       padding: 60px 0;
@@ -245,11 +209,12 @@
       font-family: var(--sans); font-size: 24px;
       font-weight: 700; line-height: 1.2; letter-spacing: -0.01em;
       margin-bottom: 16px;
+      text-transform: uppercase;
     }
     .empty-state p {
-      font-family: var(--sans); font-size: 14px;
+      font-family: var(--serif); font-size: 16px;
       color: var(--dim); line-height: 1.6;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
     .empty-state ul {
       list-style: none; margin-top: 16px;
@@ -258,7 +223,7 @@
       font-family: var(--mono); font-size: 11px;
       color: var(--accent); letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
       padding: 4px 0;
     }
     .empty-state li::before {
@@ -266,22 +231,18 @@
     }
 
     @media (max-width: 900px) {
-      .nav { padding: 0 20px; gap: 14px; overflow-x: auto; scrollbar-width: none; }
-      .nav::-webkit-scrollbar { display: none; }
       .bot-layout { grid-template-columns: 1fr; }
-      .side { border-right: none; border-bottom: 1px solid var(--faint); padding: 20px 24px; max-height: 280px; }
+      .side { border-right: none; border-bottom: 1px solid var(--faint); padding: 20px 24px; max-height: 320px; }
       .chat-header { padding: 20px 24px; }
       .chat-stream { padding: 20px 24px; }
-      .composer { padding: 12px 16px; gap: 8px; }
-      .composer input { padding: 12px 14px; font-size: 14px; }
-      .composer button { padding: 12px 16px; font-size: 10px; }
+      .composer { padding: 16px 24px; gap: 8px; }
     }
   </style>
 </head>
 <body>
 
   <nav class="nav">
-    <span class="nav-brand">100 Days of Non</span>
+    <a href="/" class="nav-brand">100 Days of Non</a>
     <a href="/day/001/">RECORD</a>
     <a href="/map/">MAP</a>
     <a href="/corpus/">CORPUS</a>
@@ -295,56 +256,59 @@
     <a href="/bot/" class="here">BOT</a>
   </nav>
 
-  <div class="bot-layout">
-
-    <aside class="side">
-      <h2 class="side-title">Talk to Non</h2>
-      <div class="side-sub">Room 11 of 11 · Docent</div>
-
-      <div class="side-status">
-        <span class="pulse"></span><strong>BOT NOT YET WIRED</strong><br>
-        Demo answers pre-loaded from the blog. Free-text replies use best-match. Claude API wiring coming.
-      </div>
-
-      <div class="side-section">
-        <div class="side-label">Try one of these</div>
-        <ul class="demo-list" id="demo-list"></ul>
-      </div>
-    </aside>
-
-    <div class="chat">
-      <div class="chat-header">
-        <h1 class="chat-h1"><span class="dot"></span>Non &middot; Second brain</h1>
-        <div class="chat-sub">A docent for this museum · He answers what the record allows · He guesses structurally where it doesn't</div>
-      </div>
-
-      <div class="chat-stream" id="stream">
-        <div class="empty-state">
-          <h2>What is this?</h2>
-          <p>
-            A chat that speaks in Dr Non's voice. It draws from his blog (one hundred posts, ~240,000
-            words), from this project's daily entries, and from a small set of working principles.
-          </p>
-          <p>
-            Three things it will do honestly:
-          </p>
-          <ul>
-            <li>Answer directly when the record allows it</li>
-            <li>Deduce, hedged, when the record points sideways</li>
-            <li>Refuse to invent — but offer a structural guess in his voice</li>
-          </ul>
-          <p style="margin-top:24px;">
-            Pick a starter on the left, or type your own question below.
-          </p>
-        </div>
-      </div>
-
-      <form class="composer" id="composer" autocomplete="off">
-        <input type="text" id="q" placeholder="Ask Non something. E.g. why this project?" required>
-        <button type="submit">Ask</button>
-      </form>
+  <div class="layout-grid">
+    <div class="col-0 index-col-0" style="writing-mode: vertical-rl; text-orientation: mixed; display: flex; align-items: center; justify-content: center; letter-spacing: 0.2em; font-family: var(--mono); font-size: 11px; color: var(--faint);">
+      011 /// DOCENT
     </div>
 
+    <div class="col-1 bot-layout">
+      <aside class="side">
+        <h2 class="side-title">Talk to Non</h2>
+        <div class="side-sub">Room 11 of 11 · Docent</div>
+
+        <div class="side-status">
+          <span class="pulse"></span><strong class="text-yellow">BOT NOT YET WIRED</strong><br>
+          <span style="display:inline-block; margin-top:8px;">Demo answers pre-loaded from the blog. Free-text replies use best-match. Claude API wiring coming.</span>
+        </div>
+
+        <div class="side-section">
+          <div class="side-label">Try one of these</div>
+          <ul class="demo-list" id="demo-list"></ul>
+        </div>
+      </aside>
+
+      <div class="chat">
+        <div class="chat-header">
+          <h1 class="chat-h1"><span class="dot"></span>Non &middot; Second brain</h1>
+          <div class="chat-sub">A docent for this museum · He answers what the record allows · He guesses structurally where it doesn't</div>
+        </div>
+
+        <div class="chat-stream" id="stream">
+          <div class="empty-state">
+            <h2>What is this?</h2>
+            <p>
+              A chat that speaks in Dr Non's voice. It draws from his blog (one hundred posts, ~240,000 words), from this project's daily entries, and from a small set of working principles.
+            </p>
+            <p>
+              Three things it will do honestly:
+            </p>
+            <ul>
+              <li>Answer directly when the record allows it</li>
+              <li>Deduce, hedged, when the record points sideways</li>
+              <li>Refuse to invent — but offer a structural guess in his voice</li>
+            </ul>
+            <p style="margin-top:24px; font-family: var(--mono); font-size: 11px; letter-spacing:0.1em; color:var(--fg); text-transform:uppercase;">
+              Pick a starter on the left, or type your own question below.
+            </p>
+          </div>
+        </div>
+
+        <form class="composer" id="composer" autocomplete="off">
+          <input type="text" id="q" placeholder="Ask Non something. E.g. why this project?" required>
+          <button type="submit">Ask</button>
+        </form>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -361,7 +325,6 @@
 
     fetch('/data/bot-demos.json').then(r => r.json()).then(data => {
       qa = data.qa;
-      // Render demo list — pick a curated few starters
       const starters = [
         "What is 100 Days of Non?",
         "What is Nonism?",
@@ -385,18 +348,15 @@
 
     function bestMatch(question) {
       const qLow = question.toLowerCase();
-      // Exact / near match first
       for (const p of qa) {
         if (p.q.toLowerCase() === qLow) return p;
       }
-      // Score by word overlap
       const qWords = new Set(qLow.split(/\W+/).filter(w => w.length > 2));
       let best = null, bestScore = 0;
       for (const p of qa) {
         const pWords = new Set(p.q.toLowerCase().split(/\W+/).filter(w => w.length > 2));
         let score = 0;
         for (const w of qWords) if (pWords.has(w)) score += 2;
-        // Also count overlap with answer keywords
         const aWords = new Set((p.a || '').toLowerCase().split(/\W+/).filter(w => w.length > 4));
         for (const w of qWords) if (aWords.has(w)) score += 1;
         if (score > bestScore) { best = p; bestScore = score; }
@@ -459,7 +419,6 @@
         initial = false;
       }
       appendUser(question);
-      // tiny pause so the user sees their message land first
       const match = bestMatch(question);
       if (match) {
         appendBot(match.a, match.cite, match.kind);

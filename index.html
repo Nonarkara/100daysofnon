@@ -19,301 +19,42 @@
   <meta name="twitter:title" content="100 Days of Non — A museum of Dr Non's mind">
   <meta name="twitter:description" content="Eleven rooms. One docent. A 100-day biographical installation. Memory and record, side by side. Where they disagree is the most interesting cell on the page.">
   <meta name="twitter:image" content="https://100days.nonarkara.org/assets/portrait.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/assets/css/main.css">
   <style>
-    :root {
-      --bg: #000; --fg: #fff; --accent: #CCFF00;
-      --dim: rgba(255,255,255,0.45); --faint: rgba(255,255,255,0.12);
-      --sans: 'Space Grotesk','Helvetica Neue',Helvetica,Arial,sans-serif;
-      --mono: 'JetBrains Mono','Courier New',monospace;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { background: var(--bg); color: var(--fg); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
-
-    /* Nav */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; height: 40px;
+    .hero-container {
+      padding: 64px 32px;
       border-bottom: 1px solid var(--faint);
-      display: flex; align-items: center;
-      padding: 0 32px; gap: 24px;
-      background: var(--bg); z-index: 100;
-      font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
     }
-    .nav-brand { color: var(--dim); text-transform: uppercase; margin-right: auto; }
-    .nav a { color: var(--dim); text-decoration: none; text-transform: uppercase; white-space: nowrap; }
-    .nav a:hover { color: var(--fg); }
-    .nav a.here { color: var(--accent); }
-
-    /* Hero */
-    .hero {
-      margin-top: 40px;
-      padding: 64px 56px 64px;
-      border-bottom: 1px solid var(--faint);
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 64px;
-      align-items: end;
-    }
-    .hero-left { display: flex; flex-direction: column; }
     .hero-eyebrow {
       font-family: var(--mono); font-size: 11px; color: var(--dim);
       letter-spacing: 0.18em; text-transform: uppercase;
-      margin-bottom: 24px;
+      margin-bottom: 32px;
     }
-    .hero-count {
-      font-family: var(--mono); font-size: clamp(96px, 22vw, 220px);
-      font-weight: 700; line-height: 0.82;
-      letter-spacing: -0.05em;
-      color: var(--fg);
-    }
-    .hero-count .lit { color: var(--accent); }
-    .hero-title {
-      font-family: var(--sans); font-size: clamp(40px, 8vw, 96px);
-      font-weight: 700; line-height: 0.9; letter-spacing: -0.025em;
-      text-transform: uppercase; margin-top: 20px;
-    }
-    .hero-right { display: flex; flex-direction: column; }
-    .hero-desc {
-      font-size: 16px; line-height: 1.7; color: var(--fg);
-      max-width: 460px;
-    }
-    .hero-desc strong { color: var(--accent); font-weight: 400; }
+    .hero-desc { margin-top: 32px; }
+    
     .hero-meta {
       font-family: var(--mono); font-size: 11px; color: var(--dim);
       letter-spacing: 0.15em; text-transform: uppercase;
-      margin-top: 32px;
+      margin-top: 64px;
       padding-top: 24px;
       border-top: 1px solid var(--faint);
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px 16px;
-    }
-    .hero-meta b { color: var(--accent); font-weight: 400; display: block; margin-bottom: 4px; font-size: 14px; letter-spacing: -0.01em; text-transform: none; font-family: var(--sans); }
-
-    /* Directory header */
-    .dir-bar {
-      padding: 28px 56px;
-      border-bottom: 1px solid var(--faint);
-      display: flex; justify-content: space-between; align-items: baseline;
-      flex-wrap: wrap; gap: 16px;
-    }
-    .dir-bar h2 {
-      font-family: var(--sans); font-size: 32px;
-      font-weight: 700; line-height: 1;
-      text-transform: uppercase; letter-spacing: -0.015em;
-    }
-    .dir-bar .dir-meta {
-      font-family: var(--mono); font-size: 11px; color: var(--dim);
-      letter-spacing: 0.15em; text-transform: uppercase;
-    }
-
-    /* Featured panel — current day */
-    .featured-panel {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      border-bottom: 1px solid var(--faint);
-      text-decoration: none; color: inherit;
-      min-height: 220px;
-    }
-    .featured-panel:hover { background: var(--accent); color: #000; }
-    .featured-panel:hover .fp-meta,
-    .featured-panel:hover .fp-brief { color: rgba(0,0,0,0.65); }
-    .featured-panel:hover .fp-arrow { color: #000; }
-
-    .fp-left {
-      padding: 32px 40px;
-      border-right: 1px solid var(--faint);
-      display: flex; flex-direction: column;
-    }
-    .fp-num {
-      font-family: var(--mono); font-size: 11px; color: var(--accent);
-      letter-spacing: 0.18em; text-transform: uppercase;
-    }
-    .fp-day {
-      font-family: var(--mono);
-      font-size: clamp(56px, 10vw, 110px);
-      font-weight: 700; line-height: 0.85; letter-spacing: -0.04em;
-      margin-top: auto;
-    }
-    .fp-of {
-      font-family: var(--mono); font-size: 11px; color: var(--dim);
-      letter-spacing: 0.18em; text-transform: uppercase;
-      margin-top: 8px;
-    }
-
-    .fp-right {
-      padding: 32px 40px;
-      display: flex; flex-direction: column; justify-content: space-between;
+      grid-template-columns: repeat(4, 1fr);
       gap: 16px;
     }
-    .fp-h {
-      font-family: var(--sans); font-size: clamp(24px, 3vw, 36px);
-      font-weight: 700; line-height: 1.1; letter-spacing: -0.015em;
-      text-transform: uppercase;
-      max-width: 28ch;
-    }
-    .fp-brief {
-      font-family: var(--sans); font-size: 14px;
-      color: var(--dim); line-height: 1.6;
-      max-width: 50ch;
-    }
-    .fp-meta {
-      font-family: var(--mono); font-size: 11px; color: var(--dim);
-      letter-spacing: 0.18em; text-transform: uppercase;
-    }
-    .fp-arrow {
-      font-family: var(--mono); font-size: 11px; color: var(--accent);
-      letter-spacing: 0.18em; text-transform: uppercase;
-      margin-top: 12px;
-    }
-
-    /* Room grid */
-    .rooms {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-    }
-    .room {
-      border-right: 1px solid var(--faint);
-      border-bottom: 1px solid var(--faint);
-      padding: 28px 32px 36px;
-      text-decoration: none; color: inherit;
-      display: flex; flex-direction: column;
-      min-height: 240px;
-      cursor: pointer;
-    }
-    .rooms .room:nth-child(3n) { border-right: none; }
-    .room:hover {
-      background: var(--accent);
-      color: #000;
-    }
-    .room:hover .r-num,
-    .room:hover .r-brief { color: rgba(0,0,0,0.65); }
-    .room:hover .r-arrow { color: #000; }
-
-    .r-num {
-      font-family: var(--mono); font-size: 11px; color: var(--dim);
-      letter-spacing: 0.18em; text-transform: uppercase;
-      margin-bottom: auto;
-    }
-    .r-name {
-      font-family: var(--sans); font-size: 32px;
-      font-weight: 700; line-height: 1;
-      text-transform: uppercase; letter-spacing: -0.015em;
-      margin-top: 40px;
-    }
-    .r-brief {
-      font-family: var(--sans); font-size: 13px;
-      color: var(--dim); line-height: 1.55;
-      margin-top: 10px;
-    }
-    .r-arrow {
-      font-family: var(--mono); font-size: 11px; color: var(--accent);
-      letter-spacing: 0.18em; text-transform: uppercase;
-      margin-top: 20px;
-    }
-
-    /* Docent panel */
-    .docent-panel {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      border-bottom: 1px solid var(--faint);
-      background: #0a0a0a;
-      text-decoration: none; color: inherit;
-      min-height: 240px;
-    }
-    .docent-panel:hover { background: var(--accent); color: #000; }
-    .docent-panel:hover .dp-meta,
-    .docent-panel:hover .dp-brief { color: rgba(0,0,0,0.65); }
-    .docent-panel:hover .dp-arrow { color: #000; }
-    .docent-panel:hover .dp-dot { background: #000; }
-
-    .dp-left {
-      padding: 40px;
-      border-right: 1px solid var(--faint);
-      display: flex; flex-direction: column;
-    }
-    .dp-meta {
-      font-family: var(--mono); font-size: 11px; color: var(--accent);
-      letter-spacing: 0.18em; text-transform: uppercase;
-    }
-    .dp-h {
-      font-family: var(--sans);
-      font-size: clamp(44px, 6vw, 80px);
-      font-weight: 700; line-height: 0.92; letter-spacing: -0.03em;
-      text-transform: uppercase;
-      margin-top: auto;
-      display: flex; align-items: center; gap: 16px;
-    }
-    .dp-dot {
-      display: inline-block;
-      width: 16px; height: 16px;
-      background: var(--accent);
-      flex: 0 0 16px;
-    }
-    .dp-right {
-      padding: 40px;
-      display: flex; flex-direction: column; justify-content: center;
-    }
-    .dp-brief {
-      font-family: var(--sans); font-size: 16px;
-      color: var(--fg); line-height: 1.65;
-      max-width: 50ch;
-    }
-    .dp-arrow {
-      font-family: var(--mono); font-size: 11px; color: var(--accent);
-      letter-spacing: 0.18em; text-transform: uppercase;
-      margin-top: 24px;
-    }
-
-    /* Notice */
-    .notice {
-      padding: 24px 56px;
-      border-bottom: 1px solid var(--faint);
-      font-family: var(--mono); font-size: 11px;
-      color: var(--dim); letter-spacing: 0.12em;
-      text-transform: uppercase;
-      text-align: center;
-      line-height: 1.7;
-    }
-    .notice .pulse {
-      display: inline-block; width: 8px; height: 8px;
-      background: var(--accent); margin-right: 8px;
-      vertical-align: middle;
-    }
-
-    /* Footer */
-    footer {
-      padding: 24px 56px; border-top: 1px solid var(--faint);
-      font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,0.2);
-      letter-spacing: 0.1em; text-transform: uppercase;
-      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
-    }
-
-    @media (max-width: 900px) {
-      .nav { padding: 0 20px; gap: 14px; overflow-x: auto; scrollbar-width: none; }
-      .nav::-webkit-scrollbar { display: none; }
-      .hero { padding: 40px 24px; grid-template-columns: 1fr; gap: 32px; }
-      .hero-meta { grid-template-columns: 1fr; }
-      .dir-bar { padding: 24px; }
-      .featured-panel { grid-template-columns: 1fr; }
-      .fp-left, .fp-right { padding: 24px; border-right: none; }
-      .fp-left { border-bottom: 1px solid var(--faint); }
-      .rooms { grid-template-columns: 1fr 1fr; }
-      .rooms .room { border-right: 1px solid var(--faint); padding: 22px 20px 28px; min-height: 200px; }
-      .rooms .room:nth-child(2n) { border-right: none; }
-      .rooms .room:nth-child(3n) { border-right: 1px solid var(--faint); }
-      .r-name { font-size: 24px; margin-top: 28px; }
-      .docent-panel { grid-template-columns: 1fr; }
-      .dp-left, .dp-right { padding: 28px 24px; border-right: none; }
-      .dp-left { border-bottom: 1px solid var(--faint); }
-      .notice { padding: 20px 24px; }
-      footer { padding: 20px 24px; }
-    }
-    @media (max-width: 480px) {
-      .rooms { grid-template-columns: 1fr; }
-      .rooms .room { border-right: none !important; }
+    .hero-meta b { color: var(--accent-red); font-weight: 700; display: block; margin-bottom: 4px; font-size: 14px; letter-spacing: -0.01em; text-transform: none; font-family: var(--sans); }
+    @media (max-width: 900px) { .hero-meta { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .hero-meta { grid-template-columns: 1fr; } }
+    
+    .index-col-0 {
+      font-family: var(--mono); font-size: 11px; color: var(--faint);
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 0.2em;
     }
   </style>
 </head>
@@ -332,152 +73,134 @@
     <a href="/game/">GAME</a>
     <a href="/subject/">SUBJECT</a>
     <a href="/bot/">BOT</a>
+    <a href="/notes/">NOTES</a>
   </nav>
 
-  <header class="hero">
-    <div class="hero-left">
-      <div class="hero-eyebrow">A museum of Dr Non's mind &nbsp;·&nbsp; Eleven rooms &nbsp;·&nbsp; One docent</div>
-      <div class="hero-count"><span class="lit">100</span> DAYS</div>
-      <div class="hero-title">of Non</div>
+  <div class="layout-grid">
+    <div class="col-0 index-col-0">
+      000 /// DIRECTORY
     </div>
-    <div class="hero-right">
-      <p class="hero-desc">
-        A 100-day biographical installation. One question per day, answered and fact-checked in
-        public. <strong>Memory and record, side by side.</strong> Where they disagree is the most
-        interesting cell on the page.
-      </p>
-      <p class="hero-desc" style="margin-top:16px;color:var(--dim);">
-        A journal that is also a journey. The museum opens on Day 001 and accumulates from there.
-        Eleven rooms map the mind that wrote the blog the bot will draw from.
-      </p>
-      <div class="hero-meta">
-        <div><b>Day 001 of 100</b>Today's record</div>
-        <div><b>2026</b>Bangkok</div>
-        <div><b>99 posts</b>Blog corpus, 2025</div>
-        <div><b>~240k words</b>Available to the bot</div>
+    
+    <div class="col-1">
+      <header class="hero-container">
+        <div class="hero-eyebrow">A museum of Dr Non's mind &nbsp;·&nbsp; Eleven rooms &nbsp;·&nbsp; One docent</div>
+        <div class="type-as-image">
+          <span class="text-red">100</span> DAYS OF NON
+        </div>
+        
+        <div class="editorial-body hero-desc">
+          <p>A 100-day biographical installation. One question per day, answered and fact-checked in public. <strong class="text-accent">Memory and record, side by side.</strong> Where they disagree is the most interesting cell on the page.</p>
+          <p>A journal that is also a journey. The museum opens on Day 001 and accumulates from there. Eleven rooms map the mind that wrote the blog the bot will draw from.</p>
+        </div>
+
+        <div class="hero-meta">
+          <div><b>Day 001 of 100</b>Today's record</div>
+          <div><b>2026</b>Bangkok</div>
+          <div><b>99 posts</b>Blog corpus, 2025</div>
+          <div><b>~240k words</b>Available to the bot</div>
+        </div>
+      </header>
+
+      <div class="dir-header">
+        <h2 class="room-title" style="margin-top:0">Directory</h2>
+        <div class="mono text-dim t-11" style="letter-spacing:0.15em;">11 rooms &nbsp;·&nbsp; Open everywhere &nbsp;·&nbsp; No tickets</div>
       </div>
-    </div>
-  </header>
 
-  <div class="dir-bar">
-    <h2>Directory</h2>
-    <div class="dir-meta">11 rooms &nbsp;·&nbsp; Open everywhere &nbsp;·&nbsp; No tickets</div>
-  </div>
+      <div class="rooms-matrix">
+        <a href="/day/001/" class="room-cell" style="background:var(--accent); color:#000; border-color:#000;">
+          <span class="room-meta" style="color:rgba(0,0,0,0.6)">Room 01 · Record</span>
+          <div class="room-title">Day 001</div>
+          <div class="room-desc" style="color:#000">Today's entry · Phase I · Origin &amp; Place. Where do you remember first standing in Bangkok?</div>
+          <div class="mono t-11" style="margin-top:auto; letter-spacing:0.15em">ENTER RECORD →</div>
+        </a>
 
-  <!-- Featured: current day -->
-  <a href="/day/001/" class="featured-panel">
-    <div class="fp-left">
-      <span class="fp-num">Room 01 · Record</span>
-      <div class="fp-day">001</div>
-      <div class="fp-of">/ 100</div>
-    </div>
-    <div class="fp-right">
-      <div>
-        <div class="fp-meta">Today's entry · Phase I · Origin &amp; Place</div>
-        <h3 class="fp-h">Where do you remember first standing in Bangkok?</h3>
-        <p class="fp-brief">
-          The full record for Day 001 — answer, biographer narration, twenty-seven extracted claims,
-          fact-check status of each. Memory says one thing. The archives say another. Where they
-          disagree is the page.
-        </p>
+        <a href="/map/" class="room-cell">
+          <span class="room-meta">02 · The plan</span>
+          <div class="room-title">Map</div>
+          <div class="room-desc">A city of ideas. Eight districts, thirty-two landmarks. Click a dot, read the source.</div>
+          <div class="mono t-11 text-accent" style="margin-top:auto; letter-spacing:0.15em">ENTER →</div>
+        </a>
+
+        <a href="/corpus/" class="room-cell">
+          <span class="room-meta">03 · The source</span>
+          <div class="room-title">Corpus</div>
+          <div class="room-desc">The full nonharvard blog. One hundred posts, ~240k words. The raw material the bot draws from.</div>
+          <div class="mono t-11 text-accent" style="margin-top:auto; letter-spacing:0.15em">BROWSE →</div>
+        </a>
+
+        <a href="/chronos/" class="room-cell">
+          <span class="room-meta">04 · The timeline</span>
+          <div class="room-title">Chronos</div>
+          <div class="room-desc">1981 to 2026. One station per year, more when the year had more. Born, built, defended, drafted.</div>
+          <div class="mono t-11 text-accent" style="margin-top:auto; letter-spacing:0.15em">WALK →</div>
+        </a>
+
+        <a href="/lexicon/" class="room-cell">
+          <span class="room-meta">05 · The glossary</span>
+          <div class="room-title">Lexicon</div>
+          <div class="room-desc">A glossary of Nonism. Aphoristic. Definitions earn their place by ending arguments.</div>
+          <div class="mono t-11 text-accent" style="margin-top:auto; letter-spacing:0.15em">READ →</div>
+        </a>
+
+        <a href="/archive/" class="room-cell">
+          <span class="room-meta">06 · The library</span>
+          <div class="room-title">Archive</div>
+          <div class="room-desc">Things people prefer not to know. Ten facts. Sourced. Each paired with a painting.</div>
+          <div class="mono t-11 text-accent" style="margin-top:auto; letter-spacing:0.15em">OPEN →</div>
+        </a>
+
+        <a href="/voices/" class="room-cell">
+          <span class="room-meta">07 · The voice</span>
+          <div class="room-title">Voices</div>
+          <div class="room-desc">Six speech-acts as posters. Definitions, sermons, observations, the structural-guess signature.</div>
+          <div class="mono t-11 text-accent" style="margin-top:auto; letter-spacing:0.15em">HEAR →</div>
+        </a>
+
+        <a href="/method/" class="room-cell">
+          <span class="room-meta">08 · The trust page</span>
+          <div class="room-title">Method</div>
+          <div class="room-desc">How this works. The four claim types. What the bot promises. What this museum is not.</div>
+          <div class="mono t-11 text-accent" style="margin-top:auto; letter-spacing:0.15em">READ →</div>
+        </a>
+
+        <a href="/game/" class="room-cell">
+          <span class="room-meta">09 · The test</span>
+          <div class="room-title">Game</div>
+          <div class="room-desc">You are the fact-checker. Six claims from Day 1. Verify, contradict, or admit you cannot.</div>
+          <div class="mono t-11 text-accent" style="margin-top:auto; letter-spacing:0.15em">PLAY →</div>
+        </a>
+
+        <a href="/subject/" class="room-cell">
+          <span class="room-meta">10 · The portrait</span>
+          <div class="room-title">Subject</div>
+          <div class="room-desc">Non Arkara. Born 1 Nov 1981, Bangkok. Architecture, anthropology, smart cities.</div>
+          <div class="mono t-11 text-accent" style="margin-top:auto; letter-spacing:0.15em">VIEW →</div>
+        </a>
+
+        <a href="/bot/" class="room-cell" style="background:#0a0a0a;">
+          <span class="room-meta text-yellow">11 · Docent</span>
+          <div class="room-title">Talk to Non</div>
+          <div class="room-desc">A chat that speaks in Dr Non's voice. Direct from the record where it can. Deduced where it must.</div>
+          <div class="mono t-11 text-yellow" style="margin-top:auto; letter-spacing:0.15em">OPEN DOCENT →</div>
+        </a>
+
+        <a href="/notes/" class="room-cell" style="background:#0a0a0a; border-right:none;">
+          <span class="room-meta text-yellow">12 · Annotated</span>
+          <div class="room-title">The Annotated Record</div>
+          <div class="room-desc">His own blog posts, grammar-edited, with excessive fact-checks in the margin. Like the annotated Mein Kampf, but the subject survives.</div>
+          <div class="mono t-11 text-yellow" style="margin-top:auto; letter-spacing:0.15em">READ NOTES →</div>
+        </a>
       </div>
-      <div class="fp-arrow">Enter today's record →</div>
+
+      <div class="telemetry-block" style="border-top:none;">
+        <div style="flex-grow:1; display:flex; align-items:center; gap:16px;">
+          <span style="display:inline-block; width:8px; height:8px; background:var(--accent-red);"></span>
+          <span class="text-dim">BOT NOT YET WIRED &nbsp;·&nbsp; Demo answers pre-loaded &nbsp;·&nbsp; Claude API wiring next</span>
+        </div>
+      </div>
+
     </div>
-  </a>
-
-  <!-- Rooms grid: 02 through 10 -->
-  <div class="rooms">
-
-    <a href="/map/" class="room">
-      <span class="r-num">02 · The plan</span>
-      <div class="r-name">Map</div>
-      <div class="r-brief">A city of ideas. Eight districts, thirty-two landmarks. Click a dot, read the source.</div>
-      <div class="r-arrow">Enter →</div>
-    </a>
-
-    <a href="/corpus/" class="room">
-      <span class="r-num">03 · The source</span>
-      <div class="r-name">Corpus</div>
-      <div class="r-brief">The full nonharvard blog. One hundred posts, ~240k words. The raw material the bot draws from.</div>
-      <div class="r-arrow">Browse →</div>
-    </a>
-
-    <a href="/chronos/" class="room">
-      <span class="r-num">04 · The timeline</span>
-      <div class="r-name">Chronos</div>
-      <div class="r-brief">1981 to 2026. One station per year, more when the year had more. Born, built, defended, drafted.</div>
-      <div class="r-arrow">Walk →</div>
-    </a>
-
-    <a href="/lexicon/" class="room">
-      <span class="r-num">05 · The glossary</span>
-      <div class="r-name">Lexicon</div>
-      <div class="r-brief">A glossary of Nonism. Aphoristic. Definitions earn their place by ending arguments.</div>
-      <div class="r-arrow">Read →</div>
-    </a>
-
-    <a href="/archive/" class="room">
-      <span class="r-num">06 · The library</span>
-      <div class="r-name">Archive</div>
-      <div class="r-brief">Things people prefer not to know. Ten facts. Sourced. Each paired with a painting.</div>
-      <div class="r-arrow">Open →</div>
-    </a>
-
-    <a href="/voices/" class="room">
-      <span class="r-num">07 · The voice</span>
-      <div class="r-name">Voices</div>
-      <div class="r-brief">Six speech-acts as posters. Definitions, sermons, observations, the structural-guess signature.</div>
-      <div class="r-arrow">Hear →</div>
-    </a>
-
-    <a href="/method/" class="room">
-      <span class="r-num">08 · The trust page</span>
-      <div class="r-name">Method</div>
-      <div class="r-brief">How this works. The four claim types. What the bot promises. What this museum is not.</div>
-      <div class="r-arrow">Read →</div>
-    </a>
-
-    <a href="/game/" class="room">
-      <span class="r-num">09 · The test</span>
-      <div class="r-name">Game</div>
-      <div class="r-brief">You are the fact-checker. Six claims from Day 1. Verify, contradict, or admit you cannot.</div>
-      <div class="r-arrow">Play →</div>
-    </a>
-
-    <a href="/subject/" class="room">
-      <span class="r-num">10 · The portrait</span>
-      <div class="r-name">Subject</div>
-      <div class="r-brief">Non Arkara. Born 1 Nov 1981, Bangkok. Architecture, anthropology, smart cities. Forty-two years in the same house.</div>
-      <div class="r-arrow">View →</div>
-    </a>
-
   </div>
-
-  <!-- Docent panel -->
-  <a href="/bot/" class="docent-panel">
-    <div class="dp-left">
-      <span class="dp-meta">Room 11 · Docent</span>
-      <div class="dp-h"><span class="dp-dot"></span>Talk to Non</div>
-    </div>
-    <div class="dp-right">
-      <p class="dp-brief">
-        A chat that speaks in Dr Non's voice. Direct from the record where it can. Deduced where it
-        must. <strong>Structural guess where the record stops</strong> &mdash; not "who killed" but
-        "who in which position would most want this victim killed." The signature.
-      </p>
-      <div class="dp-arrow">Open the docent →</div>
-    </div>
-  </a>
-
-  <div class="notice">
-    <span class="pulse"></span>
-    BOT NOT YET WIRED &nbsp;·&nbsp; Demo answers pre-loaded from the blog corpus &nbsp;·&nbsp; Claude API wiring next
-  </div>
-
-  <footer>
-    <span>100 Days of Non &nbsp;·&nbsp; Non Arkara &nbsp;·&nbsp; 2026</span>
-    <span>nonharvard &nbsp;·&nbsp; 99 posts &nbsp;·&nbsp; 2025</span>
-  </footer>
 
 </body>
 </html>

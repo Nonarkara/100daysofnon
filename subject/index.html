@@ -3,54 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Subject — 100 Days of Non</title>
-  <meta name="description" content="Non Arkara. Born 1 November 1981, Bangkok. The subject of the 100-day biographical installation.">
+  <title>The Subject: A Biographical Installation — 100 Days of Non</title>
+  <meta name="description" content="Non Arkara: architecture → anthropology → smart cities. From Bangkok through MIT, Harvard, Oxford, Shanghai. A 100-day installation mapping where memory meets record.">
   
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://100days.nonarkara.org/subject/">
-  <meta property="og:title" content="Subject — Non Arkara · 100 Days of Non">
-  <meta property="og:description" content="Born 1 November 1981, Bangkok. Architecture, anthropology, smart cities. Forty-two years in the same house.">
+  <meta property="og:title" content="The Subject — Non Arkara · A Biographical Installation">
+  <meta property="og:description" content="From Bangkok suburbs to the Shanghai Yangpu. Architecture, anthropology, smart cities. The intellectual through-line made visible.">
   <meta property="og:image" content="https://100days.nonarkara.org/assets/portrait.jpg">
   <meta property="og:site_name" content="100 Days of Non">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Subject — Non Arkara · 100 Days of Non">
-  <meta name="twitter:description" content="Born 1 November 1981, Bangkok. Architecture, anthropology, smart cities. Forty-two years in the same house.">
+  <meta name="twitter:title" content="The Subject — Non Arkara">
+  <meta name="twitter:description" content="Where memory meets record. The 100-day biographical installation unfolds here.">
   <meta name="twitter:image" content="https://100days.nonarkara.org/assets/portrait.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <style>
-    :root {
-      --bg:     #000000;
-      --fg:     #FFFFFF;
-      --accent: #CCFF00;
-      --dim:    rgba(255,255,255,0.45);
-      --faint:  rgba(255,255,255,0.12);
-      --sans:   'Space Grotesk','Helvetica Neue',Helvetica,Arial,sans-serif;
-      --mono:   'JetBrains Mono','Courier New',monospace;
-      --nav-h:  40px;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { background: var(--bg); color: var(--fg); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
-
     /* ── Nav ─────────────────────────────────────────────────── */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      height: var(--nav-h);
-      border-bottom: 1px solid var(--faint);
-      display: flex; align-items: center;
-      padding: 0 32px; gap: 24px;
-      background: var(--bg); z-index: 100;
-      font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
-    }
-    .nav-brand { color: var(--dim); text-transform: uppercase; margin-right: auto; }
-    .nav a { color: var(--dim); text-decoration: none; text-transform: uppercase; }
-    .nav a:hover { color: var(--fg); }
-    .nav a.here { color: var(--accent); }
-
     /* ── Pull quote ──────────────────────────────────────────── */
     .pull-block {
       margin-top: var(--nav-h);
@@ -76,14 +50,12 @@
       padding-bottom: 48px;
     }
     .pull-text span { color: var(--accent); }
-
     /* ── Main grid ───────────────────────────────────────────── */
     .subject-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       border-top: 1px solid var(--faint);
     }
-
     /* ── Portrait column ─────────────────────────────────────── */
     .portrait-col {
       border-right: 1px solid var(--faint);
@@ -121,17 +93,14 @@
       letter-spacing: 0.1em; text-transform: uppercase;
       background: rgba(204,255,0,0.85);
     }
-
     /* ── Bio column ──────────────────────────────────────────── */
     .bio-col {
       padding: 40px 48px 56px;
     }
-
     .bio-section {
       margin-bottom: 40px;
     }
     .bio-section:last-child { margin-bottom: 0; }
-
     .bio-label {
       font-family: var(--mono); font-size: 11px; color: var(--dim);
       letter-spacing: 0.18em; text-transform: uppercase;
@@ -139,7 +108,6 @@
       padding-bottom: 8px;
       border-bottom: 1px solid var(--faint);
     }
-
     .bio-row {
       display: grid;
       grid-template-columns: 140px 1fr;
@@ -160,13 +128,11 @@
     }
     .bio-row .v.accent { color: var(--accent); }
     .bio-row .v.dim    { color: var(--dim); }
-
     .bio-indent {
       padding-left: 16px;
       border-left: 1px solid var(--faint);
       margin: 4px 0 4px 0;
     }
-
     /* Claims tally */
     .tally-grid {
       display: grid;
@@ -187,7 +153,6 @@
       letter-spacing: 0.1em; text-transform: uppercase;
       margin-top: 2px;
     }
-
     /* Latency block */
     .latency-block {
       margin-top: 40px;
@@ -203,7 +168,6 @@
       letter-spacing: 0.12em; text-transform: uppercase;
       margin-top: 4px;
     }
-
     /* ── Footer ──────────────────────────────────────────────── */
     footer {
       padding: 24px 56px; border-top: 1px solid var(--faint);
@@ -211,25 +175,18 @@
       letter-spacing: 0.1em; text-transform: uppercase;
       display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
     }
-
     /* ── Mobile ──────────────────────────────────────────────── */
     @media (max-width: 760px) {
       .pull-block { padding: 40px 24px 0; }
-      .nav { padding: 0 20px; gap: 16px; }
-
       .subject-grid { grid-template-columns: 1fr; }
-
       .portrait-col {
         border-right: none;
         border-bottom: 1px solid var(--faint);
         min-height: 320px;
       }
       .portrait-wrap { min-height: 320px; }
-
       .bio-col { padding: 32px 24px 48px; }
-
       .bio-row { grid-template-columns: 110px 1fr; }
-
       footer { padding: 20px 24px; }
     }
   </style>
@@ -249,7 +206,14 @@
     <a href="/game/">GAME</a>
     <a href="/subject/" class="here">SUBJECT</a>
     <a href="/bot/">BOT</a>
+    <a href="/notes/">NOTES</a>
   </nav>
+  <div class="layout-grid">
+    <div class="col-0 index-col-0" style="writing-mode: vertical-rl; text-orientation: mixed; display: flex; align-items: center; justify-content: center; letter-spacing: 0.2em; font-family: var(--mono); font-size: 11px; color: var(--faint);">
+      010 /// SUBJECT
+    </div>
+    <div class="col-1">
+
 
   <!-- ── Pull quote ─────────────────────────────────────── -->
   <div class="pull-block">
@@ -383,6 +347,7 @@
   </footer>
 
 
+  <link rel="stylesheet" href="/assets/css/main.css">
   <style>
     .talk-widget {
       position: fixed; bottom: 20px; right: 20px; z-index: 99;
@@ -399,16 +364,17 @@
     .talk-widget a:hover { background: #000; color: #CCFF00; }
     .talk-pulse { display: inline-block; width: 8px; height: 8px; background: #000; flex: 0 0 8px; }
     .talk-widget a:hover .talk-pulse { background: #CCFF00; }
-    .nav { overflow-x: auto; scrollbar-width: none; }
     .nav::-webkit-scrollbar { display: none; }
     @media (max-width: 720px) {
       .talk-widget { bottom: 16px; right: 16px; }
-      .nav { gap: 14px !important; padding: 0 16px !important; }
     }
   </style>
   <div class="talk-widget">
     <a href="/bot/"><span class="talk-pulse"></span> Talk to Non</a>
   </div>
 
+
+    </div>
+  </div>
 </body>
 </html>

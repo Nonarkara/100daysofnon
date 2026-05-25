@@ -22,46 +22,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <style>
-    :root {
-      --bg: #000; --fg: #fff; --accent: #CCFF00;
-      --dim: rgba(255,255,255,0.45); --faint: rgba(255,255,255,0.12);
-      --sans: 'Space Grotesk','Helvetica Neue',Helvetica,Arial,sans-serif;
-      --mono: 'JetBrains Mono','Courier New',monospace;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { background: var(--bg); color: var(--fg); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
-
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; height: 40px;
-      border-bottom: 1px solid var(--faint);
-      display: flex; align-items: center;
-      padding: 0 32px; gap: 24px;
-      background: var(--bg); z-index: 100;
-      font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
-    }
-    .nav-brand { color: var(--dim); text-transform: uppercase; margin-right: auto; }
-    .nav a { color: var(--dim); text-decoration: none; text-transform: uppercase; white-space: nowrap; }
-    .nav a:hover { color: var(--fg); }
-    .nav a.here { color: var(--accent); }
-
-    header.page {
-      margin-top: 40px;
-      padding: 48px 56px;
-      border-bottom: 1px solid var(--faint);
-    }
-    .room-num { font-family: var(--mono); font-size: 11px; color: var(--dim);
-      letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 24px; }
-    .room-title {
-      font-family: var(--sans); font-size: clamp(48px, 9vw, 96px);
-      font-weight: 700; line-height: 0.9; letter-spacing: -0.025em;
-      text-transform: uppercase;
-    }
-    .room-sub {
-      font-family: var(--sans); font-size: 14px; color: var(--dim);
-      line-height: 1.6; max-width: 640px; margin-top: 24px;
-    }
-
     /* Sections */
     section.block {
       border-bottom: 1px solid var(--faint);
@@ -79,16 +41,11 @@
       max-width: 14ch;
       margin-bottom: 32px;
     }
-    .block-body {
-      font-family: var(--sans); font-size: 16px;
-      line-height: 1.7; color: var(--fg);
-      max-width: 60ch;
-    }
+    .block-
     .block-body p { margin-bottom: 16px; }
     .block-body p:last-child { margin-bottom: 0; }
     .block-body em { color: var(--dim); font-style: normal; }
     .block-body strong { color: var(--accent); font-weight: 400; }
-
     /* Two-col within a block */
     .two-col {
       display: grid;
@@ -96,7 +53,6 @@
       gap: 64px;
       align-items: start;
     }
-
     /* Claim types grid */
     .claims-grid {
       display: grid;
@@ -129,7 +85,6 @@
       color: var(--dim); line-height: 1.55;
       margin-top: 12px;
     }
-
     /* Pull quote */
     .pull-quote {
       padding: 80px 56px;
@@ -151,7 +106,6 @@
       letter-spacing: 0.18em; text-transform: uppercase;
       margin-top: 32px;
     }
-
     /* Promises list */
     .promises {
       list-style: none;
@@ -175,14 +129,12 @@
       line-height: 1.6;
     }
     .p-text strong { color: var(--accent); font-weight: 400; }
-
     footer {
       padding: 24px 56px; border-top: 1px solid var(--faint);
       font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,0.2);
       letter-spacing: 0.1em; text-transform: uppercase;
       display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
     }
-
     .talk-widget {
       position: fixed; bottom: 20px; right: 20px;
       z-index: 99;
@@ -199,11 +151,8 @@
     .talk-widget a:hover { background: #000; color: var(--accent); }
     .talk-pulse { display: inline-block; width: 8px; height: 8px; background: #000; flex: 0 0 8px; }
     .talk-widget a:hover .talk-pulse { background: var(--accent); }
-
     @media (max-width: 720px) {
-      .nav { padding: 0 20px; gap: 14px; overflow-x: auto; scrollbar-width: none; }
       .nav::-webkit-scrollbar { display: none; }
-      header.page { padding: 36px 24px; }
       section.block { padding: 36px 24px; }
       .two-col { grid-template-columns: 1fr; gap: 24px; }
       .block-h { font-size: 24px; margin-bottom: 20px; }
@@ -231,7 +180,14 @@
     <a href="/game/">GAME</a>
     <a href="/subject/">SUBJECT</a>
     <a href="/bot/">BOT</a>
+    <a href="/notes/">NOTES</a>
   </nav>
+  <div class="layout-grid">
+    <div class="col-0 index-col-0" style="writing-mode: vertical-rl; text-orientation: mixed; display: flex; align-items: center; justify-content: center; letter-spacing: 0.2em; font-family: var(--mono); font-size: 11px; color: var(--faint);">
+      008 /// METHOD
+    </div>
+    <div class="col-1">
+
 
   <header class="page">
     <div class="room-num">Room 08 of 11 · The Trust Page</div>
@@ -379,5 +335,8 @@
     <a href="/bot/"><span class="talk-pulse"></span> Talk to Non</a>
   </div>
 
+
+    </div>
+  </div>
 </body>
 </html>

@@ -21,29 +21,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <style>
-    :root {
-      --bg: #000; --fg: #fff; --accent: #CCFF00;
-      --dim: rgba(255,255,255,0.45); --faint: rgba(255,255,255,0.12);
-      --sans: 'Space Grotesk','Helvetica Neue',Helvetica,Arial,sans-serif;
-      --mono: 'JetBrains Mono','Courier New',monospace;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { background: var(--bg); color: var(--fg); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
-
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; height: 40px;
-      border-bottom: 1px solid var(--faint);
-      display: flex; align-items: center;
-      padding: 0 32px; gap: 24px;
-      background: var(--bg); z-index: 100;
-      font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
-    }
-    .nav-brand { color: var(--dim); text-decoration: none; text-transform: uppercase; margin-right: auto; }
-    .nav a { color: var(--dim); text-decoration: none; text-transform: uppercase; }
-    .nav a:hover { color: var(--fg); }
-    .nav a.here { color: var(--accent); }
-
     .page-header {
       margin-top: 40px;
       padding: 40px 56px 32px;
@@ -61,38 +40,31 @@
       font-family: var(--mono); font-size: 11px; color: var(--dim);
       letter-spacing: 0.06em; margin-left: auto;
     }
-
     /* ── Map container ───────────────────────────── */
     .map-wrap {
       padding: 40px 56px;
       overflow-x: auto;
     }
-
     svg#citymap {
       width: 100%;
       max-width: 960px;
       height: auto;
       display: block;
     }
-
     /* SVG styles */
     .district-border { fill: none; stroke: rgba(255,255,255,0.15); stroke-width: 0.5; }
     .district-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; fill: rgba(255,255,255,0.35); letter-spacing: 1.5px; text-transform: uppercase; }
     .district-num { font-family: 'JetBrains Mono', monospace; font-size: 8px; fill: rgba(255,255,255,0.2); }
-
     .connect { stroke: rgba(255,255,255,0.1); stroke-width: 0.75; fill: none; stroke-dasharray: 2 4; }
     .connect-major { stroke: rgba(255,255,255,0.2); stroke-width: 1; fill: none; }
-
     .landmark-dot { fill: #fff; cursor: pointer; }
     .landmark-dot:hover { fill: var(--accent); }
     .landmark-dot.accent { fill: rgba(204,255,0,0.6); }
     .landmark-dot.accent:hover { fill: #CCFF00; }
-
     .landmark-label {
       font-family: 'JetBrains Mono', monospace; font-size: 7px;
       fill: rgba(255,255,255,0.45); pointer-events: none; letter-spacing: 0.5px;
     }
-
     /* Info panel */
     .info-panel {
       display: none;
@@ -119,7 +91,6 @@
       letter-spacing: 0.1em; text-transform: uppercase;
     }
     .info-close:hover { color: var(--fg); }
-
     /* Mobile list fallback */
     .district-list { display: none; padding: 32px 24px 48px; }
     .dl-district { margin-bottom: 32px; }
@@ -134,14 +105,12 @@
       cursor: pointer;
     }
     .dl-item:hover { color: var(--fg); }
-
     @media (max-width: 640px) {
       .map-wrap { display: none; }
       .district-list { display: block; }
       .page-header { padding: 32px 24px 24px; gap: 12px; }
       .header-desc { display: none; }
       .info-panel { margin: 0 24px 32px; }
-      .nav { padding: 0 20px; gap: 16px; }
     }
   </style>
 </head>
@@ -160,7 +129,14 @@
     <a href="/game/">GAME</a>
     <a href="/subject/">SUBJECT</a>
     <a href="/bot/">BOT</a>
+    <a href="/notes/">NOTES</a>
   </nav>
+  <div class="layout-grid">
+    <div class="col-0 index-col-0" style="writing-mode: vertical-rl; text-orientation: mixed; display: flex; align-items: center; justify-content: center; letter-spacing: 0.2em; font-family: var(--mono); font-size: 11px; color: var(--faint);">
+      002 /// MAP
+    </div>
+    <div class="col-1">
+
 
   <header class="page-header">
     <span class="header-label">02 · Map</span>
@@ -491,6 +467,7 @@
   </script>
 
 
+  <link rel="stylesheet" href="/assets/css/main.css">
   <style>
     .talk-widget {
       position: fixed; bottom: 20px; right: 20px; z-index: 99;
@@ -507,16 +484,17 @@
     .talk-widget a:hover { background: #000; color: #CCFF00; }
     .talk-pulse { display: inline-block; width: 8px; height: 8px; background: #000; flex: 0 0 8px; }
     .talk-widget a:hover .talk-pulse { background: #CCFF00; }
-    .nav { overflow-x: auto; scrollbar-width: none; }
     .nav::-webkit-scrollbar { display: none; }
     @media (max-width: 720px) {
       .talk-widget { bottom: 16px; right: 16px; }
-      .nav { gap: 14px !important; padding: 0 16px !important; }
     }
   </style>
   <div class="talk-widget">
     <a href="/bot/"><span class="talk-pulse"></span> Talk to Non</a>
   </div>
 
+
+    </div>
+  </div>
 </body>
 </html>
