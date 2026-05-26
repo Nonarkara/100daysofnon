@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>003 — 100 Days of Non</title>
+  <meta name="description" content="Day 003. He walked into a room at TKC and showed them a working national streaming platform. 45 minutes. Zero baht. The record checks what it can.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://100.nonarkara.org/day/003/">
+  <meta property="og:title" content="Day 003 — 45 minutes. Zero baht. That's the claim. · 100 Days of Non">
+  <meta property="og:description" content="He walked into a room at TKC and showed them a working national streaming platform. What he built, how he built it, and what the record can verify.">
+  <meta property="og:image" content="https://100.nonarkara.org/assets/portrait.jpg">
+  <meta property="og:site_name" content="100 Days of Non">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Day 003 — 45 minutes. Zero baht. · 100 Days of Non">
+  <meta name="twitter:description" content="He walked into a room at TKC and showed them a working national streaming platform. What he built, how he built it, and what the record can verify.">
+  <meta name="twitter:image" content="https://100.nonarkara.org/assets/portrait.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── Design tokens ──────────────────────────────────────────── */
+    :root {
+      --bg:     #000000;
+      --fg:     #FFFFFF;
+      --accent: #CCFF00;
+      --dim:    rgba(255,255,255,0.45);
+      --faint:  rgba(255,255,255,0.12);
+
+      --sans:  'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+      --mono:  'JetBrains Mono', 'Courier New', monospace;
+
+      --micro:   11px;
+      --body:    14px;
+      --emph:    18px;
+      --pull:    clamp(56px, 14vw, 180px);
+      --counter: clamp(80px, 20vw, 144px);
+
+      --nav-h:    40px;
+      --strip-h:  32px;
+      --header-h: 72px;
+      --col-x:    24px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--sans);
+      font-size: var(--body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Global nav ─────────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: var(--bg);
+      border-bottom: 1px solid var(--faint);
+      display: flex;
+      align-items: center;
+      padding: 0 48px;
+      gap: 24px;
+      z-index: 101;
+      font-family: var(--mono);
+      font-size: var(--micro);
+      letter-spacing: 0.12em;
+    }
+    .nav-brand { color: var(--dim); text-transform: uppercase; margin-right: auto; white-space: nowrap; flex-shrink: 0; }
+    .nav a { color: var(--dim); text-decoration: none; text-transform: uppercase; display: inline-flex; align-items: center; align-self: stretch; padding: 0 2px; }
+    .nav a:hover { color: var(--fg); }
+    .nav a.here { color: var(--accent); }
+
+    /* ─── Day-index strip ───────────────────────────────────────── */
+    .strip {
+      position: fixed;
+      top: var(--nav-h);
+      left: 0; right: 0;
+      height: var(--strip-h);
+      background: var(--bg);
+      border-bottom: 1px solid var(--faint);
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 0 48px;
+      z-index: 100;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .strip::-webkit-scrollbar { display: none; }
+    .strip-title {
+      font-family: var(--mono);
+      font-size: var(--micro);
+      color: var(--dim);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-right: 16px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .day-num {
+      font-family: var(--mono);
+      font-size: var(--micro);
+      color: rgba(255,255,255,0.18);
+      width: 28px;
+      text-align: center;
+      flex-shrink: 0;
+      letter-spacing: 0;
+    }
+    a.day-num { text-decoration: none; }
+    a.day-num.done { color: var(--dim); }
+    a.day-num.done:hover { color: var(--fg); }
+    a.day-num.active { color: var(--accent); }
+    .day-num[title] { cursor: default; }
+
+    /* ─── Main layout ────────────────────────────────────────────── */
+    main {
+      padding: calc(var(--nav-h) + var(--strip-h) + 56px) 48px 80px;
+      max-width: 1200px;
+    }
+
+    /* ─── Day counter ────────────────────────────────────────────── */
+    .day-counter {
+      font-family: var(--mono);
+      font-size: var(--counter);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .day-meta {
+      font-family: var(--mono);
+      font-size: var(--micro);
+      color: var(--dim);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 48px;
+    }
+
+    /* ─── Pull image (type-as-image) ─────────────────────────────── */
+    .pull-image {
+      font-family: var(--sans);
+      font-size: var(--pull);
+      font-weight: 700;
+      line-height: 0.88;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.06);
+      white-space: nowrap;
+      overflow: hidden;
+      margin-left: -4px;
+      margin-bottom: 48px;
+    }
+
+    /* ─── Phase / question ───────────────────────────────────────── */
+    .phase-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .phase-tag {
+      font-family: var(--mono);
+      font-size: var(--micro);
+      color: var(--dim);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .rule-h {
+      height: 1px;
+      background: var(--faint);
+      flex: 1;
+    }
+    .q-label {
+      font-family: var(--mono);
+      font-size: var(--micro);
+      color: var(--dim);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .q-drop {
+      font-family: var(--sans);
+      font-size: clamp(40px, 8vw, 72px);
+      font-weight: 700;
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      color: var(--fg);
+      margin-bottom: 24px;
+    }
+    .q-text {
+      font-family: var(--sans);
+      font-size: var(--emph);
+      color: var(--dim);
+      line-height: 1.5;
+      max-width: 60ch;
+      margin-bottom: 48px;
+      border-left: 2px solid var(--faint);
+      padding-left: 20px;
+    }
+
+    /* ─── Content grid ───────────────────────────────────────────── */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 48px;
+      align-items: start;
+      margin-bottom: 64px;
+    }
+
+    .col-label {
+      font-family: var(--mono);
+      font-size: var(--micro);
+      color: var(--dim);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--faint);
+    }
+
+    .answer-text p {
+      font-size: var(--body);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      color: var(--fg);
+    }
+    .answer-text p:last-child { margin-bottom: 0; }
+
+    .msg-break {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin: 28px 0;
+    }
+
+    /* ─── Narration ──────────────────────────────────────────────── */
+    .narration {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid var(--faint);
+    }
+    .narration-text p {
+      font-size: var(--body);
+      line-height: 1.7;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+    .narration-text p:last-child { margin-bottom: 0; }
+
+    /* ─── Fact-check column ──────────────────────────────────────── */
+    .fc-col {
+      position: sticky;
+      top: calc(var(--nav-h) + var(--strip-h) + 24px);
+      max-height: calc(100vh - var(--nav-h) - var(--strip-h) - 48px);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--faint) transparent;
+    }
+
+    .claim {
+      display: grid;
+      grid-template-columns: 14px 80px 1fr;
+      grid-template-rows: auto auto;
+      column-gap: 8px;
+      row-gap: 2px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--faint);
+    }
+    .c-glyph {
+      font-family: var(--mono);
+      font-size: var(--micro);
+      color: var(--dim);
+      grid-row: 1;
+      padding-top: 1px;
+    }
+    .c-glyph.cx { color: #FF2200; }
+    .c-tag {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: var(--dim);
+      text-transform: uppercase;
+      grid-row: 1;
+      padding-top: 2px;
+    }
+    .c-tag.cx { color: #FF2200; }
+    .c-text {
+      font-size: var(--micro);
+      color: var(--fg);
+      grid-column: 3;
+      grid-row: 1;
+      line-height: 1.4;
+    }
+    .c-sub {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: rgba(255,255,255,0.3);
+      grid-column: 3;
+      grid-row: 2;
+      line-height: 1.4;
+    }
+    .c-sub.cx { color: rgba(255,80,40,0.6); }
+
+    .fc-overflow {
+      font-family: var(--mono);
+      font-size: var(--micro);
+      color: rgba(255,255,255,0.2);
+      padding: 12px 0;
+    }
+
+    .fc-tally {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding: 20px 0 0;
+      border-top: 1px solid var(--faint);
+      margin-top: 8px;
+    }
+    .tally-n {
+      font-family: var(--mono);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--fg);
+    }
+    .tally-n.cx { color: #FF2200; }
+    .tally-l {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 4px;
+    }
+
+    /* ─── Photo strip ────────────────────────────────────────────── */
+    .photo-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--faint);
+      border-top: 1px solid var(--faint);
+      border-bottom: 1px solid var(--faint);
+      margin: 0 -48px 64px;
+    }
+    .photo-strip-item {
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #111;
+    }
+    .photo-strip-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(1) contrast(1.4) brightness(0.85);
+    }
+    .photo-strip-item:first-child img {
+      /* Hero card photo — higher contrast */
+      filter: grayscale(1) contrast(1.6) brightness(0.8);
+    }
+
+    /* ─── Telemetry ──────────────────────────────────────────────── */
+    .telemetry {
+      border-top: 1px solid var(--faint);
+      border-bottom: 1px solid var(--faint);
+      padding: 24px 0;
+      margin-bottom: 48px;
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+    }
+    .t-number {
+      font-family: var(--mono);
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--fg);
+    }
+    .t-meta {
+      font-family: var(--mono);
+      font-size: var(--micro);
+      color: var(--dim);
+      letter-spacing: 0.08em;
+    }
+
+    /* ─── Vertical rule ──────────────────────────────────────────── */
+    .col-rule {
+      position: fixed;
+      top: 0; bottom: 0;
+      left: 40px;
+      width: 1px;
+      background: var(--faint);
+      pointer-events: none;
+      z-index: 99;
+    }
+
+    /* ─── Footer ─────────────────────────────────────────────────── */
+    footer {
+      font-family: var(--mono);
+      font-size: var(--micro);
+      color: var(--dim);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      padding-top: 24px;
+      border-top: 1px solid var(--faint);
+    }
+
+    /* ─── Talk widget ────────────────────────────────────────────── */
+    .talk-widget {
+      position: fixed; bottom: 20px; right: 20px; z-index: 99;
+      font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.15em; text-transform: uppercase;
+    }
+    .talk-widget a {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 16px; min-height: 44px;
+      background: #CCFF00; color: #000;
+      text-decoration: none;
+      border: 1px solid #CCFF00;
+    }
+    .talk-widget a:hover { background: #000; color: #CCFF00; }
+    .talk-pulse { display: inline-block; width: 8px; height: 8px; background: #000; flex: 0 0 8px; }
+    .talk-widget a:hover .talk-pulse { background: #CCFF00; }
+
+    /* ─── Mobile ─────────────────────────────────────────────────── */
+    @media (max-width: 720px) {
+      main { padding: 40px 24px 80px; }
+      .nav  { padding: 0 20px; gap: 14px; overflow: hidden; }
+      .nav a:nth-of-type(n+7) { display: none; }
+      .strip { padding: 0 20px; }
+      .col-rule { left: 8px; }
+      .content-grid { grid-template-columns: 1fr; gap: 48px; }
+      .fc-col { position: static; height: auto; overflow: visible; }
+      .pull-image { margin-left: -24px; padding-left: 24px; }
+      .q-drop { font-size: clamp(36px, 11vw, 56px); }
+      .photo-strip { grid-template-columns: repeat(2, 1fr); margin: 0 -24px 48px; }
+      .talk-widget { bottom: 16px; right: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="col-rule" aria-hidden="true"></div>
+
+  <!-- ── Global nav ────────────────────────────────────────── -->
+  <nav class="nav" aria-label="Site navigation">
+    <a href="/" class="nav-brand">100 Days of Non</a>
+    <a href="/day/003/" class="here">RECORD</a>
+    <a href="/map/">MAP</a>
+    <a href="/corpus/">CORPUS</a>
+    <a href="/chronos/">CHRONOS</a>
+    <a href="/lexicon/">LEXICON</a>
+    <a href="/voices/">VOICES</a>
+    <a href="/archive/">ARCHIVE</a>
+    <a href="/method/">METHOD</a>
+    <a href="/game/">GAME</a>
+    <a href="/subject/">SUBJECT</a>
+    <a href="/bot/">BOT</a>
+    <a href="/notes/">NOTES</a>
+  </nav>
+
+  <!-- ── Day-index strip ─────────────────────────────────────── -->
+  <nav class="strip" aria-label="Day navigation">
+    <span class="strip-title">100 Days of Non</span>
+    <a href="/day/001/" class="day-num done">001</a>
+    <a href="/day/002/" class="day-num done">002</a>
+    <a href="/day/003/" class="day-num active">003</a>
+    <span class="day-num" title="Day 004 — not yet recorded">004</span><span class="day-num" title="Day 005 — not yet recorded">005</span>
+    <span class="day-num" title="Day 006 — not yet recorded">006</span><span class="day-num" title="Day 007 — not yet recorded">007</span><span class="day-num" title="Day 008 — not yet recorded">008</span><span class="day-num" title="Day 009 — not yet recorded">009</span><span class="day-num" title="Day 010 — not yet recorded">010</span>
+    <span class="day-num" title="Day 011 — not yet recorded">011</span><span class="day-num" title="Day 012 — not yet recorded">012</span><span class="day-num" title="Day 013 — not yet recorded">013</span><span class="day-num" title="Day 014 — not yet recorded">014</span><span class="day-num" title="Day 015 — not yet recorded">015</span>
+    <span class="day-num" title="Day 016 — not yet recorded">016</span><span class="day-num" title="Day 017 — not yet recorded">017</span><span class="day-num" title="Day 018 — not yet recorded">018</span><span class="day-num" title="Day 019 — not yet recorded">019</span><span class="day-num" title="Day 020 — not yet recorded">020</span>
+    <span class="day-num" title="Day 021 — not yet recorded">021</span><span class="day-num" title="Day 022 — not yet recorded">022</span><span class="day-num" title="Day 023 — not yet recorded">023</span><span class="day-num" title="Day 024 — not yet recorded">024</span><span class="day-num" title="Day 025 — not yet recorded">025</span>
+    <span class="day-num" title="Day 026 — not yet recorded">026</span><span class="day-num" title="Day 027 — not yet recorded">027</span><span class="day-num" title="Day 028 — not yet recorded">028</span><span class="day-num" title="Day 029 — not yet recorded">029</span><span class="day-num" title="Day 030 — not yet recorded">030</span>
+    <span class="day-num" title="Day 031 — not yet recorded">031</span><span class="day-num" title="Day 032 — not yet recorded">032</span><span class="day-num" title="Day 033 — not yet recorded">033</span><span class="day-num" title="Day 034 — not yet recorded">034</span><span class="day-num" title="Day 035 — not yet recorded">035</span>
+    <span class="day-num" title="Day 036 — not yet recorded">036</span><span class="day-num" title="Day 037 — not yet recorded">037</span><span class="day-num" title="Day 038 — not yet recorded">038</span><span class="day-num" title="Day 039 — not yet recorded">039</span><span class="day-num" title="Day 040 — not yet recorded">040</span>
+    <span class="day-num" title="Day 041 — not yet recorded">041</span><span class="day-num" title="Day 042 — not yet recorded">042</span><span class="day-num" title="Day 043 — not yet recorded">043</span><span class="day-num" title="Day 044 — not yet recorded">044</span><span class="day-num" title="Day 045 — not yet recorded">045</span>
+    <span class="day-num" title="Day 046 — not yet recorded">046</span><span class="day-num" title="Day 047 — not yet recorded">047</span><span class="day-num" title="Day 048 — not yet recorded">048</span><span class="day-num" title="Day 049 — not yet recorded">049</span><span class="day-num" title="Day 050 — not yet recorded">050</span>
+    <span class="day-num" title="Day 051 — not yet recorded">051</span><span class="day-num" title="Day 052 — not yet recorded">052</span><span class="day-num" title="Day 053 — not yet recorded">053</span><span class="day-num" title="Day 054 — not yet recorded">054</span><span class="day-num" title="Day 055 — not yet recorded">055</span>
+    <span class="day-num" title="Day 056 — not yet recorded">056</span><span class="day-num" title="Day 057 — not yet recorded">057</span><span class="day-num" title="Day 058 — not yet recorded">058</span><span class="day-num" title="Day 059 — not yet recorded">059</span><span class="day-num" title="Day 060 — not yet recorded">060</span>
+    <span class="day-num" title="Day 061 — not yet recorded">061</span><span class="day-num" title="Day 062 — not yet recorded">062</span><span class="day-num" title="Day 063 — not yet recorded">063</span><span class="day-num" title="Day 064 — not yet recorded">064</span><span class="day-num" title="Day 065 — not yet recorded">065</span>
+    <span class="day-num" title="Day 066 — not yet recorded">066</span><span class="day-num" title="Day 067 — not yet recorded">067</span><span class="day-num" title="Day 068 — not yet recorded">068</span><span class="day-num" title="Day 069 — not yet recorded">069</span><span class="day-num" title="Day 070 — not yet recorded">070</span>
+    <span class="day-num" title="Day 071 — not yet recorded">071</span><span class="day-num" title="Day 072 — not yet recorded">072</span><span class="day-num" title="Day 073 — not yet recorded">073</span><span class="day-num" title="Day 074 — not yet recorded">074</span><span class="day-num" title="Day 075 — not yet recorded">075</span>
+    <span class="day-num" title="Day 076 — not yet recorded">076</span><span class="day-num" title="Day 077 — not yet recorded">077</span><span class="day-num" title="Day 078 — not yet recorded">078</span><span class="day-num" title="Day 079 — not yet recorded">079</span><span class="day-num" title="Day 080 — not yet recorded">080</span>
+    <span class="day-num" title="Day 081 — not yet recorded">081</span><span class="day-num" title="Day 082 — not yet recorded">082</span><span class="day-num" title="Day 083 — not yet recorded">083</span><span class="day-num" title="Day 084 — not yet recorded">084</span><span class="day-num" title="Day 085 — not yet recorded">085</span>
+    <span class="day-num" title="Day 086 — not yet recorded">086</span><span class="day-num" title="Day 087 — not yet recorded">087</span><span class="day-num" title="Day 088 — not yet recorded">088</span><span class="day-num" title="Day 089 — not yet recorded">089</span><span class="day-num" title="Day 090 — not yet recorded">090</span>
+    <span class="day-num" title="Day 091 — not yet recorded">091</span><span class="day-num" title="Day 092 — not yet recorded">092</span><span class="day-num" title="Day 093 — not yet recorded">093</span><span class="day-num" title="Day 094 — not yet recorded">094</span><span class="day-num" title="Day 095 — not yet recorded">095</span>
+    <span class="day-num" title="Day 096 — not yet recorded">096</span><span class="day-num" title="Day 097 — not yet recorded">097</span><span class="day-num" title="Day 098 — not yet recorded">098</span><span class="day-num" title="Day 099 — not yet recorded">099</span><span class="day-num" title="Day 100 — not yet recorded">100</span>
+  </nav>
+
+  <main>
+
+    <!-- ── Day counter ──────────────────────────────────────── -->
+    <div class="day-counter" aria-label="Day 003">003</div>
+    <div class="day-meta">27 MAY 2026 &nbsp;·&nbsp; PHASE II — WORK &amp; METHOD &nbsp;·&nbsp; DAY 3 OF 100</div>
+
+    <!-- ── Type-as-image ────────────────────────────────────── -->
+    <div class="pull-image" aria-hidden="true">NINJA SQUAD</div>
+
+    <!-- ── Phase row ────────────────────────────────────────── -->
+    <div class="phase-row">
+      <span class="phase-tag">Phase 2 &nbsp;/&nbsp; Work &amp; Method</span>
+      <div class="rule-h"></div>
+    </div>
+
+    <!-- ── Question ─────────────────────────────────────────── -->
+    <div class="q-label">Question</div>
+    <p class="q-drop">45 minutes.<br>Zero baht.<br>That's the claim.</p>
+    <p class="q-text">
+      You walked into a room at TKC today and demonstrated a working national
+      television streaming platform. Every free-to-air channel. Emergency alerts.
+      Reminder system. A feasibility study. All of it, apparently built overnight.
+      Walk through the architecture. Then walk through the S-curve diagnosis
+      you gave them. The record will audit what it can.
+    </p>
+
+    <!-- ── Content grid ─────────────────────────────────────── -->
+    <div class="content-grid">
+
+      <!-- Left column: answer + narration -->
+      <div>
+
+        <div class="col-label">Answer &mdash; Non Arkara</div>
+
+        <div class="answer-text">
+
+          <p>The government wants to build a national digital television platform.
+          One website, all free-to-air channels, accessible anywhere — especially
+          in places where the broadcast signal is weak but 4G is available. In Mae
+          Hong Son, television access is around 24%. Mobile internet access is around
+          74%. Seven times higher. Children there could learn from educational
+          programmes if the signal could travel differently.</p>
+
+          <p>The budget attached to a project like this: twenty million baht. The
+          normal path — feasibility study, six months, thick report. Prototype by
+          year two, if they're lucky.</p>
+
+          <p>I showed them something different. An old Android phone as the server.
+          Twenty-one browser tabs running simultaneously, each streaming a different
+          channel, live. Those feeds go to a website hosted on GitHub and served
+          through Cloudflare. No cloud bills. No engineering team on retainer.
+          Internet bandwidth: approximately twelve satang an hour.</p>
+
+          <p>I also built an emergency alert function. One button, all screens update
+          simultaneously. No per-message fee. Sending an SMS alert to seventy million
+          people at standard Thai carrier rates costs somewhere between seven and
+          thirty-five million baht, depending on the carrier and volume. My version
+          costs nothing. A reminder system too — set a notification for a show, get
+          it via phone or LINE before it starts.</p>
+
+          <p>The feasibility study is seventy-five pages. McKinsey format. It
+          benchmarks NHK World, BBC iPlayer, the American networks — operating costs,
+          revenue models, Thai regulatory context, ROI projections at three coverage
+          levels.</p>
+
+          <p>Total build time: forty-five minutes. Total infrastructure cost: zero
+          baht.</p>
+
+          <p>The question I left them with: if I can walk into the regulator's office
+          tomorrow and show them this working, why would the government spend twenty
+          million baht on something that doesn't exist yet?</p>
+
+          <hr class="msg-break">
+
+          <p>That's the ninja way. A ninja doesn't buy a nuclear weapon to accomplish
+          a mission. A ninja kills with a pencil. One side of a pencil. Our goal is
+          the same — to succeed, to build something real — but we use the minimum
+          necessary force.</p>
+
+          <p>But the room at TKC was not really there to hear about a TV platform.
+          The room was there because TKC has a problem.</p>
+
+          <p>Every organisation follows an S-curve. Slow start, rapid growth,
+          plateau, decline. TKC was founded twenty-one years ago. The growth phase
+          was real — they won major projects, built credibility, scaled. But from the
+          numbers I reviewed, the company has been stagnant for two years. Last
+          year's profit came from investment income, not from core operations. Core
+          business is already losing money.</p>
+
+          <p>Nokia built excellent phones. They had the technology, the brand, the
+          distribution. They did not see the second curve coming. TKC's version of
+          the iPhone is a competitor who can now deliver what used to cost millions,
+          using AI, for zero baht, in forty-five minutes. The window to start a new
+          curve is now. Not next quarter.</p>
+
+          <hr class="msg-break">
+
+          <p>So I gave them a month. Each team: one working prototype by the
+          twenty-sixth. Not a slide deck. Not a proposal document. A real thing — a
+          functional system that solves a real problem, internal to TKC or external.</p>
+
+          <p>I gave each team API tokens: roughly one million tokens, about a hundred
+          US dollars' worth. Whatever tools they want to use. I will coach them during
+          the month — how to use AI to build fast, how to break projects into agents,
+          how to treat Python like English.</p>
+
+          <p>I am an architect. I never studied computer science formally. I learned
+          to build by doing. If I can do it, they can.</p>
+
+          <p>The person who builds a working prototype in one month is the person who
+          changes the company's S-curve. Not the person with the best title. Not the
+          person with the longest tenure. On the twenty-sixth, we'll see who that is.</p>
+
+        </div>
+
+        <!-- Narration -->
+        <div class="narration">
+          <div class="col-label">Narration &mdash; Biographer</div>
+          <div class="narration-text">
+
+            <p>Day three. He left the museum and went to TKC.</p>
+
+            <p>He made a claim and brought evidence in the same sentence. The
+            platform exists. It streams. The zero-baht framing is a rhetorical
+            compression — electricity runs at roughly one to two baht per hour for
+            the phone and router combined, and the device depreciates, and seven
+            years of compounded knowledge about how to build things fast does not
+            appear on any ledger. What he means is: zero marginal infrastructure
+            cost. The total cost is not zero.</p>
+
+            <p>The forty-five minutes is unverifiable. He didn't set a timer in
+            front of witnesses. The Dragon Quest hero-card system was visible on the
+            projection screen. The room could see it working.</p>
+
+            <p>What the record confirms: GitHub Pages is free for public
+            repositories. Cloudflare's free tier serves static content at scale.
+            Thailand decriminalised kratom in August 2021. NHK World, BBC iPlayer,
+            and American PBS affiliates all operate as free-access digital models.
+            S-curves appear in Rogers (1962); Nokia's decline is documented; the
+            smartphone transition was a contributing cause, alongside the Microsoft
+            acquisition and the failure of Windows Phone to reach critical mass.</p>
+
+            <p>What the record cannot confirm: TKC's two-year stagnation, the
+            profit-from-investments claim, the government's twenty-million-baht
+            budget figure. These came from numbers he reviewed. The numbers are
+            not public.</p>
+
+            <p>He told them their company was dying and then showed them how to
+            save it. He gave them one month. Whether that is optimism or diagnosis
+            depends on what they build.</p>
+
+          </div>
+        </div>
+
+      </div><!-- /left col -->
+
+      <!-- Right column: fact-check (sticky) -->
+      <div class="fc-col">
+
+        <div class="col-label">Fact-check &nbsp;&middot;&nbsp; 22 claims</div>
+
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">depa = Digital Economy Promotion Agency</span>
+          <span class="c-sub">Official name confirmed</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Seven years in government</span>
+          <span class="c-sub">Day 002 record: &ldquo;past seven years I worked for the Thai government&rdquo;</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">GitHub Pages: free for public repos</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Cloudflare free tier: static content at scale</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Thailand kratom: decriminalised Aug 2021</span>
+          <span class="c-sub">Narcotics Act amendment, effective 24 Aug 2021</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">NHK World, BBC iPlayer: free-to-air digital models</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Dragon Quest: hero cards with skill stats</span>
+          <span class="c-sub">Core RPG mechanic since Dragon Quest III (1988)</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">4 C's retention model (Compensation, Cause, Community, Career)</span>
+          <span class="c-sub">Standard talent management literature</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">S-curve: technology adoption / org lifecycle</span>
+          <span class="c-sub">Rogers, Diffusion of Innovations (1962); Christensen</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">Nokia decline: failure to adapt to smartphone era</span>
+          <span class="c-sub">Documented; cause is more complex than iPhone alone</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#10003;</span>
+          <span class="c-tag">VERIFIED</span>
+          <span class="c-text">He studied architecture, not computer science</span>
+          <span class="c-sub">Confirmed via prior records and institutional affiliation</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph cx">&#10007;</span>
+          <span class="c-tag cx">CONTRADICTED</span>
+          <span class="c-text">&ldquo;Zero baht&rdquo; cost</span>
+          <span class="c-sub cx">Electricity ~1&ndash;2 THB/hr; device depreciation; 7 yrs human capital. Correct reading: zero marginal infrastructure cost</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">?</span>
+          <span class="c-tag">UNVERIFIED</span>
+          <span class="c-text">Mae Hong Son: TV 24%, mobile internet 74%</span>
+          <span class="c-sub">Directionally consistent with NBTC connectivity data &mdash; exact figures need primary source</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">?</span>
+          <span class="c-tag">UNVERIFIED</span>
+          <span class="c-text">SMS to 70M people: 7&ndash;35M baht</span>
+          <span class="c-sub">Arithmetic: 0.10&ndash;0.50 THB/msg &times; 70M = plausible; carrier/volume rates vary</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">?</span>
+          <span class="c-tag">UNVERIFIED</span>
+          <span class="c-text">TKC founded 21 years ago (= 2005)</span>
+          <span class="c-sub">Needs corporate registration record</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">?</span>
+          <span class="c-tag">UNVERIFIED</span>
+          <span class="c-text">TKC core business losing money / 2-year stagnation</span>
+          <span class="c-sub">Private company &mdash; no public financials</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#8709;</span>
+          <span class="c-tag">UN-VERIFIABLE</span>
+          <span class="c-text">Built in 45 minutes</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#8709;</span>
+          <span class="c-tag">UN-VERIFIABLE</span>
+          <span class="c-text">21 browser tabs on one Android phone</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#8709;</span>
+          <span class="c-tag">UN-VERIFIABLE</span>
+          <span class="c-text">75-page feasibility study</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#8709;</span>
+          <span class="c-tag">UN-VERIFIABLE</span>
+          <span class="c-text">12 satang per hour internet cost</span>
+          <span class="c-sub">Plausible for unlimited plan; plan-specific</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#8709;</span>
+          <span class="c-tag">UN-VERIFIABLE</span>
+          <span class="c-text">Last year TKC profit from investments only</span>
+        </div>
+
+        <div class="claim">
+          <span class="c-glyph">&#8709;</span>
+          <span class="c-tag">UN-VERIFIABLE</span>
+          <span class="c-text">Govt platform budget: 20 million baht</span>
+          <span class="c-sub">No public budget document cited</span>
+        </div>
+
+        <div class="fc-tally">
+          <div>
+            <div class="tally-n">11</div>
+            <div class="tally-l">&#10003; Verified</div>
+          </div>
+          <div>
+            <div class="tally-n cx">1</div>
+            <div class="tally-l">&#10007; Contradicted</div>
+          </div>
+          <div>
+            <div class="tally-n">4</div>
+            <div class="tally-l">? Unverified</div>
+          </div>
+          <div>
+            <div class="tally-n">6</div>
+            <div class="tally-l">&#8709; Unveri&shy;fiable</div>
+          </div>
+        </div>
+
+      </div><!-- /right col -->
+
+    </div><!-- /content-grid -->
+
+    <!-- ── Photo strip ───────────────────────────────────────── -->
+    <div class="photo-strip" role="img" aria-label="TKC Workshop, 27 May 2026">
+      <div class="photo-strip-item">
+        <img src="/assets/photos/tkc-workshop-hero-card.jpg"
+             alt="Dr Non presenting the Ninja Squad hero-card system, TKC workshop">
+      </div>
+      <div class="photo-strip-item">
+        <img src="/assets/photos/tkc-workshop-whiteboard.jpg"
+             alt="Dr Non drawing the S-curve on the whiteboard">
+      </div>
+      <div class="photo-strip-item">
+        <img src="/assets/photos/tkc-workshop-circle.jpg"
+             alt="Circle discussion, TKC participants with laptops">
+      </div>
+      <div class="photo-strip-item">
+        <img src="/assets/photos/tkc-workshop-room.jpg"
+             alt="Full room at TKC workshop">
+      </div>
+    </div>
+
+    <!-- ── Telemetry ─────────────────────────────────────────── -->
+    <div class="telemetry">
+      <div class="t-number">—:—:—</div>
+      <div class="t-meta">Response latency pending &nbsp;&middot;&nbsp; 664 words across 3 messages &nbsp;&middot;&nbsp; 2026-05-27 Asia/Bangkok</div>
+    </div>
+
+    <footer>
+      <span>100 Days of Non &nbsp;&middot;&nbsp; Non Arkara</span>
+      <span>Day 003 of 100 &nbsp;&middot;&nbsp; Phase II: Work &amp; Method</span>
+    </footer>
+
+  </main>
+
+  <!-- ── Talk widget ─────────────────────────────────────────── -->
+  <div class="talk-widget">
+    <a href="/bot/">
+      <span class="talk-pulse"></span>
+      Ask the Docent
+    </a>
+  </div>
+
+</body>
+</html>
