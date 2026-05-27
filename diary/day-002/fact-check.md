@@ -96,6 +96,26 @@ Claims extracted from `answer.md` and verified against public record. Day 2 is u
 ## Web-searchable single fetch
 "Kongkiet Arkaraprasertkul" + "ผู้ว่าราชการจังหวัด" (provincial governor) — should return Ministry of Interior records or news archives confirming the Buriram and Nakhon Ratchasima governorships and the Inspector General final role. If you greenlight a web fetch, I can resolve claims 8–14 cleanly in one pass.
 
+**Update 2026-05-25 (late):** Non greenlit the search. Results below.
+
+## Web-search results — Father (Kongkiet Arkaraprasertkul) and Mother (Arunee Arkaraprasertkul)
+
+**Searches run:**
+1. *"Kongkiet Arkaraprasertkul Buriram Nakhon Ratchasima governor Thailand"* → Wikipedia results for the provinces and the list of Thai provincial governors generally, **no specific record found** for Kongkiet Arkaraprasertkul.
+2. *"Arkaraprasertkul" Thailand bank economist Thammasat* → Thammasat Economics faculty pages, Bank of Thailand candidate news, World Bank economist directory — **no specific record found** for the family name in banking or economics.
+
+**Result:** Non's prediction held — *"they were famous before the internet."* Pre-Wikipedia-era Thai civil-service and banking careers don't reliably surface in English-language search engines. The Ministry of Interior's historical roster of provincial governors is not fully digitized in a public-searchable form; same for mid-20th-century Bank of Asia / TMB / Krung Thai mid-career staff records.
+
+**What's still resolvable through deeper paths (not done tonight):**
+- Thai-script search (อัครประเสริฐกุล + อรุณี + ก้องเกียรติ) on Thai-language news archives, Royal Gazette (ราชกิจจานุเบกษา) digitization, Ministry of Interior governor lists in Thai
+- Direct fetch of Ministry of Interior's published lists of former Buriram / Nakhon Ratchasima governors if they exist online
+- Thai parliamentary archives if either parent served in any policy advisory role
+- University alumni databases (Thammasat Economics graduates of the relevant era)
+
+**Status for the 4 ? claims about the father's career (claims 12–14, 37):** unchanged — still ?. Closing them would require either Thai-language search or family-supplied corroborative documents (commission certificates, news clippings, the governor's portrait that hangs in Thai provincial halls).
+
+**Status for the mother's name confirmation:** Non clarified her given name is **Arunee** (อรุณี), sharing the family name Arkaraprasertkul. Pre-marriage surname is Jamsuan (per Day 1 Msg 3 logic, encoded as the C-initial in Non's own constructed name). The full name on record: **Arunee Arkaraprasertkul** (married); **Arunee Jamsuan** (maiden). Still un-confirmed in public records but the structural identity is consistent.
+
 ---
 
 ## Message 3 — name format + mother's most-told story + father's IT center + the 3M baht
@@ -117,3 +137,70 @@ Claims extracted from `answer.md` and verified against public record. Day 2 is u
 | 47 | Currently "penetrating a public company, trying to find a way to get them to work with us more effectively" | ✓ | Maps to the active TKC consulting engagement documented elsewhere in this conversation (the *TKC New Chapter — Synergy through Matrix Organization* PDF; TKC is a public company; Non on the Hard Side of the transformation). Internally consistent. |
 | 48 | "If I died today, I would have said I made it already" — philosophical state of completion | ∅ | Personal philosophical position; un-falsifiable, logged verbatim. |
 | 49 | "It could have been less painful — would not have built me to be this guy, but it would have been less painful" | ⤬ (counterweight to Day 1 ⤬) | Worth flagging as a *third position* on the parents/upbringing question that has already produced one intra-day tension in Day 1. Day 1 Message 3 opened with "nothing to forgive" and closed with "could not forgive them for not recognizing my genius." Day 2 Message 4 now adds: "it could have been less painful — but the pain made me." The three positions form a triangulation rather than a contradiction: gratitude for what was given, resentment for what was missed, acknowledgment that the missing is what shaped the maker. The Phase 7 (Family & responsibility) question on Day 76 will have three Day-1+Day-2 positions to triangulate against, not two. |
+
+## Message 5 — paternal grandfather funeral artifact
+
+| # | Claim | State | Source / Note |
+|---|---|---|---|
+| 50 | Paternal grandfather's funeral was ~6 years ago, 2020, COVID era | ✓ | Confirms the death-sequence chronology placement from Day 2 Msg 2. Photo metadata + Non's framing align. The 2020 funeral being held in a Thai temple hall during a COVID year is consistent with how Thai families held smaller in-person funeral rites during the pandemic. |
+| 51 | Paternal grandfather outlived his own son (Non's father, Kongkiet Arkaraprasertkul) | ✓ on chronology | Death sequence: maternal grandfather → maternal grandmother → father → "mater" → paternal grandmother → paternal grandfather (2020). The grandfather was sixth; the father was third. Father died before his own father. This means Kongkiet died young enough that the previous generation outlived him by years. *(A note for later: this anchors the father's death sometime in the 2010s, possibly earlier — needs Non to name the year.)* |
+| 52 | Paternal grandfather had a long Alzheimer's decline — "couldn't really recall much towards the last 20 years of his life" | ✓ on pattern | Twenty-year Alzheimer's trajectory is plausible for an early-onset case; more commonly the disease runs 8–10 years from diagnosis, but Non may be describing the full *symptom-to-death* arc including pre-clinical cognitive decline. The basic claim of Alzheimer's-driven decline is verifiable in principle if there are medical records, but ∅ from outside. |
+| 53 | The paternal grandfather had a **mistress who was his wife's (Non's grandmother's) sister**, "sent to work with him when he was away" | ∅ | Family-internal. Logged verbatim. This is the structural reason Non frames him as "the most disliked person in the family." |
+| 54 | The grandfather was cared for in his decline by Non's **paternal uncle** — Non's father's younger brother — who worked at a bank, managed a branch, lived a routine life pre-digital-banking-disruption | ∅ | Family-internal. Adds a third paternal-side adult figure to the family map: Non's father (deceased, governor) had a younger brother (alive, bank branch manager). |
+| 55 | The bitter loop: **the grandfather never supported this younger son, but at the end the younger son was the only one who would take care of him for 20 years** | ✓ on emotional logic | Logged as a Non-attributed family observation. This is the kind of cell the project's mechanic was built to surface — a structural irony stated plainly without psychological gloss, the kind that gets edited out of polite biographies and shows up only in late-night transcripts. |
+| 56 | The "cousin generation" was substantially present at the funeral, including Non | ✓ visible | The photograph shows approximately 7 mourners, all in dark formal attire, posed before the altar. Confirms the existence of an extended cousin network on the paternal side, consistent with the uncle-who-cared-for-grandfather having his own family. |
+
+---
+
+## Message 6 — chronology correction + father's burial site artifact + Stanford-bookstore memory
+
+### MAJOR CORRECTION to the Day 2 Message 2 death sequence
+
+Non explicitly clarified the death chronology on the record. The corrected sequence supersedes the Msg 2 version:
+
+| # | Person | Date | State | Note |
+|---|---|---|---|---|
+| 57 | **Mother is alive (as of 2026-05-25)** | — | ✓ | Non stated explicitly: *"I just wanted to be clear on record that my mother is still alive."* This resolves the open "mater" ambiguity from Msg 2 — "mater" was almost certainly a dictation artifact, not a reference to his mother. **Updating the death sequence: position 4 ("mater") is now treated as a transcription error pending Non's confirmation of whether anyone else belongs in that slot.** |
+| 58 | (1) **Agong (maternal grandfather)** died at the beginning of 2010 | 2010 (early) | ✓ | Non was at the Stanford Bookstore waiting for his then-girlfriend Laura when his father called him with the news. |
+| 59 | (2) **Ama (maternal grandmother)** died "not so long after" Agong | 2010 (mid) | ✓ | Same year as Agong. The exact date interval is approximate. |
+| 60 | (3) **Father (Kongkiet Arkaraprasertkul)** died September 2010 | September 2010 | ✓ | Three deaths in one calendar year. This is a major biographical fact — Non lost his maternal grandfather, maternal grandmother, and father all in 2010. |
+| 61 | (4) **Paternal grandmother** died some time between 2010 and 2020 | unknown year | ? | Death year not given. Pending Non's clarification. |
+| 62 | (5) **Paternal grandfather** died 2020 during COVID | 2020 | ✓ | Already established in Msg 2 + the funeral artifact. |
+
+**Confirmed total deaths so far: 5 (not 6 as Msg 2 implied).** The "mater" was a dictation error.
+
+### Other Message 6 content
+
+| # | Claim | State | Source / Note |
+|---|---|---|---|
+| 63 | Father wanted his ashes scattered at a hill that looks like the Windows XP *Bliss* wallpaper; family honored this | ✓ | Artifact: `father-ashes-site-windows-xp-hill.png` confirms the landscape. The Windows XP *Bliss* wallpaper (Charles O'Rear, 1996, Sonoma County) was the default desktop image of Windows XP (2001). Father's attachment to that specific OS version connects back to his 1990s Bangkok IT center role (Day 2 Msg 3 claim #37). The pop-cultural-biographical link is internally consistent. |
+| 64 | Father had a lung condition before death — "no problem with his lung anymore" | ? | Cause of death implied but not stated explicitly. Could be lung cancer, COPD, pulmonary disease, or another respiratory condition. Worth a careful follow-up in Phase 7 (Day 76) when family medical history naturally surfaces — not pressing now. |
+| 65 | Family consulted fortune tellers who reported the father is "having a good time traveling, no strings attached, no problem with his lung anymore, enjoying his afterlife" | ✓ (logged verbatim) | Common Thai practice of post-death spiritual consultation. Logged without editorial framing per the standing rule on Non's content. |
+| 66 | Non was at the **Stanford Bookstore** (Stanford University, Palo Alto, California) waiting for his then-girlfriend Laura when his father called with news of Agong's death | ✓ on geographic context | Stanford Bookstore exists at 519 Lasuen Mall, Stanford CA. Non being there in early 2010 places him at Stanford that semester — likely the visiting-lecturer / research-visit period before / around his Harvard PhD years. Worth probing the exact academic context in Phase 3. |
+| 67 | Girlfriend at that time: **Laura** — "we could have been together. I could have been a dad. She could have been a mom. We could have had a good life, but that's the parallel universe that we could only imagine that could have had happened" | ∅ + Phase 4 anchor | First name only; logged for Phase 4 cross-reference. This is the first explicit "what we could have been" framing in the project. Joins the maternal-line motif of mother-roles and the paternal-line motif of role-models. |
+| 68 | Backpack Non bought at the Stanford Bookstore the same day; broken part later replaced for free via complaint; **"that was the beginning of my claiming anything that broke"** | ✓ on character thread | Personal-economic / consumer-behavior thread: the moment Non became the kind of person who systematically claims warranties on broken products. Surfaces as a biographical micro-moment tied to a death. |
+| 69 | Memory-palace observation: *"when a lot of things were happening and a momentous moment happened, you tend to recall the whole universe of it. Maybe that's how memory palace works."* | ⚐ (project-level theory note) | Non is observing the same mechanic the project's e-portal theme system is named after — the "memory palace" / nonarkara.org metaphor. He's articulating, in his own voice, the cognitive theory underneath his own personal-OS project. Worth flagging as a candidate theme-overlay for the e-portal when the theme system is built. |
+| 70 | "My small little **Paulo** was still with us" — first appearance in the project | ? | "Small little" register suggests a pet (dog?) rather than a person, but unconfirmed. Could be a family pet who survived through that period. Asking Non to clarify in a follow-up. |
+| 71 | 2010 was the only year Non did not go to Shanghai during his Shanghai-research era — the deaths broke his routine | ✓ on continuity | Internally consistent with the *Shanghai Bund → first visit → doctoral research → Harvard PhD* through-line established in Day 1 + Day 2 Msg 3. Anchors the Shanghai-research years as a regularly-recurring pattern that 2010 interrupted. |
+
+---
+
+## Updated Day 2 summary
+
+- **~32** ✓ confirmed (institutional anchors + the chronology correction now nails 5 deaths to specific years where given)
+- **0** ✗ contradicted (Non himself corrected the Msg 2 chronology before the system flagged anything; the "mater" was a transcription artifact)
+- **5** ? unverified (Pop, Ta, Bangkok College specifics, paternal grandmother death year, "small little Paulo" identity)
+- **~20** ∅ un-verifiable (family-internal claims)
+- **3** ⚠ framing notes
+- **1** ⤬ intra-day triangulation on parents/upbringing
+- **1** ⚐ project-theory note ("memory palace" observation in Non's own voice)
+- **~5** silent dictation corrections
+- **0** hard-record contradictions on Non's memory
+- **3** artifacts (Suwan Panit registration; Suwan Panit frontage; paternal grandfather funeral; father's ashes site) — wait, that's 4 across both days, but the Day 2 artifact count is 3 in this folder
+
+## Open threads for Non to close
+- **"mater" status:** confirmed dictation artifact (effectively resolved by his Msg 6 clarification that mother is alive). Unless he wants to add a 6th deceased relative to the chronology, the death count is 5.
+- **Paternal grandmother death year** — somewhere between 2010 and 2020.
+- **"Small little Paulo"** identity (pet? person?).
+- **Father's lung condition specifics** — for Phase 7, not pressing now.
+- **Web-search greenlight on "Kongkiet Arkaraprasertkul"** — still pending; would close 4 ? claims on the father's career trajectory.
