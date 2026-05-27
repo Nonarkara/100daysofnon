@@ -1,769 +1,340 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>001 — 100 Days of Non</title>
-  <meta name="description" content="100 Days of Non. One question per day. The answers are fact-checked publicly. Memory and record side by side.">
-  
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://100days.nonarkara.org/day/001/">
-  <meta property="og:title" content="Day 001 — Where do you remember first standing in Bangkok? · 100 Days of Non">
-  <meta property="og:description" content="The first record. Twenty-seven extracted claims, fact-check status of each. Memory says one thing. The archives say another.">
-  <meta property="og:image" content="https://100days.nonarkara.org/assets/portrait.jpg">
-  <meta property="og:site_name" content="100 Days of Non">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>001 — Born 1981. That's the claim. · 100 Days of Non</title>
+<meta name="description" content="Day 001 — origin, place, the Suwan Panit shop registration (พ.ศ. ๒๕๑๒ / 1969 CE), the 發祥 Chinese mercantile hao, and the Pantip-Plaza-as-Doric-columns childhood. Twenty-seven claims; one contradiction (Siam Paragon, 1981).">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://100.nonarkara.org/day/001/">
+<meta property="og:title" content="Day 001 — Born 1981. That's the claim. · 100 Days of Non">
+<meta property="og:description" content="Day 001 — origin, place, the Suwan Panit shop registration (พ.ศ. ๒๕๑๒ / 1969 CE), the 發祥 Chinese mercantile hao, and the Pantip-Plaza-as-Doric-columns childhood. Twenty-seven claims; one contradiction (Siam Paragon, 1981).">
+<meta property="og:site_name" content="100 Days of Non">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700;800&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Day 001 — Where do you remember first standing in Bangkok? · 100 Days of Non">
-  <meta name="twitter:description" content="The first record. Twenty-seven extracted claims, fact-check status of each. Memory says one thing. The archives say another.">
-  <meta name="twitter:image" content="https://100days.nonarkara.org/assets/portrait.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+:root {
+  --bg: #000;
+  --fg: #fff;
+  --accent: #CCFF00;
+  --dim: rgba(255,255,255,0.45);
+  --faint: rgba(255,255,255,0.12);
+  --sans: 'Space Grotesk','Helvetica Neue',Arial,sans-serif;
+  --mono: 'JetBrains Mono','Courier New',monospace;
+  --micro: 11px;
+  --body: 14px;
+  --emph: 18px;
+  --pull: clamp(56px, 13vw, 180px);
+  --counter: clamp(80px, 18vw, 144px);
+  --nav-h: 40px;
+  --strip-h: 32px;
+  --header-h: 72px;
+  --col-x: 24px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: var(--body); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+strong { font-weight: 700; color: var(--fg); }
+em { font-style: italic; color: rgba(255,255,255,0.7); }
+code { font-family: var(--mono); font-size: 12px; color: var(--accent); }
+.wikilink { font-family: var(--mono); font-size: 12px; color: var(--dim); border-bottom: 1px dotted var(--faint); }
 
-  <style>
-    /* ─── Design tokens ──────────────────────────────────────────── */
-    :root {
-      --bg:     #000000;
-      --fg:     #FFFFFF;
-      --accent: #CCFF00;
-      --dim:    rgba(255,255,255,0.45);
-      --faint:  rgba(255,255,255,0.12);
+/* ── Global nav ─────────────────────────────────────────────── */
+.nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); background: var(--bg); border-bottom: 1px solid var(--faint); display: flex; align-items: center; padding: 0 48px; gap: 24px; z-index: 101; font-family: var(--mono); font-size: var(--micro); letter-spacing: 0.12em; }
+.nav-brand { color: var(--fg); text-transform: uppercase; margin-right: auto; white-space: nowrap; flex-shrink: 0; font-weight: 700; }
+.nav a { color: var(--dim); text-transform: uppercase; padding: 0 2px; min-height: 44px; display: inline-flex; align-items: center; }
+.nav a:hover { color: var(--fg); }
+.nav a.here { color: var(--accent); }
+.nav-ver { color: var(--dim); font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; }
 
-      --sans:  'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
-      --mono:  'JetBrains Mono', 'Courier New', monospace;
+/* ── Day strip ──────────────────────────────────────────────── */
+.strip { position: fixed; top: var(--nav-h); left: 0; right: 0; height: var(--strip-h); background: var(--bg); border-bottom: 1px solid var(--faint); display: flex; align-items: center; padding: 0 48px; gap: 6px; overflow-x: auto; z-index: 100; font-family: var(--mono); font-size: var(--micro); letter-spacing: 0.08em; scrollbar-width: none; }
+.strip::-webkit-scrollbar { display: none; }
+.day-num { color: var(--faint); padding: 2px 4px; white-space: nowrap; }
+.day-num.done  { color: rgba(255,255,255,0.55); }
+.day-num.active { color: var(--accent); font-weight: 700; }
+.day-num.future { color: var(--faint); }
+a.day-num:hover { color: rgba(255,255,255,0.85); }
 
-      --micro:   11px;
-      --body:    14px;
-      --emph:    18px;
-      --pull:    clamp(56px, 14vw, 180px);
-      --counter: clamp(80px, 20vw, 144px);
+/* ── 1px vertical rule ──────────────────────────────────────── */
+.col-rule { position: fixed; top: var(--header-h); left: var(--col-x); bottom: 0; width: 1px; background: var(--faint); z-index: 10; pointer-events: none; }
 
-      --nav-h:   40px;
-      --strip-h: 32px;
-      --header-h: 72px;
-      --col-x:   24px;
-    }
+/* ── Layout ─────────────────────────────────────────────────── */
+main { margin-top: var(--header-h); padding: 56px 56px 120px; max-width: 1400px; }
+.day-counter { font-family: var(--mono); font-size: var(--counter); font-weight: 700; line-height: 0.85; letter-spacing: -0.04em; color: var(--fg); }
+.day-meta { font-family: var(--mono); font-size: var(--micro); color: var(--dim); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 10px; }
+.pull-image { font-family: var(--sans); font-size: var(--pull); font-weight: 700; line-height: 0.88; letter-spacing: -0.025em; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: clip; color: var(--fg); margin: 64px -56px 0; padding-left: 56px; }
+@media (max-width: 720px) { .pull-image { margin: 40px -24px 0; padding-left: 24px; font-size: clamp(40px, 13vw, 80px); } }
+.phase-row { display: flex; align-items: baseline; gap: 16px; margin-top: 72px; }
+.phase-tag { font-family: var(--mono); font-size: var(--micro); color: var(--dim); letter-spacing: 0.15em; text-transform: uppercase; white-space: nowrap; }
+.rule-h { width: 100%; height: 1px; background: var(--faint); }
+.q-label { font-family: var(--mono); font-size: var(--micro); color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 28px; }
+.q-drop { font-family: var(--sans); font-size: clamp(40px, 6.5vw, 72px); font-weight: 800; line-height: 0.95; letter-spacing: -0.03em; text-transform: uppercase; margin-top: 16px; max-width: 900px; }
+.q-text { font-size: var(--emph); line-height: 1.55; color: rgba(255,255,255,0.8); max-width: 660px; margin-top: 18px; }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ── Content grid ───────────────────────────────────────────── */
+.content-grid { display: grid; grid-template-columns: minmax(0,1fr) 320px; gap: 0 64px; margin-top: 56px; align-items: start; }
+.col-label { font-family: var(--mono); font-size: var(--micro); color: var(--dim); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
+@media (max-width: 1024px) { .content-grid { grid-template-columns: 1fr; gap: 56px; } }
 
-    html {
-      background: var(--bg);
-      color: var(--fg);
-      font-family: var(--sans);
-      font-size: var(--body);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
+/* ── Answer column ──────────────────────────────────────────── */
+.answer-col p { font-size: var(--body); line-height: 1.85; color: rgba(255,255,255,0.88); margin-top: 1.4em; }
+.answer-col p:first-of-type { margin-top: 0; }
+.answer-col p.aside { color: var(--dim); font-style: italic; font-size: 13px; }
+.answer-col aside.quote { margin: 2em 0; padding: 12px 18px; border-left: 1px solid var(--accent); }
+.answer-col aside.quote .quote-text { color: rgba(255,255,255,0.6); font-size: 13px; line-height: 1.6; }
+.msg-h { display: flex; gap: 16px; align-items: baseline; margin-top: 3em; padding-top: 18px; border-top: 1px solid var(--faint); }
+.msg-h:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+.msg-n { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.15em; flex-shrink: 0; }
+.msg-headline { font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.06em; line-height: 1.5; text-transform: uppercase; }
+.sub-h { font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 2em; margin-bottom: 0.5em; }
+hr.msg-break { border: none; height: 1px; background: var(--faint); margin: 2em 0; }
 
-    /* ─── Global nav ─────────────────────────────────────────────── */
-    .nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: var(--nav-h);
-      background: var(--bg);
-      border-bottom: 1px solid var(--faint);
-      display: flex;
-      align-items: center;
-      padding: 0 48px;
-      gap: 24px;
-      z-index: 101;
-      font-family: var(--mono);
-      font-size: var(--micro);
-      letter-spacing: 0.12em;
-    }
-    .nav-brand { color: var(--dim); text-transform: uppercase; margin-right: auto; white-space: nowrap; flex-shrink: 0; }
-    .nav a { color: var(--dim); text-decoration: none; text-transform: uppercase; display: inline-flex; align-items: center; align-self: stretch; padding: 0 2px; }
-    .nav a:hover { color: var(--fg); }
-    .nav a.here { color: var(--accent); }
+/* ── Narration ──────────────────────────────────────────────── */
+.narration { margin-top: 80px; padding-left: 28px; border-left: 1px solid var(--faint); }
+.narration p { font-size: var(--body); line-height: 1.85; color: rgba(255,255,255,0.45); margin-top: 1.3em; }
+.narration p:first-of-type { margin-top: 0; }
 
-    /* ─── Day-index strip ────────────────────────────────────────── */
-    .strip {
-      position: fixed;
-      top: var(--nav-h); left: 0; right: 0;
-      height: var(--strip-h);
-      background: var(--bg);
-      border-bottom: 1px solid var(--faint);
-      display: flex;
-      align-items: center;
-      padding: 0 48px;
-      gap: 6px;
-      overflow-x: auto;
-      z-index: 100;
-      font-family: var(--mono);
-      font-size: var(--micro);
-      letter-spacing: 0.08em;
-      scrollbar-width: none;
-    }
-    .strip::-webkit-scrollbar { display: none; }
+/* ── Fact-check column ──────────────────────────────────────── */
+.fc-col { font-family: var(--mono); font-size: 11px; position: sticky; top: calc(var(--header-h) + 16px); max-height: calc(100vh - var(--header-h) - 32px); overflow-y: auto; padding-right: 8px; scrollbar-width: thin; scrollbar-color: var(--faint) transparent; }
+.fc-col::-webkit-scrollbar { width: 4px; }
+.fc-col::-webkit-scrollbar-thumb { background: var(--faint); }
+@media (max-width: 1024px) { .fc-col { position: static; max-height: none; overflow: visible; padding-right: 0; } }
+.fc-empty { color: var(--dim); font-style: italic; font-family: var(--sans); font-size: 13px; line-height: 1.6; padding: 12px; border: 1px dashed var(--faint); }
+.claim { display: grid; grid-template-columns: 14px 96px 1fr; column-gap: 6px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.06); align-items: start; }
+.c-glyph { line-height: 1.4; }
+.c-tag { color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.06em; line-height: 1.4; }
+.c-text { color: rgba(255,255,255,0.72); line-height: 1.4; }
+.c-sub { grid-column: 3; color: rgba(255,255,255,0.32); font-size: 10px; margin-top: 2px; line-height: 1.4; }
+.s-verified, .c-glyph.s-verified { color: rgba(255,255,255,0.7); }
+.s-contradicted, .c-glyph.s-contradicted, .c-tag.s-contradicted, .c-sub.s-contradicted { color: var(--accent); }
+.s-unverified, .c-glyph.s-unverified { color: rgba(255,255,255,0.4); }
+.s-unverifiable, .c-glyph.s-unverifiable { color: rgba(255,255,255,0.3); }
+.s-tension, .c-glyph.s-tension, .c-tag.s-tension { color: var(--accent); }
+.s-system, .c-glyph.s-system { color: rgba(255,255,255,0.3); }
+.s-clarification, .c-glyph.s-clarification { color: rgba(255,255,255,0.4); }
+.fc-overflow { font-size: 10px; color: rgba(255,255,255,0.25); margin-top: 12px; }
+.fc-tally { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--faint); }
+.tally-n { font-size: 22px; font-weight: 700; line-height: 1; color: rgba(255,255,255,0.85); }
+.tally-n.cx { color: var(--accent); }
+.tally-l { font-size: 9px; color: rgba(255,255,255,0.25); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
 
-    .strip-title { display: none; }
+/* ── Artifacts ──────────────────────────────────────────────── */
+figure.artifact { margin: 40px 0; border: 1px solid var(--faint); }
+figure.artifact img { display: block; width: 100%; height: auto; filter: grayscale(100%) contrast(1.2) brightness(0.9); }
+figure.artifact.art-bleed { margin-left: -56px; margin-right: -56px; border-left: none; border-right: none; }
+@media (max-width: 720px) { figure.artifact.art-bleed { margin-left: -24px; margin-right: -24px; } }
+figure.artifact figcaption { font-family: var(--mono); font-size: 10px; color: var(--dim); padding: 12px 16px; text-transform: uppercase; letter-spacing: 0.12em; border-top: 1px solid var(--faint); line-height: 1.5; }
+figure.anchor-art { margin: 48px 0; border: 1px solid var(--faint); }
+figure.anchor-art img { display: block; width: 100%; height: auto; }
+figure.anchor-art figcaption { font-family: var(--mono); font-size: 10px; color: var(--dim); padding: 14px 18px; text-transform: uppercase; letter-spacing: 0.14em; border-top: 1px solid var(--faint); display: flex; gap: 12px; align-items: baseline; }
+.ac-id { color: var(--accent); flex-shrink: 0; }
 
-    .day-num {
-      color: var(--faint);
-      text-decoration: none;
-      padding: 2px 4px;
-      white-space: nowrap;
-      transition: color 0.1s;
-    }
-    .day-num:hover { color: rgba(255,255,255,0.5); }
-    .day-num.done  { color: rgba(255,255,255,0.55); }
-    .day-num.active { color: var(--accent); }
+/* ── Telemetry block ────────────────────────────────────────── */
+.telemetry { margin-top: 88px; padding-top: 32px; border-top: 1px solid var(--faint); }
+.t-number { font-family: var(--mono); font-size: var(--counter); font-weight: 700; line-height: 0.85; letter-spacing: -0.04em; color: rgba(255,255,255,0.08); }
+.t-meta { font-family: var(--mono); font-size: var(--micro); color: var(--dim); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 10px; }
+.t-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--faint); }
+.t-cell .t-cell-n { font-family: var(--mono); font-size: 28px; font-weight: 700; line-height: 1; color: var(--fg); }
+.t-cell .t-cell-l { font-family: var(--mono); font-size: 9px; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 6px; }
 
-    /* ─── 1px vertical architecture column ──────────────────────── */
-    .col-rule {
-      position: fixed;
-      top: var(--header-h);
-      left: var(--col-x);
-      bottom: 0;
-      width: 1px;
-      background: var(--faint);
-      z-index: 10;
-    }
+/* ── Taxonomy legend ────────────────────────────────────────── */
+.taxonomy { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--faint); }
+.tx-label { font-family: var(--mono); font-size: 10px; color: var(--dim); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 16px; }
+.tx-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px 24px; font-family: var(--mono); font-size: 10px; }
+.lg-row { display: flex; gap: 8px; align-items: baseline; }
+.lg-glyph { color: var(--fg); }
+.lg-tag { color: var(--dim); letter-spacing: 0.1em; text-transform: uppercase; }
 
-    /* ─── Page layout ────────────────────────────────────────────── */
-    main {
-      margin-top: var(--header-h);
-      padding: 56px 56px 120px 56px;
-    }
+/* ── Footer ─────────────────────────────────────────────────── */
+footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--faint); font-family: var(--mono); font-size: var(--micro); color: var(--dim); letter-spacing: 0.1em; text-transform: uppercase; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
 
-    /* ─── Day counter ────────────────────────────────────────────── */
-    .day-counter {
-      font-family: var(--mono);
-      font-size: var(--counter);
-      font-weight: 700;
-      line-height: 0.85;
-      letter-spacing: -0.04em;
-      color: var(--fg);
-    }
+/* ── Mobile ─────────────────────────────────────────────────── */
+@media (max-width: 720px) {
+  main { padding: 36px 24px 80px; }
+  .nav { padding: 0 16px; gap: 14px; overflow-x: auto; }
+  .nav::-webkit-scrollbar { display: none; }
+  .strip { padding: 0 16px; }
+  .col-rule { left: 8px; }
+  .q-drop { font-size: clamp(36px, 11vw, 56px); }
+  figure.artifact { margin: 32px 0; }
+}
 
-    .day-meta {
-      font-family: var(--mono);
-      font-size: var(--micro);
-      color: var(--dim);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-top: 10px;
-    }
 
-    /* ─── Type-as-image ──────────────────────────────────────────── */
-    .pull-image {
-      font-family: var(--sans);
-      font-size: var(--pull);
-      font-weight: 700;
-      line-height: 0.88;
-      letter-spacing: -0.025em;
-      text-transform: uppercase;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: clip;
-      color: var(--fg);
-      margin-top: 64px;
-      margin-left: -56px;    /* intentional bleed */
-      padding-left: 56px;
-    }
+/* DAY 1 — registration: vintage commerce-certificate; cool restraint */
+.pull-image { font-family: var(--sans); letter-spacing: -0.02em; }
+.pull-image .han { font-family: 'Noto Serif TC','Songti TC',serif; font-weight: 700; }
+.pull-image .roman { font-family: var(--mono); font-weight: 700; letter-spacing: 0.04em; }
+.anchor-art img { filter: grayscale(100%) contrast(1.15) brightness(0.95); }
+.day-counter::after { content: " · พ.ศ. ๒๕๖๙ "; font-size: 0.18em; font-family: 'Noto Serif TC',serif; color: var(--dim); vertical-align: super; letter-spacing: 0; }
 
-    /* ─── Phase / question ───────────────────────────────────────── */
-    .phase-row {
-      display: flex;
-      align-items: baseline;
-      gap: 16px;
-      margin-top: 72px;
-    }
-
-    .phase-tag {
-      font-family: var(--mono);
-      font-size: var(--micro);
-      color: var(--dim);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .rule-h { width: 100%; height: 1px; background: var(--faint); }
-
-    .q-label {
-      font-family: var(--mono);
-      font-size: var(--micro);
-      color: var(--accent);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-top: 20px;
-    }
-
-    /* ─── Question drop intro ───────────────────────────────────── */
-    .q-drop {
-      display: block;
-      font-family: var(--sans);
-      font-size: clamp(48px, 8vw, 76px);
-      font-weight: 800;
-      line-height: 0.92;
-      letter-spacing: -0.03em;
-      text-transform: uppercase;
-      color: var(--fg);
-      margin-top: 24px;
-      margin-bottom: 28px;
-      max-width: 900px;
-    }
-
-    .q-text {
-      font-size: var(--emph);
-      line-height: 1.5;
-      color: rgba(255,255,255,0.8);
-      max-width: 660px;
-      margin-top: 10px;
-    }
-
-    /* ─── Content grid: answer | fact-check ─────────────────────── */
-    .content-grid {
-      display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 0 64px;
-      margin-top: 56px;
-      align-items: start;
-    }
-
-    /* ─── Answer column ──────────────────────────────────────────── */
-    .col-label {
-      font-family: var(--mono);
-      font-size: var(--micro);
-      color: var(--dim);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-
-    .answer-text p {
-      font-size: var(--body);
-      line-height: 1.8;
-      color: rgba(255,255,255,0.88);
-    }
-    .answer-text p + p { margin-top: 1.4em; }
-
-    /* ─── Narration ──────────────────────────────────────────────── */
-    .narration {
-      margin-top: 56px;
-      padding-left: 28px;
-      border-left: 1px solid var(--faint);
-    }
-
-    .narration .col-label { margin-bottom: 14px; }
-
-    .narration-text p {
-      font-size: var(--body);
-      line-height: 1.8;
-      color: rgba(255,255,255,0.45);
-    }
-    .narration-text p + p { margin-top: 1.3em; }
-
-    /* ─── Fact-check column ──────────────────────────────────────── */
-    .fc-col {
-      font-family: var(--mono);
-      font-size: 11px;
-      position: sticky;
-      top: calc(var(--header-h) + 16px);
-    }
-
-    .claim {
-      display: grid;
-      grid-template-columns: 14px 80px 1fr;
-      column-gap: 6px;
-      padding: 7px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      align-items: start;
-    }
-
-    .c-glyph { color: var(--dim); line-height: 1.4; }
-    .c-glyph.cx { color: var(--accent); }
-
-    .c-tag {
-      color: rgba(255,255,255,0.25);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      line-height: 1.4;
-    }
-    .c-tag.cx { color: var(--accent); }
-
-    .c-text { color: rgba(255,255,255,0.7); line-height: 1.4; }
-
-    .c-sub {
-      grid-column: 3;
-      color: rgba(255,255,255,0.3);
-      font-size: 10px;
-      margin-top: 2px;
-      line-height: 1.4;
-    }
-    .c-sub.cx { color: var(--accent); }
-
-    /* summary tally */
-    .fc-tally {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      gap: 0;
-      margin-top: 20px;
-      padding-top: 14px;
-      border-top: 1px solid var(--faint);
-    }
-
-    .tally-n {
-      font-size: 22px;
-      font-weight: 700;
-      line-height: 1;
-      color: rgba(255,255,255,0.85);
-    }
-    .tally-n.cx { color: var(--accent); }
-
-    .tally-l {
-      font-size: 9px;
-      color: rgba(255,255,255,0.25);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-top: 4px;
-    }
-
-    .fc-overflow {
-      font-size: 10px;
-      color: rgba(255,255,255,0.2);
-      margin-top: 12px;
-    }
-
-    /* ─── Telemetry ──────────────────────────────────────────────── */
-    .telemetry {
-      margin-top: 88px;
-      padding-top: 32px;
-      border-top: 1px solid var(--faint);
-    }
-
-    .t-number {
-      font-family: var(--mono);
-      font-size: var(--counter);
-      font-weight: 700;
-      line-height: 0.85;
-      letter-spacing: -0.04em;
-      color: rgba(255,255,255,0.08);
-    }
-
-    .t-meta {
-      font-family: var(--mono);
-      font-size: var(--micro);
-      color: rgba(255,255,255,0.2);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-top: 10px;
-    }
-
-    /* ─── Footer ─────────────────────────────────────────────────── */
-    footer {
-      margin-top: 80px;
-      padding-top: 24px;
-      border-top: 1px solid var(--faint);
-      font-family: var(--mono);
-      font-size: var(--micro);
-      color: rgba(255,255,255,0.18);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    /* ─── Mobile ─────────────────────────────────────────────────── */
-    @media (max-width: 720px) {
-      main { padding: 40px 24px 80px 24px; }
-
-      .nav  { padding: 0 20px; gap: 16px; }
-      .strip { padding: 0 20px; }
-
-      .col-rule { left: 8px; }
-
-      .content-grid {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-
-      .fc-col { position: static; }
-
-      .pull-image {
-        margin-left: -24px;
-        padding-left: 24px;
-      }
-
-      .q-drop {
-        font-size: clamp(36px, 11vw, 56px);
-      }
-    }
-  
-    /* ── Artifact Images ────────────────────────────────────── */
-    .artifact-img-container { margin: 40px 0; border: 1px solid var(--faint); background: var(--bg); display: block; }
-    .artifact-img-container.bleed { margin-left: -28px; margin-right: -28px; border-left: none; border-right: none; }
-    .artifact-img { display: block; width: 100%; height: auto; filter: grayscale(100%) contrast(1.2) brightness(0.9); mix-blend-mode: luminosity; }
-    .artifact-caption { font-family: var(--mono); font-size: 10px; color: var(--dim); padding: 12px 16px; text-transform: uppercase; letter-spacing: 0.15em; border-top: 1px solid var(--faint); }
 </style>
 </head>
 <body>
+<nav class="nav" aria-label="Site navigation">
+  <a href="/" class="nav-brand">100 DAYS OF NON</a>
+  <a href="/day/001/" class="here">RECORD</a>
+  <a href="/method/">METHOD</a>
+  <a href="/archive/">ARCHIVE</a>
+  <a href="/subject/">SUBJECT</a>
+  <span class="nav-ver">v0.1.3</span>
+</nav>
+<nav class="strip" aria-label="Day navigation"><a href="/day/001/" class="day-num active">001</a><a href="/day/002/" class="day-num done">002</a><a href="/day/003/" class="day-num done">003</a><a href="/day/004/" class="day-num done">004</a><a href="/day/005/" class="day-num done">005</a><a href="/day/006/" class="day-num done">006</a><a href="/day/007/" class="day-num done">007</a><a href="/day/008/" class="day-num done">008</a><a href="/day/009/" class="day-num done">009</a><a href="/day/010/" class="day-num done">010</a><a href="/day/011/" class="day-num done">011</a><a href="/day/012/" class="day-num done">012</a><a href="/day/013/" class="day-num done">013</a><a href="/day/014/" class="day-num done">014</a><a href="/day/015/" class="day-num done">015</a><a href="/day/016/" class="day-num done">016</a><a href="/day/017/" class="day-num done">017</a><a href="/day/018/" class="day-num done">018</a><a href="/day/019/" class="day-num done">019</a><a href="/day/020/" class="day-num done">020</a><a href="/day/021/" class="day-num done">021</a><a href="/day/022/" class="day-num done">022</a><a href="/day/023/" class="day-num done">023</a><a href="/day/024/" class="day-num done">024</a><a href="/day/025/" class="day-num done">025</a><a href="/day/026/" class="day-num done">026</a><a href="/day/027/" class="day-num done">027</a><a href="/day/028/" class="day-num done">028</a><a href="/day/029/" class="day-num done">029</a><a href="/day/030/" class="day-num done">030</a><a href="/day/031/" class="day-num done">031</a><a href="/day/032/" class="day-num done">032</a><a href="/day/033/" class="day-num done">033</a><a href="/day/034/" class="day-num done">034</a><a href="/day/035/" class="day-num done">035</a><a href="/day/036/" class="day-num done">036</a><a href="/day/037/" class="day-num done">037</a><a href="/day/038/" class="day-num done">038</a><a href="/day/039/" class="day-num done">039</a><a href="/day/040/" class="day-num done">040</a><a href="/day/041/" class="day-num done">041</a><a href="/day/042/" class="day-num done">042</a><a href="/day/043/" class="day-num done">043</a><a href="/day/044/" class="day-num done">044</a><a href="/day/045/" class="day-num done">045</a><a href="/day/046/" class="day-num done">046</a><a href="/day/047/" class="day-num done">047</a><a href="/day/048/" class="day-num done">048</a><a href="/day/049/" class="day-num done">049</a><a href="/day/050/" class="day-num done">050</a><a href="/day/051/" class="day-num done">051</a><a href="/day/052/" class="day-num done">052</a><a href="/day/053/" class="day-num done">053</a><a href="/day/054/" class="day-num done">054</a><a href="/day/055/" class="day-num done">055</a><a href="/day/056/" class="day-num done">056</a><a href="/day/057/" class="day-num done">057</a><a href="/day/058/" class="day-num done">058</a><a href="/day/059/" class="day-num done">059</a><a href="/day/060/" class="day-num done">060</a><a href="/day/061/" class="day-num done">061</a><a href="/day/062/" class="day-num done">062</a><a href="/day/063/" class="day-num done">063</a><a href="/day/064/" class="day-num done">064</a><a href="/day/065/" class="day-num done">065</a><a href="/day/066/" class="day-num done">066</a><a href="/day/067/" class="day-num done">067</a><a href="/day/068/" class="day-num done">068</a><a href="/day/069/" class="day-num done">069</a><a href="/day/070/" class="day-num done">070</a><a href="/day/071/" class="day-num done">071</a><a href="/day/072/" class="day-num done">072</a><span class="day-num future">073</span><span class="day-num future">074</span><span class="day-num future">075</span><span class="day-num future">076</span><span class="day-num future">077</span><span class="day-num future">078</span><span class="day-num future">079</span><span class="day-num future">080</span><span class="day-num future">081</span><span class="day-num future">082</span><span class="day-num future">083</span><span class="day-num future">084</span><span class="day-num future">085</span><span class="day-num future">086</span><span class="day-num future">087</span><span class="day-num future">088</span><span class="day-num future">089</span><span class="day-num future">090</span><span class="day-num future">091</span><span class="day-num future">092</span><span class="day-num future">093</span><span class="day-num future">094</span><span class="day-num future">095</span><span class="day-num future">096</span><span class="day-num future">097</span><span class="day-num future">098</span><span class="day-num future">099</span><span class="day-num future">100</span></nav>
+<div class="col-rule" aria-hidden="true"></div>
+<main>
+  <div class="day-counter">001</div>
+  <div class="day-meta">25 MAY 2026 &nbsp;·&nbsp; PHASE I &nbsp;·&nbsp; DAY 1 OF 100 &nbsp;·&nbsp; REGISTRATION</div>
 
-  <!-- ── Global nav ────────────────────────────────────────── -->
-  <nav class="nav" aria-label="Site navigation">
-    <a href="/" class="nav-brand" style="text-decoration:none;">100 Days of Non</a>
-    <a href="/day/003/">RECORD</a>
-    <a href="/map/">MAP</a>
-    <a href="/corpus/">CORPUS</a>
-    <a href="/chronos/">CHRONOS</a>
-    <a href="/lexicon/">LEXICON</a>
-    <a href="/voices/">VOICES</a>
-    <a href="/archive/">ARCHIVE</a>
-    <a href="/method/">METHOD</a>
-    <a href="/game/">GAME</a>
-    <a href="/subject/">SUBJECT</a>
-    <a href="/bot/">BOT</a>
-    <a href="/notes/">NOTES</a>
-  </nav>
+  <div class="pull-image" aria-hidden="true"><span class="han">發祥</span> &nbsp; <span class="roman">FA-XIANG / SUWAN PANIT</span></div>
 
-  <!-- ── Day-index strip ─────────────────────────────────────── -->
-  <nav class="strip" aria-label="Day navigation">
-    <span class="strip-title">100 Days of Non</span>
-    <a href="/day/001/" class="day-num active">001</a>
-    <!-- Days 002–100: rendered faint; will activate as they land -->
-    <a href="/day/002/" class="day-num done">002</a><a href="/day/003/" class="day-num done">003</a><span class="day-num">004</span><span class="day-num">005</span>
-    <span class="day-num">006</span><span class="day-num">007</span><span class="day-num">008</span><span class="day-num">009</span><span class="day-num">010</span>
-    <span class="day-num">011</span><span class="day-num">012</span><span class="day-num">013</span><span class="day-num">014</span><span class="day-num">015</span>
-    <span class="day-num">016</span><span class="day-num">017</span><span class="day-num">018</span><span class="day-num">019</span><span class="day-num">020</span>
-    <span class="day-num">021</span><span class="day-num">022</span><span class="day-num">023</span><span class="day-num">024</span><span class="day-num">025</span>
-    <span class="day-num">026</span><span class="day-num">027</span><span class="day-num">028</span><span class="day-num">029</span><span class="day-num">030</span>
-    <span class="day-num">031</span><span class="day-num">032</span><span class="day-num">033</span><span class="day-num">034</span><span class="day-num">035</span>
-    <span class="day-num">036</span><span class="day-num">037</span><span class="day-num">038</span><span class="day-num">039</span><span class="day-num">040</span>
-    <span class="day-num">041</span><span class="day-num">042</span><span class="day-num">043</span><span class="day-num">044</span><span class="day-num">045</span>
-    <span class="day-num">046</span><span class="day-num">047</span><span class="day-num">048</span><span class="day-num">049</span><span class="day-num">050</span>
-    <span class="day-num">051</span><span class="day-num">052</span><span class="day-num">053</span><span class="day-num">054</span><span class="day-num">055</span>
-    <span class="day-num">056</span><span class="day-num">057</span><span class="day-num">058</span><span class="day-num">059</span><span class="day-num">060</span>
-    <span class="day-num">061</span><span class="day-num">062</span><span class="day-num">063</span><span class="day-num">064</span><span class="day-num">065</span>
-    <span class="day-num">066</span><span class="day-num">067</span><span class="day-num">068</span><span class="day-num">069</span><span class="day-num">070</span>
-    <span class="day-num">071</span><span class="day-num">072</span><span class="day-num">073</span><span class="day-num">074</span><span class="day-num">075</span>
-    <span class="day-num">076</span><span class="day-num">077</span><span class="day-num">078</span><span class="day-num">079</span><span class="day-num">080</span>
-    <span class="day-num">081</span><span class="day-num">082</span><span class="day-num">083</span><span class="day-num">084</span><span class="day-num">085</span>
-    <span class="day-num">086</span><span class="day-num">087</span><span class="day-num">088</span><span class="day-num">089</span><span class="day-num">090</span>
-    <span class="day-num">091</span><span class="day-num">092</span><span class="day-num">093</span><span class="day-num">094</span><span class="day-num">095</span>
-    <span class="day-num">096</span><span class="day-num">097</span><span class="day-num">098</span><span class="day-num">099</span><span class="day-num">100</span>
-  </nav>
-
-  <!-- ── 1px vertical rule ───────────────────────────────────── -->
-  <div class="col-rule" aria-hidden="true"></div>
-
-  <main>
-
-    <!-- ── Day counter ──────────────────────────────────────── -->
-    <div class="day-counter" aria-label="Day 001">001</div>
-    <div class="day-meta">25 MAY 2026 &nbsp;·&nbsp; PHASE I — ORIGIN &amp; PLACE &nbsp;·&nbsp; DAY 1 OF 100</div>
-
-    <!-- ── Type-as-image ────────────────────────────────────── -->
-    <div class="pull-image" aria-hidden="true">NEAR SIAM PARAGON</div>
-
-    <!-- ── Phase row ────────────────────────────────────────── -->
-    <div class="phase-row">
-      <span class="phase-tag">Phase 1 &nbsp;/&nbsp; Origin &amp; Place</span>
-      <div class="rule-h"></div>
-    </div>
-
-    <!-- ── Question ─────────────────────────────────────────── -->
-    <div class="q-label">Question</div>
-    <p class="q-drop">Born 1981.<br>That's the claim.</p>
-    <p class="q-text">
-      We start there. Give me: day, month, year.
-      Hospital. City. Who was in the room. The version your family tells of that
-      day — verbatim if you remember the exact words, paraphrased if not. And one
-      detail from that version that you've never quite believed.
-    </p>
-
-    <!-- ── Content grid ─────────────────────────────────────── -->
-    <div class="content-grid">
-
-      <!-- Left column: answer + narration -->
-      <div>
-
-        <div class="col-label">Answer &mdash; Non Arkara</div>
-
-        <div class="answer-text">
-          <p>So it was November 1st, 1981, a Sunday. The hospital was Payatai in
-          the city, close to where we lived at the time, which was near Siam
-          Square. We moved out when I was probably a couple of years old to this
-          current house I've been living in for the past 42 years.</p>
-
-          <p>It was on a Sunday that I was born. The pictures of the baby look
-          kind of strange and didn't look like me at all. I feel like I'm
-          definitely much more handsome than that baby. Strange head shape. I
-          didn't remember much about anything when I was young. The only time that
-          I remember was probably when I got lost in a mall and no one actually
-          found me for a while. That got me worried and may have become part of my
-          psychological scar until now.</p>
-
-          <p>I was born six years after my brother. That's all I got from my mom
-          and from people around me.</p>
-
-          <p>Well, first of all, that wouldn't be Siam Paragon back then. It would
-          have been this hotel called Siam Intercontinental. The hotel itself was
-          designed to look like a hat, because the architect himself was actually a
-          direct student of Frank Lloyd Wright. Surrounded by a park. A small
-          portion of it is hotel rooms, and that's actually where my mom usually
-          goes to get her dry cleaning. They hosted a number of events I took part
-          in, especially weddings. I think the last event that I went there before
-          they tore down the buildings and built this gigantic structure called
-          Siam Paragon was probably an international student affair expo for
-          Australia. Around 2002 or so. Only a few months after that they decided
-          to tear down the buildings.</p>
-
-          <p>Back then, Siam Square was calm. Not as hipsterish as the 90s, not as
-          Gen Z as today. Lots of interesting stores, comic book stores,
-          three big theatres. My mom mentioned we would cross this elephant-headed
-          bridge over a small canal, over to the area of the Princess Palace — a
-          beer garden, then the science center, then Siam Square. My mother also
-          worked down the road at the headquarters of Krung Thai Bank on
-          Sukhumvit. She could commute by bus from there to the row house.</p>
-
-          <p>My maternal grandmother is the one who was more visionary. She saved
-          every penny in order to buy property in the city center, which later on
-          was taken by eminent domain for an expressway landing. We had to move
-          out. That's how we got the money to build this house — the land was
-          already bought by the visionary grandmother, who understood what it takes
-          to have a piece of land in the capital.</p>
-
-          <p>The mall was called Pantip Plaza. My mom would go there with me in
-          the baby carrier, my dad and brother too sometimes. I got lost for a
-          while and then was found by my mom and brother. I still remember that
-          moment. I still remember the interior — very Roman-esque classical, with
-          lots of columns. I later on, as an architecture student, learned these
-          were called Doric and Ionic columns. Everything was moving around me.
-          Everything was so big, so frightening. The acoustics were not fun. I
-          remember that as well.</p>
-        </div>
-
-        <!-- Narration -->
-        <div class="narration">
-          <div class="col-label">Narration &mdash; Biographer</div>
-          <div class="narration-text">
-            <p>Day one. He gave a date, a hospital, an area, a brother six years
-            older, a house his father built. The calendar agreed: November 1st,
-            1981 was a Sunday. The hospital exists at the address the geography
-            implied. One detail tripped — he placed his infancy "near Siam
-            Paragon," a mall that wouldn't exist for another twenty-four years.
-            Not a memory error. A grammar error. The system logged it anyway
-            because that is the system.</p>
-
-            <p>He pushed back. Cleared his throat in writing — <em>Ahem!</em> —
-            and went back in time. Where Siam Paragon now stands, there was a
-            hotel. The Siam Intercontinental. A roof shaped like a hat. An
-            American architect in the Wright tradition. Gardens. His mother's dry
-            cleaner. Wedding receptions. An Australian student-affairs expo in
-            2002 — the last event he attended before they tore it down. He gave it
-            all back to the page with the precision of someone who had been waiting
-            for a system patient enough to ask.</p>
-
-            <p>Two slips surfaced. "Siam Paragon" — a present-day anchor applied
-            to a 1981 geography. And "Paris style of Frank Lloyd Wright" — Wright
-            had no Paris style; Prairie, Usonian, Organic only. The system logged
-            both. Non is reaching for nearby anchors at the level of specificity he
-            naturally thinks at. The fact-check shows where the reach happens.
-            That is the mechanic.</p>
-          </div>
-        </div>
-
-      </div><!-- /left col -->
-
-      <!-- Right column: fact-check (sticky) -->
-      <div class="fc-col">
-
-        <div class="col-label">Fact-check &nbsp;&middot;&nbsp; 27 claims</div>
-
-        <div class="claim">
-          <span class="c-glyph">&#10003;</span>
-          <span class="c-tag">VERIFIED</span>
-          <span class="c-text">Birth date 1 Nov 1981</span>
-          <span class="c-sub">Calendar arithmetic &mdash; confirmed Sunday</span>
-        </div>
-
-        <div class="claim">
-          <span class="c-glyph">&#10003;</span>
-          <span class="c-tag">VERIFIED</span>
-          <span class="c-text">Hospital: Phyathai / Payatai</span>
-          <span class="c-sub">Phyathai Hospital Group, Ratchathewi</span>
-        </div>
-
-        <div class="claim">
-          <span class="c-glyph">&#10003;</span>
-          <span class="c-tag">VERIFIED</span>
-          <span class="c-text">Siam Intercontinental (1966–2002)</span>
-          <span class="c-sub">Demolished for Siam Paragon, opened Dec 2005</span>
-        </div>
-
-        <div class="claim">
-          <span class="c-glyph">&#10003;</span>
-          <span class="c-tag">VERIFIED</span>
-          <span class="c-text">Hat-shaped / sloped roof</span>
-          <span class="c-sub">Documented in Bangkok modernist architecture</span>
-        </div>
-
-        <div class="claim">
-          <span class="c-glyph cx">&#10007;</span>
-          <span class="c-tag cx">CONTRADICTED</span>
-          <span class="c-text">Near Siam Paragon (1981)</span>
-          <span class="c-sub cx">Siam Paragon opened 2005 &rarr; self-corrected to Siam Intercontinental</span>
-        </div>
-
-        <div class="claim">
-          <span class="c-glyph cx">&#10007;</span>
-          <span class="c-tag cx">CONTRADICTED</span>
-          <span class="c-text">Paris style of Frank Lloyd Wright</span>
-          <span class="c-sub cx">Wright: Prairie / Usonian / Organic only &mdash; no Paris style</span>
-        </div>
-
-        <div class="claim">
-          <span class="c-glyph">&#10003;</span>
-          <span class="c-tag">VERIFIED</span>
-          <span class="c-text">Scala, Lido, Siam theatres</span>
-          <span class="c-sub">All three operated in Siam Square</span>
-        </div>
-
-        <div class="claim">
-          <span class="c-glyph">&#10003;</span>
-          <span class="c-tag">VERIFIED</span>
-          <span class="c-text">Krung Thai Bank HQ on Sukhumvit</span>
-          <span class="c-sub">KTB headquarters confirmed</span>
-        </div>
-
-        <div class="claim">
-          <span class="c-glyph">&#10003;</span>
-          <span class="c-tag">VERIFIED</span>
-          <span class="c-text">Sra Pathum Palace location</span>
-          <span class="c-sub">Pathumwan, consistent with route described</span>
-        </div>
-
-        <div class="claim">
-          <span class="c-glyph">&#10003;</span>
-          <span class="c-tag">VERIFIED</span>
-          <span class="c-text">Pantip Plaza on Petchaburi Rd</span>
-          <span class="c-sub">Open since 1980s, ~2 km from Siam corridor</span>
-        </div>
-
-        <div class="claim">
-          <span class="c-glyph">?</span>
-          <span class="c-tag">UNVERIFIED</span>
-          <span class="c-text">Architect: direct student of FLW</span>
-          <span class="c-sub">Salerno / Taliesin plausible &mdash; needs primary source</span>
-        </div>
-
-        <div class="claim">
-          <span class="c-glyph">?</span>
-          <span class="c-tag">UNVERIFIED</span>
-          <span class="c-text">Father built the current house</span>
-        </div>
-
-        <div class="claim">
-          <span class="c-glyph">?</span>
-          <span class="c-tag">UNVERIFIED</span>
-          <span class="c-text">Eminent domain &rarr; expressway &rarr; new house</span>
-          <span class="c-sub">Bangkok expressway land history &mdash; resolvable</span>
-        </div>
-
-        <div class="claim">
-          <span class="c-glyph">?</span>
-          <span class="c-tag">UNVERIFIED</span>
-          <span class="c-text">Pantip Plaza: Doric / Ionic columns</span>
-          <span class="c-sub">1980s interior &mdash; period photos needed</span>
-        </div>
-
-        <div class="claim">
-          <span class="c-glyph">&#8709;</span>
-          <span class="c-tag">UN-VERIFIABLE</span>
-          <span class="c-text">Brother six years older</span>
-        </div>
-
-        <div class="claim">
-          <span class="c-glyph">&#8709;</span>
-          <span class="c-tag">UN-VERIFIABLE</span>
-          <span class="c-text">Mall-loss incident</span>
-        </div>
-
-        <div class="claim">
-          <span class="c-glyph">&#8709;</span>
-          <span class="c-tag">UN-VERIFIABLE</span>
-          <span class="c-text">Acoustics of Pantip Plaza</span>
-        </div>
-
-        <div class="fc-overflow">+ 10 additional claims in full record</div>
-
-        <div class="fc-tally">
-          <div>
-            <div class="tally-n">9</div>
-            <div class="tally-l">&#10003; Verified</div>
-          </div>
-          <div>
-            <div class="tally-n cx">2</div>
-            <div class="tally-l">&#10007; Contradicted</div>
-          </div>
-          <div>
-            <div class="tally-n">7</div>
-            <div class="tally-l">? Unverified</div>
-          </div>
-          <div>
-            <div class="tally-n">6</div>
-            <div class="tally-l">&#8709; Unveri&shy;fiable</div>
-          </div>
-        </div>
-
-      </div><!-- /right col -->
-
-    </div><!-- /content-grid -->
-
-    <!-- ── Telemetry ─────────────────────────────────────────── -->
-    <div class="telemetry">
-      <div class="t-number">&mdash;:&mdash;:&mdash;</div>
-      <div class="t-meta">Response latency pending &mdash; Telegram bot not yet wired &nbsp;&middot;&nbsp; 999 words across 2 messages &nbsp;&middot;&nbsp; 2026-05-25 Asia/Bangkok</div>
-    </div>
-
-    <footer>
-      <span>100 Days of Non &nbsp;&middot;&nbsp; Non Arkara</span>
-      <span>Day 001 of 100 &nbsp;&middot;&nbsp; Phase I: Origin &amp; Place</span>
-    </footer>
-
-  </main>
-
-
-  <style>
-    .talk-widget {
-      position: fixed; bottom: 20px; right: 20px; z-index: 99;
-      font-family: 'JetBrains Mono','Courier New',monospace; font-size: 11px;
-      letter-spacing: 0.15em; text-transform: uppercase;
-    }
-    .talk-widget a {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 16px; min-height: 44px;
-      background: #CCFF00; color: #000;
-      text-decoration: none;
-      border: 1px solid #CCFF00;
-    }
-    .talk-widget a:hover { background: #000; color: #CCFF00; }
-    .talk-pulse { display: inline-block; width: 8px; height: 8px; background: #000; flex: 0 0 8px; }
-    .talk-widget a:hover .talk-pulse { background: #CCFF00; }
-    .nav { overflow-x: auto; scrollbar-width: none; }
-    .nav::-webkit-scrollbar { display: none; }
-    @media (max-width: 720px) {
-      .talk-widget { bottom: 16px; right: 16px; }
-      .nav { overflow: hidden !important; gap: 14px !important; padding: 0 16px !important; }
-      .nav a:nth-of-type(n+7) { display: none; }
-    }
-  
-    /* ── Artifact Images ────────────────────────────────────── */
-    .artifact-img-container { margin: 40px 0; border: 1px solid var(--faint); background: var(--bg); display: block; }
-    .artifact-img-container.bleed { margin-left: -28px; margin-right: -28px; border-left: none; border-right: none; }
-    .artifact-img { display: block; width: 100%; height: auto; filter: grayscale(100%) contrast(1.2) brightness(0.9); mix-blend-mode: luminosity; }
-    .artifact-caption { font-family: var(--mono); font-size: 10px; color: var(--dim); padding: 12px 16px; text-transform: uppercase; letter-spacing: 0.15em; border-top: 1px solid var(--faint); }
-</style>
-  <div class="talk-widget">
-    <a href="/bot/"><span class="talk-pulse"></span> Talk to Non</a>
+  <div class="phase-row">
+    <span class="phase-tag">Phase 1 — Origin &amp; place</span>
+    <div class="rule-h"></div>
   </div>
 
+  <div class="q-label">Question</div>
+  <p class="q-drop">Born 1981.<br>That's the claim.</p>
+  <p class="q-text">Give me: day, month, year. Hospital. City. Who was in the room. The version your family tells of that day — verbatim if you remember the exact words, paraphrased if not. And one detail from that version that you've never quite believed.</p>
+<p class="q-text">I'll verify what's verifiable (birth registries, hospital, anything you'll share as artifacts) and we'll log what holds and what drifts. Day 1 sets up the mechanic — the rest of the project rides on whether you'll let me show the gap when memory and record disagree. Answer as long as you want.</p>
+
+  <figure class="anchor-art">
+  <img src="/assets/artifacts/day-001/suwan-panit-shop-registration.png" alt="Thai Commercial Registration Certificate · ร้านสุวรรณพานิช · Sikhio, Nakhon Ratchasima · พ.ศ. ๒๕๑๒ / 1969 CE" loading="lazy">
+  <figcaption><span class="ac-id">ART/001-A</span> Thai Commercial Registration Certificate · ร้านสุวรรณพานิช · Sikhio, Nakhon Ratchasima · พ.ศ. ๒๕๑๒ / 1969 CE</figcaption>
+</figure>
+  
+
+  <div class="content-grid">
+    <div class="answer-col">
+      <div class="col-label">Answer &mdash; Non Arkara &middot; 6716 words &middot; 4 messages</div>
+      <div class="msg-h"><span class="msg-n">MSG 01</span><span class="msg-headline">initial answer</span></div>
+<p>So it was November 1st, 1981, a Sunday. The hospital was Payatai in the city, close to where we lived at the time, which was near Siam Paragon and the Siam Square area. We moved out when I was probably a couple of years old to this current house I've been living in for the past 42 years.</p>
+<p>I guess I could look up the numbers from the pictures, because I have many albums of my houses. When we moved in, my dad took many photos of the house. He must be proud of having been able to build this house.</p>
+<p>It was on a Sunday that I was born. The pictures of the baby look kind of strange and didn't look like me at all. I feel like I'm definitely much more handsome than that baby. Yeah, strange head shape. I didn't remember much about anything when I was young. The only time that I remember was probably when I got lost in a mall and no one actually found me for a while. That got me worried and may have become part of my psychological scar until now.</p>
+<p>I was born six years after my brother. That's all I got from my mom and from people around me, so that would be it, I guess. Otherwise, if I remember anything else? Not really. I mean, that was a really short question. I just don't know how to answer it. Maybe if you can make use of this material, then we can discuss the next step, but if you want more details, just let me know.</p>
+<hr class="msg-break">
+<div class="msg-h"><span class="msg-n">MSG 02</span><span class="msg-headline">expansion after fact-check surfaced the Siam Paragon anachronism</span></div>
+<p>Ahem! Ahem! Well, I did not know that you wanted to go into the detail in terms of temporality that much, but let's do it then!</p>
+<p>Well, first of all, yeah, that wouldn't be Siam Paragon back then. It would have been this hotel called Siam Intercontinental. The hotel itself was designed to look like a hat, or in a very elegant way, because the architect himself was actually a direct student of Frank Lloyd Wright. That's why that style gets carried on from the Prairie style of Frank Lloyd Wright in the US over to Thailand.</p>
+<p><em>[Transcript correction 2026-05-25: "Prairie" was originally written as "Paris" — a transcription error in the system's recording of Non's voice. Non corrected it the next day. Both versions preserved here for the project's structural-honesty principle.]</em> They built these elegant buildings over there, surrounded by a park. A small portion of it is actually hotel rooms, and that's actually where my mom usually goes to get her dry cleaning. That's how I got to know that hotel, and they hosted a number of events that I took part in, especially weddings. I think the last event that I went there before they tore down the buildings and built this gigantic structure called Siam Paragon was probably an international student affair Expo for Australia. At the time, probably around the year 2000 or 2003 or 4, I was hoping to go abroad and study in Australia, which was one of the places. I think only a few months after that they decided to tear down the buildings and then build Siam Paragon, which is of course a massive commercial success.</p>
+<p>I didn't think that I have to go back in time so much to tell you, but I think you have raised a really good point. We should be focusing on the actualities of temporality that we can nail down. Back then, I remember from a photograph that my mom showed me that there were science square. It was not as hipsterish as in the 90s, where I grew up, and it's definitely not as Gen Zish as it is today. It was more calm, with a lot of interesting stores, especially comic book stores and theaters. There were three big theaters over there, and there's one year our houses as well, comic Anna, and there were really quite interesting restaurants in the area too.</p>
+<p>My mom did mention that we would cross this elephant-headed bridge, a small one over a small little canal, and over to the area that was Princess Palace. We would cross over to this area that would be like a beer garden and then the science center, and then over to Siam Square, where we would walk around on a daily basis, because my mother also worked down the road at the headquarters of Krung Thai Bank, which was down Sukhumvit Road, not far. She could commute by bus from her headquarters office to the apartment, which was more like a row house. That would probably be a proper name to call it. It was one row house.</p>
+<p>My maternal grandparents, especially the grandmother, is the one who was more visionary and able to foresee that one day her kids would be coming to Bangkok to study. She could invest her money, and she's really stingy. She saved every penny she could in order to buy this piece of property in the city center, which later on was used by eminent domain for the sake of building the landing of an expressway. We had to move out, and that's how we got the money to build a house here, because the land was already bought by the visionary maternal grandmother, who understands what it takes to have a piece of land in the capital, even though we were from the countryside.</p>
+<p>Again, all these things were not that important, but they will be with me in my mind. You were mentioning also something about a mall loss incident. The mall was called Pantip Plaza. Also not far from the row houses or the shop houses that we lived in, so my mom would go as far over there, just me in the baby carrier and maybe my dad as well and my brother too. Sometimes my dad would pick us up or something like that. I got lost in that mall for a while and then got picked up, of course, by my mom and my brother, who found me eventually. I still remember that moment. I still remember the interior of the buildings. It was really like Roman-esque classical, with lots of columns. I later on, when I became an architecture student, learned that these were called Doric and Ionic columns of the interiors of these buildings. Everything was moving around me. Everything was so big, so frightening. The acoustics were not fun. I remember that as well.</p>
+<hr class="msg-break">
+<div class="msg-h"><span class="msg-n">MSG 03</span><span class="msg-headline">Otter.ai voice transcript, "Day one continued," dictated while driving home (~30 min)</span></div>
+<p><em>Note: light cleanup applied to dictation noise (sentence boundaries, obvious mishearings). Substantive content preserved verbatim. Non-edited register kept — including profanity and personal-sexual childhood detail he explicitly chose to include, after pre-emptively framing the honesty principle of the project.</em></p>
+<p>Right, since I have half an hour to drive home, I'll just talk a little bit about my childhood.</p>
+<p>Yesterday I was walking around a mall with my girlfriend, and we talked about my childhood, because I was talking about this project, 100 days that I'm going to write about, or speak about, or talk about my life, and within 100 days we should have a complete, extremely awesome level biography of me. I will try to be as honest as I can with the past. I will try my best to remember the best I can. I will also try my best to recall in memory the way it actually happened, rather than the way I want it to happen. And I'm pretty honest myself, so I don't think I have any problem with that. I think it's going to be the problem that I could be too honest, and when I'm too honest, things might get a little bit smudgy, especially given the societal norms in which we are living under, which is very politically correct in the way that usually goes against the grain of natural instincts and natural intuitions. And I don't care, because this is my biography, and I don't care if people are going to see it as vulgar or whatever, because it is my biography, not theirs. The fact that they think of it as vulgar because they are not good enough to learn about the kind of things that our brain should be able to absorb — because it's such an organically natural thing to learn — then it just got to be their losses, and I don't really have to care much about these people anyway.</p>
+<p>So I talked to my girlfriend yesterday a little bit about my childhood. In fact I started off with saying that to be an adult, I heard, one has to forgive his or her parents first. And I thought to myself, like, have I ever forgiven my parents? Because I never feel upset at them at all. I never feel like they owe me anything, because I feel like I was born into a family that really cares for me.</p>
+<p>I was bullied a lot. But maybe my parents were doing something in the background to make sure that I wouldn't get bullied so much. But then it was pretty difficult, because in the 80s and 90s the first bully is actually not classmates — it was the teachers. The teachers were the first bullies of the school. Because they are the ones who can actually punish students corporeally with a stick, and back then parents allowed. In fact, I could say that parents outsource violence to the teachers. The parents probably believe that punishing students or their own kids is a way to learn, because as we know, people learn the way dogs learn — from positive and negative reinforcement. The parents probably didn't want to be the bad cops themselves, so they outsourced the bad-cop capacity to the teachers, so they can be home and be the good cops, consoling the students. But the whole idea of corporeal punishment from the beginning is wrong. And I was punished a lot by bullying teachers who did not like my answers, did not like my curiosities, did not agree with a different way of thinking about the same problems that I happened to have.</p>
+<p>And I was a kid, so I just did things that kids would do — like play a lot, having a good time exploring each other's bodies, because of the curiosities. And because I went to a boys-and-girls school together, and we had a swimming class, I really learned a lot about females from watching my fellow classmates changing their swimsuits in the classroom. We were all young, so I didn't feel sexually aroused or anything, but it exposed me early on to the fact that bodies are just bodies. Physical organs are just physical organs. Vaginas are just vaginas, and penises are just penises. And because I learned that from early on — I didn't go to all-boys schools, where our curiosity to learn about the basic needs of human generations, which is about sexual organs and sexuality, got completely suppressed — and therefore people become problematic later on in life. That's not me. I have friends who were females from when I was really young, like maybe two or three years old. I already went to pre-kindergartens and kindergarten, and most of my good friends are all girls. Because when girls were young, they were like boys, just softer, well-mannered, but they were still, at least in my class, as fun, as curious, as honest — actually more honest than guys. Girls are more honest than guys when they were young.</p>
+<p>So in a sense, I really enjoyed my time growing up in the suburb of Bangkok. As I mentioned in my last transcript, I was born in the city. Phyathai Hospital is one of the top hospitals in the country, and of course I was born there, because back then we lived in the heart of downtown Bangkok in the area called Siam and Ratchathewi. I grew up there, but I didn't remember much. There were some pictures of me in that house, in that row house. It's a small little row house, maybe the frontage was about four or five meters, and we were completely sandwiched — we shared lateral walls with other row houses that sandwiched us — but the house itself is actually quite deep. Even though the frontage is only four or five meters, it's actually quite deep, as in maybe four or five bays, 12 to 15 meters in terms of depth, so even though it's a very narrow frontage, there were rooms in there.</p>
+<p>I remember there was a room right behind a metal shutter whereby we placed our wooden furniture to make the living room area. And I still remember one of the pictures of me right over there doing a Jackson Pollock painting on the white wall that was supposed to be white because my dad wanted to be white, clean wall, but I actually went completely Jackson Pollock on it. And funny enough, I was not even yelled at. My parents were happy that I did that, and even took a picture of me with that wall. I hope I can find a picture.</p>
+<p>I was really happy, because in a sense I didn't have to do much. I had a nanny with me, and then my dad, my mom were with me, my brother was with me in the house. And because we lived right there, my brother could go to a top Catholic school called Assumption College in the city.</p>
+<p>It's only when I was about two or three years old that something happened. The eminent domain kind of pushed us out to the outskirts because they wanted to raze all the houses in our area to the ground to make way for the landing of an expressway — which, by the way, 40 years later, still hasn't been built. And those row houses that people moved out from, including our family, have now been occupied by migrant workers. Somehow they're able to get electricity in, water in, they even got their mailing addresses — it's just kind of funny that that could happen to a number of houses that had been marked for demolitions. Anyway, I went back there maybe once a year, last time I was there with my girlfriend as well, walking around, looking at the old houses that we used to live in, now occupied by migrants. It was interesting because that past was something that I cherish a lot, because that was my foundational years. I grew up in the heart of downtown Bangkok. Only when I was two or three years old that we moved to the suburb, into the house that I'm living at the moment.</p>
+<p>Because of the eminent domain we were compensated — not a lot but enough for us to build a house. And because in the suburb we had a piece of land that my maternal grandmother secretly bought for us — because she was actually looking into the future, even though she's just a lady, a Thai-Chinese lady from a rural area in Thailand, she had a vision that all her kids at some point would leave the rural hometown and settle down in the metropolis of Bangkok. So she was very stingy about herself and able to save up a lot of money in order to buy this piece of land in a suburb on which our house and my uncle's house — my uncle is my mom's younger brother — as well as my aunties, my mom's younger sisters, all three houses were in the same compound, in the same piece of land that my maternal grandmother had a vision and bought. All we had to do was bring the money from eminent domain and use it to build our house. My uncle, a few years afterwards, built his own house behind our house, and a few years afterwards, my mom's sisters also built theirs behind our house. So now we have a compound of three houses in the same area, which is supposed to be cozy, but not really, because my aunties are no longer living there, and my uncle is getting old. He retired a few years back, and all his kids are growing up now. Two of them are not very good, like they were still lost and still living at home, because they're still lost. The boy, Prem — my favorite cousin — had already moved out. He worked for Ernst and Young for a while before; now he works for a private company as an internal audit, which is a dream job for him, because he really likes numbers, and he really likes the fact that he got to live by himself in a condo with a girl that he liked, rather than with the last girlfriend that he always gets scared whenever that last girlfriend called him. That was a toxic relationship.</p>
+<p>So I grew up in this house after we moved from downtown to this suburban area. I always went to school nearby, because it was easy for my parents to arrange for school buses to pick me up and drop me off. It's also easy for me to travel, so I could get home early — like schools finishes at 3:30, by 4 o'clock I would be home watching a TV series, <em>Shanghai Bund</em> from TVB, that was broadcast on Thai TV, probably Channel 3 if I'm not mistaken. Really, really good show that got me interested in Shanghai, and eventually I traveled to Shanghai for the first time 20-something years later, and learned that I would make Shanghai my doctoral dissertation project. But it's all dated back to the time when I was growing up in the neighborhood in the suburb.</p>
+<p>The suburb is called the suburb of Clean Water, or Nam Sai District — we call it <em>Soi</em> in Thai, it means the alleyways. I remember going up in that area, and it was really nice, because everyone's a friend. I would spend hours after I came back from school. After I dropped off my bag, I changed sometime — I took a shower first after school, and I changed to my T-shirts and shorts — and I would go out, maybe playing soccer, maybe just playing in the field, maybe just building some kind of secret chambers in the field using vegetations I could find, or even just go to some friends' house, playing with their dogs, trade our comic books, and read them together, run around to a small little grocery store. I could buy three candies for one Thai baht. Back then. Now each candy is like two baht, right? So that's how much inflation that works against us kids who love candies. Because of that, I've been a big fan of candies ever since. Every time I see candies, I want to put one in my mouth.</p>
+<p>The only time that my mom actually punished me with a stick was when I was having fun with my friends to the point that I forgot my house key at one of the grocery stores in the neighborhood — which, by the way, is still there. I don't buy things from them anymore, just because I don't really buy things from a grocery store in the neighborhood, but if I ever need a beer or whatever, I know that I can go there. It might be easier to do that than to go to 7-Eleven because it's further away, and I would definitely like to support local economy in the neighborhood, because I've been supporting them for 40 years.</p>
+<p>It was really fun. It was really quiet. I thought of myself as a young boy from suburban Thailand. I had a lot of imagination about having my simulated world living underneath my wooden bed. Every day I would lie down on a wooden bed. Sometimes I was just lying face down, rubbing my small penis against the wooden bed, because somehow that was actually quite relaxing. How would I know — I was just a young boy. And I would have lots of comic books, because I love reading comic books. I love to draw comic characters, I love to create stories. Sometimes I would read <em>Dragon Ball</em>, and then I would create my own <em>Dragon Ball</em> version of the story. I called it <em>Dragon Wall</em>, actually, even though the story had nothing to do with a wall. But at least it was interesting.</p>
+<p>And lucky enough, my dad and my mom were also visionaries in their own way. They actually got me reading <em>Bangkok Post</em>, which was the English newspaper here in Thailand, by subscribing <em>Bangkok Post</em> to our house on weekends. I don't know whether they actually read them, but I loved to pick up the Sunday comics attachments to the newspapers. That's when I get to read like <em>Garfield</em>, usually just pictures and no wordings, but for me that was enough for me to feel it. There were other cartoons as well. There are some texts like <em>Archie</em>, I think it's <em>Archie</em>, or maybe some other — like a guy with a family of a guy with three or four hairs coming out, it's really funny. Sometimes my dad and my mom would help explaining this to me, and I would learn English at the same time, learning about culture that is outside of Thailand.</p>
+<p>When I was in middle school, my mom also sent me to study English, not far from the house, with Mr. Herb. He's actually an American guy who lived in Thailand for a long time and eventually decided to settle down. He's old. He's not a teacher by profession, I think he's just an American guy who spoke English, and he happened to be an American guy who lived in Thailand, and there were only a few people there back in the 90s. So my mom sent me to study English with him once a week for like an hour, and I learned a lot. Actually, I learned to not be afraid of foreigners. I learned how to communicate with foreigners. I learned how to try my best to utter English words. I tried to do my best to use my gestures together with my body language in order to communicate. I learned the beauty of communications using any means that you have in order to communicate with your counterparts.</p>
+<p>But all I wanted to say here is that there's nothing special or nothing hyperbolically interesting about my upbringing. It was a typical 1980s–1990s Thailand as an absolutely third-world country, developing very below and behind everyone else. Corruption was crazy up the roof, and Thai-people-hate-Thai-people era — I mean, that's an era where Thai people hate ourselves and wanted to get out of this place. I grew up in that era, and I knew how it was to want to get out of this country, because I too wanted to get out of Thailand. I felt like this country was so laid back, so backward. Why the hell did I not get the opportunities to actually be exposed to more interesting things? People were talking about how you become your environment, right? Your environment shapes you. That is true. But I refuse to bow down — for instance, when I got bullied by my teachers, because when teachers bully you, all the classmates feel as though they automatically get the permission to bully me as well, because the teacher is an authority figure. If the teachers don't like you, and you don't have the physical power to defend yourself, in that dog-eats-dog, everyone-of-a-so-fucking-stupid world, then you're the victim. You will be bullied out of your comfort zone. You will be bullied out of your own skin. And many people probably want to kill themselves, right? But that's not me. When I got bullied, I came back to my parents and told them that I was bullied. Sometimes they helped me, sometimes they didn't help, but I didn't care. It's just another day in their life. To suck it up and move on. I did that every day. Sometimes I had to hide myself from getting lured into a small little bush where many feet want to step on me, because that's how cowards from this developing country, where people don't understand a sense of dignity in having a one-to-one combat — they just wanted to live day by day like citizens of third-world countries where cowardice and a lack of dignity are the two reasons why we were still developing and backward and third-world.</p>
+<p>I had to endure the bullying every day, and I was able to do it because then I learned the system. Maybe I should find a group of people that I can actually feel belong to. That's when I found out that I actually enjoy playing basketball a lot. For my position, shooting guard, it was perfect for me, because all I had to do — which was something I did well — was to find a location where I would not be blocked, and then all I had to do was to perfect my shooting ability, which was not that hard.</p>
+<p>Because in the 80s and 90s, Thailand was really conservative, I got to meet so many girls that I used to feel like we could have been together, like boyfriends and girlfriends back when I was 15, 16, or even 18 years old. We met again 30 years afterwards, at a reunion, and tongue in cheek, they were all telling me that we could have fucked when we were younger — like now, when we are in our 40s, we look back and we felt that when we were young we should have fucked more. Why did we listen to our parents so much? Our parents were super conservative, because they were born into a super conservative society. They didn't know better than us, right? Because when I was 15, my dad would have been in his 40s or late 40s or 50s, and he definitely wouldn't know more than I know right now. So in a sense, now that we live our life through its halfway, we look back and we realize that we will-lied to, right. We shouldn't try to abstain from sex. We were open about it now — we should just have sex, protected ones of course, and have fun and enjoy the beauty of our youth. We could have sex five times a day with five different people and enjoy it, and 40 years afterwards we would feel as though we actually lived a good life.</p>
+<p>But now, 40 years afterwards, I felt as though my life is pretty fucked up, because when my body was at the best in reproductivity — which is the reason why I have this fucking body at all — I was prevented from using it for the purpose that nature allows me to have this fucking body, right? So it's really retarded that the society wants us to do everything against what our nature wants us to do. I see the reason why, but the extreme abstainment from the actual things that we should be using our bodies to do — because before we have society and civilization, we lived in such a way that our bodies get what they want biologically most of the time. So how can you erase those 100,000s of years of DNA building by just a few 100 years of cultural norm that someone just decided that patriarchy and the condemnations of women as Madonna or whore is the way we want our societal norms to be rewritten? It's just retarded and stupid, and I never believe in any of this shitfuck norms that shitfuckhead-norms people wanted to tell us. So in that sense, I've always been Foucauldian, I've always been Lacanian, I've always been Freudian — not because I'm smart. I am smart.</p>
+<p>I realized we're going to get to this in a bit on how I feel like I could not forgive my parents for not realizing that I'm a genius and let me be bullied for a long time. I told my mom that had they realized that I was a genius early on, I would have ended up at Harvard already, right? I would have gone to Harvard for my undergrad. I would have been doing all the great things since I was in my 20s, and by my 30s I would have maybe run a lab as a full professor at MIT, something like that.</p>
+<p>But they didn't realize. They thought I was stupid. They didn't even want to support me so much in terms of study. They didn't think I could actually do study. But my mom even told me that she never seen me study at all, because I never studied. I mean, with my understanding, learning is — you learn something and you get it, or you don't. You don't come back and do more exercise so that you can score better in an exam, that's stupid. I don't do that kind of fuck shit. I just study because I need to learn something, and once I know it, it's in my brain forever. That's the level of genius I am. But my mom thought, because I never read anything, I must be stupid. So I got by, I got like three-point-something GPAs, which I thought was really awful, but turns out I was among the top five or top 10 of my class, always from the beginning of time until I never became number second anymore, because I have to occupy the top level only. But that's when I realized, yeah, people were wrong to think that I was stupid. People were wrong to think that I was rebellious because I had nothing to show. People were wrong to think that the reason why I didn't go to Harvard for undergrad was because I was not smart enough. People were wrong to think that Thailand can only produce shitfuckhead cowards. People were wrong to think that Thailand is a country that nobody wants to live in. People were wrong to think that they can look down on Thai people. People were wrong to actually think that this Dr. Non, no — end up just another guy in the footnote of history.</p>
+<p>We were wrong. I will prove them wrong, and I will prove them wrong in the most sophisticatedly punitive way, because they have to learn not to look down on other people. But I don't care about it that much. I only care about myself. I think the best guy who has the best life is the best guy who don't have to show off to people that they have the best life already. And that's somehow is my life right now. I have a good health. I don't have a health problem at all. I'm happy with my health. I don't have a problem with money at all. I don't have a problem with anything at all. I'm happy with lots of things, right? I just got home, so we'll continue this later.</p>
+<p><em>— Transcript ends. Generated by Otter.ai.</em></p>
+<hr class="msg-break">
+<div class="msg-h"><span class="msg-n">MSG 04</span><span class="msg-headline">Maternal family-history expansion (after the shop-artifact threads)</span></div>
+<p>And you can imagine once the fire took place, the whole row was wiped down. Not sure what year that was, but definitely before 69, in which case we could also anticipate that the number before that would probably have been different as well.</p>
+<p>My mother, as the oldest daughter of a family of five people, has one little brother who is my uncle living next door to me and three sisters. All of them were younger than her, and she was the oldest, so she was the first one to have to go to school. Because our family did really well in school, we were the top students, to the point that even the minister of education today, who is actually our neighbor from the same hometown, mentioned that if you come from this family, you must be good at schooling or you must be a very good student. Everybody in this family, from my maternal grandparent side, was very good at studying. One of them, my uncle, became a medical doctor and retired as a professor at a top medical school. My aunt also retired as a professor at a top medical school in the northeast, Khon Kaen University. The other two were top in their classes and went to school in Bangkok afterward. They stay in that small little row house near Siam Intercontinental that I mentioned. They stay together. My mom was the first to come, and then all the siblings came, and they stay together in those three-story row houses over the years until all my mom's siblings graduated and went to different places. Some went to Chiang Mai for Chiang Mai University, some stay in Bangkok and enroll at Thammasat University, and one, my aunt, attended Mahidol University for the Bachelor of Science field before she continued to become a medical doctor.</p>
+<p>There was a lot of history involved, and my mom was really proud that she came to Bangkok after her rural hometown through networks of friends who were already in Bangkok. We didn't just come blind. It was not like in an old movie where a rural lady traveled to Bangkok blindly and then got raped or got pulled into human trafficking or whatever. That's not the case. We had networks of people who were working with each other, understood each other, and connected each other in terms of commerce already. Because of that, she was able to travel to Bangkok and then find a job while she's enrolling in her post-middle-school degree, the last three years of high school. She enrolled in Bangkok College for accounting, which at the time was the best option, and after that she went to Thammasat University. She's really proud that she worked her way up and even enrolled at Thammasat as a midnight student. They call it a night student, but basically she had to work as hard as many other people because she had to study and at the same time try to make some money and be the sister who's in charge of the family, supporting her siblings.</p>
+      <figure class="artifact art-duo">
+  <img src="/assets/artifacts/day-001/suwan-panit-shop-frontage.png" alt="Suwan Panit shop frontage today · concrete post-fire rebuild · house no. 186 · the Chinese hao 發祥 visible on the signboard" loading="lazy">
+  <figcaption>Suwan Panit shop frontage today · concrete post-fire rebuild · house no. 186 · the Chinese hao 發祥 visible on the signboard</figcaption>
+</figure>
+      <div class="narration"><div class="col-label">Narration &mdash; Biographer</div><p>Day one. He gave a date, a hospital, an area, a brother six years older, a house his father built. The calendar agreed: November 1st, 1981 was a Sunday. The hospital exists at the address the geography implied. One detail tripped — he placed his infancy "near Siam Paragon," a mall that wouldn't exist for another twenty-four years. Not a memory error. A grammar error.</p>
+<p>He pushed back. <em>Ahem!</em> The hotel that stood there before was the Siam Intercontinental — a roof shaped like a hat, an American architect trained in Wright's Prairie tradition, gardens, his mother's dry cleaner, wedding receptions, an Australian student-affairs expo in 2002 just before they tore it down. <em>(The first fact-check flagged "Paris style of Frank Lloyd Wright" as contradicted — Wright had no Paris style. Non corrected the next day: he had said "Prairie style." The transcription was the unreliable narrator, not him. The system logs its own errors as plainly as it logs his.)</em> He gave the geography back: the elephant-headed bridge, Sra Pathum Palace, the beer garden, the science center, the walk to Siam Square. The three theatres — Scala, Lido, Siam — still standing then. His mother's commute to Krung Thai Bank on Sukhumvit. The maternal grandmother who saw the city coming, who bought the land before the kids needed it, whose stinginess produced house. The eminent domain that took her downtown plot and produced the money that produced the suburb the family lives in now. Pantip Plaza for the mall-loss incident, with the architecture-trained adult naming the columns Doric and Ionic decades later.</p>
+<p>Then, late in the night, half an hour driving home, the floodgate. The whole childhood at once.</p>
+<p>He starts by asking himself the question that opens all biographies: <em>have I forgiven my parents.</em> And he answers: <em>I have nothing to forgive. They cared for me. I was born well.</em> Then he keeps talking, and an hour later he says he cannot forgive them for not realizing he was a genius. The two positions sit in the same dictation, untouched by each other. The system logs them both. The cross-message contradiction is not a contradiction to be resolved — it's the texture of the project. Both are true. Day 76 will ask the question again.</p>
+<p>He gives the through-line he hadn't given before: <em>Shanghai Bund</em> on Channel 3 after school, ages five to ten, dubbed Cantonese into Thai. Twenty years later he flies to Shanghai for the first time. The doctoral dissertation is on Shanghai. The childhood TV show is on the spine of the academic career. The line is his to draw and he draws it.</p>
+<p>He gives the geography of his suburban childhood — the alleyway suburb he calls "Nam Sai," the grocery store still there after forty years, three candies for a baht then, two baht each now, candy inflation as a personal economic indicator. The grandmother's compound where his parents and his mother's brother and his mother's sisters all built houses on land she'd bought before any of them knew they'd need it. His cousin Prem, whom he loves, who works in internal audit and is finally with a girl he likes.</p>
+<p>He gives the bullying. Teachers as primary bullies in the 80s and 90s Thai school system, parents outsourcing punishment as outsourced bad-cop labor. Classmates who took the teachers' permission to bully him further. Hiding in bushes. Basketball as the tribe he found — shooting guard, the position where being unblocked and shooting cleanly is the job, both of which he was good at. The Jackson Pollock painting on his father's white wall, age three, and his parents not yelling at him but photographing the wall.</p>
+<p>He gives the comics. <em>Dragon Ball</em> read and rewritten as <em>Dragon Wall</em>. <em>Bangkok Post</em> on Sundays for the <em>Garfield</em> and the <em>Archie</em>. Mr. Herb, the American expat who taught him English once a week and taught him that foreigners were not to be feared. His parents who didn't recognize his genius but who subscribed to the English newspaper anyway. The visionary maternal grandmother who didn't read books but bought land.</p>
+<p>He gives the cultural critique. Thailand of the 80s and 90s as third-world, corruption "up the roof," the "Thai-people-hate-Thai-people era." The shame that produced his wanting to leave. The Foucauldian, Lacanian, Freudian self-positioning. The conservative sexual abstention he now regrets — <em>we should have fucked more,</em> he says he was told at a thirty-year reunion. The body whose reproductive prime was wasted on the social norms his thinkers had taught him to despise.</p>
+<p>He gives the resentment without giving it. <em>I will prove them wrong in the most sophisticatedly punitive way,</em> he says, and immediately: <em>but I don't care about it that much.</em> Both are true at once. The system logs them both.</p>
+<p>He ends: <em>good health, no money problems, happy with lots of things. I just got home. We'll continue this later.</em></p>
+<p>Day 1 produced 999 words on the first hand and over five thousand more in the second. The mechanic is established. The fact-check pushed him into specificity in Message 2; the specificity opened the floodgate in Message 3. The unreliable narrator was not unreliable about the dates or the hospital. He was reaching for nearby anchors that were almost-right. When the system showed him the gap, he gave more, not less.</p>
+<p>Then he gave the first artifact. A photo of a Thai commercial registration certificate from his mother's rural hometown — สีคิ้ว in Nakhon Ratchasima, the northeast. The shop's name was ร้านสุวรรณพานิช, Suwan Panit, <em>the Gold Trading House.</em> The business was pre-stitched clothing and fabric cuts, the standard product of a mid-century Sino-Thai rural trading family. The shop is older than the document; he says his great-grandparents started it. The document is the moment the state required them to declare themselves.</p>
+<p>He said the registration was 1969. The first machine read of the low-resolution image got it wrong — saw ๒๔๙๖, called it 1953, called it a sixteen-year drift. He pushed back. <em>Buddha year 2512 is AD 1953?</em> No. BE 2512 = CE 1969. He had the physical document; he could read the handwritten Thai numerals cleanly where the photograph could not. The fact-check inverted: the system was the unreliable narrator, again — same as Prairie/Paris, just on a visual rather than auditory channel. Two system errors in Day 1, and on the only hard-record question the project has actually checked against a document, Non was right. The mechanic that the project was built to surface — the unreliable narrator made structural — turned out, in this round, to be the <em>machine</em> doing the narrating. He commented on it himself: the system back then was super analog, everything handwritten, "no wonder we didn't get to collect tax properly." A 1969 record made by hand, photographed in 2026, mis-read by software in 2026. The whole chain is part of the document.</p>
+<p>He's thinking of registering a new company called <em>Suwan Panit Consulting 1969</em> — to revive the family commercial lineage as a technology consultancy, the way Toyota revived its fabric-mill origins by becoming a car company. His memory of the date and the registration date now agree on 1969. He likes the number 69 — names yin-yang dynamism in it, names that he's been obsessed with it as a sex position but has done it less than five times in his life, names a craving-vs-discomfort dynamic he flags for later. <em>That's a story for another time,</em> he says, and the time will come: when the questions reach his puberty, the conservative-Thailand sexual abstention, the construction of the vagina as mythical-object that present-day intimacy still has to answer to. The Phase 4 arc has its through-line before Phase 4 begins.</p>
+<p>Day 2 was supposed to be about his mother. After Message 3 it's already half-answered. After the artifacts it's already a third of the way more — the maternal-grandmother and great-grandparent thread is now traced to a Korat shop with an address, a name, and a verified date. The question for Day 2 will sharpen accordingly.</p>
+<p>Then he gave Message 4 and Day 2 became almost unnecessary.</p>
+<p>His mother as the eldest of five — one younger brother (the uncle next door now), three younger sisters. The family from สีคิ้ว that produced two professors at top medical schools (one at Khon Kaen, one at another), siblings who dispersed to Chiang Mai University, Thammasat University, Mahidol University for the medical pathway. The current Thai Minister of Education is from the same hometown and has remarked that anyone from this family must be a good student. The maternal line is not a story of rural-girl-arrives-in-Bangkok-and-disappears; it's a story of chain migration through pre-existing commercial networks, the Sino-Thai mobility pattern of the 1960s and 70s documented by Skinner and Coughlin, traced here through one specific shop and one specific eldest sister.</p>
+<p>His mother came first. Bangkok College for accounting at high-school equivalent, then Thammasat as a night student — what he calls a midnight student — working day-jobs to support the siblings as they arrived behind her. The three-story row house near Siam Intercontinental, the one we already had on the map, becomes a sibling-staging dormitory. The maternal-grandmother who bought the suburban land before the kids needed it now has a daughter who replicated the visionary investment at a personal-labor scale: working through evening university while supporting four siblings into careers that produced professors.</p>
+<p>The mechanic continues to invert the project's framing assumption. Day 1 was supposed to surface where Non's memory drifts. What it surfaced instead is the institutional infrastructure that holds his story up — Phyathai, Assumption College, Khon Kaen, Chiang Mai, Thammasat, Mahidol, Bangkok Post, Siam Intercontinental, Sra Pathum, Pantip, Krung Thai Bank, Suwan Panit, 發祥. Every name has checked. The unreliable narrator pattern has, so far, been the recording layer, not him.</p>
+<p>One open thread remains externally web-searchable: the current Minister of Education's identity and home province. Everything else from Day 1 either holds, was self-resolved, or sits in the ∅ column awaiting a name.</p></div>
+    </div>
+    <aside class="fc-col">
+      <div class="col-label">Fact-check &middot; 58 claims</div>
+<div class="claim"><span class="c-glyph s-verified">✓</span><span class="c-tag s-verified">VERIFIED</span><span class="c-text">Born November 1, 1981</span><span class="c-sub s-verified">Calendar: Nov 1, 1981 was a Sunday.</span></div>
+<div class="claim"><span class="c-glyph s-verified">✓</span><span class="c-tag s-verified">VERIFIED</span><span class="c-text">Day of week = Sunday</span><span class="c-sub s-verified">Same calendar verification.</span></div>
+<div class="claim"><span class="c-glyph s-verified">✓</span><span class="c-tag s-verified">VERIFIED</span><span class="c-text">Hospital: Phyathai (Payatai), Bangkok</span><span class="c-sub s-verified">Phyathai Hospital, Ratchathewi District, consistent with stated row-house location.</span></div>
+<div class="claim"><span class="c-glyph s-contradicted">✗</span><span class="c-tag s-contradicted">CONTRADICTED</span><span class="c-text">"Near Siam Paragon" (literal)</span><span class="c-sub s-contradicted">Siam Paragon opened Dec 2005. Self-corrected in Message 2 → Siam Intercontinental.</span></div>
+<div class="claim"><span class="c-glyph s-verified">✓</span><span class="c-tag s-verified">VERIFIED</span><span class="c-text">Siam Intercontinental Hotel at the location in 1981</span><span class="c-sub s-verified">1966–2002 on present-day Siam Paragon site.</span></div>
+<div class="claim"><span class="c-glyph s-unverified">?</span><span class="c-tag s-unverified">UNVERIFIED</span><span class="c-text">Father built the current house</span><span class="c-sub s-unverified">Resolvable with photo albums.</span></div>
+<div class="claim"><span class="c-glyph s-verified">✓</span><span class="c-tag s-verified">VERIFIED</span><span class="c-text">42 years in current house</span><span class="c-sub s-verified">Within stated precision.</span></div>
+<div class="claim"><span class="c-glyph s-unverifiable">∅</span><span class="c-tag s-unverifiable">UN-VERIFIABLE</span><span class="c-text">Brother is six years older</span><span class="c-sub s-unverifiable">Un-verifiable without naming.</span></div>
+<div class="claim"><span class="c-glyph s-verified">✓</span><span class="c-tag s-verified">VERIFIED</span><span class="c-text">Designed to look like a hat</span><span class="c-sub s-verified">Documented sloped-pavilion roof.</span></div>
+<div class="claim"><span class="c-glyph s-unverified">?</span><span class="c-tag s-unverified">UNVERIFIED</span><span class="c-text">Architect was a "direct student of Frank Lloyd Wright"</span><span class="c-sub s-unverified">Joseph A. Salerno designed it; "direct student" vs. "Wright-influenced" needs primary source.</span></div>
+<div class="claim"><span class="c-glyph s-verified">✓</span><span class="c-tag s-verified">VERIFIED</span><span class="c-text">"Prairie style of Frank Lloyd Wright" <em>(originally fact-checked as "Paris style" — see correction note below)</em></span><span class="c-sub s-verified">Prairie style is one of FLW's signature design traditions (~1900–1917, characterized by horizontal lines, low rooflines, integration with landscape). The transmission of Prairie-style influence abroad (including via Wright disciples like Joseph Salerno) is documented. <strong>The original ✗ was a transcription error in MY recording of Non's voice — "Prairie" was heard as "Paris." Non corrected this 2026-05-25. The error was the system's, not the subject's.</strong></span></div>
+<div class="claim"><span class="c-glyph s-verified">✓</span><span class="c-tag s-verified">VERIFIED</span><span class="c-text">Surrounded by a park</span><span class="c-sub s-verified">Among the largest urban green areas in central Bangkok at the time.</span></div>
+<div class="claim"><span class="c-glyph s-verified">✓</span><span class="c-tag s-verified">VERIFIED</span><span class="c-text">Torn down "a few months after" the 2002-era Australian student-affairs expo</span><span class="c-sub s-verified">Closed 2002; demolition completed shortly after; Siam Paragon opened Dec 2005.</span></div>
+<div class="claim"><span class="c-glyph s-verified">✓</span><span class="c-tag s-verified">VERIFIED</span><span class="c-text">Three big theaters in Siam Square</span><span class="c-sub s-verified">Siam Theatre, Lido Theatre, Scala Theatre.</span></div>
+<div class="claim"><span class="c-glyph s-unverified">?</span><span class="c-tag s-unverified">UNVERIFIED</span><span class="c-text">"Comic Anna" shop</span><span class="c-sub s-unverified">Likely transcription artifact or small unindexed shop.</span></div>
+<div class="claim"><span class="c-glyph s-verified">✓</span><span class="c-tag s-verified">VERIFIED</span><span class="c-text">Sra Pathum Palace ("Princess Palace") east of the row house, across canal</span><span class="c-sub s-verified">Royal residence in Pathumwan, geographically consistent.</span></div>
+<div class="claim"><span class="c-glyph s-unverified">?</span><span class="c-tag s-unverified">UNVERIFIED</span><span class="c-text">Elephant-headed bridge over a small canal</span><span class="c-sub s-unverified">Likely a Khlong Saen Saep footbridge variant; needs specific name.</span></div>
+<div class="claim"><span class="c-glyph s-unverified">?</span><span class="c-tag s-unverified">UNVERIFIED</span><span class="c-text">"Science center" near the route</span><span class="c-sub s-unverified">Needs disambiguation.</span></div>
+<div class="claim"><span class="c-glyph s-verified">✓</span><span class="c-tag s-verified">VERIFIED</span><span class="c-text">Mother worked at Krung Thai Bank HQ on Sukhumvit</span><span class="c-sub s-verified">KTB HQ at Asok / Sukhumvit area.</span></div>
+<div class="claim"><span class="c-glyph s-unverifiable">∅</span><span class="c-tag s-unverifiable">UN-VERIFIABLE</span><span class="c-text">Maternal grandmother (described as "Thai-Chinese lady from a rural area") bought Bangkok land as a long-term investment for her children</span><span class="c-sub s-unverifiable">Family history. Now naming context: "Thai-Chinese from rural Thailand." Resolvable via family land deeds.</span></div>
+<div class="claim"><span class="c-glyph s-unverified">?</span><span class="c-tag s-unverified">UNVERIFIED</span><span class="c-text">The plot was later partially taken by eminent domain for the "landing of an expressway" — but the expressway "still hasn't been built" 40 years later</span><span class="c-sub s-unverified">Verifiable in principle via Expressway Authority of Thailand records. Many Bangkok expressway alignments were planned in the 80s and modified or cancelled. A planned-but-never-built expressway landing in central Bangkok is plausible.</span></div>
+<div class="claim"><span class="c-glyph s-unverifiable">∅</span><span class="c-tag s-unverifiable">UN-VERIFIABLE</span><span class="c-text">Compensation funded construction of the current house</span><span class="c-sub s-unverifiable">Family-internal.</span></div>
+<div class="claim"><span class="c-glyph s-unverifiable">∅</span><span class="c-tag s-unverifiable">UN-VERIFIABLE</span><span class="c-text">The original suburban land was a single plot on which <strong>three houses</strong> were eventually built (Non's parents' house + maternal uncle's house + maternal aunts' house)</span><span class="c-sub s-unverifiable">Family-internal; resolvable with photos / land records.</span></div>
+<div class="claim"><span class="c-glyph s-unverified">?</span><span class="c-tag s-unverified">UNVERIFIED</span><span class="c-text">Old downtown row houses, marked for demolition 40 years ago, are now occupied by migrant workers with electricity, water, mailing addresses</span><span class="c-sub s-unverified">Plausible — Bangkok has many "ghost expropriation" parcels in similar status, but specific to this address would need a site visit or recent photo.</span></div>
+<div class="fc-overflow">+ 34 additional claims in full record</div>
+<div class="fc-tally">
+  <div><div class="tally-n">26</div><div class="tally-l">&#10003; Verified</div></div>
+  <div><div class="tally-n cx">1</div><div class="tally-l">&#10007; Contradicted</div></div>
+  <div><div class="tally-n">15</div><div class="tally-l">? Unverified</div></div>
+  <div><div class="tally-n">16</div><div class="tally-l">&#8709; Un-veri&shy;fiable</div></div>
+  <div><div class="tally-n">0</div><div class="tally-l">&#9670; Other</div></div>
+</div>
+    </aside>
+  </div>
+
+  <section class="telemetry">
+    <div class="t-number">&mdash;:&mdash;:&mdash;</div>
+    <div class="t-meta">999 words across 2 messages · 2026-05-25 Asia/Bangkok · 27 claims extracted</div>
+    <div class="t-grid">
+      <div class="t-cell"><div class="t-cell-n">6716</div><div class="t-cell-l">words</div></div>
+      <div class="t-cell"><div class="t-cell-n">4</div><div class="t-cell-l">messages</div></div>
+      <div class="t-cell"><div class="t-cell-n">2</div><div class="t-cell-l">artifacts</div></div>
+      <div class="t-cell"><div class="t-cell-n">59</div><div class="t-cell-l">claims</div></div>
+    </div>
+  </section>
+
+  <div class="taxonomy"><div class="tx-label">VERIFICATION TAXONOMY</div><div class="tx-grid"><span class="lg-row"><span class="lg-glyph s-verified">✓</span><span class="lg-tag">VERIFIED</span></span><span class="lg-row"><span class="lg-glyph s-contradicted">✗</span><span class="lg-tag">CONTRADICTED</span></span><span class="lg-row"><span class="lg-glyph s-unverified">?</span><span class="lg-tag">UNVERIFIED</span></span><span class="lg-row"><span class="lg-glyph s-unverifiable">∅</span><span class="lg-tag">UN-VERIFIABLE</span></span><span class="lg-row"><span class="lg-glyph s-tension">⫋</span><span class="lg-tag">TENSION</span></span><span class="lg-row"><span class="lg-glyph s-system">◆</span><span class="lg-tag">SYSTEM NOTE</span></span><span class="lg-row"><span class="lg-glyph s-clarification">⚐</span><span class="lg-tag">CLARIFICATION</span></span></div></div>
+
+  <footer>
+    <span>100 Days of Non &middot; Non Arkara &middot; v0.1.3</span>
+    <span>Day 001 of 100 &middot; <a href="/">Lobby</a> &middot; <a href="/day/001/">Prev</a> · <a href="/day/002/">Next</a></span>
+  </footer>
+</main>
 </body>
 </html>
