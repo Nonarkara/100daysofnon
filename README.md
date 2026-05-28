@@ -6,11 +6,12 @@ Each frame is a way of seeing structure where other people see noise. The frames
 
 The site is built the way an architect draws: a warm-paper drawing sheet, ink, and one mark of colour — 朱 cinnabar, the colour of the correction pencil and the family name-seal — used once, where it means something. Every sheet carries a titleblock; the worked examples are read from the record, not invented.
 
-## Status
+## Status — v0.2.1
 
 - **Sheet 01 — The Spatial Frame** · live · adjacency, boundary, flow, centre.
-- Sheets 02–04 (Cultural / Strategic / Temporal) — planned, not yet drawn.
-- **Form:** written + a figure-ground plan + a local-only worksheet (nothing leaves your device).
+- **Sheet 02 — The Cultural Frame** · live · stated code, desire paths, reward & exile, the disavowed.
+- Sheets 03–04 (Strategic / Temporal) — planned, not yet drawn.
+- **Form:** written + an architectural diagram + a local-only worksheet (nothing leaves your device).
 - **Energy:** rigorous and warm. Precise is not the same as cold.
 
 ## Structure
@@ -18,9 +19,11 @@ The site is built the way an architect draws: a warm-paper drawing sheet, ink, a
 ```
 site/
   index.html              # the drawing set — titleblock + register
+  404.html                 # re-filed sheet — routes orphaned links back to the set
   assets/css/main.css      # the design system (IBM Plex; one cinnabar accent; no rounded corners)
   frames/
     spatial.html           # Sheet 01 — adjacency, boundary, flow, centre
+    cultural.html          # Sheet 02 — stated code, desire paths, reward & exile, the disavowed
 ```
 
 ## Design rules
