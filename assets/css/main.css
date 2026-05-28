@@ -424,6 +424,116 @@ button.stamp:hover { background: var(--seal-2); border-color: var(--seal-2); }
 .next em { color: var(--ink); }
 
 /* ════════════════════════════════════════════════════════════════
+   THE SURVEY — the lens turned around. Reading the subject as a
+   system. Scattered fragments assembled into recurring structures;
+   the juxtaposition is the finding.
+   ════════════════════════════════════════════════════════════════ */
+
+.survey-intro { max-width: var(--measure); margin-bottom: var(--s5); }
+.survey-intro p { font-size: 1.1875rem; line-height: 1.6; color: var(--ink-2); }
+.survey-intro p:first-child { color: var(--ink); }
+.survey-meta {
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-top: var(--s3);
+}
+
+.finding { margin: var(--s6) 0; padding-top: var(--s3); border-top: 1px solid var(--ink); }
+.finding-kicker {
+  display: block;
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--seal);
+  margin-bottom: var(--s2);
+}
+.finding h2 {
+  margin-top: 0;
+  border-bottom: none;
+  padding-bottom: 0;
+  display: block;
+}
+.finding-claim {
+  font-family: var(--serif);
+  font-size: var(--t-body);
+  line-height: 1.6;
+  color: var(--ink);
+  max-width: var(--measure);
+  margin: var(--s2) 0 var(--s3);
+}
+.finding-claim em { font-style: italic; color: var(--ink-2); }
+.finding-claim strong { font-weight: 600; }
+
+/* the constellation — fragments said on different days, assembled */
+.evidence {
+  margin: var(--s3) 0;
+  border-left: 2px solid var(--rule-2);
+}
+.frag {
+  display: grid;
+  grid-template-columns: 9.5rem 1fr;
+  gap: var(--s1) var(--s3);
+  padding: var(--s2) var(--s3);
+  border-bottom: 1px solid var(--rule);
+}
+.frag:last-child { border-bottom: none; }
+.frag .cite {
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.04em;
+  color: var(--seal);
+  white-space: nowrap;
+  padding-top: 0.25em;
+}
+.frag .quote {
+  font-family: var(--serif);
+  font-size: var(--t-body);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.frag .quote em { color: var(--ink); font-style: italic; }
+
+.synthesis {
+  font-family: var(--serif);
+  font-size: var(--t-body);
+  line-height: 1.62;
+  color: var(--ink);
+  max-width: var(--measure);
+  margin-top: var(--s3);
+  padding-left: var(--s3);
+  border-left: 3px solid var(--seal-2);
+}
+.synthesis .label {
+  display: block;
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--seal);
+  margin-bottom: var(--s1);
+}
+.synthesis em { font-style: italic; color: var(--ink-2); }
+
+/* featured register row — the Survey sits above the numbered frames */
+.sheet-row.featured {
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding-top: var(--s3);
+  padding-bottom: var(--s3);
+}
+.sheet-row.featured .sr-no { color: var(--seal); }
+.sheet-row.featured .sr-title { font-size: 1.25rem; }
+
+@media (max-width: 640px) {
+  .frag { grid-template-columns: 1fr; gap: 0.25rem; padding: var(--s2); }
+  .frag .cite { padding-top: 0; }
+  .survey-intro p { font-size: 1.0625rem; }
+}
+
+/* ════════════════════════════════════════════════════════════════
    FOOTER
    ════════════════════════════════════════════════════════════════ */
 
