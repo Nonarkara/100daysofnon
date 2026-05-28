@@ -2,6 +2,18 @@
 
 The same mistake never happens twice. Read at the start of every session.
 
+## 2026-05-28 · Two failure modes, not one — punk-cold AND tasteful-cold both fail
+
+- **What went wrong:** The punk biography was rejected as "uncurated, cliché, no personality, no fun." The instinctive fix (swing to "serious and rigorous") produced the *opposite* cliché — a cold, generic-tasteful essay (centred serif, blue accent, rounded corners, Inter). Same root failure (no warmth, no him) in a quieter costume.
+- **Correct behaviour:** Dr Non lives in the *both-at-once* (§12.6 Central Tension; Visual-DNA rule 8 "precise is not the same as cold"). The target is rigour AND warmth: a real tool, grounded in his actual record as worked examples (not confessional memoir), with ONE meaningful accent and a curated, conceptual visual identity. When a design feels "safe/tasteful," that is the cold-cliché failure — push for the curated, slightly riskier decision that carries meaning (e.g. cinnabar = correction-pencil + name-seal; the figure-ground plan; the desire-path).
+- **How to recognise:** if a draft would look at home on a generic Substack/Notion/Stripe-press page, it has failed in the tasteful direction — exactly as a ransom-note-caps punk page fails in the loud direction. Neither has his fingerprints on it.
+
+## 2026-05-28 · GitHub Pages serving-layer lag ≠ Cloudflare cache
+
+- **What went wrong:** After a successful deploy (`gh run` = success), `curl` to the live URL returned GitHub's *default* "Page not found · GitHub Pages" 404 for a brand-new file, even with `?cb=` and `Cache-Control: no-cache`. Looked like a broken deploy.
+- **Correct behaviour:** Two distinct delays exist. (1) Cloudflare edge cache (max-age 600) — beaten with a unique query string. (2) **GitHub Pages' own serving layer** — lags ~1–2 min *after* the Action reports success, and a cache-buster cannot beat it because the file genuinely isn't being served yet. Before assuming a deploy bug, confirm the branch: `git fetch origin gh-pages && git ls-tree --name-only origin/gh-pages <path>`. If the file is on the branch, it's propagation — poll with `until curl ... | grep -q <marker>; do sleep 5; done` (run in background) rather than re-deploying.
+- **How to recognise:** GitHub's *own* 404 page (not your custom 404.html) on a path you just deployed, with `cf-cache-status: DYNAMIC` and low `age` — means the request reached GitHub fresh and GitHub itself is still serving stale. Wait, don't re-push.
+
 ## 2026-05-27 · Day-pages can become stale relative to diary content
 
 - **What went wrong:** Day 3's `site/day/003/index.html` was rendering an entirely different topic (TKC ninja workshop / Phase II) than what was in `diary/day-003/answer.md` (the father arc, 10 messages, 16 artifacts). The site was hand-coded from a prior Day-3 question that was later sharpened to a different prompt. Day 2 had the same drift on a smaller scale (the page rendered Msgs 1–4 but the diary had Msgs 1–9). The hand-coded approach drifts silently — there's no compiler error when the source-of-truth (`diary/day-XXX/answer.md`) is ahead of the derived artifact (`site/day/XXX/index.html`).
