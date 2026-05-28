@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>100 Days of Non</title>
+  <meta name="description" content="A museum of Dr Non's mind. Twelve rooms. One docent. A 100-day biographical installation. Memory and record, side by side.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://100.nonarkara.org/">
+  <meta property="og:title" content="100 Days of Non — A museum of Dr Non's mind">
+  <meta property="og:description" content="Twelve rooms. One docent. A 100-day biographical installation. Memory and record, side by side. Where they disagree is the most interesting cell on the page.">
+  <meta property="og:image" content="https://100.nonarkara.org/assets/portrait.jpg">
+  <meta property="og:site_name" content="100 Days of Non">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="100 Days of Non — A museum of Dr Non's mind">
+  <meta name="twitter:description" content="Twelve rooms. One docent. A 100-day biographical installation. Memory and record, side by side. Where they disagree is the most interesting cell on the page.">
+  <meta name="twitter:image" content="https://100.nonarkara.org/assets/portrait.jpg">
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <style>
+    /* ═══════════════════════════════════════════════════════
+       V2 LOBBY — The dark room. You enter, not browse.
+       External calmness × internal chaos.
+       ═══════════════════════════════════════════════════════ */
+
+    body {
+      background: radial-gradient(ellipse at 50% -5%, var(--deep) 0%, #000 60%);
+    }
+
+    /* ── FLOATING NAV ───────────────────────────────────── */
+    .v2-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+    }
+    .v2-brand {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-red);
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .v2-nav-links {
+      display: flex;
+      gap: 24px;
+    }
+    .v2-nav-links a {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--dim);
+      text-decoration: none;
+    }
+    .v2-nav-links a:hover { color: var(--fg); }
+
+    /* ── ENTRANCE — THE DARK ROOM ───────────────────────── */
+    .entrance {
+      position: relative;
+      min-height: 100svh;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+
+    /* ── COLLAGE ────────────────────────────────────────── */
+    /*
+       Each photo is grayscale + high-contrast, placed in a
+       colored chip. mix-blend-mode: multiply makes the light
+       areas of the photo show as the chip's neon color.
+       Dark areas collapse to black. Result: neon cuts through void.
+    */
+    .collage {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .cchip {
+      position: absolute;
+      overflow: hidden;
+    }
+    .cchip img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(1) contrast(380%) brightness(0.85);
+      mix-blend-mode: multiply;
+      display: block;
+    }
+
+    /* Color modes */
+    .cc-pink  { background: var(--neon-pink); }
+    .cc-acid  { background: var(--accent); }
+    .cc-navy  { background: #1a1aff; }
+    .cc-red   { background: var(--accent-red); }
+    .cc-dim   { background: rgba(204,255,0,0.35); }
+
+    /*
+       Placement: modular grid beneath the chaos.
+       Each chip aligns to invisible quarters.
+       The collage is organized, not random.
+    */
+    .cc1 { /* JacksonPollock — dominant anchor, upper right */
+      width: 38vw; height: 62vh;
+      top: 0; right: 0;
+    }
+    .cc2 { /* 1982 — left shoulder */
+      width: 22vw; height: 38vh;
+      top: 10vh; left: 0;
+    }
+    .cc3 { /* Preschool — center stage, overlapping */
+      width: 20vw; height: 30vh;
+      bottom: 22vh; right: 24vw;
+    }
+    .cc4 { /* with Dad — lower left anchor */
+      width: 22vw; height: 32vh;
+      bottom: 0; left: 6vw;
+    }
+    .cc5 { /* by the sea — small punctuation, upper mid */
+      width: 15vw; height: 22vh;
+      top: 6vh; left: 20vw;
+    }
+    .cc6 { /* 1980s — center-top ghost */
+      width: 18vw; height: 26vh;
+      top: 0; left: 40vw;
+      opacity: 0.45;
+    }
+
+    /* ── HERO ───────────────────────────────────────────── */
+    .hero-stage {
+      position: relative;
+      z-index: 2;
+      padding: 0 48px 64px;
+      max-width: 1440px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 12px;
+    }
+
+    .hero-word {
+      font-family: var(--sans);
+      font-size: clamp(72px, 20vw, 300px);
+      font-weight: 800;
+      line-height: 0.84;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+      display: block;
+      color: var(--fg);
+      margin: 0;
+    }
+    .hw-acid { color: var(--accent); }
+    .hw-pink { color: var(--neon-pink); }
+
+    .hero-sub {
+      font-family: var(--serif);
+      font-size: clamp(14px, 1.4vw, 18px);
+      line-height: 1.65;
+      color: rgba(255,255,255,0.55);
+      max-width: min(52ch, 100%);
+      margin-top: 28px;
+    }
+    .hero-sub strong { color: rgba(255,255,255,0.85); }
+
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .hstat {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .hstat b {
+      display: block;
+      font-family: var(--sans);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--fg);
+      letter-spacing: -0.02em;
+      text-transform: none;
+      margin-bottom: 2px;
+    }
+
+    /* ── ROOMS INDEX — tracklist, not cards ─────────────── */
+    .rooms-index {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 48px 80px;
+    }
+
+    .index-label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dim);
+      padding: 40px 0 16px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .index-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      text-decoration: none;
+      color: var(--fg);
+    }
+    .index-row:hover {
+      background: var(--row-bg, var(--accent));
+      color: #000;
+      padding-left: 16px;
+      border-color: transparent;
+    }
+    .index-row:hover .idx-n,
+    .index-row:hover .idx-sub,
+    .index-row:hover .idx-arrow { color: rgba(0,0,0,0.6) !important; }
+
+    /* Featured row: Room 01 always chartreuse */
+    .index-row.featured {
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .index-row.featured .idx-name {
+      font-size: clamp(28px, 3.5vw, 52px);
+    }
+
+    /* Docent rows: neon pink */
+    .index-row.docent:hover {
+      background: var(--neon-pink);
+    }
+    .index-row.docent .idx-n { color: var(--neon-pink); }
+
+    .idx-n {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      width: 28px;
+      flex-shrink: 0;
+    }
+    .idx-name {
+      font-family: var(--sans);
+      font-size: clamp(22px, 2.8vw, 42px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      min-width: 160px;
+      flex-shrink: 0;
+    }
+    .idx-sub {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--dim);
+      letter-spacing: 0.06em;
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .idx-arrow {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--dim);
+      flex-shrink: 0;
+    }
+
+    /* ── STATUS BAR ─────────────────────────────────────── */
+    .status-bar {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 16px 48px 40px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .s-dot {
+      width: 6px; height: 6px;
+      background: var(--accent-red);
+      flex-shrink: 0;
+    }
+    .s-text {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+
+    /* ── MOBILE ─────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .v2-nav { padding: 16px 24px; }
+      .v2-nav-links { display: none; }
+      .hero-stage { padding: 0 24px 48px; }
+
+      /* Collage: fewer chips, repositioned */
+      .cc1 { width: 60vw; height: 50vh; top: 0; right: 0; }
+      .cc2 { display: none; }
+      .cc3 { width: 36vw; height: 28vh; bottom: 28vh; right: 0; }
+      .cc4 { width: 40vw; height: 32vh; bottom: 0; left: 0; }
+      .cc5 { display: none; }
+      .cc6 { display: none; }
+
+      .rooms-index { padding: 0 24px 64px; }
+      .idx-sub { display: none; }
+      .index-row { gap: 12px; }
+      .index-row.featured { padding: 20px 0; }
+      .status-bar { padding: 16px 24px 32px; flex-wrap: wrap; gap: 8px; }
+    }
+
+    @media (max-width: 480px) {
+      .cc1 { width: 72vw; height: 45vh; }
+      .cc3 { width: 44vw; height: 26vh; bottom: 24vh; }
+      .cc4 { width: 48vw; height: 30vh; }
+      .hero-stats { gap: 16px; }
+      .hstat { min-width: calc(50% - 8px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FLOATING NAV -->
+  <nav class="v2-nav">
+    <a class="v2-brand" href="/">100 Days of Non · v0.1.3</a>
+    <div class="v2-nav-links">
+      <a href="/day/001/">Day 001</a>
+      <a href="/day/002/">Day 002</a>
+      <a href="/day/003/">Day 003</a>
+      <a href="/corpus/">Corpus</a>
+      <a href="/bot/">Docent</a>
+    </div>
+  </nav>
+
+  <!-- THE DARK ROOM -->
+  <section class="entrance">
+
+    <!-- COLLAGE LAYER — childhood photographs as neon duotones -->
+    <div class="collage" aria-hidden="true">
+      <div class="cchip cc-pink cc1">
+        <img src="/assets/photos/Non Young JacksonPollock.jpg" alt="">
+      </div>
+      <div class="cchip cc-acid cc2">
+        <img src="/assets/photos/Non Young 1982.jpg" alt="">
+      </div>
+      <div class="cchip cc-navy cc3">
+        <img src="/assets/photos/Non Preschool.jpg" alt="">
+      </div>
+      <div class="cchip cc-red cc4">
+        <img src="/assets/photos/Non Young with Dad.jpg" alt="">
+      </div>
+      <div class="cchip cc-acid cc5">
+        <img src="/assets/photos/Non Young by the sea.jpg" alt="">
+      </div>
+      <div class="cchip cc-dim cc6">
+        <img src="/assets/photos/Non Young 1980s.jpg" alt="">
+      </div>
+    </div>
+
+    <!-- HERO — the committed statement -->
+    <div class="hero-stage">
+      <div class="hero-eyebrow">A museum of Dr Non's mind &nbsp;·&nbsp; 12 rooms &nbsp;·&nbsp; One docent</div>
+      <h1>
+        <span class="hero-word">100</span>
+        <span class="hero-word hw-acid">DAYS</span>
+        <span class="hero-word">OF</span>
+        <span class="hero-word hw-pink">NON</span>
+      </h1>
+      <p class="hero-sub">
+        A 100-day biographical installation. One question per day, answered and fact-checked in public.
+        <strong>Memory and record, side by side.</strong> Where they disagree is the most interesting cell on the page.
+      </p>
+      <div class="hero-stats">
+        <div class="hstat"><b id="hero-day-count">1</b>Day of 100</div>
+        <div class="hstat"><b>2026</b>Bangkok</div>
+        <div class="hstat"><b>99</b>Posts · ~240k words</div>
+        <div class="hstat"><b>12</b>Rooms</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ROOMS — enter, don't browse -->
+  <div class="rooms-index">
+    <span class="index-label">12 rooms &nbsp;·&nbsp; Open everywhere &nbsp;·&nbsp; No tickets</span>
+    <nav>
+
+      <a href="/day/003/" class="index-row featured" style="--row-bg: var(--accent)">
+        <span class="idx-n">01</span>
+        <span class="idx-name">Record · Day 003</span>
+        <span class="idx-sub">Today · The father, deep arc · 10 messages · 16 artifacts · The canonical civil-servant portrait · People were wrong.</span>
+        <span class="idx-arrow">→</span>
+      </a>
+
+      <a href="/map/" class="index-row" style="--row-bg: var(--accent)">
+        <span class="idx-n">02</span>
+        <span class="idx-name">Map</span>
+        <span class="idx-sub">A city of ideas · Eight districts · Thirty-two landmarks · Click a dot, read the source</span>
+        <span class="idx-arrow">→</span>
+      </a>
+
+      <a href="/corpus/" class="index-row" style="--row-bg: var(--accent)">
+        <span class="idx-n">03</span>
+        <span class="idx-name">Corpus</span>
+        <span class="idx-sub">The full nonharvard blog · 99 posts · ~240k words · The raw material the bot draws from</span>
+        <span class="idx-arrow">→</span>
+      </a>
+
+      <a href="/chronos/" class="index-row" style="--row-bg: var(--accent)">
+        <span class="idx-n">04</span>
+        <span class="idx-name">Chronos</span>
+        <span class="idx-sub">1981 to 2026 · One station per year · Born, built, defended, drafted</span>
+        <span class="idx-arrow">→</span>
+      </a>
+
+      <a href="/lexicon/" class="index-row" style="--row-bg: var(--accent)">
+        <span class="idx-n">05</span>
+        <span class="idx-name">Lexicon</span>
+        <span class="idx-sub">A glossary of Nonism · Aphoristic · Definitions earn their place by ending arguments</span>
+        <span class="idx-arrow">→</span>
+      </a>
+
+      <a href="/voices/" class="index-row" style="--row-bg: var(--accent)">
+        <span class="idx-n">06</span>
+        <span class="idx-name">Voices</span>
+        <span class="idx-sub">Six speech-acts as posters · Definitions, sermons, observations</span>
+        <span class="idx-arrow">→</span>
+      </a>
+
+      <a href="/archive/" class="index-row" style="--row-bg: var(--accent)">
+        <span class="idx-n">07</span>
+        <span class="idx-name">Archive</span>
+        <span class="idx-sub">Things people prefer not to know · Ten facts · Sourced · Each paired with a painting</span>
+        <span class="idx-arrow">→</span>
+      </a>
+
+      <a href="/method/" class="index-row" style="--row-bg: var(--accent)">
+        <span class="idx-n">08</span>
+        <span class="idx-name">Method</span>
+        <span class="idx-sub">How this works · The four claim types · What the bot promises · What this museum is not</span>
+        <span class="idx-arrow">→</span>
+      </a>
+
+      <a href="/game/" class="index-row" style="--row-bg: var(--accent)">
+        <span class="idx-n">09</span>
+        <span class="idx-name">Game</span>
+        <span class="idx-sub">You are the fact-checker · Six claims from Day 1 · Verify, contradict, or admit you cannot</span>
+        <span class="idx-arrow">→</span>
+      </a>
+
+      <a href="/subject/" class="index-row" style="--row-bg: var(--accent)">
+        <span class="idx-n">10</span>
+        <span class="idx-name">Subject</span>
+        <span class="idx-sub">Non Arkara · Born 1 Nov 1981, Bangkok · Architecture, anthropology, smart cities</span>
+        <span class="idx-arrow">→</span>
+      </a>
+
+      <a href="/bot/" class="index-row docent">
+        <span class="idx-n">11</span>
+        <span class="idx-name">Docent</span>
+        <span class="idx-sub">Talk to Non · Direct from the record where it can · Deduced where it must</span>
+        <span class="idx-arrow">→</span>
+      </a>
+
+      <a href="/notes/" class="index-row docent">
+        <span class="idx-n">12</span>
+        <span class="idx-name">Notes</span>
+        <span class="idx-sub">The Annotated Record · His blog posts, grammar-edited, with excessive fact-checks in the margin</span>
+        <span class="idx-arrow">→</span>
+      </a>
+
+    </nav>
+  </div>
+
+  <!-- STATUS -->
+  <div class="status-bar">
+    <div class="s-dot"></div>
+    <span class="s-text">v0.1.3 &nbsp;·&nbsp; Three days filed &nbsp;·&nbsp; Day 001 registration · Day 002 elegy · Day 003 catharsis &nbsp;·&nbsp; <span id="s-day">3</span> / 100 days &nbsp;·&nbsp; Updated 2026-05-27 Asia/Bangkok</span>
+  </div>
+
+  <script>
+    const DAYS_LIVE = 3;
+    // Animate day counter
+    const el = document.getElementById('hero-day-count');
+    if (el) {
+      let n = 0;
+      const t = setInterval(() => {
+        n = Math.min(n + 1, DAYS_LIVE);
+        el.textContent = n;
+        if (n >= DAYS_LIVE) clearInterval(t);
+      }, 80);
+    }
+    const s = document.getElementById('s-day');
+    if (s) s.textContent = DAYS_LIVE;
+  </script>
+
+</body>
+</html>

@@ -1,6 +1,22 @@
 {
   "day": 72,
-  "phase": "",
+  "phase": "6",
+  "filing_mode": "pre-staged",
+  "filed_on_project_day": 3,
+  "filed_on_iso_date": "2026-05-27",
+  "source_event_iso_dates": ["2026-05-22", "2026-05-27"],
+  "source_events": [
+    {
+      "iso_date": "2026-05-22",
+      "label": "Chonburi anniversary lecture as Smart City advisor to Mayor",
+      "artifact_count": 16
+    },
+    {
+      "iso_date": "2026-05-27",
+      "label": "Chulalongkorn Vice-Rector meeting (Manoj Lohatepanont)",
+      "artifact_count": 4
+    }
+  ],
   "T0_approx": null,
   "T0_local_approx": null,
   "T2": null,
@@ -9,9 +25,9 @@
   "latency_ms_approx": null,
   "composition_ms_approx": null,
   "answer_word_count": 0,
-  "answer_message_count": 0,
-  "artifact_count": 0,
-  "notes": "",
+  "answer_message_count": 2,
+  "artifact_count": 20,
+  "notes": "Pre-Phase material: filed forward from project Day 3 to Phase 6 Day 72 (smart-city work / client behind it / belief gap). Two source events combined: (1) Chonburi anniversary lecture 2026-05-22 — 14 photos + raw Thai transcript (240 lines) + summary, establishes depa/SEIC/UNL FunIT Global affiliation and the 4P framework; (2) Chulalongkorn Vice-Rector meeting 2026-05-27 — 2 photos + raw Thai transcript + summary, establishes the 20-year MIT arc (Fulbright talk → MIT → today's AI Center directorship offer), the no-localhost shipping principle, the SLIC engagement vehicle, and the third live municipal engagement on the same substrate.",
   "fact_check_summary": {
     "verified": 0,
     "contradicted": 0,

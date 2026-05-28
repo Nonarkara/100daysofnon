@@ -1,31 +1,43 @@
-# 100 Days of Non
+# Frames
 
-A 100-day biographical installation. One question per day, answered by Dr. Non. The answers are fact-checked publicly. Memory and record are displayed side-by-side. Where they disagree is the most interesting cell on the page.
+A field manual for thinking — lenses for situations that resist a simple answer.
 
-The final deliverable is a biography. The site is the artifact while it builds.
+Each frame is a way of seeing structure where other people see noise. The frames are drawn from architecture, anthropology, Daoist strategy, history, and twenty years of building things that had to stand up. Not theories. Tools.
 
----
-
-## The daily loop
-
-1. Non opens Dispatch and asks for today's question.
-2. Dispatch sends the question (planned arc in `docs/ARC.md`).
-3. Non answers — in chat, as long as he wants.
-4. The system captures telemetry (T0 / T2 / T3 / T4), extracts verifiable claims, web-verifies each (`✓` confirmed / `✗` contradicted / `?` unverified / `∅` un-verifiable), narrates the day in a biographer's voice, deploys to the e-portal, and (eventually) pushes voice narration via Telegram in Non's cloned voice.
-5. Patterns accumulate. Cross-day contradictions surface automatically.
-
-## Premise
-
-Most biographies are sanitized. This one isn't. The fact-check is brutal but accepts strong claims plainly when verification holds. The mirror is honest in both directions.
+The site is built the way an architect draws: a warm-paper drawing sheet, ink, and one mark of colour — 朱 cinnabar, the colour of the correction pencil and the family name-seal — used once, where it means something. Every sheet carries a titleblock; the worked examples are read from the record, not invented.
 
 ## Status
 
-- **Current day:** 1 of 100
-- **First question:** filed at `diary/day-001/question.md`
-- **Bot push channel:** OpenClaw `@DrNonOpenClaw_bot` (Biographer persona, planned), 21:00 Asia/Bangkok daily
-- **E-portal:** to be deployed at a subdomain TBD
-- **Visual register:** see `docs/DESIGN.md` — black, white, chartreuse `#CCFF00`. Punk-chaotic-minimalism.
+- **Sheet 01 — The Spatial Frame** · live · adjacency, boundary, flow, centre.
+- Sheets 02–04 (Cultural / Strategic / Temporal) — planned, not yet drawn.
+- **Form:** written + a figure-ground plan + a local-only worksheet (nothing leaves your device).
+- **Energy:** rigorous and warm. Precise is not the same as cold.
 
-## Versioning
+## Structure
 
-v0.1.0 — scaffolding landed. Each day shipped is a patch bump. Each phase boundary is a minor bump.
+```
+site/
+  index.html              # the drawing set — titleblock + register
+  assets/css/main.css      # the design system (IBM Plex; one cinnabar accent; no rounded corners)
+  frames/
+    spatial.html           # Sheet 01 — adjacency, boundary, flow, centre
+```
+
+## Design rules
+
+- One accent only (cinnabar 朱). Ink on warm paper otherwise.
+- IBM Plex Serif (body) / Sans (structure) / Mono (drawing labels). No Inter, no template fonts.
+- Zero rounded corners, zero gradients, zero shadows. Hairline rules only.
+- Three text sizes. Phone-first.
+
+## Previous work
+
+The 100-day biographical installation is archived in `archive/old-site/` and `archive/old-scripts/`. Its memories now appear inside the frames as worked examples — the life is the proof, not the subject.
+
+## Deploy
+
+`site/` → GitHub Actions → `100.nonarkara.org`.
+
+## License
+
+Dr. Non. Public domain.

@@ -1,0 +1,454 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=JetBrains+Mono:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  /* Core Colors */
+  --bg: #000000;
+  --fg: #FFFFFF;
+  --accent: #CCFF00; /* Chartreuse */
+  
+  /* Primary Strikes (Design DNA) */
+  --accent-red: #FF2200;
+  --accent-blue: #0044FF;
+  --accent-yellow: #FFD700;
+
+  /* V2 additions */
+  --neon-pink: #FF0077;   /* hyper pink — the chaos register */
+  --deep: #06050F;        /* mythical navy — the abyss */
+
+  /* Translucents */
+  --dim: rgba(255,255,255,0.45);
+  --faint: rgba(255,255,255,0.12);
+
+  /* Typography */
+  --sans: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --serif: 'Lora', Georgia, 'Times New Roman', serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+/* Hard Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 !important; /* Punitive override */
+  box-shadow: none !important; /* No shadows */
+  transition: none !important; /* No motion */
+}
+
+html {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ==========================================================================
+   Typography Scales (Strictly enforced from DESIGN.md)
+   ========================================================================== */
+
+.t-11 { font-size: 11px; }
+.t-14 { font-size: 14px; }
+.t-18 { font-size: 18px; }
+.t-32 { font-size: 32px; letter-spacing: -0.015em; line-height: 1.1; }
+.t-64 { font-size: 64px; letter-spacing: -0.025em; line-height: 0.95; }
+.t-144 { font-size: 144px; letter-spacing: -0.04em; line-height: 0.85; }
+
+/* Type-as-image. No soft fade. Hard crop at viewport. */
+.type-as-image {
+  font-size: clamp(96px, 15vw, 240px);
+  font-family: var(--sans);
+  font-weight: 800;
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 40px 0;
+}
+
+/* ==========================================================================
+   Global Architecture & Grid
+   ========================================================================== */
+
+/* The 1px day-column floor-to-ceiling line */
+.layout-grid {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  min-height: 100vh;
+}
+
+.col-0 {
+  border-right: 1px solid var(--faint);
+  display: flex;
+  flex-direction: column;
+}
+
+.col-1 {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top Nav - Terminal Style */
+.nav {
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--faint);
+  display: flex;
+  align-items: baseline;
+  padding: 16px 32px;
+  gap: 24px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  z-index: 100;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav::-webkit-scrollbar { display: none; }
+.nav-brand { color: var(--accent-red); margin-right: auto; font-weight: 700; white-space: nowrap; flex-shrink: 0; }
+.nav a {
+  color: var(--dim);
+  display: inline-flex;
+  align-items: center;
+  align-self: stretch;  /* fills nav bar height — lifts tap target to ~48px */
+  padding: 0 2px;
+}
+.nav a:hover { color: var(--fg); background: var(--bg); }
+.nav a.here { color: var(--accent); }
+
+/* Editorial Text Elements */
+.editorial-body {
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 65ch;
+  color: var(--fg);
+}
+.editorial-body p {
+  margin-bottom: 24px;
+}
+.editorial-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Structural Elements (Rooms, Lists, Data)
+   ========================================================================== */
+
+.dir-header {
+  padding: 40px 32px;
+  border-bottom: 1px solid var(--faint);
+}
+
+/* Grid of rooms */
+.rooms-matrix {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  border-bottom: 1px solid var(--faint);
+}
+
+.room-cell {
+  border-right: 1px solid var(--faint);
+  border-bottom: 1px solid var(--faint);
+  padding: 32px;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+.rooms-matrix .room-cell:nth-child(even) {
+  /* Just a way to maybe stripe or structure, but for now just borders */
+}
+.room-cell:hover {
+  background: var(--accent);
+  color: #000;
+  border-color: #000;
+}
+.room-cell:hover * { color: #000 !important; }
+
+.room-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: auto;
+}
+
+.room-title {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  margin-top: 40px;
+  margin-bottom: 16px;
+}
+
+.room-desc {
+  font-family: var(--serif);
+  font-size: 14px;
+  color: var(--dim);
+  line-height: 1.5;
+}
+
+/* Fact-check / Telemetry */
+.telemetry-block {
+  font-family: var(--mono);
+  border-top: 1px solid var(--faint);
+  border-bottom: 1px solid var(--faint);
+  padding: 24px 32px;
+  display: flex;
+  gap: 32px;
+}
+.telemetry-val {
+  font-size: 144px;
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+}
+.telemetry-label {
+  font-size: 11px;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  align-self: flex-end;
+}
+
+/* Image Artifacts */
+.artifact-img {
+  filter: grayscale(100%) contrast(150%);
+  mix-blend-mode: hard-light;
+}
+.artifact-container {
+  background: var(--accent); /* Fallback for duotone effect */
+  display: inline-block;
+}
+.artifact-container img {
+  mix-blend-mode: multiply;
+  filter: grayscale(100%) contrast(200%);
+}
+
+/* Responsive constraints */
+@media (max-width: 900px) {
+  .layout-grid {
+    grid-template-columns: 1fr;
+  }
+  .col-0 {
+    display: none !important; /* defeats per-page inline style="display:flex" redeclarations */
+  }
+}
+
+/* Nav stability on mobile — stop the left/right drift */
+@media (max-width: 768px) {
+  .nav {
+    overflow: hidden; /* clip instead of scroll — nav stays locked */
+    padding: 14px 20px;
+    gap: 16px;
+  }
+  /* Hide lower-priority links on small screens */
+  .nav a:nth-of-type(n+7) { display: none; }
+}
+
+/* Utilities */
+.mono { font-family: var(--mono); }
+.serif { font-family: var(--serif); }
+.text-dim { color: var(--dim); }
+.text-accent { color: var(--accent); }
+.text-red { color: var(--accent-red); }
+.text-blue { color: var(--accent-blue); }
+.text-yellow { color: var(--accent-yellow); }
+
+.mb-1 { margin-bottom: 8px; }
+.mb-2 { margin-bottom: 16px; }
+.mb-4 { margin-bottom: 32px; }
+.mt-4 { margin-top: 32px; }
+.pb-4 { padding-bottom: 32px; }
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  border: 1px solid var(--fg);
+  padding: 12px 24px;
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: transparent;
+  color: var(--fg);
+  cursor: pointer;
+}
+.btn:hover {
+  background: var(--fg);
+  color: var(--bg);
+}
+.btn-accent {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.btn-accent:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* ══════════════════════════════════════════════════════
+   THE TUNNEL — Full-viewport photo environments
+   Design DNA: Araki × WKW × Braun — one decision, committed.
+   Photo fills frame. Text lives ON the photo, not beside it.
+   ══════════════════════════════════════════════════════ */
+
+.tunnel {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow: hidden;
+  background: #000;
+}
+
+.tunnel-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: grayscale(1) contrast(1.9) brightness(0.38);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.tunnel-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.92) 0%,
+    rgba(0,0,0,0.4) 50%,
+    rgba(0,0,0,0.05) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.tunnel-content {
+  position: relative;
+  z-index: 2;
+  padding: 40px 48px 48px;
+  align-self: end;
+}
+
+/* TYPE-TUNNEL: the wall. Text at scale that becomes texture. */
+.type-tunnel {
+  font-family: var(--sans);
+  font-size: clamp(52px, 11vw, 172px);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+
+/* TYPE-BLEED: implies more text beyond the edge */
+.type-bleed {
+  overflow: visible;
+  white-space: nowrap;
+  margin-left: -0.02em;
+}
+
+/* Tunnel eyebrow — the room label inside a tunnel section */
+.tunnel-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+/* Tunnel stat row — data beneath the big type */
+.tunnel-stats {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+.tunnel-stat {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.tunnel-stat b {
+  display: block;
+  font-family: var(--sans);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--fg);
+  letter-spacing: -0.02em;
+  text-transform: none;
+  margin-bottom: 2px;
+}
+
+@media (max-width: 768px) {
+  .tunnel { min-height: 75vh; }
+  .tunnel-content { padding: 24px 24px 32px; overflow: hidden; }
+  .type-tunnel { font-size: clamp(40px, 13vw, 80px); }
+  .type-bleed { white-space: normal; }
+  .tunnel-stats { gap: 16px; flex-wrap: wrap; }
+  .tunnel-stat { min-width: calc(50% - 8px); }
+  .tunnel-desc { font-size: 14px !important; line-height: 1.6 !important; max-width: 100% !important; }
+  /* On mobile, shift the lobby photo left to show the child's face, not the doorframe */
+  .tunnel .tunnel-bg { object-position: top 20%; }
+}
+
+/* ══════════════════════════════════════════════════════
+   ROOM OPENER — Album-cover statement. One sentence at scale.
+   The album-cover principle: pick one thing and commit.
+   ══════════════════════════════════════════════════════ */
+.room-opener {
+  font-family: var(--sans);
+  font-size: clamp(40px, 7vw, 68px);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--fg);
+  max-width: 100%;
+  margin-bottom: 56px;
+  padding-top: 48px;
+  border-bottom: 1px solid var(--faint);
+  padding-bottom: 32px;
+}
+
+@media (max-width: 720px) {
+  .room-opener {
+    font-size: clamp(32px, 10vw, 48px);
+    margin-bottom: 40px;
+    padding-top: 32px;
+    padding-bottom: 24px;
+  }
+}
