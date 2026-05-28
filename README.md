@@ -6,13 +6,16 @@ Each frame is a way of seeing structure where other people see noise. The frames
 
 The site is built the way an architect draws: a warm-paper drawing sheet, ink, and one mark of colour — 朱 cinnabar, the colour of the correction pencil and the family name-seal — used once, where it means something. Every sheet carries a titleblock; the worked examples are read from the record, not invented.
 
-## Status — v0.2.1
+## Status — v0.3.0
 
+- **The Survey** · live · the frames turned on the subject. Five recurring structures assembled from things said across different days and never connected. The payoff surface — it tells the subject something he did not already know.
 - **Sheet 01 — The Spatial Frame** · live · adjacency, boundary, flow, centre.
 - **Sheet 02 — The Cultural Frame** · live · stated code, desire paths, reward & exile, the disavowed.
 - Sheets 03–04 (Strategic / Temporal) — planned, not yet drawn.
 - **Form:** written + an architectural diagram + a local-only worksheet (nothing leaves your device).
 - **Energy:** rigorous and warm. Precise is not the same as cold.
+
+The Survey re-runs as the record grows; a pattern that looks solid now may break against a later day, and that break is the most interesting cell on the page. Every fragment it cites is real, drawn from `diary/day-XXX/`.
 
 ## Structure
 
