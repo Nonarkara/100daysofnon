@@ -2,6 +2,14 @@
 
 The same mistake never happens twice. Read at the start of every session.
 
+## 2026-05-29 · Curation in front of the content is the disease — three rejections, one cause
+
+- **What went wrong:** Three directions, three rejections. (1) Punk biography — "uncurated, cliché, no personality." (2) Cold Frames (Kimmy) — fixed by me into warm Frames. (3) My warm Frames + Survey — "confusing, templated, pretentious, hard to read." The instinct each time was to find a *stronger concept / better skin*. That instinct was the error.
+- **The actual cause (named by the through-line of his words):** every version put **curation in front of the life**. Punk was a loud costume; Frames was a clever concept (drawing-set metaphor, titleblock, cinnabar lore, survey-as-tribunal). Both made the *presentation* the subject. Dr Non kept saying the same thing in different words: templated, pretentious. He wanted the apparatus to **disappear** and the content (his biography) to be read.
+- **Correct behaviour for this project (and a strong prior for Dr Non generally):** when the deliverable is *content* (a biography, an essay, a record), the highest-craft move is often **radical restraint** — no theme, no concept, no accent-colour gimmick, no diagrams, no metaphor. A well-typeset book is the *opposite* of a template; the craft is in the reading (measure, size, leading, first-line indents, oldstyle figures), not in decoration. Restraint reads as confidence; cleverness reads as pretension. Reach for the book before the concept.
+- **How to recognise the failure early:** if I'm naming the design ("Frames," "the Survey," "the drawing set"), inventing a metaphor, or explaining what a colour *means* — I am decorating, and it will land as pretentious. If a smart reader would have to *learn the concept* before reading the content, the concept is in the way. Strip until only the content and its legibility remain, then stop.
+- **Also confirmed:** "templated" is his word for BOTH the SaaS-punk look AND the tasteful-Substack/IBM-Plex-essay look. Avoiding templates is not about picking a different template — it's about genuine, content-first craft (here: an actual book, Literata, first-line indents, no colour).
+
 ## 2026-05-28 · Two failure modes, not one — punk-cold AND tasteful-cold both fail
 
 - **What went wrong:** The punk biography was rejected as "uncurated, cliché, no personality, no fun." The instinctive fix (swing to "serious and rigorous") produced the *opposite* cliché — a cold, generic-tasteful essay (centred serif, blue accent, rounded corners, Inter). Same root failure (no warmth, no him) in a quieter costume.
