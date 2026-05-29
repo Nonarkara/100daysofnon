@@ -1,44 +1,34 @@
-# Frames
+# 100 Days of Non
 
-A field manual for thinking — lenses for situations that resist a simple answer.
+A biography of Non Arkaraprasertkul, recorded over one hundred days and kept as precise as memory and the record allow. One question a day; the answers assembled into a readable life. In progress.
 
-Each frame is a way of seeing structure where other people see noise. The frames are drawn from architecture, anthropology, Daoist strategy, history, and twenty years of building things that had to stand up. Not theories. Tools.
+## What this is
 
-The site is built the way an architect draws: a warm-paper drawing sheet, ink, and one mark of colour — 朱 cinnabar, the colour of the correction pencil and the family name-seal — used once, where it means something. Every sheet carries a titleblock; the worked examples are read from the record, not invented.
+The point is the biography, not the presentation. The site is a book: his life, told straight, in his own voice, organized chronologically, accurate on the facts, and honest about the difference between what the record can confirm and what only memory holds.
 
-## Status — v0.3.0
+No theme, no concept, no apparatus. The typography's only job is to be read.
 
-- **The Survey** · live · the frames turned on the subject. Five recurring structures assembled from things said across different days and never connected. The payoff surface — it tells the subject something he did not already know.
-- **Sheet 01 — The Spatial Frame** · live · adjacency, boundary, flow, centre.
-- **Sheet 02 — The Cultural Frame** · live · stated code, desire paths, reward & exile, the disavowed.
-- Sheets 03–04 (Strategic / Temporal) — planned, not yet drawn.
-- **Form:** written + an architectural diagram + a local-only worksheet (nothing leaves your device).
-- **Energy:** rigorous and warm. Precise is not the same as cold.
+## Status — v0.4.0
 
-The Survey re-runs as the record grows; a pattern that looks solid now may break against a later day, and that break is the most interesting cell on the page. Every fragment it cites is real, drawn from `diary/day-XXX/`.
+- **The biography** · `site/index.html` · nine chapters drawn from the three days filed so far (Origins → the Father → 2010 → after).
+- Days 4–100 not yet filed. The book grows as the record does.
 
 ## Structure
 
 ```
 site/
-  index.html              # the drawing set — titleblock + register
-  404.html                 # re-filed sheet — routes orphaned links back to the set
-  assets/css/main.css      # the design system (IBM Plex; one cinnabar accent; no rounded corners)
-  frames/
-    spatial.html           # Sheet 01 — adjacency, boundary, flow, centre
-    cultural.html          # Sheet 02 — stated code, desire paths, reward & exile, the disavowed
+  index.html              # the biography
+  assets/css/main.css      # book typography (Literata; warm white; no accent gimmick)
 ```
 
-## Design rules
+## Source
 
-- One accent only (cinnabar 朱). Ink on warm paper otherwise.
-- IBM Plex Serif (body) / Sans (structure) / Mono (drawing labels). No Inter, no template fonts.
-- Zero rounded corners, zero gradients, zero shadows. Hairline rules only.
-- Three text sizes. Phone-first.
+Every chapter is drawn from `diary/day-XXX/` — Non's own answers, edited for reading, never invented. His self-corrections are kept in his own voice; they are where the precision lives.
 
-## Previous work
+## Earlier attempts (archived, not deleted)
 
-The 100-day biographical installation is archived in `archive/old-site/` and `archive/old-scripts/`. Its memories now appear inside the frames as worked examples — the life is the proof, not the subject.
+- `archive/old-site/` — the first biography build.
+- `archive/frames-attempt/` — the "Frames" analytical-lens direction (spatial / cultural sheets + the Survey). Set aside; the biography is the foundation.
 
 ## Deploy
 

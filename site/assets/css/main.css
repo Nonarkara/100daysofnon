@@ -1,580 +1,222 @@
 /* ═══════════════════════════════════════════════════════════════════
-   FRAMES — design system
-   A field manual for thinking, drawn the way an architect draws.
+   A biography. Set to be read.
 
-   The page is a drawing sheet: warm paper, ink, and one mark of colour —
-   朱 (cinnabar), the colour of the correction pencil and of the family
-   name-seal. Used like the single orange key on a Braun calculator:
-   once, decisively, where it means something.
-
-   Rigour with warmth. Precise is not the same as cold.
-   No rounded corners. No gradients. No shadows. Hairline rules only.
+   No theme. No concept. No accent gimmick. The life is the subject;
+   the typography's only job is to get out of its way. This is a book,
+   and a well-set book is the opposite of a template — the craft is in
+   the reading, not in the decoration.
    ═══════════════════════════════════════════════════════════════════ */
 
 :root {
-  /* — paper & ink — */
-  --paper:    #F4F1EA;   /* warm drafting stock, not cold white */
-  --paper-2:  #FBFAF6;   /* lifted plane — drawing field, titleblock */
-  --ink:      #1A1714;   /* warm near-black, printer's ink */
-  --ink-2:    #514A40;   /* secondary ink */
-  --muted:    #6B6357;   /* captions, meta */
-  --faint:    #ACA493;   /* hairline-adjacent text */
-  --rule:     #D8D2C4;   /* hairline */
-  --rule-2:   #C5BDAA;   /* heavier hairline / poché edge */
+  --paper: #fdfcf9;   /* barely-warm white — calm, almost no colour */
+  --ink:   #23201b;   /* warm near-black, printer's ink */
+  --soft:  #5f594f;   /* secondary — captions, the quiet notes */
+  --faint: #908979;   /* meta */
+  --rule:  #e6e0d4;   /* hairline */
 
-  /* — the one mark — 朱 cinnabar, the architect's pencil / the seal — */
-  --seal:     #B23A28;   /* small text / hairlines (passes contrast on paper) */
-  --seal-2:   #C2402E;   /* large marks, numerals, fills */
+  --serif: 'Literata', Georgia, 'Times New Roman', serif;
 
-  /* — type — IBM Plex: the field-manual family. No Inter. — */
-  --sans:  'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
-  --serif: 'IBM Plex Serif', Georgia, 'Times New Roman', serif;
-  --mono:  'IBM Plex Mono', 'SFMono-Regular', Menlo, monospace;
+  /* three sizes, only three */
+  --t-read:  1.25rem;    /* 20px — the reading size */
+  --t-small: 0.875rem;   /* 14px — contents, captions, meta */
+  --t-big:   clamp(2.5rem, 7vw, 4.25rem);  /* the cover name; chapter numerals */
 
-  /* — three sizes, and only three (§11.7). family ≠ size — */
-  --t-display: clamp(2rem, 5.5vw, 3.25rem);
-  --t-body:    1.0625rem;   /* 17px */
-  --t-micro:   0.75rem;     /* 12px — titleblock, labels, captions */
-
-  --measure: 38rem;         /* reading column */
-  --sheet:   46rem;         /* drawing-sheet width */
-
-  --s1: 0.5rem;  --s2: 1rem;   --s3: 1.5rem;
-  --s4: 2.5rem;  --s5: 4rem;   --s6: 6rem;
+  --measure: 34rem;      /* ~66 characters */
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
   font-size: 16px;
+  background: var(--paper);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--paper);
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "onum" 1, "kern" 1;   /* old-style figures */
 }
 
 body {
   font-family: var(--serif);
-  font-size: var(--t-body);
-  line-height: 1.72;
-  color: var(--ink);
-  background: var(--paper);
-  max-width: var(--sheet);
-  margin: 0 auto;
-  padding: var(--s4) var(--s3) var(--s6);
-}
-
-/* ── selection: the pencil ───────────────────────────────────────── */
-::selection { background: var(--seal-2); color: var(--paper-2); }
-
-/* ════════════════════════════════════════════════════════════════
-   TITLEBLOCK — the architect's stamp. Carries the version, the sheet
-   number, the author. This is the "version stamp at the top" rule,
-   done the way a drawing does it.
-   ════════════════════════════════════════════════════════════════ */
-
-.titleblock {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: end;
-  gap: var(--s2) var(--s3);
-  border: 1px solid var(--ink);
-  border-left: 3px solid var(--seal-2);
-  padding: var(--s2) var(--s3);
-  margin-bottom: var(--s5);
-  font-family: var(--mono);
-}
-.tb-project {
-  font-size: var(--t-micro);
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--ink);
-  font-weight: 500;
-}
-.tb-tagline {
-  font-family: var(--serif);
-  font-size: var(--t-body);
-  font-style: italic;
-  color: var(--muted);
-  letter-spacing: 0;
-  text-transform: none;
-  margin-top: 0.35em;
-  line-height: 1.4;
-}
-.tb-grid {
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  gap: 0.2em var(--s3);
-  font-size: var(--t-micro);
-  text-align: right;
-  white-space: nowrap;
-}
-.tb-grid b {
-  color: var(--muted);
-  font-weight: 400;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  text-align: left;
-}
-.tb-grid span { color: var(--ink-2); }
-.tb-grid .rev { color: var(--seal); }
-
-/* ════════════════════════════════════════════════════════════════
-   TYPOGRAPHY — three sizes. Hierarchy by family + weight + the mark.
-   ════════════════════════════════════════════════════════════════ */
-
-h1 {
-  font-family: var(--sans);
-  font-size: var(--t-display);
-  font-weight: 600;
-  line-height: 1.04;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-}
-
-/* numbered clause heads — read like a building code, not a blog */
-h2 {
-  font-family: var(--sans);
-  font-size: var(--t-body);
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: 0.01em;
-  color: var(--ink);
-  margin-top: var(--s5);
-  margin-bottom: var(--s2);
-  padding-bottom: var(--s1);
-  border-bottom: 1px solid var(--rule);
-  display: flex;
-  gap: 0.75em;
-  align-items: baseline;
-}
-h2 .clause {
-  font-family: var(--mono);
-  color: var(--seal);
-  font-weight: 500;
-  flex-shrink: 0;
-}
-
-h3 {
-  font-family: var(--sans);
-  font-size: var(--t-body);
-  font-weight: 600;
-  margin-top: var(--s4);
-  margin-bottom: var(--s1);
-}
-
-p { margin-bottom: var(--s3); max-width: var(--measure); }
-p.wide { max-width: none; }
-
-em { font-style: italic; color: var(--ink); }
-strong { font-weight: 600; color: var(--ink); }
-
-/* the question — the architect's question, set apart */
-.q {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: var(--t-body);
-  color: var(--ink);
-  border-left: 3px solid var(--seal-2);
-  padding-left: var(--s3);
-  margin: var(--s3) 0 var(--s3);
-  max-width: var(--measure);
-}
-
-a {
-  color: var(--seal);
-  text-decoration: none;
-  border-bottom: 1px solid var(--rule-2);
-  transition: border-color 0.12s, color 0.12s;
-}
-a:hover { color: var(--seal-2); border-bottom-color: var(--seal-2); }
-
-code {
-  font-family: var(--mono);
-  font-size: 0.9em;
-  color: var(--ink);
-  background: var(--rule);
-  padding: 0.08em 0.32em;
-}
-
-/* ════════════════════════════════════════════════════════════════
-   LANDING — the drawing-sheet register
-   ════════════════════════════════════════════════════════════════ */
-
-.lede {
-  max-width: var(--measure);
-  margin-bottom: var(--s5);
-}
-.lede p { font-size: 1.1875rem; line-height: 1.6; }
-.lede p:first-child { color: var(--ink); }
-.lede p:last-child { color: var(--ink-2); }
-
-/* frame register — a sheet index, not a nav list */
-.register { margin-bottom: var(--s5); }
-.register-head {
-  font-family: var(--mono);
-  font-size: var(--t-micro);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--muted);
-  padding-bottom: var(--s1);
-  border-bottom: 1px solid var(--ink);
-  margin-bottom: 0;
-  display: flex;
-  justify-content: space-between;
-}
-
-.sheet-row {
-  display: grid;
-  grid-template-columns: 3rem 1fr auto;
-  gap: var(--s3);
-  align-items: baseline;
-  padding: var(--s3) 0;
-  border-bottom: 1px solid var(--rule);
-  color: var(--ink);
-  border-left: none;
-}
-.sheet-row[href]:hover {
-  background: var(--paper-2);
-  margin: 0 calc(-1 * var(--s3));
-  padding-left: var(--s3);
-  padding-right: var(--s3);
-  border-bottom-color: var(--rule);
-}
-.sheet-row.pending { color: var(--faint); cursor: default; }
-.sheet-row .sr-no {
-  font-family: var(--mono);
-  font-size: var(--t-body);
-  color: var(--seal);
-  font-weight: 500;
-}
-.sheet-row.pending .sr-no { color: var(--faint); }
-.sheet-row .sr-title {
-  font-family: var(--sans);
-  font-weight: 600;
-  font-size: var(--t-body);
-}
-.sheet-row .sr-desc {
-  font-family: var(--serif);
-  font-size: var(--t-micro);
-  color: var(--muted);
-  letter-spacing: 0;
-  grid-column: 2;
-  margin-top: 0.15em;
-  line-height: 1.45;
-}
-.sheet-row .sr-disc {
-  font-family: var(--mono);
-  font-size: var(--t-micro);
-  color: var(--muted);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-align: right;
-  white-space: nowrap;
-}
-
-/* ════════════════════════════════════════════════════════════════
-   FRAME PAGE — lead, drawing, worksheet
-   ════════════════════════════════════════════════════════════════ */
-
-.lead {
-  font-family: var(--serif);
-  font-size: 1.1875rem;
-  line-height: 1.5;
-  color: var(--ink-2);
-  max-width: var(--measure);
-  margin-bottom: var(--s5);
-}
-
-/* a worked example, drawn from the record — factual, not confessional */
-.worked {
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  padding: var(--s2) 0 var(--s2) var(--s3);
-  margin: var(--s3) 0 var(--s4);
-  max-width: var(--measure);
-  position: relative;
-}
-.worked::before {
-  content: "";
-  position: absolute;
-  left: 0; top: var(--s2); bottom: var(--s2);
-  width: 2px;
-  background: var(--rule-2);
-}
-.worked .w-tag {
-  font-family: var(--mono);
-  font-size: var(--t-micro);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--seal);
-  display: block;
-  margin-bottom: var(--s1);
-}
-.worked p { font-size: var(--t-body); color: var(--ink-2); margin-bottom: 0; }
-.worked p em { color: var(--ink); }
-
-/* the drawing — figure-ground plan */
-.drawing {
-  margin: var(--s5) 0;
-  background: var(--paper-2);
-  border: 1px solid var(--ink);
-  padding: var(--s3);
-}
-.drawing svg { display: block; width: 100%; height: auto; }
-.drawing-label {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: var(--s2);
-  margin-top: var(--s2);
-  padding-top: var(--s2);
-  border-top: 1px solid var(--rule);
-  font-family: var(--mono);
-  font-size: var(--t-micro);
-  color: var(--muted);
-  letter-spacing: 0.04em;
-}
-.drawing-label .dl-fig { color: var(--seal); }
-
-/* the worksheet — a drawing sheet you fill in. local only. */
-.worksheet {
-  margin: var(--s5) 0 var(--s4);
-  border: 1px solid var(--ink);
-  border-left: 3px solid var(--seal-2);
-}
-.ws-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: var(--s2);
-  padding: var(--s2) var(--s3);
-  border-bottom: 1px solid var(--rule);
-  font-family: var(--mono);
-  font-size: var(--t-micro);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.ws-body { padding: var(--s3); }
-.ws-field { margin-bottom: var(--s3); }
-.ws-field:last-of-type { margin-bottom: var(--s2); }
-.ws-field label {
-  display: block;
-  font-family: var(--sans);
-  font-size: var(--t-micro);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--ink);
-  margin-bottom: var(--s1);
-}
-.ws-field label .n { font-family: var(--mono); color: var(--seal); margin-right: 0.5em; }
-.ws-field textarea {
-  width: 100%;
-  font-family: var(--serif);
-  font-size: var(--t-body);
-  line-height: 1.5;
-  color: var(--ink);
-  background: var(--paper-2);
-  border: none;
-  border-bottom: 1px solid var(--rule-2);
-  padding: var(--s1) 0;
-  resize: vertical;
-}
-.ws-field textarea:focus {
-  outline: none;
-  border-bottom-color: var(--seal-2);
-  background: #fff;
-}
-.ws-actions {
-  display: flex;
-  align-items: center;
-  gap: var(--s3);
-  flex-wrap: wrap;
-}
-button.stamp {
-  font-family: var(--mono);
-  font-size: var(--t-micro);
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 0.7em 1.2em;
-  min-height: 44px;
-  background: var(--ink);
-  color: var(--paper);
-  border: 1px solid var(--ink);
-  cursor: pointer;
-  transition: background 0.12s, color 0.12s;
-}
-button.stamp:hover { background: var(--seal-2); border-color: var(--seal-2); }
-.ws-note {
-  font-family: var(--mono);
-  font-size: var(--t-micro);
-  color: var(--faint);
-  letter-spacing: 0.04em;
-}
-.ws-note.live { color: var(--seal); }
-
-.next {
-  font-family: var(--serif);
-  font-size: var(--t-body);
-  color: var(--muted);
-  margin-top: var(--s5);
-  max-width: var(--measure);
-}
-.next em { color: var(--ink); }
-
-/* ════════════════════════════════════════════════════════════════
-   THE SURVEY — the lens turned around. Reading the subject as a
-   system. Scattered fragments assembled into recurring structures;
-   the juxtaposition is the finding.
-   ════════════════════════════════════════════════════════════════ */
-
-.survey-intro { max-width: var(--measure); margin-bottom: var(--s5); }
-.survey-intro p { font-size: 1.1875rem; line-height: 1.6; color: var(--ink-2); }
-.survey-intro p:first-child { color: var(--ink); }
-.survey-meta {
-  font-family: var(--mono);
-  font-size: var(--t-micro);
-  letter-spacing: 0.08em;
-  color: var(--muted);
-  margin-top: var(--s3);
-}
-
-.finding { margin: var(--s6) 0; padding-top: var(--s3); border-top: 1px solid var(--ink); }
-.finding-kicker {
-  display: block;
-  font-family: var(--mono);
-  font-size: var(--t-micro);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--seal);
-  margin-bottom: var(--s2);
-}
-.finding h2 {
-  margin-top: 0;
-  border-bottom: none;
-  padding-bottom: 0;
-  display: block;
-}
-.finding-claim {
-  font-family: var(--serif);
-  font-size: var(--t-body);
-  line-height: 1.6;
-  color: var(--ink);
-  max-width: var(--measure);
-  margin: var(--s2) 0 var(--s3);
-}
-.finding-claim em { font-style: italic; color: var(--ink-2); }
-.finding-claim strong { font-weight: 600; }
-
-/* the constellation — fragments said on different days, assembled */
-.evidence {
-  margin: var(--s3) 0;
-  border-left: 2px solid var(--rule-2);
-}
-.frag {
-  display: grid;
-  grid-template-columns: 9.5rem 1fr;
-  gap: var(--s1) var(--s3);
-  padding: var(--s2) var(--s3);
-  border-bottom: 1px solid var(--rule);
-}
-.frag:last-child { border-bottom: none; }
-.frag .cite {
-  font-family: var(--mono);
-  font-size: var(--t-micro);
-  letter-spacing: 0.04em;
-  color: var(--seal);
-  white-space: nowrap;
-  padding-top: 0.25em;
-}
-.frag .quote {
-  font-family: var(--serif);
-  font-size: var(--t-body);
-  line-height: 1.5;
-  color: var(--ink-2);
-}
-.frag .quote em { color: var(--ink); font-style: italic; }
-
-.synthesis {
-  font-family: var(--serif);
-  font-size: var(--t-body);
+  font-size: var(--t-read);
   line-height: 1.62;
   color: var(--ink);
+  background: var(--paper);
+}
+
+::selection { background: #e9e3d4; }
+
+main {
   max-width: var(--measure);
-  margin-top: var(--s3);
-  padding-left: var(--s3);
-  border-left: 3px solid var(--seal-2);
+  margin: 0 auto;
+  padding: clamp(3rem, 9vw, 7rem) 1.5rem 8rem;
 }
-.synthesis .label {
+
+/* ── Cover ─────────────────────────────────────────────────────── */
+
+.cover { margin-bottom: clamp(4rem, 12vw, 9rem); }
+.cover h1 {
+  font-family: var(--serif);
+  font-size: var(--t-big);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+.cover .sub {
+  font-size: var(--t-read);
+  font-style: italic;
+  color: var(--soft);
+  margin-top: 1.4rem;
+  max-width: 28rem;
+  line-height: 1.45;
+}
+.cover .meta {
+  font-size: var(--t-small);
+  color: var(--faint);
+  margin-top: 2rem;
+  letter-spacing: 0.01em;
+}
+
+/* ── Preface ───────────────────────────────────────────────────── */
+
+.preface { margin-bottom: clamp(3.5rem, 10vw, 7rem); }
+.preface p { margin-top: 1.1em; }
+.preface p:first-child { margin-top: 0; }
+
+/* ── Contents ──────────────────────────────────────────────────── */
+
+.contents {
+  margin-bottom: clamp(4rem, 12vw, 8rem);
+  padding: 2rem 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.contents h2 {
+  font-size: var(--t-small);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--faint);
+  margin-bottom: 1.4rem;
+}
+.contents ol { list-style: none; }
+.contents li { margin: 0; }
+.contents a {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.55rem 0;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+.contents a:hover .c-title { text-decoration: underline; text-underline-offset: 3px; }
+.contents .c-num {
+  font-variant-numeric: oldstyle-nums;
+  color: var(--faint);
+  font-style: italic;
+  width: 2.2rem;
+  flex-shrink: 0;
+}
+.contents .c-title { flex: 1; }
+.contents .c-years {
+  font-size: var(--t-small);
+  color: var(--faint);
+  font-variant-numeric: oldstyle-nums;
+  white-space: nowrap;
+}
+
+/* ── Chapters ──────────────────────────────────────────────────── */
+
+.chapter { margin-top: clamp(4.5rem, 13vw, 9rem); scroll-margin-top: 2rem; }
+.chapter:first-of-type { margin-top: 0; }
+
+.chapter-head { margin-bottom: 2.2rem; }
+.chapter-num {
+  font-size: var(--t-small);
+  font-style: italic;
+  color: var(--faint);
+  font-variant-numeric: oldstyle-nums;
+  letter-spacing: 0.04em;
+}
+.chapter-head h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-top: 0.5rem;
+  text-wrap: balance;
+}
+
+/* book-style continuous prose: first-line indent, no inter-para gap.
+   A template never indents. A book always does. */
+.chapter p {
+  text-indent: 1.5em;
+  text-wrap: pretty;
+  hyphens: auto;
+}
+.chapter p:first-of-type,
+.chapter p.flush { text-indent: 0; }
+
+/* the opening line of each chapter, set apart */
+.chapter p.lead-line { text-indent: 0; }
+.chapter p.lead-line::first-line { font-variant-caps: small-caps; letter-spacing: 0.02em; }
+
+/* a quiet editorial note — where memory and record were checked.
+   No colour, no box. Just a smaller, set-apart aside. */
+.onrecord {
   display: block;
-  font-family: var(--mono);
-  font-size: var(--t-micro);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--seal);
-  margin-bottom: var(--s1);
+  font-size: var(--t-small);
+  color: var(--soft);
+  font-style: italic;
+  line-height: 1.5;
+  margin: 1.6rem 0;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--rule);
+  text-indent: 0;
+  max-width: 30rem;
 }
-.synthesis em { font-style: italic; color: var(--ink-2); }
-
-/* featured register row — the Survey sits above the numbered frames */
-.sheet-row.featured {
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--ink);
-  padding-top: var(--s3);
-  padding-bottom: var(--s3);
-}
-.sheet-row.featured .sr-no { color: var(--seal); }
-.sheet-row.featured .sr-title { font-size: 1.25rem; }
-
-@media (max-width: 640px) {
-  .frag { grid-template-columns: 1fr; gap: 0.25rem; padding: var(--s2); }
-  .frag .cite { padding-top: 0; }
-  .survey-intro p { font-size: 1.0625rem; }
+.onrecord .tag {
+  font-style: normal;
+  font-variant-caps: small-caps;
+  letter-spacing: 0.08em;
+  color: var(--faint);
+  margin-right: 0.5em;
 }
 
-/* ════════════════════════════════════════════════════════════════
-   FOOTER
-   ════════════════════════════════════════════════════════════════ */
+/* a section break within a chapter */
+.brk { text-align: center; color: var(--faint); margin: 2.4rem 0; text-indent: 0; }
+
+em { font-style: italic; }
+.chapter em, .preface em { color: var(--ink); }
+
+/* a Thai / Chinese inline term keeps its own face gracefully */
+.term { font-feature-settings: normal; }
+
+/* ── Footer ────────────────────────────────────────────────────── */
 
 footer {
-  margin-top: var(--s6);
-  padding-top: var(--s3);
-  border-top: 1px solid var(--ink);
+  margin-top: clamp(5rem, 14vw, 9rem);
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--rule);
+  font-size: var(--t-small);
+  color: var(--faint);
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
   flex-wrap: wrap;
-  gap: var(--s2);
-  font-family: var(--mono);
-  font-size: var(--t-micro);
-  letter-spacing: 0.06em;
-  color: var(--muted);
+  gap: 0.6rem;
+  font-variant-numeric: oldstyle-nums;
 }
-footer a { border-bottom: none; }
+footer a { color: var(--soft); text-decoration: none; }
+footer a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
-/* ════════════════════════════════════════════════════════════════
-   MOBILE — phone-first integrity (§11.8). Same rigour, rescaled.
-   ════════════════════════════════════════════════════════════════ */
+.totop { display: block; margin-top: 3rem; font-size: var(--t-small); font-style: italic; color: var(--faint); text-decoration: none; text-indent: 0; }
+.totop:hover { color: var(--soft); }
+
+/* ── Mobile — same book, rescaled, still comfortable to read ────── */
 
 @media (max-width: 640px) {
-  body { padding: var(--s3) var(--s2) var(--s5); font-size: 1rem; }
-  .titleblock {
-    grid-template-columns: 1fr;
-    gap: var(--s2);
-    padding: var(--s2);
-  }
-  .tb-grid {
-    grid-template-columns: auto 1fr;
-    text-align: left;
-    gap: 0.2em var(--s2);
-    border-top: 1px solid var(--rule);
-    padding-top: var(--s2);
-  }
-  .tb-grid span { text-align: left; }
-  .sheet-row { grid-template-columns: 2.5rem 1fr; }
-  .sheet-row .sr-disc { display: none; }
-  .sheet-row .sr-desc { grid-column: 2; }
-  .lede p, .lead { font-size: 1.0625rem; }
-  footer { flex-direction: column; gap: var(--s1); }
+  :root { --t-read: 1.1875rem; }   /* 19px — still a real reading size */
+  main { padding: 2.5rem 1.25rem 5rem; }
+  .contents a { gap: 0.75rem; }
 }
