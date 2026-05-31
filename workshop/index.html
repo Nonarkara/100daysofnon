@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Workshop — 100 Days of Non</title>
-  <meta name="description" content="The machine that writes the biography of Non Arkaraprasertkul. Eight workers — reading, drawing, fact-checking, dating, narrating — feeding one book that assembles itself over one hundred days.">
+  <meta name="description" content="The machine and the book, side by side. Watch the eight workers compute the biography of Non Arkaraprasertkul — reading, dating, fact-checking, drawing, narrating — live, every time you arrive.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://100.nonarkara.org/workshop/">
   <meta property="og:title" content="The Workshop — 100 Days of Non">
-  <meta property="og:description" content="Eight hands assembling one life. The biography writes itself from what they make.">
+  <meta property="og:description" content="The machine on the left, computing. The biography on the right, assembling. Watch it happen.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;1,7..72,400&display=swap" rel="stylesheet">
@@ -19,151 +19,53 @@
   <header class="wk-head">
     <div class="wk-head-row">
       <span class="wk-mark">THE&nbsp;<b>WORKSHOP</b></span>
-      <span class="wk-sub">eight hands assembling one life</span>
-      <a class="wk-tothe-book" href="/">Read the biography ↗</a>
-    </div>
-    <div class="wk-tabs" role="tablist" aria-label="Views">
-      <button class="wk-tab" id="tab-floor" role="tab" aria-selected="true" aria-controls="panel-floor">Workshop</button>
-      <button class="wk-tab" id="tab-an" role="tab" aria-selected="false" aria-controls="panel-an">Analytics</button>
+      <span class="wk-status" id="status"><span class="s-dot"></span> initialising</span>
+      <a class="wk-tothe-book" href="/" target="_top">Read the full biography ↗</a>
     </div>
   </header>
 
-  <main>
+  <div class="stage">
 
-    <!-- ════════════════ WORKSHOP FLOOR ════════════════ -->
-    <section id="panel-floor" role="tabpanel" aria-labelledby="tab-floor">
+    <!-- ════════════ LEFT — THE MACHINE ════════════ -->
+    <section class="machine" aria-label="The workshop machine">
 
-      <p class="wk-intro">This is not the biography. This is the room where it is made. Eight workers read, draw, date, check, and narrate what comes in — the blog, the answers, the photographs — and everything they make flows to the page at the centre, which <em>keeps writing itself</em>, one question a day, for one hundred days.</p>
-
-      <div class="floor" id="floor">
-        <svg class="flow-svg" id="flow" aria-hidden="true"></svg>
-
-        <!-- 01 -->
-        <article class="worker">
-          <div class="worker-top"><span class="worker-no">01</span><span class="dot"></span><span class="worker-name">The Archivist</span></div>
-          <p class="worker-craft">Takes in the source. Blog, diary, photographs — the raw matter of a life.</p>
-          <div class="worker-out">
-            <div class="metric">99 posts <span class="x">·</span> 239,110 words</div>
-            <div class="metric">10 photographs indexed</div>
-            <p class="eg">The whole nonharvard blog, ingested. The skeleton of when things happened is already here.</p>
-          </div>
-          <div class="worker-foot">SOURCE · 2015–2026</div>
-        </article>
-
-        <!-- 02 -->
-        <article class="worker">
-          <div class="worker-top"><span class="worker-no">02</span><span class="dot"></span><span class="worker-name">The Witness</span></div>
-          <p class="worker-craft">Reads each new piece and says, plainly, what it sees in it.</p>
-          <div class="worker-out">
-            <div class="metric">on: Chapter X — “Now”</div>
-            <p class="note">“A career that opened with a Fulbright talk closes with one. He did not see the loop until he was back on the street. He rarely sees them in time.”</p>
-          </div>
-          <div class="worker-foot">LAST READ · the Manoj arc</div>
-        </article>
-
-        <!-- 03 -->
-        <article class="worker">
-          <div class="worker-top"><span class="worker-no">03</span><span class="dot"></span><span class="worker-name">The Scribe</span></div>
-          <p class="worker-craft">Records the answers. Cleans the typos. Keeps the voice intact.</p>
-          <div class="worker-out">
-            <div class="metric">3 days transcribed <span class="x">·</span> raw → clean</div>
-            <p class="eg"><b>spelling normalised · em-dashes set · the “otter.ai” coda left exactly as spoken.</b></p>
-          </div>
-          <div class="worker-foot">CLEAN · days 1–3</div>
-        </article>
-
-        <!-- 04 -->
-        <article class="worker">
-          <div class="worker-top"><span class="worker-no">04</span><span class="dot"></span><span class="worker-name">The Fact-Checker</span></div>
-          <p class="worker-craft">Holds memory against the record. Marks the exact place they part.</p>
-          <div class="worker-out">
-            <div class="metric">4 points on record</div>
-            <p class="eg">“near Siam Paragon” <span class="tick">→</span> <b>Siam InterContinental, 1966–2002</b> <span class="tick">✓</span></p>
-          </div>
-          <div class="worker-foot">VERIFIED · against the public record</div>
-        </article>
-
-        <!-- ════ MASTER ════ -->
-        <article class="master" id="master">
-          <span class="master-eyebrow">The Biographer</span>
-          <h2>Non Arkaraprasertkul</h2>
-          <p class="m-sub">A biography, assembling itself — one question a day, for one hundred days.</p>
-          <div class="m-stats">12 chapters · 3 of 100 days filed · Bangkok, 2026</div>
-          <p class="m-latest">“I have learned to be suspicious of the verdict I reach while still inside the year. It always reverses, on a delay I cannot feel.”<span class="caret" aria-hidden="true"></span></p>
-          <a class="m-read" href="/">Read the biography ↗</a>
-        </article>
-
-        <!-- 05 -->
-        <article class="worker">
-          <div class="worker-top"><span class="worker-no">05</span><span class="dot"></span><span class="worker-name">The Chronologist</span></div>
-          <p class="worker-craft">Places every event in time. Fills the dates. Flags what will not reconcile.</p>
-          <div class="worker-out">
-            <div class="metric">14 phases <span class="x">·</span> 1910s–2026</div>
-            <div class="minibar" aria-hidden="true"><i class="conf" style="width:62%"></i><i class="gap" style="width:38%"></i></div>
-            <p class="eg">8 gaps open. Flag: <b>“at nineteen” (the exchange) vs. born 1981</b> — one year still unreconciled.</p>
-          </div>
-          <div class="worker-foot">TIMELINE · confirmed / gap</div>
-        </article>
-
-        <!-- 06 -->
-        <article class="worker">
-          <div class="worker-top"><span class="worker-no">06</span><span class="dot"></span><span class="worker-name">The Draftsman</span></div>
-          <p class="worker-craft">Draws the life. One line at a time — the road out, and the road back.</p>
-          <div class="worker-out">
-            <svg class="draw" viewBox="0 0 320 52" role="img" aria-label="The road: Bangkok, Boston, Oxford, Shanghai, Sydney, Kraków, and back to Bangkok">
-              <line class="rt" x1="20" y1="22" x2="300" y2="22"/>
-              <circle class="nd" cx="20"  cy="22" r="3.5"/><text class="lb" x="20"  y="40" text-anchor="middle">BKK</text>
-              <circle class="nd" cx="67"  cy="22" r="3.5"/><text class="lb" x="67"  y="40" text-anchor="middle">BOS</text>
-              <circle class="nd" cx="114" cy="22" r="3.5"/><text class="lb" x="114" y="40" text-anchor="middle">OXF</text>
-              <circle class="nd" cx="160" cy="22" r="3.5"/><text class="lb" x="160" y="40" text-anchor="middle">SHA</text>
-              <circle class="nd" cx="207" cy="22" r="3.5"/><text class="lb" x="207" y="40" text-anchor="middle">SYD</text>
-              <circle class="nd" cx="254" cy="22" r="3.5"/><text class="lb" x="254" y="40" text-anchor="middle">KRK</text>
-              <circle class="nd" cx="300" cy="22" r="4.2" style="fill:#f59e0b"/><text class="lb now" x="300" y="40" text-anchor="middle">BKK</text>
-            </svg>
-          </div>
-          <div class="worker-foot">DRAWING · the long road</div>
-        </article>
-
-        <!-- 07 -->
-        <article class="worker">
-          <div class="worker-top"><span class="worker-no">07</span><span class="dot"></span><span class="worker-name">The Collagist</span></div>
-          <p class="worker-craft">Arranges what was kept. The photographs, set side by side.</p>
-          <div class="worker-out">
-            <div class="thumbs">
-              <img src="/assets/artifacts/shop-registration.png" alt="The Suwan Panit shop registration, 1969" loading="lazy">
-              <img src="/assets/artifacts/father-portrait.png" alt="Father's official civil-servant portrait" loading="lazy">
-              <img src="/assets/artifacts/kengo-kuma.png" alt="With the architect Kengo Kuma, Japan 2006" loading="lazy">
-              <img src="/assets/artifacts/paolo.png" alt="Paolo the pug, 2008–2013" loading="lazy">
-            </div>
-            <p class="eg">the 1969 paper · the father · Kengo Kuma, 2006 · Paolo</p>
-          </div>
-          <div class="worker-foot">COLLAGE · 10 real photographs</div>
-        </article>
-
-        <!-- 08 -->
-        <article class="worker">
-          <div class="worker-top"><span class="worker-no">08</span><span class="dot"></span><span class="worker-name">The Narrator</span></div>
-          <p class="worker-craft">Writes the prose, in his voice, and hands it to the biography.</p>
-          <div class="worker-out">
-            <div class="metric">12 chapters drafted</div>
-            <p class="note dimq">the latest line —</p>
-            <p class="note">“The Bangkok teenager was me.”</p>
-          </div>
-          <div class="worker-foot">PROSE · → The Biographer</div>
-        </article>
-
+      <div class="machine-head">
+        <span class="mh-title">The assembly</span>
+        <div class="toggle" role="tablist" aria-label="Machine view">
+          <button class="tg" id="t-compute" role="tab" aria-selected="true">Compute</button>
+          <button class="tg" id="t-an" role="tab" aria-selected="false">Analytics</button>
+        </div>
       </div>
-    </section>
 
-    <!-- ════════════════ ANALYTICS ════════════════ -->
-    <section id="panel-an" role="tabpanel" aria-labelledby="tab-an" hidden>
+      <!-- ── Compute view ── -->
+      <div class="view view-compute" id="view-compute">
 
-      <p class="wk-intro">What the workers turn up when they read the whole record at once. <em>Real counts</em>, from the 99-post blog and the timeline — not impressions. The machine measures; the line underneath is the human reading of what it found.</p>
+        <p class="machine-intro">This is the room where the book on the right is made. Eight workers read the record and compute it into prose. <em>What you are watching runs fresh every time someone arrives.</em></p>
 
-      <div class="an-grid">
+        <div class="console" id="console" aria-live="polite" aria-label="Computation log"></div>
+
+        <button class="run" id="run" type="button">▶&nbsp;&nbsp;run the assembly again</button>
+
+        <ol class="legend" id="legend" aria-label="The eight workers">
+          <li><button class="wrow" data-w="archivist"    data-target=""><span class="w-no">01</span><span class="w-dot"></span><span class="w-nm">The Archivist</span><span class="w-op">the source</span></button></li>
+          <li><button class="wrow" data-w="witness"      data-target="#x"><span class="w-no">02</span><span class="w-dot"></span><span class="w-nm">The Witness</span><span class="w-op">reads</span></button></li>
+          <li><button class="wrow" data-w="scribe"        data-target=""><span class="w-no">03</span><span class="w-dot"></span><span class="w-nm">The Scribe</span><span class="w-op">cleans</span></button></li>
+          <li><button class="wrow" data-w="factchecker"   data-target=".onrecord"><span class="w-no">04</span><span class="w-dot"></span><span class="w-nm">The Fact-Checker</span><span class="w-op">verifies</span></button></li>
+          <li><button class="wrow" data-w="chronologist"  data-target=""><span class="w-no">05</span><span class="w-dot"></span><span class="w-nm">The Chronologist</span><span class="w-op">dates</span></button></li>
+          <li><button class="wrow" data-w="draftsman"     data-target=""><span class="w-no">06</span><span class="w-dot"></span><span class="w-nm">The Draftsman</span><span class="w-op">draws</span></button></li>
+          <li><button class="wrow" data-w="collagist"     data-target=""><span class="w-no">07</span><span class="w-dot"></span><span class="w-nm">The Collagist</span><span class="w-op">arranges</span></button></li>
+          <li><button class="wrow" data-w="narrator"      data-target="#x"><span class="w-no">08</span><span class="w-dot"></span><span class="w-nm">The Narrator</span><span class="w-op">writes</span></button></li>
+        </ol>
+
+        <p class="legend-foot">Click a worker to replay its computation and light the passage it produced, on the right →</p>
+      </div>
+
+      <!-- ── Analytics view ── -->
+      <div class="view view-an" id="view-an" hidden>
+        <p class="machine-intro">What the workers turn up reading the whole record at once. <em>Real counts</em> — from the 99-post blog and the timeline.</p>
 
         <div class="an-block">
-          <h3>Who fills the pages <span class="src">· blog, by mentions</span></h3>
+          <h3>Who fills the pages <span class="src">· by mentions</span></h3>
           <div class="an-split">
             <div>
               <h4>The family</h4>
@@ -184,11 +86,11 @@
               </div>
             </div>
           </div>
-          <p class="an-read">The father is named one hundred and forty-five times; the mother, fifty-seven. In the same pages, Sartre is named sixty times and Kahneman forty-seven. The family and the philosophers are summoned in the same breath — which is, more or less, the whole man.</p>
+          <p class="an-read">The father is named one hundred and forty-five times; the mother, fifty-seven. Sartre, sixty; Kahneman, forty-seven. The family and the philosophers are summoned in the same breath — which is, more or less, the whole man.</p>
         </div>
 
         <div class="an-block">
-          <h3>What he returns to <span class="src">· blog themes, of 99 posts</span></h3>
+          <h3>What he returns to <span class="src">· themes, of 99 posts</span></h3>
           <div class="ledger">
             <div class="ledger-row lead"><span class="l">Time</span><span class="n">99</span></div>
             <div class="ledger-row"><span class="l">Morality</span><span class="n">90</span></div>
@@ -199,11 +101,11 @@
             <div class="ledger-row"><span class="l">Death</span><span class="n">73</span></div>
             <div class="ledger-row"><span class="l">Solitude</span><span class="n">48</span></div>
           </div>
-          <p class="an-read">Every one of the ninety-nine posts touches time. There is not a single one that does not. After time comes morality, then writing — and only then love and death. He is a man who thinks about how to live before he thinks about whom to love.</p>
+          <p class="an-read">Every one of the ninety-nine posts touches time. Not one does not. After time comes morality, then writing — and only then love and death. He thinks about how to live before he thinks about whom to love.</p>
         </div>
 
         <div class="an-block">
-          <h3>Where the life happened <span class="src">· blog locations</span></h3>
+          <h3>Where the life happened <span class="src">· locations</span></h3>
           <div class="ledger">
             <div class="ledger-row lead"><span class="l">MIT</span><span class="n">71</span></div>
             <div class="ledger-row"><span class="l">China</span><span class="n">40</span></div>
@@ -213,7 +115,7 @@
             <div class="ledger-row"><span class="l">Cambridge MA</span><span class="n">16</span></div>
             <div class="ledger-row"><span class="l">Oxford</span><span class="n">12</span></div>
           </div>
-          <p class="an-read">A Thai life, told mostly from everywhere else. Home — Bangkok, Thailand — is named less often than the rooms he left it for. The man who wanted to leave wrote his country down from a distance, and only later changed his mind about nearly all of it.</p>
+          <p class="an-read">A Thai life, told mostly from everywhere else. Home is named less often than the rooms he left it for.</p>
         </div>
 
         <div class="an-block">
@@ -223,7 +125,7 @@
             <div class="ledger-row"><span class="l">Major gaps open</span><span class="n">8</span></div>
             <div class="ledger-row"><span class="l">Days filed of 100</span><span class="n">3</span></div>
           </div>
-          <p style="margin-top:1.2rem"><span class="metric">The corrections — where the verdict reversed</span></p>
+          <p class="metric corr-head">The corrections — where the verdict reversed</p>
           <ul class="corr">
             <li><b>“near Siam Paragon”</b> <span class="arr">→</span> the Siam InterContinental, gone since 2002</li>
             <li><b>“October”</b> <span class="arr">→</span> the third of November; the photograph corrected him</li>
@@ -231,89 +133,152 @@
             <li><b>“my parents never saw what I was”</b> <span class="arr">→</span> his mother was right; he never studied</li>
             <li><b>“I know why I left Sydney”</b> <span class="arr">→</span> he does not; the reason is still on its way</li>
           </ul>
-          <p class="an-read">A life is mostly memory; the record only catches the edges. Three days are filed. Ninety-seven are still only remembered — which is exactly why the verdict keeps reversing, on a delay he cannot feel.</p>
+          <p class="an-read">A life is mostly memory; the record only catches the edges. Three days are filed. Ninety-seven are still only remembered.</p>
         </div>
-
       </div>
     </section>
 
-  </main>
+    <!-- ════════════ RIGHT — THE BOOK ════════════ -->
+    <section class="book" aria-label="The biography">
+      <iframe id="book" src="/" title="Non Arkaraprasertkul — A Biography" loading="eager"></iframe>
+    </section>
 
-  <footer class="wk-foot">
-    <span>100 Days of Non · the workshop</span>
-    <span><a href="/">The biography ↗</a> · Bangkok, 2026</span>
-  </footer>
+  </div>
 
   <script>
   (function () {
-    // ── tab switching ──────────────────────────────────────────
-    var tabs = {
-      floor: { btn: document.getElementById('tab-floor'), panel: document.getElementById('panel-floor') },
-      an:    { btn: document.getElementById('tab-an'),    panel: document.getElementById('panel-an') }
-    };
-    function show(which) {
-      Object.keys(tabs).forEach(function (k) {
-        var on = k === which;
-        tabs[k].btn.setAttribute('aria-selected', on ? 'true' : 'false');
-        tabs[k].panel.hidden = !on;
-      });
-      if (which === 'floor') requestAnimationFrame(drawFlows);
+    var statusEl = document.getElementById('status');
+    var consoleEl = document.getElementById('console');
+    var legend   = document.getElementById('legend');
+    var runBtn   = document.getElementById('run');
+    var book     = document.getElementById('book');
+    var reduce   = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ── the assembly: real operations on real data ──
+    var STEPS = [
+      {w:'archivist',    code:'ingest · nonharvard.wordpress.com', out:'99 posts · 239,110 words'},
+      {w:'archivist',    code:'index · plates',                    out:'10 photographs'},
+      {w:'scribe',       code:'transcribe · day 001–003',          out:'raw → clean · voice kept'},
+      {w:'chronologist', code:'map · events 1910s → 2026',         out:'14 phases · 8 gaps'},
+      {w:'chronologist', code:'reconcile · “at nineteen” vs 1981', out:'FLAG · 1 yr unresolved', flag:true},
+      {w:'factchecker',  code:'verify · “near Siam Paragon”',      out:'Siam InterContinental 1966–2002 ✓', target:'.onrecord'},
+      {w:'factchecker',  code:'verify · three deaths, 2010',       out:'Agong · Ama · father ✓', target:'#viii'},
+      {w:'witness',      code:'read · Chapter X',                  out:'“the loop closes; he rarely sees it in time”', target:'#x'},
+      {w:'draftsman',    code:'draw · the road',                   out:'BKK · BOS · OXF · SHA · SYD · KRK · BKK'},
+      {w:'collagist',    code:'arrange · plates',                  out:'1969 paper · father · Kuma · Paolo'},
+      {w:'narrator',     code:'write · Chapter X “Now”',           out:'“The Bangkok teenager was me.”', target:'#x'},
+      {w:'biographer',   code:'assemble · the book',               out:'12 chapters · 3 / 100 days · in progress', target:'#preface'}
+    ];
+    var NAMES = {archivist:'ARCHIVIST',witness:'WITNESS',scribe:'SCRIBE',factchecker:'FACT-CHECKER',
+                 chronologist:'CHRONOLOGIST',draftsman:'DRAFTSMAN',collagist:'COLLAGIST',narrator:'NARRATOR',biographer:'BIOGRAPHER'};
+
+    function setStatus(state, label) {
+      statusEl.className = 'wk-status ' + state;
+      statusEl.innerHTML = '<span class="s-dot"></span> ' + label;
     }
-    tabs.floor.btn.addEventListener('click', function () { show('floor'); });
-    tabs.an.btn.addEventListener('click', function () { show('an'); });
+    function rowFor(w){ return legend.querySelector('.wrow[data-w="'+w+'"]'); }
 
-    // ── flow lines: worker edge → master edge ──────────────────
-    var floor  = document.getElementById('floor');
-    var svg    = document.getElementById('flow');
-    var master = document.getElementById('master');
-
-    // exit point on a rect border, along direction from its centre to target
-    function edge(rect, tx, ty) {
-      var cx = rect.left + rect.width / 2, cy = rect.top + rect.height / 2;
-      var dx = tx - cx, dy = ty - cy;
-      if (dx === 0 && dy === 0) return { x: cx, y: cy };
-      var hw = rect.width / 2, hh = rect.height / 2;
-      var sx = dx !== 0 ? hw / Math.abs(dx) : Infinity;
-      var sy = dy !== 0 ? hh / Math.abs(dy) : Infinity;
-      var s = Math.min(sx, sy);
-      return { x: cx + dx * s, y: cy + dy * s };
-    }
-
-    function drawFlows() {
-      if (tabs.floor.panel.hidden) return;
-      var fr = floor.getBoundingClientRect();
-      svg.setAttribute('viewBox', '0 0 ' + fr.width + ' ' + fr.height);
-      var mr = master.getBoundingClientRect();
-      var mcx = mr.left + mr.width / 2, mcy = mr.top + mr.height / 2;
-      var workers = floor.querySelectorAll('.worker');
-      var paths = '';
-      workers.forEach(function (w) {
-        var wr = w.getBoundingClientRect();
-        var wcx = wr.left + wr.width / 2, wcy = wr.top + wr.height / 2;
-        var a = edge(wr, mcx, mcy);          // leave the worker toward master
-        var b = edge(mr, wcx, wcy);          // enter the master from worker side
-        // to floor-local coords
-        var ax = a.x - fr.left, ay = a.y - fr.top;
-        var bx = b.x - fr.left, by = b.y - fr.top;
-        // gentle bezier: pull control points horizontally toward the centre
-        var c1x = ax + (bx - ax) * 0.55, c1y = ay;
-        var c2x = ax + (bx - ax) * 0.45, c2y = by;
-        paths += '<path class="flow-path" d="M' + ax.toFixed(1) + ',' + ay.toFixed(1) +
-                 ' C' + c1x.toFixed(1) + ',' + c1y.toFixed(1) +
-                 ' ' + c2x.toFixed(1) + ',' + c2y.toFixed(1) +
-                 ' ' + bx.toFixed(1) + ',' + by.toFixed(1) + '"/>';
-      });
-      svg.innerHTML = paths;
+    function lineEl(step) {
+      var d = document.createElement('div');
+      d.className = 'c-line' + (step.flag ? ' c-flag' : '');
+      d.innerHTML = '<span class="c-w">'+NAMES[step.w]+'</span>' +
+                    '<span class="c-code">'+step.code+'</span>' +
+                    '<span class="c-out">'+step.out+'</span>';
+      return d;
     }
 
-    var raf;
-    window.addEventListener('resize', function () {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(drawFlows);
+    function highlight(sel) {
+      if (!sel) return;
+      try {
+        var d = book.contentDocument; if (!d) return;
+        var el = d.querySelector(sel); if (!el) return;
+        el.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block: 'center'});
+        el.classList.add('wk-hl');
+        setTimeout(function(){ el.classList.remove('wk-hl'); }, 2400);
+      } catch (e) {}
+    }
+
+    var timers = [];
+    function clearTimers(){ timers.forEach(clearTimeout); timers = []; }
+
+    function fire(step, withHighlight) {
+      var r = rowFor(step.w);
+      if (r) { r.classList.add('active'); setTimeout(function(){ r.classList.remove('active'); r.classList.add('done'); }, 360); }
+      var ln = lineEl(step);
+      consoleEl.appendChild(ln);
+      consoleEl.scrollTop = consoleEl.scrollHeight;
+      if (withHighlight && step.target) highlight(step.target);
+    }
+
+    function runAll() {
+      clearTimers();
+      consoleEl.innerHTML = '';
+      legend.querySelectorAll('.wrow').forEach(function(r){ r.classList.remove('done','active'); });
+      runBtn.disabled = true;
+      setStatus('computing', 'computing');
+
+      if (reduce) {
+        STEPS.forEach(function(s){ fire(s, false); });
+        finish();
+        return;
+      }
+      var i = 0;
+      (function next() {
+        if (i >= STEPS.length) { finish(); return; }
+        fire(STEPS[i], false);
+        i++;
+        timers.push(setTimeout(next, 460));
+      })();
+    }
+
+    function finish() {
+      var caret = document.createElement('div');
+      caret.className = 'c-line c-ready';
+      caret.innerHTML = '<span class="c-w">READY</span><span class="c-code">eight workers · one terminus</span><span class="c-out">the biography →<span class="caret"></span></span>';
+      consoleEl.appendChild(caret);
+      consoleEl.scrollTop = consoleEl.scrollHeight;
+      legend.querySelectorAll('.wrow').forEach(function(r){ r.classList.add('done'); });
+      setStatus('ready', 'ready');
+      runBtn.disabled = false;
+    }
+
+    // replay a single worker on click + light its passage in the book
+    legend.addEventListener('click', function (e) {
+      var btn = e.target.closest('.wrow'); if (!btn) return;
+      var w = btn.getAttribute('data-w');
+      var steps = STEPS.filter(function(s){ return s.w === w; });
+      steps.forEach(function(s, k){ setTimeout(function(){ fire(s, k === steps.length - 1); }, k * 220); });
+      var tgt = btn.getAttribute('data-target');
+      if (steps.length === 0 && tgt) highlight(tgt);
     });
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawFlows);
-    window.addEventListener('load', drawFlows);
-    requestAnimationFrame(drawFlows);
+
+    runBtn.addEventListener('click', runAll);
+
+    // ── tab toggle: Compute / Analytics ──
+    var tC = document.getElementById('t-compute'), tA = document.getElementById('t-an');
+    var vC = document.getElementById('view-compute'), vA = document.getElementById('view-an');
+    function view(which){
+      var c = which === 'compute';
+      tC.setAttribute('aria-selected', c); tA.setAttribute('aria-selected', !c);
+      vC.hidden = !c; vA.hidden = c;
+    }
+    tC.addEventListener('click', function(){ view('compute'); });
+    tA.addEventListener('click', function(){ view('analytics'); });
+
+    // ── clean the embedded book: hide its loop-back links, add highlight style ──
+    book.addEventListener('load', function () {
+      try {
+        var d = book.contentDocument;
+        var also = d.querySelector('.cover .also'); if (also) also.style.display = 'none';
+        var foot = d.querySelector('footer'); if (foot) foot.style.display = 'none';
+        var st = d.createElement('style');
+        st.textContent = '.wk-hl{background:rgba(245,158,11,0.16);box-shadow:-4px 0 0 #f59e0b;transition:background .35s ease;}';
+        d.head.appendChild(st);
+      } catch (e) {}
+      runAll();
+    });
+    // fallback if load already fired / blocked
+    setTimeout(function(){ if (!consoleEl.children.length) runAll(); }, 1500);
   })();
   </script>
 
