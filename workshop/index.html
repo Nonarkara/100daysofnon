@@ -266,19 +266,26 @@
     tA.addEventListener('click', function(){ view('analytics'); });
 
     // ── clean the embedded book: hide its loop-back links, add highlight style ──
-    book.addEventListener('load', function () {
+    function cleanBook() {
       try {
-        var d = book.contentDocument;
+        var d = book.contentDocument; if (!d || !d.head) return false;
         var also = d.querySelector('.cover .also'); if (also) also.style.display = 'none';
         var foot = d.querySelector('footer'); if (foot) foot.style.display = 'none';
-        var st = d.createElement('style');
-        st.textContent = '.wk-hl{background:rgba(245,158,11,0.16);box-shadow:-4px 0 0 #f59e0b;transition:background .35s ease;}';
-        d.head.appendChild(st);
-      } catch (e) {}
-      runAll();
-    });
-    // fallback if load already fired / blocked
-    setTimeout(function(){ if (!consoleEl.children.length) runAll(); }, 1500);
+        if (!d.getElementById('wk-hl-style')) {
+          var st = d.createElement('style'); st.id = 'wk-hl-style';
+          st.textContent = '.wk-hl{background:rgba(245,158,11,0.16);box-shadow:-4px 0 0 #f59e0b;transition:background .35s ease;}';
+          d.head.appendChild(st);
+        }
+        return true;
+      } catch (e) { return false; }
+    }
+    var started = false;
+    function boot() { cleanBook(); if (!started) { started = true; runAll(); } }
+    book.addEventListener('load', boot);
+    // the iframe may have loaded from cache before this listener attached
+    setTimeout(function(){ if (!started) boot(); }, 1200);
+    // re-apply cleanup in case the book's <head> wasn't ready on first pass
+    setTimeout(cleanBook, 400); setTimeout(cleanBook, 2200);
   })();
   </script>
 
