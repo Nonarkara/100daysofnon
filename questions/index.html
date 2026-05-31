@@ -12,43 +12,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Literata:ital,opsz,wght@0,7..72,400;1,7..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/surface.css">
   <style>
-    :root{
-      --paper:#fdfcf9; --ink:#23201b; --soft:#5f594f; --faint:#908979; --rule:#e6e0d4;
-      --amber:#c2741a;
-      --serif:'Literata',Georgia,serif; --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
-    }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    html{font-size:16px;background:var(--paper);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-feature-settings:"onum" 1;}
-    body{font-family:var(--serif);color:var(--ink);background:var(--paper);line-height:1.55;}
-    main{max-width:48rem;margin:0 auto;padding:clamp(3rem,9vw,6rem) 1.4rem 7rem;}
-
-    .eyebrow{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--faint);}
-    .eyebrow b{color:var(--amber);font-weight:500;}
-    h1{font-weight:400;font-size:clamp(2.2rem,6vw,3.4rem);line-height:1.05;letter-spacing:-0.015em;margin:1rem 0 0.6rem;}
-    .sub{font-style:italic;color:var(--soft);font-size:1.125rem;}
-    .toprule{height:2px;background:var(--amber);width:3rem;margin:1.8rem 0;}
-    .method{color:var(--soft);max-width:33rem;margin-bottom:0.6rem;}
-    .method em{color:var(--ink);font-style:italic;}
-
-    .movement{margin-top:clamp(2.6rem,6vw,3.8rem);}
-    .movement-head{display:flex;align-items:baseline;gap:0.7rem;margin-bottom:1.3rem;}
-    .movement-num{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.12em;color:var(--amber);}
-    .movement-title{font-style:italic;color:var(--faint);font-size:0.95rem;}
-
+    :root{--measure:48rem;}
     .q{padding:1.1rem 0 0.9rem;border-bottom:1px solid var(--rule);}
     .q .text{font-size:clamp(1.25rem,2.6vw,1.5rem);line-height:1.4;text-wrap:pretty;letter-spacing:-0.01em;}
     .q .meta{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-top:0.7rem;}
     .q .open{font-family:var(--mono);font-size:0.5625rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--faint);display:inline-flex;align-items:center;gap:0.5em;}
     .q .open::before{content:"";display:inline-block;width:18px;border-top:1px dashed var(--faint);}
     .q .src{font-family:var(--mono);font-size:0.625rem;letter-spacing:0.04em;text-transform:uppercase;color:var(--faint);text-align:right;}
-
-    .colophon{margin-top:clamp(3rem,8vw,5rem);padding-top:1.6rem;border-top:1px solid var(--rule);color:var(--faint);font-size:0.875rem;line-height:1.6;max-width:33rem;}
-    .colophon .big{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--soft);display:block;margin-bottom:0.6rem;}
-    .colophon em{font-style:italic;color:var(--soft);}
-    .back{margin-top:2.4rem;display:flex;gap:1.6rem;flex-wrap:wrap;font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.1em;text-transform:uppercase;}
-    .back a{color:var(--soft);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px;}
-    .back a:hover{color:var(--amber);border-color:var(--amber);}
   </style>
 </head>
 <body>
@@ -104,11 +76,14 @@
       Eighteen questions, lifted <em>verbatim</em> from the ninety-nine essays of nonharvard.wordpress.com — spelling kept exactly as he wrote it. He asked each of himself, in passing, and moved on. The dashed line is where the answer is not. A man who ends on the open question has built a hundred-day project to ask a hundred more.
     </div>
 
-    <nav class="back">
-      <a href="/">← The biography</a>
-      <a href="/portrait/">The self-portrait ↗</a>
-      <a href="/atlas/">The atlas ↗</a>
-      <a href="/workshop/">The workshop ↗</a>
+    <nav class="universe-nav" aria-label="The universe">
+      <span class="un-label">100 Days of Non — the universe</span>
+      <a href="/">Biography</a><span class="sep">·</span>
+      <a href="/workshop/">Workshop</a><span class="sep">·</span>
+      <a href="/portrait/">Self-Portrait</a><span class="sep">·</span>
+      <a href="/atlas/">Atlas</a><span class="sep">·</span>
+      <a href="/questions/" aria-current="page">Questions</a><span class="sep">·</span>
+      <a href="/universe/">The Map</a>
     </nav>
 
   </main>
