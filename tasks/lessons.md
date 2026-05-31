@@ -2,6 +2,12 @@
 
 The same mistake never happens twice. Read at the start of every session.
 
+## 2026-05-31 · Claude_Preview proxies ONE origin — navigate with relative paths, screenshot without fullPage
+
+- **What went wrong:** Wasted several cycles trying to screenshot a deep page (`/workshop/`). `preview_start` ignores a plain background `python -m http.server` (shows "Awaiting server…") and instead spins up its OWN proxy on :4242 bound to a single origin. `preview_start({url:'.../workshop/'})` and `preview_eval(location.href='https://…/workshop/')` both kept showing the site ROOT — absolute cross-origin navigations don't take. `fullPage:true` screenshots appeared to reload the page and reset JS tab-state to default.
+- **Correct behaviour:** (1) To view a deep path, navigate with a path RELATIVE to the proxy: `preview_eval` → `location.assign('/workshop/?v='+Date.now())`. The proxy forwards `localhost:4242/workshop/` to the live origin. (2) To drive client JS (tab switches), call the handler in `preview_eval` (`document.getElementById('tab-an').click()`) and assert state in the same eval (`panel.hidden`), THEN `preview_screenshot` WITHOUT `fullPage` (fullPage can reload and reset state). (3) The live deployed URL is the reliable surface anyway (§11.8) — ship, then verify live, rather than fighting the local static-server path.
+- **How to recognise:** `preview_list` shows a server whose `cwd` is the repo root (not your subdir) and a screenshot that shows "/" when you asked for a subpath. That means it's proxying root; switch to relative `location.assign` + eval-driven interaction.
+
 ## 2026-05-29 · Curation in front of the content is the disease — three rejections, one cause
 
 - **What went wrong:** Three directions, three rejections. (1) Punk biography — "uncurated, cliché, no personality." (2) Cold Frames (Kimmy) — fixed by me into warm Frames. (3) My warm Frames + Survey — "confusing, templated, pretentious, hard to read." The instinct each time was to find a *stronger concept / better skin*. That instinct was the error.
