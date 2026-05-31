@@ -387,20 +387,33 @@ main { max-width: 1180px; margin: 0 auto; padding: 1.1rem 1.1rem 5rem; }
 }
 .an-block h3 .src { color: var(--faint); font-weight: 400; }
 
-.bar-row { display: flex; align-items: center; gap: 0.7rem; margin: 0.32rem 0; }
-.bar-label {
-  font-size: var(--t-micro);
-  letter-spacing: 0.04em;
-  color: var(--dim);
-  width: 6.5rem;
-  flex-shrink: 0;
-  text-align: right;
-  text-transform: uppercase;
+/* a ruled ledger — Monocle, not a dashboard. label · rule · figure. */
+.ledger { margin: 0; }
+.ledger-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.9rem;
+  padding: 0.46rem 0;
+  border-bottom: 1px solid var(--line);
 }
-.bar-track { flex: 1; height: 9px; background: var(--soil-2); border: 1px solid var(--line); }
-.bar-fill { height: 100%; background: var(--amber); }
-.bar-fill.muted { background: var(--line-2); }
-.bar-val { font-size: var(--t-micro); color: var(--text); width: 2.6rem; text-align: left; }
+.ledger-row:first-child { border-top: 1px solid var(--line-2); }
+.ledger-row .l {
+  font-size: var(--t-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.ledger-row .n {
+  font-family: var(--mono);
+  font-size: var(--t-body);
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+/* the standout figure of each list, in amber — the one that matters */
+.ledger-row.lead .l { color: var(--text); }
+.ledger-row.lead .n { color: var(--amber); font-weight: 700; }
 
 .an-read {
   font-family: var(--serif);
