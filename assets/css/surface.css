@@ -1,0 +1,57 @@
+/* ═══════════════════════════════════════════════════════════════════
+   surface.css — the shared warm-surface system.
+
+   One design layer for every companion surface in the universe — the
+   Self-Portrait, the Atlas, Open Questions, the Map. The biography (its
+   own main.css) and the workshop (workshop.css, dark) are the two
+   exceptions; everything else is set here, once, so it can never drift.
+
+   Warm paper, Literata for reading, JetBrains Mono for the machine's
+   marginalia, one whisper of amber. No rounding, no gradient, no shadow.
+   Per-page width is the only knob: set --measure in a page :root.
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root{
+  --paper:#fdfcf9; --ink:#23201b; --soft:#5f594f; --faint:#908979; --rule:#e6e0d4;
+  --amber:#c2741a;
+  --serif:'Literata',Georgia,'Times New Roman',serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --measure:48rem;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;background:var(--paper);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-feature-settings:"onum" 1,"kern" 1;}
+body{font-family:var(--serif);color:var(--ink);background:var(--paper);line-height:1.55;}
+main{max-width:var(--measure);margin:0 auto;padding:clamp(3rem,9vw,6rem) 1.4rem 7rem;}
+
+/* masthead */
+.eyebrow{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--faint);}
+.eyebrow b{color:var(--amber);font-weight:500;}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,6vw,3.4rem);line-height:1.05;letter-spacing:-0.015em;margin:1rem 0 0.6rem;}
+.sub{font-style:italic;color:var(--soft);font-size:1.125rem;}
+.toprule{height:2px;background:var(--amber);width:3rem;margin:1.8rem 0;}
+.method{color:var(--soft);max-width:33rem;line-height:1.6;margin-bottom:1.4rem;}
+.method em{color:var(--ink);font-style:italic;}
+
+/* movements (used by the portrait, questions) */
+.movement{margin-top:clamp(2.4rem,6vw,3.8rem);}
+.movement-head{display:flex;align-items:baseline;gap:0.7rem;margin-bottom:1.2rem;}
+.movement-num{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.12em;color:var(--amber);}
+.movement-title{font-style:italic;color:var(--faint);font-size:0.95rem;letter-spacing:0.01em;}
+
+/* colophon */
+.colophon{margin-top:clamp(3rem,8vw,5rem);padding-top:1.6rem;border-top:1px solid var(--rule);color:var(--faint);font-size:0.875rem;line-height:1.6;max-width:33rem;}
+.colophon .big{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--soft);display:block;margin-bottom:0.6rem;}
+.colophon em{font-style:italic;color:var(--soft);}
+
+/* the one consistent way to move through the whole work */
+.universe-nav{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:0.55rem;
+  margin-top:clamp(2.6rem,7vw,4rem);padding-top:1.4rem;border-top:1px solid var(--rule);
+  font-family:var(--mono);font-size:0.625rem;letter-spacing:0.12em;text-transform:uppercase;
+}
+.universe-nav .un-label{color:var(--faint);width:100%;margin-bottom:0.5rem;letter-spacing:0.16em;}
+.universe-nav a{color:var(--soft);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px;}
+.universe-nav a:hover{color:var(--amber);border-color:var(--amber);}
+.universe-nav a[aria-current="page"]{color:var(--amber);border-color:var(--amber);}
+.universe-nav .sep{color:var(--faint);}

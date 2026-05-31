@@ -12,58 +12,17 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;1,7..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/surface.css">
   <style>
-    :root{
-      --paper:#fdfcf9; --ink:#23201b; --soft:#5f594f; --faint:#908979; --rule:#e6e0d4;
-      --amber:#c2741a;
-      --serif:'Literata',Georgia,'Times New Roman',serif;
-      --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
-    }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    html{font-size:16px;background:var(--paper);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-feature-settings:"onum" 1,"kern" 1;}
-    body{font-family:var(--serif);color:var(--ink);background:var(--paper);line-height:1.6;}
-    main{max-width:52rem;margin:0 auto;padding:clamp(3rem,9vw,6.5rem) 1.4rem 7rem;}
-
-    .eyebrow{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--faint);}
-    .eyebrow b{color:var(--amber);font-weight:500;}
-    h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,6vw,3.4rem);line-height:1.05;letter-spacing:-0.015em;margin:1rem 0 0.6rem;}
-    .sub{font-style:italic;color:var(--soft);font-size:1.125rem;}
-    .toprule{height:2px;background:var(--amber);width:3rem;margin:1.8rem 0;}
-
-    .method{color:var(--soft);max-width:34rem;line-height:1.6;margin-bottom:1.6rem;}
-    .method em{color:var(--ink);font-style:italic;}
-
-    .recompute{
-      font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.14em;text-transform:uppercase;
-      color:var(--amber);background:transparent;border:1px solid var(--amber);
-      padding:0.6rem 1rem;min-height:44px;cursor:pointer;margin-bottom:0.6rem;
-    }
+    :root{--measure:52rem;}
+    .recompute{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--amber);background:transparent;border:1px solid var(--amber);padding:0.6rem 1rem;min-height:44px;cursor:pointer;margin-bottom:0.6rem;}
     .recompute:hover{background:var(--amber);color:var(--paper);}
     .seed{font-family:var(--mono);font-size:0.625rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--faint);margin-left:0.8rem;}
-
-    .movement{margin-top:clamp(2.4rem,5vw,3.4rem);}
-    .movement-head{display:flex;align-items:baseline;gap:0.7rem;margin-bottom:1.1rem;}
-    .movement-num{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.12em;color:var(--amber);}
-    .movement-title{font-style:italic;color:var(--faint);font-size:0.95rem;letter-spacing:0.01em;}
-
     .line{display:grid;grid-template-columns:1fr 11rem;gap:0 1.6rem;align-items:baseline;padding:0.7rem 0;border-bottom:1px solid var(--rule);}
     .line .t{font-size:1.25rem;line-height:1.5;text-wrap:pretty;}
     .line .s{font-family:var(--mono);font-size:0.625rem;letter-spacing:0.04em;text-transform:uppercase;color:var(--faint);text-align:right;line-height:1.5;}
     @media (prefers-reduced-motion: no-preference){ .line{animation:fade .5s ease both;} @keyframes fade{from{opacity:0;}to{opacity:1;}} }
-
-    .colophon{margin-top:clamp(3rem,8vw,5rem);padding-top:1.6rem;border-top:1px solid var(--rule);color:var(--faint);font-size:0.875rem;line-height:1.6;max-width:34rem;}
-    .colophon .big{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--soft);display:block;margin-bottom:0.6rem;}
-    .colophon em{font-style:italic;color:var(--soft);}
-
-    .back{margin-top:2.6rem;display:flex;gap:1.6rem;flex-wrap:wrap;font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.1em;text-transform:uppercase;}
-    .back a{color:var(--soft);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px;}
-    .back a:hover{color:var(--amber);border-color:var(--amber);}
-
-    @media (max-width:680px){
-      .line{grid-template-columns:1fr;gap:0.35rem 0;}
-      .line .s{text-align:left;color:var(--faint);}
-      .line .t{font-size:1.1875rem;}
-    }
+    @media (max-width:680px){ .line{grid-template-columns:1fr;gap:0.35rem 0;} .line .s{text-align:left;color:var(--faint);} .line .t{font-size:1.1875rem;} }
   </style>
 </head>
 <body>
@@ -89,18 +48,20 @@
       Drawn from a pool of <span id="pool">38</span> sentences across twelve essays of nonharvard.wordpress.com — twenty, freshly chosen, on every visit. Lifted <em>verbatim</em>; spelling kept exactly as he wrote it, typos and all. Selected and set in order by the workshop; written, every word, years ago, by him. He has not read this arrangement before. Neither, until you reloaded, had you.
     </div>
 
-    <nav class="back">
-      <a href="/">← The biography</a>
-      <a href="/atlas/">The atlas ↗</a>
-      <a href="/questions/">Open questions ↗</a>
-      <a href="/workshop/">The workshop ↗</a>
+    <nav class="universe-nav" aria-label="The universe">
+      <span class="un-label">100 Days of Non — the universe</span>
+      <a href="/">Biography</a><span class="sep">·</span>
+      <a href="/workshop/">Workshop</a><span class="sep">·</span>
+      <a href="/portrait/" aria-current="page">Self-Portrait</a><span class="sep">·</span>
+      <a href="/atlas/">Atlas</a><span class="sep">·</span>
+      <a href="/questions/">Questions</a><span class="sep">·</span>
+      <a href="/universe/">The Map</a>
     </nav>
 
   </main>
 
   <script>
   (function () {
-    // every line verbatim from the corpus; source-verified. {m: movement, t: text, s: source essay}
     var POOL = [
       {m:'I',t:"I believe that the self is something that I construct, with the help of the society into which I was born, smply to make myself miserable.",s:"Therefore I Bike"},
       {m:'I',t:"I don't really know what I am in terms of profession.",s:"On Professionalism"},
@@ -145,26 +106,22 @@
       {m:'V',t:"I don't want to be the richest man in the world who can buy anything.",s:"On Professionalism"},
       {m:'V',t:"I don't let the society make me who I don't want to be, but I want to be useful to the society whenever I can.",s:"On Bad Arguments"}
     ];
-    var PER = 4; // lines drawn per movement each visit
+    var PER = 4;
     var movements = ['I','II','III','IV','V'];
-
-    function shuffle(a){ a = a.slice(); for (var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+    function shuffle(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} return a; }
     function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
-
-    function build() {
-      movements.forEach(function (m) {
-        var pool = POOL.filter(function (x){ return x.m === m; });
-        var pick = shuffle(pool).slice(0, Math.min(PER, pool.length));
-        var box = document.querySelector('.lines[data-m="'+m+'"]');
-        box.innerHTML = pick.map(function (x) {
+    function build(){
+      movements.forEach(function(m){
+        var pool=POOL.filter(function(x){return x.m===m;});
+        var pick=shuffle(pool).slice(0,Math.min(PER,pool.length));
+        document.querySelector('.lines[data-m="'+m+'"]').innerHTML = pick.map(function(x){
           return '<div class="line"><span class="t">“'+esc(x.t)+'”</span><span class="s">'+esc(x.s)+'</span></div>';
         }).join('');
       });
-      document.getElementById('seed').textContent = 'draw #' + Math.random().toString(36).slice(2,7);
+      document.getElementById('seed').textContent='draw #'+Math.random().toString(36).slice(2,7);
     }
-
-    document.getElementById('pool').textContent = POOL.length;
-    document.getElementById('recompute').addEventListener('click', build);
+    document.getElementById('pool').textContent=POOL.length;
+    document.getElementById('recompute').addEventListener('click',build);
     build();
   })();
   </script>
