@@ -76,6 +76,18 @@ main {
   margin-top: 2rem;
   letter-spacing: 0.01em;
 }
+.cover .also {
+  font-size: var(--t-small);
+  font-style: italic;
+  margin-top: 0.9rem;
+}
+.cover .also a {
+  color: var(--soft);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1px;
+}
+.cover .also a:hover { color: var(--ink); border-color: var(--soft); }
 
 /* ── Preface ───────────────────────────────────────────────────── */
 
