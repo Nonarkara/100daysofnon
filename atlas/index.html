@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Atlas — 100 Days of Non</title>
+  <meta name="description" content="The life of Non Arkaraprasertkul drawn as a single transit line — thirteen stops from Bangkok, around the world, and back to Bangkok. The places he returned to are marked as interchanges.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://100.nonarkara.org/atlas/">
+  <meta property="og:title" content="The Atlas — the life as a single line">
+  <meta property="og:description" content="Thirteen stops, one route. It begins in Bangkok and ends in Bangkok. The returns are marked.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Literata:ital,opsz,wght@0,7..72,400;1,7..72,400&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --paper:#fdfcf9; --ink:#23201b; --soft:#5f594f; --faint:#908979; --rule:#e6e0d4;
+      --amber:#c2741a;
+      --serif:'Literata',Georgia,serif; --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{font-size:16px;background:var(--paper);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-feature-settings:"onum" 1;}
+    body{font-family:var(--serif);color:var(--ink);background:var(--paper);line-height:1.55;}
+    main{max-width:44rem;margin:0 auto;padding:clamp(3rem,9vw,6rem) 1.4rem 7rem;}
+
+    .eyebrow{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--faint);}
+    .eyebrow b{color:var(--amber);font-weight:500;}
+    h1{font-weight:400;font-size:clamp(2.2rem,6vw,3.4rem);line-height:1.05;letter-spacing:-0.015em;margin:1rem 0 0.6rem;}
+    .sub{font-style:italic;color:var(--soft);font-size:1.125rem;}
+    .toprule{height:2px;background:var(--amber);width:3rem;margin:1.8rem 0;}
+    .method{color:var(--soft);max-width:32rem;margin-bottom:1.4rem;}
+    .method em{color:var(--ink);font-style:italic;}
+
+    .legend{display:flex;gap:1.4rem;flex-wrap:wrap;font-family:var(--mono);font-size:0.625rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--faint);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:0.7rem 0;margin-bottom:2.4rem;}
+    .legend span{display:inline-flex;align-items:center;gap:0.45rem;}
+    .key{width:13px;height:13px;flex-shrink:0;}
+    .key.stop{border-radius:50%;background:var(--amber);}
+    .key.ret{border-radius:50%;background:var(--paper);border:2px solid var(--amber);}
+    .key.now{background:var(--amber);}
+    .key.gap{border-radius:50%;background:var(--paper);border:2px dashed var(--faint);}
+
+    /* the route */
+    .rail{position:relative;}
+    .rail::before{content:'';position:absolute;left:6px;top:8px;bottom:14px;width:2px;background:var(--amber);}
+    .era{font-family:var(--mono);font-size:0.625rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin:1.7rem 0 1rem 2.3rem;}
+    .era:first-child{margin-top:0;}
+    .station{position:relative;padding:0 0 1.7rem 2.3rem;}
+    .station::before{content:'';position:absolute;left:0;top:3px;width:14px;height:14px;border-radius:50%;background:var(--amber);}
+    .station.ret::before{background:var(--paper);border:2px solid var(--amber);}
+    .station.gap::before{background:var(--paper);border:2px dashed var(--faint);}
+    .station.now::before{border-radius:0;width:15px;height:15px;background:var(--amber);}
+    .st-top{display:flex;align-items:baseline;gap:0.7rem;flex-wrap:wrap;}
+    .place{font-family:var(--mono);font-size:0.9375rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);}
+    .place.dim{color:var(--soft);}
+    .yr{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.06em;color:var(--amber);}
+    .tag{font-family:var(--mono);font-size:0.5625rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);border:1px solid var(--rule);padding:1px 5px;}
+    .role{font-style:italic;color:var(--soft);margin-top:0.2rem;font-size:1.0625rem;line-height:1.45;}
+
+    .colophon{margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--rule);color:var(--faint);font-size:0.875rem;line-height:1.6;max-width:32rem;}
+    .colophon .big{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--soft);display:block;margin-bottom:0.6rem;}
+    .colophon em{font-style:italic;color:var(--soft);}
+    .back{margin-top:2.4rem;display:flex;gap:1.6rem;flex-wrap:wrap;font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.1em;text-transform:uppercase;}
+    .back a{color:var(--soft);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px;}
+    .back a:hover{color:var(--amber);border-color:var(--amber);}
+  </style>
+</head>
+<body>
+  <main>
+
+    <p class="eyebrow">The Workshop&nbsp;&nbsp;·&nbsp;&nbsp;<b>The Cartographer</b></p>
+    <h1>The Atlas</h1>
+    <p class="sub">the life as a single line</p>
+    <div class="toprule"></div>
+
+    <p class="method">One route, thirteen stops. It leaves Bangkok in 1981 and, forty-five years and three continents later, arrives back in Bangkok. The cities he returned to — Bangkok, Boston, Shanghai — are drawn as <em>interchanges</em>: a hollow ring means he had stood there before. The line is not drawn to scale. No life is.</p>
+
+    <div class="legend">
+      <span><i class="key stop"></i> a stop</span>
+      <span><i class="key ret"></i> a return</span>
+      <span><i class="key gap"></i> nowhere</span>
+      <span><i class="key now"></i> now</span>
+    </div>
+
+    <div class="rail">
+
+      <div class="era">Origins</div>
+      <div class="station ret">
+        <div class="st-top"><span class="place">Bangkok</span><span class="yr">1981</span><span class="tag">origin</span></div>
+        <p class="role">Born on a Sunday, near a hotel shaped like a hat. The house his father built.</p>
+      </div>
+      <div class="station">
+        <div class="st-top"><span class="place">Sikhio</span><span class="yr">the summers</span></div>
+        <p class="role">The shop — <span lang="th">發祥</span> — the cousins, one television for the whole neighbourhood.</p>
+      </div>
+
+      <div class="era">The road out</div>
+      <div class="station">
+        <div class="st-top"><span class="place">Oklahoma City</span><span class="yr">1999</span></div>
+        <p class="role">The exchange year. A bar in Cambridge, and the idea of Boston, glimpsed.</p>
+      </div>
+      <div class="station ret">
+        <div class="st-top"><span class="place">Bangkok</span><span class="yr">1998–2004</span><span class="tag">return</span></div>
+        <p class="role">KMITL. Three thousand hours in the library, where nobody was watching.</p>
+      </div>
+      <div class="station">
+        <div class="st-top"><span class="place">Boston</span><span class="yr">2004</span></div>
+        <p class="role">MIT, on a Fulbright. Stanford Anderson: good writing is clear writing.</p>
+      </div>
+      <div class="station">
+        <div class="st-top"><span class="place">Shanghai</span><span class="yr">2006</span></div>
+        <p class="role">First sight, from the elevated road off the airport. The Bund, in the flesh at last.</p>
+      </div>
+      <div class="station">
+        <div class="st-top"><span class="place">Oxford</span><span class="yr">2007</span></div>
+        <p class="role">On a Harvard-Yenching grant. The English class system, encountered.</p>
+      </div>
+      <div class="station ret">
+        <div class="st-top"><span class="place">Boston</span><span class="yr">2008</span><span class="tag">return</span></div>
+        <p class="role">Harvard, the doctorate, the two percent. His father dies, week one.</p>
+      </div>
+
+      <div class="era">The field</div>
+      <div class="station ret">
+        <div class="st-top"><span class="place">Shanghai</span><span class="yr">2013</span><span class="tag">return</span></div>
+        <p class="role">A resident at last. Three years, a bicycle by the Huangpu, and a girl who may not have been real.</p>
+      </div>
+
+      <div class="era">The wilderness</div>
+      <div class="station gap">
+        <div class="st-top"><span class="place dim">Nowhere</span><span class="yr">2016</span></div>
+        <p class="role">The curb. The worst year of his life — which he would only later learn was the best.</p>
+      </div>
+      <div class="station">
+        <div class="st-top"><span class="place">Kraków</span><span class="yr">2018</span></div>
+        <p class="role">A visiting chair, brokered by a friend. Christopher, Akeen, Max, Martina.</p>
+      </div>
+      <div class="station">
+        <div class="st-top"><span class="place">Sydney</span><span class="yr">2018</span></div>
+        <p class="role">A post taken because Singapore said no — and left, for a reason still on its way back.</p>
+      </div>
+
+      <div class="era">The return</div>
+      <div class="station now">
+        <div class="st-top"><span class="place">Bangkok</span><span class="yr">2020–</span><span class="tag">now</span></div>
+        <p class="role">Home. Two Thai dogs, the smart cities, a hundred days of questions. The arc is closed.</p>
+      </div>
+
+    </div>
+
+    <div class="colophon">
+      <span class="big">Colophon</span>
+      Thirteen stops, drawn from the timeline the workshop keeps. Three cities are visited more than once — <em>Bangkok, Boston, Shanghai</em> — and marked as returns. The dates are from the record; where the record is thin, the year is the one he has given and not yet revised. A man who spent his youth trying to leave one city ends the line back inside it.
+    </div>
+
+    <nav class="back">
+      <a href="/">← The biography</a>
+      <a href="/portrait/">The self-portrait ↗</a>
+      <a href="/workshop/">The workshop ↗</a>
+    </nav>
+
+  </main>
+</body>
+</html>
