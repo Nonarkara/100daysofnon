@@ -1,482 +1,264 @@
 /* ═══════════════════════════════════════════════════════════════════
-   THE WORKSHOP — the machine that writes the biography.
+   THE WORKSHOP — split screen. The machine and the book, side by side.
 
-   A dark, warm room (soil and lamplight, not chrome). Eight workers,
-   each a craft, all feeding a warm page at the centre — the book being
-   born from the muck. The structure is geometric (Rams, Vignelli); the
-   life is in the flow of real data. One accent: amber. No rounding, no
-   gradient, no shadow. The machine is mono; the biography is Literata.
+   Left: a dark, warm room (soil and lamplight) where eight workers
+   compute the life into prose — live, on every arrival. Right: the
+   biography itself, embedded, the single source of truth. Click a
+   worker; watch its computation, and the passage it produced lights up.
+
+   Doctrine: Gropius grid · Vignelli hairline · Monocle ledger.
+   One accent — amber. No rounding, no gradient, no shadow.
+   Machine = JetBrains Mono. Book = Literata.
    ═══════════════════════════════════════════════════════════════════ */
 
 :root {
-  --soil:   #14110c;   /* base — dark warm ground */
-  --soil-2: #1d1913;   /* panel */
-  --soil-3: #262019;   /* panel raised / hover */
-  --line:   rgba(255,255,255,0.09);  /* hairline */
-  --line-2: #38301f;   /* structural hairline, warm */
+  --soil:   #14110c;
+  --soil-2: #1d1913;
+  --soil-3: #262019;
+  --line:   rgba(255,255,255,0.09);
+  --line-2: #38301f;
 
-  --text:  #ece5d6;    /* warm off-white — body, high contrast */
-  --dim:   #a89c84;    /* secondary */
-  --faint: #857c69;    /* meta — micro only */
+  --text:  #ece5d6;
+  --dim:   #a89c84;
+  --faint: #857c69;
 
-  --amber: #f59e0b;    /* the one accent. the = key. */
+  --amber: #f59e0b;
 
-  --paper:      #fdfcf9;   /* the master node — the book */
-  --paper-ink:  #23201b;
-  --paper-soft: #5f594f;
-  --paper-faint:#908979;
+  --paper: #fdfcf9;
 
   --mono:  'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
   --serif: 'Literata', Georgia, 'Times New Roman', serif;
 
-  /* three sizes only */
-  --t-display: clamp(2rem, 6vw, 3.25rem);
-  --t-body:  0.875rem;   /* 14px */
-  --t-micro: 0.6875rem;  /* 11px */
+  --t-display: clamp(1.6rem, 3.4vw, 2.1rem);
+  --t-body:  0.875rem;
+  --t-micro: 0.6875rem;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+html, body { height: 100%; }
 html {
   background: var(--soil);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
-
 body {
   font-family: var(--mono);
   font-size: var(--t-body);
   line-height: 1.6;
   color: var(--text);
   background: var(--soil);
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
 }
-
 a { color: inherit; }
 
-/* ── Header ────────────────────────────────────────────────────── */
+/* ── Top bar ───────────────────────────────────────────────────── */
 
 .wk-head {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: rgba(20,17,12,0.92);
-  backdrop-filter: blur(6px);
+  flex: 0 0 auto;
+  background: var(--soil);
   border-bottom: 1px solid var(--line-2);
-  padding: 0.85rem 1.1rem;
+  padding: 0.7rem 1.1rem;
 }
 .wk-head-row {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 0.5rem 1rem;
-  max-width: 1180px;
-  margin: 0 auto;
+  gap: 0.4rem 1rem;
 }
-.wk-mark {
-  font-size: var(--t-micro);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--text);
-}
+.wk-mark { font-size: var(--t-micro); letter-spacing: 0.22em; text-transform: uppercase; color: var(--text); }
 .wk-mark b { color: var(--amber); font-weight: 700; }
-.wk-sub {
-  font-family: var(--serif);
-  font-size: var(--t-body);
-  font-style: italic;
-  color: var(--dim);
-  letter-spacing: 0;
-  text-transform: none;
-}
-.wk-tothe-book {
-  font-size: var(--t-micro);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--dim);
-  text-decoration: none;
-  border-bottom: 1px solid var(--line-2);
-  padding-bottom: 2px;
-}
-.wk-tothe-book:hover { color: var(--amber); border-color: var(--amber); }
 
-/* ── Tabs ──────────────────────────────────────────────────────── */
-
-.wk-tabs {
-  display: flex;
-  gap: 0;
-  max-width: 1180px;
-  margin: 0 auto;
-  margin-top: 0.7rem;
-  border: 1px solid var(--line-2);
-  width: fit-content;
-}
-.wk-tab {
-  font-family: var(--mono);
+.wk-status {
   font-size: var(--t-micro);
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--dim);
-  background: transparent;
-  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.wk-status .s-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--faint); flex-shrink: 0; }
+.wk-status.computing .s-dot { background: var(--amber); }
+.wk-status.computing { color: var(--amber); }
+.wk-status.ready .s-dot { background: var(--amber); }
+
+.wk-tothe-book {
+  font-size: var(--t-micro); letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--dim); text-decoration: none;
+  border-bottom: 1px solid var(--line-2); padding-bottom: 2px;
+}
+.wk-tothe-book:hover { color: var(--amber); border-color: var(--amber); }
+
+/* ── The split stage ───────────────────────────────────────────── */
+
+.stage { flex: 1 1 auto; display: flex; min-height: 0; }
+
+.machine {
+  flex: 0 0 42%;
+  max-width: 600px;
+  min-height: 0;
+  overflow-y: auto;
   border-right: 1px solid var(--line-2);
-  padding: 0.6rem 1.1rem;
-  min-height: 44px;
-  cursor: pointer;
+  padding: 1.1rem 1.2rem 2.5rem;
 }
-.wk-tab:last-child { border-right: none; }
-.wk-tab[aria-selected="true"] { background: var(--amber); color: var(--soil); font-weight: 700; }
-.wk-tab:not([aria-selected="true"]):hover { color: var(--text); background: var(--soil-3); }
+.book { flex: 1 1 auto; min-height: 0; background: var(--paper); }
+.book iframe { width: 100%; height: 100%; border: 0; display: block; background: var(--paper); }
 
-/* ── Layout shell ──────────────────────────────────────────────── */
+/* ── Machine head + toggle ─────────────────────────────────────── */
 
-main { max-width: 1180px; margin: 0 auto; padding: 1.1rem 1.1rem 5rem; }
-
-.wk-intro {
-  font-family: var(--serif);
-  color: var(--dim);
-  max-width: 38rem;
-  margin: 0.6rem 0 1.6rem;
-  line-height: 1.55;
+.machine-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  border-bottom: 1px solid var(--line-2);
+  padding-bottom: 0.7rem;
+  margin-bottom: 1rem;
 }
-.wk-intro em { color: var(--text); font-style: italic; }
+.mh-title { font-size: var(--t-micro); letter-spacing: 0.2em; text-transform: uppercase; color: var(--text); font-weight: 700; }
+.toggle { display: flex; border: 1px solid var(--line-2); }
+.tg {
+  font-family: var(--mono); font-size: var(--t-micro); letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--dim); background: transparent; border: none; border-right: 1px solid var(--line-2);
+  padding: 0.5rem 0.8rem; min-height: 38px; cursor: pointer;
+}
+.tg:last-child { border-right: none; }
+.tg[aria-selected="true"] { background: var(--amber); color: var(--soil); font-weight: 700; }
+.tg:not([aria-selected="true"]):hover { color: var(--text); background: var(--soil-3); }
+
+.machine-intro {
+  font-family: var(--serif); color: var(--dim); line-height: 1.55; margin-bottom: 1.1rem;
+}
+.machine-intro em { color: var(--text); font-style: italic; }
 
 [hidden] { display: none !important; }
 
-/* ── The workshop floor — the river layout ─────────────────────── */
-/* phone-first: single column, workers stacked, master at the end   */
+/* ── The live console ──────────────────────────────────────────── */
 
-.floor {
-  position: relative;
+.console {
+  border: 1px solid var(--line-2);
+  background: #100d09;
+  padding: 0.8rem 0.9rem;
+  min-height: 16rem;
+  max-height: 22rem;
+  overflow-y: auto;
+  font-size: var(--t-micro);
+  line-height: 1.5;
+}
+.c-line {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.8rem;
-}
-
-/* the flow-line canvas sits behind the panels */
-.flow-svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  overflow: visible;
-}
-.flow-path {
-  fill: none;
-  stroke: var(--amber);
-  stroke-width: 1;
-  opacity: 0.30;
-  stroke-dasharray: 3 7;
-}
-
-/* ── Worker panel ──────────────────────────────────────────────── */
-
-.worker {
-  position: relative;
-  z-index: 1;
-  background: var(--soil-2);
-  border: 1px solid var(--line-2);
-  padding: 0.95rem 1rem 0.85rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-}
-.worker-top {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-}
-.worker-no {
-  font-size: var(--t-micro);
-  color: var(--faint);
-  letter-spacing: 0.1em;
-}
-.dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;            /* a true circle is the only round thing */
-  background: var(--amber);
-  flex-shrink: 0;
-}
-.worker-name {
-  font-size: var(--t-micro);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text);
-  font-weight: 700;
-}
-.worker-craft {
-  font-family: var(--serif);
-  font-style: italic;
-  color: var(--dim);
-  line-height: 1.45;
-}
-.worker-out {
-  border-top: 1px solid var(--line);
-  padding-top: 0.6rem;
-  color: var(--text);
-}
-.metric {
-  font-size: var(--t-micro);
-  letter-spacing: 0.06em;
-  color: var(--amber);
-  text-transform: uppercase;
-}
-.metric .x { color: var(--faint); }
-.note {
-  font-family: var(--serif);
-  color: var(--text);
-  line-height: 1.5;
-  margin-top: 0.35rem;
-}
-.note.dimq { color: var(--dim); }
-.eg {
-  font-size: var(--t-micro);
-  color: var(--dim);
-  line-height: 1.5;
-  margin-top: 0.4rem;
-}
-.eg b { color: var(--text); font-weight: 400; }
-.tick { color: var(--amber); }
-.worker-foot {
-  font-size: var(--t-micro);
-  color: var(--faint);
-  letter-spacing: 0.05em;
-  margin-top: auto;
-  padding-top: 0.5rem;
-}
-
-/* collagist thumbnails — real photographs only */
-.thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; margin-top: 0.2rem; }
-.thumbs img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  display: block;
-  filter: grayscale(0.15) contrast(1.02);
-  border: 1px solid var(--line-2);
-}
-
-/* draftsman inline drawing */
-.draw { margin-top: 0.2rem; width: 100%; height: auto; display: block; }
-.draw .rt { fill: none; stroke: var(--dim); stroke-width: 1; }
-.draw .nd { fill: var(--soil-2); stroke: var(--amber); stroke-width: 1.2; }
-.draw .lb { fill: var(--faint); font-family: var(--mono); font-size: 7px; letter-spacing: 0.04em; }
-.draw .lb.now { fill: var(--amber); }
-
-/* tiny confirmed/gap bar (chronologist) */
-.minibar { display: flex; height: 6px; margin-top: 0.45rem; border: 1px solid var(--line-2); }
-.minibar i { display: block; height: 100%; }
-.minibar .conf { background: var(--amber); }
-.minibar .gap  { background: var(--soil-3); }
-
-/* ── The master node — the book, warm in the dark ──────────────── */
-
-.master {
-  position: relative;
-  z-index: 2;
-  background: var(--paper);
-  color: var(--paper-ink);
-  border: 1px solid #e6e0d4;
-  padding: 1.4rem 1.3rem 1.3rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-}
-.master-eyebrow {
-  font-family: var(--mono);
-  font-size: var(--t-micro);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--paper-faint);
-}
-.master h2 {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: var(--t-display);
-  line-height: 1.05;
-  letter-spacing: -0.015em;
-  color: var(--paper-ink);
-}
-.master .m-sub {
-  font-family: var(--serif);
-  font-style: italic;
-  color: var(--paper-soft);
-  line-height: 1.5;
-}
-.master .m-stats {
-  font-family: var(--mono);
-  font-size: var(--t-micro);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--paper-faint);
-  border-top: 1px solid #e6e0d4;
-  border-bottom: 1px solid #e6e0d4;
-  padding: 0.6rem 0;
-}
-.master .m-latest {
-  font-family: var(--serif);
-  color: var(--paper-ink);
-  line-height: 1.55;
-}
-.caret {
-  display: inline-block;
-  width: 0.5em; height: 1.05em;
-  background: var(--amber);
-  vertical-align: -0.18em;
-  margin-left: 1px;
-}
-.master .m-read {
-  font-family: var(--mono);
-  font-size: var(--t-micro);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--paper-ink);
-  text-decoration: none;
-  border-bottom: 1px solid var(--amber);
-  padding-bottom: 2px;
-  align-self: flex-start;
-}
-.master .m-read:hover { color: #9a5d00; }
-
-/* ── Desktop: three columns, master in the middle ──────────────── */
-
-@media (min-width: 920px) {
-  .floor {
-    grid-template-columns: 1fr 1.35fr 1fr;
-    grid-template-rows: repeat(4, auto);
-    gap: 1rem 2.4rem;
-    align-items: stretch;
-  }
-  /* child 1 is the flow <svg>; workers 01–04 are children 2–5 */
-  .worker:nth-child(2) { grid-column: 1; grid-row: 1; }
-  .worker:nth-child(3) { grid-column: 1; grid-row: 2; }
-  .worker:nth-child(4) { grid-column: 1; grid-row: 3; }
-  .worker:nth-child(5) { grid-column: 1; grid-row: 4; }
-  /* master (child 6) spans the centre */
-  .master { grid-column: 2; grid-row: 1 / 5; justify-content: center; }
-  /* workers 05–08 are children 7–10 */
-  .worker:nth-child(7)  { grid-column: 3; grid-row: 1; }
-  .worker:nth-child(8)  { grid-column: 3; grid-row: 2; }
-  .worker:nth-child(9)  { grid-column: 3; grid-row: 3; }
-  .worker:nth-child(10) { grid-column: 3; grid-row: 4; }
-}
-
-/* tablet: two worker columns, master full width on top */
-@media (min-width: 560px) and (max-width: 919px) {
-  .floor { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
-  .master { grid-column: 1 / 3; order: -1; }
-}
-
-/* ── Analytics ─────────────────────────────────────────────────── */
-
-.an-grid { display: grid; grid-template-columns: 1fr; gap: 1.6rem; }
-@media (min-width: 760px) { .an-grid { grid-template-columns: 1fr 1fr; gap: 1.6rem 2.4rem; } }
-
-.an-block { border-top: 1px solid var(--line-2); padding-top: 0.9rem; }
-.an-block h3 {
-  font-family: var(--mono);
-  font-size: var(--t-micro);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text);
-  font-weight: 700;
-  margin-bottom: 0.9rem;
-}
-.an-block h3 .src { color: var(--faint); font-weight: 400; }
-
-/* a ruled ledger — Monocle, not a dashboard. label · rule · figure. */
-.ledger { margin: 0; }
-.ledger-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.9rem;
-  padding: 0.46rem 0;
+  grid-template-columns: 6.2rem 1fr;
+  gap: 0.2rem 0.7rem;
+  padding: 0.34rem 0;
   border-bottom: 1px solid var(--line);
-}
-.ledger-row:first-child { border-top: 1px solid var(--line-2); }
-.ledger-row .l {
-  font-size: var(--t-micro);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--dim);
-}
-.ledger-row .n {
-  font-family: var(--mono);
-  font-size: var(--t-body);
-  color: var(--text);
-  font-variant-numeric: tabular-nums;
   letter-spacing: 0.02em;
 }
-/* the standout figure of each list, in amber — the one that matters */
+.c-line:last-child { border-bottom: none; }
+.c-w { color: var(--amber); letter-spacing: 0.08em; }
+.c-code { color: var(--dim); }
+.c-out { grid-column: 2; color: var(--text); }
+.c-flag .c-out { color: #e8a13a; }
+.c-flag .c-out::before { content: "⚑ "; }
+.c-ready .c-w { color: var(--faint); }
+.c-ready .c-out { color: var(--amber); }
+
+.caret {
+  display: inline-block; width: 0.5em; height: 1em; background: var(--amber);
+  vertical-align: -0.15em; margin-left: 2px;
+}
+
+/* ── Run control ───────────────────────────────────────────────── */
+
+.run {
+  display: block; width: 100%;
+  font-family: var(--mono); font-size: var(--t-micro); letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--soil); background: var(--amber); border: none;
+  padding: 0.7rem; margin: 0.8rem 0 1.3rem; min-height: 44px; cursor: pointer;
+}
+.run:hover { background: #ffb52e; }
+.run:disabled { background: var(--soil-3); color: var(--faint); cursor: default; }
+
+/* ── The eight workers ─────────────────────────────────────────── */
+
+.legend { list-style: none; }
+.wrow {
+  width: 100%;
+  display: flex; align-items: center; gap: 0.7rem;
+  background: transparent; border: none; border-top: 1px solid var(--line);
+  padding: 0.6rem 0.2rem; min-height: 44px; cursor: pointer; text-align: left;
+}
+.legend li:last-child .wrow { border-bottom: 1px solid var(--line); }
+.w-no { font-size: var(--t-micro); color: var(--faint); letter-spacing: 0.08em; width: 1.5rem; flex-shrink: 0; }
+.w-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--soil-3); border: 1px solid var(--line-2); flex-shrink: 0; }
+.wrow.done .w-dot { background: var(--amber); border-color: var(--amber); }
+.wrow.active .w-dot { background: var(--amber); border-color: var(--amber); }
+.w-nm { font-size: var(--t-micro); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text); flex: 1; }
+.w-op { font-family: var(--serif); font-style: italic; font-size: var(--t-body); color: var(--faint); }
+.wrow:hover .w-nm { color: var(--amber); }
+.wrow.active { background: var(--soil-2); }
+
+.legend-foot { font-size: var(--t-micro); color: var(--faint); line-height: 1.5; margin-top: 0.8rem; letter-spacing: 0.02em; }
+
+/* ── Analytics (ledger — reused) ───────────────────────────────── */
+
+.an-block { border-top: 1px solid var(--line-2); padding-top: 0.9rem; margin-top: 1.4rem; }
+.an-block:first-child { margin-top: 0; }
+.an-block h3 { font-family: var(--mono); font-size: var(--t-micro); letter-spacing: 0.16em; text-transform: uppercase; color: var(--text); font-weight: 700; margin-bottom: 0.8rem; }
+.an-block h3 .src { color: var(--faint); font-weight: 400; }
+
+.an-split { display: grid; grid-template-columns: 1fr; gap: 1.2rem; }
+@media (min-width: 480px) { .an-split { grid-template-columns: 1fr 1fr; } }
+.an-split h4 { font-family: var(--mono); font-size: var(--t-micro); letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); font-weight: 400; margin-bottom: 0.4rem; }
+
+.ledger { margin: 0; }
+.ledger-row { display: flex; align-items: baseline; justify-content: space-between; gap: 0.9rem; padding: 0.42rem 0; border-bottom: 1px solid var(--line); }
+.ledger-row:first-child { border-top: 1px solid var(--line-2); }
+.ledger-row .l { font-size: var(--t-micro); letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); }
+.ledger-row .n { font-family: var(--mono); font-size: var(--t-body); color: var(--text); font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
 .ledger-row.lead .l { color: var(--text); }
 .ledger-row.lead .n { color: var(--amber); font-weight: 700; }
 
-.an-read {
-  font-family: var(--serif);
-  font-style: italic;
-  color: var(--text);
-  line-height: 1.55;
-  margin-top: 0.9rem;
-  border-left: 2px solid var(--amber);
-  padding-left: 0.9rem;
-}
+.an-read { font-family: var(--serif); font-style: italic; color: var(--text); line-height: 1.55; margin-top: 0.9rem; border-left: 2px solid var(--amber); padding-left: 0.9rem; }
 
-.an-split { display: grid; grid-template-columns: 1fr; gap: 1.2rem; }
-@media (min-width: 560px) { .an-split { grid-template-columns: 1fr 1fr; } }
-.an-split h4 {
-  font-family: var(--mono);
-  font-size: var(--t-micro);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--faint);
-  font-weight: 400;
-  margin-bottom: 0.5rem;
-}
-
-/* corrections list */
+.metric { font-size: var(--t-micro); letter-spacing: 0.06em; color: var(--amber); text-transform: uppercase; }
+.corr-head { margin-top: 1.2rem; margin-bottom: 0.2rem; }
 .corr { list-style: none; }
-.corr li {
-  font-family: var(--serif);
-  line-height: 1.5;
-  color: var(--dim);
-  padding: 0.5rem 0;
-  border-bottom: 1px solid var(--line);
-}
+.corr li { font-family: var(--serif); line-height: 1.5; color: var(--dim); padding: 0.5rem 0; border-bottom: 1px solid var(--line); }
 .corr li b { color: var(--text); font-weight: 400; }
 .corr li .arr { color: var(--amber); padding: 0 0.3em; }
 
-/* ── Footer ────────────────────────────────────────────────────── */
+/* ── Mobile: stack the machine over the book ───────────────────── */
 
-footer.wk-foot {
-  max-width: 1180px;
-  margin: 3.5rem auto 0;
-  padding: 1.3rem 1.1rem 0;
-  border-top: 1px solid var(--line-2);
-  font-size: var(--t-micro);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--faint);
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.6rem;
+@media (max-width: 860px) {
+  html, body { height: auto; }
+  body { display: block; }
+  .stage { display: block; }
+  .machine {
+    flex: none; max-width: none; width: auto;
+    overflow: visible; border-right: 0; border-bottom: 1px solid var(--line-2);
+  }
+  .book iframe { height: 84vh; }
 }
-footer.wk-foot a { color: var(--dim); text-decoration: none; }
-footer.wk-foot a:hover { color: var(--amber); }
 
-/* ── Motion — disciplined; the living process ──────────────────── */
+/* ── Motion — disciplined; reduced-motion shows the settled state ─ */
 
 @media (prefers-reduced-motion: no-preference) {
-  .flow-path { animation: flow 9s linear infinite; }
-  @keyframes flow { to { stroke-dashoffset: -120; } }
+  .wrow.active .w-dot { animation: ping 0.6s ease-out; }
+  @keyframes ping { 0% { transform: scale(1); } 50% { transform: scale(1.6); } 100% { transform: scale(1); } }
 
-  .dot { animation: pulse 2.4s ease-in-out infinite; }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.45} }
+  .wrow.done .w-dot { animation: idle 3s ease-in-out infinite; }
+  @keyframes idle { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
 
-  .caret { animation: blink 1.1s step-end infinite; }
+  .wk-status.computing .s-dot { animation: idle 1.1s ease-in-out infinite; }
+
+  .caret { animation: blink 1.05s step-end infinite; }
   @keyframes blink { 50% { opacity: 0; } }
+
+  .c-line { animation: appear 0.28s ease-out; }
+  @keyframes appear { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
 }
