@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Self-Portrait — 100 Days of Non</title>
-  <meta name="description" content="A self-portrait of Non Arkaraprasertkul, assembled from twenty-one sentences lifted verbatim from twelve different essays of the nonharvard blog — words he wrote years apart, about other things, and never once placed together.">
+  <meta name="description" content="A self-portrait of Non Arkaraprasertkul, computed fresh on every visit from sentences lifted verbatim from the nonharvard blog — words he wrote years apart, about other things, and never once placed together.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://100.nonarkara.org/portrait/">
-  <meta property="og:title" content="Self-Portrait — in his own words, never before in one place">
-  <meta property="og:description" content="Twenty-one sentences, twelve essays, one voice. Every word his; the order, new.">
+  <meta property="og:title" content="Self-Portrait — in his own words, never the same twice">
+  <meta property="og:description" content="Every word his; the order, computed fresh each visit. You will not see this exact portrait again.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;1,7..72,400&display=swap" rel="stylesheet">
@@ -30,17 +30,26 @@
     .sub{font-style:italic;color:var(--soft);font-size:1.125rem;}
     .toprule{height:2px;background:var(--amber);width:3rem;margin:1.8rem 0;}
 
-    .method{color:var(--soft);max-width:34rem;line-height:1.6;margin-bottom:0.6rem;}
+    .method{color:var(--soft);max-width:34rem;line-height:1.6;margin-bottom:1.6rem;}
     .method em{color:var(--ink);font-style:italic;}
 
-    .movement{margin-top:clamp(2.6rem,6vw,4rem);}
-    .movement-head{display:flex;align-items:baseline;gap:0.7rem;margin-bottom:1.3rem;}
+    .recompute{
+      font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.14em;text-transform:uppercase;
+      color:var(--amber);background:transparent;border:1px solid var(--amber);
+      padding:0.6rem 1rem;min-height:44px;cursor:pointer;margin-bottom:0.6rem;
+    }
+    .recompute:hover{background:var(--amber);color:var(--paper);}
+    .seed{font-family:var(--mono);font-size:0.625rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--faint);margin-left:0.8rem;}
+
+    .movement{margin-top:clamp(2.4rem,5vw,3.4rem);}
+    .movement-head{display:flex;align-items:baseline;gap:0.7rem;margin-bottom:1.1rem;}
     .movement-num{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.12em;color:var(--amber);}
     .movement-title{font-style:italic;color:var(--faint);font-size:0.95rem;letter-spacing:0.01em;}
 
     .line{display:grid;grid-template-columns:1fr 11rem;gap:0 1.6rem;align-items:baseline;padding:0.7rem 0;border-bottom:1px solid var(--rule);}
     .line .t{font-size:1.25rem;line-height:1.5;text-wrap:pretty;}
     .line .s{font-family:var(--mono);font-size:0.625rem;letter-spacing:0.04em;text-transform:uppercase;color:var(--faint);text-align:right;line-height:1.5;}
+    @media (prefers-reduced-motion: no-preference){ .line{animation:fade .5s ease both;} @keyframes fade{from{opacity:0;}to{opacity:1;}} }
 
     .colophon{margin-top:clamp(3rem,8vw,5rem);padding-top:1.6rem;border-top:1px solid var(--rule);color:var(--faint);font-size:0.875rem;line-height:1.6;max-width:34rem;}
     .colophon .big{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--soft);display:block;margin-bottom:0.6rem;}
@@ -60,57 +69,24 @@
 <body>
   <main>
 
-    <p class="eyebrow">The Workshop&nbsp;&nbsp;·&nbsp;&nbsp;<b>a surprise it assembled</b></p>
+    <p class="eyebrow">The Workshop&nbsp;&nbsp;·&nbsp;&nbsp;<b>a surprise it computes</b></p>
     <h1>Self-Portrait</h1>
-    <p class="sub">in his own words — never before in one place</p>
+    <p class="sub">in his own words — and never the same twice</p>
     <div class="toprule"></div>
 
-    <p class="method">Every line below is his, lifted word for word from the ninety-nine essays of the nonharvard blog. Each came from a <em>different</em> essay, about something else entirely — a bicycle ride, a cup of coffee, a dead philosopher, his father's grey hair. He wrote them years apart and never once set them side by side. The workshop did. This is the first time they stand in one room.</p>
+    <p class="method">Every line below is his, lifted word for word from the ninety-nine essays of the nonharvard blog. Each comes from a <em>different</em> essay, about something else entirely — a bicycle ride, a cup of coffee, a dead philosopher, his father's grey hair. He wrote them years apart and never once set them side by side. The workshop draws a fresh selection <em>every time the page loads</em>. The portrait you are reading will not return.</p>
 
-    <section class="movement">
-      <div class="movement-head"><span class="movement-num">I</span><span class="movement-title">what I am</span></div>
-      <div class="line"><span class="t">“I believe that the self is something that I construct, with the help of the society into which I was born, simply to make myself miserable.”</span><span class="s">Therefore I Bike</span></div>
-      <div class="line"><span class="t">“I don't really know what I am in terms of profession.”</span><span class="s">On Professionalism</span></div>
-      <div class="line"><span class="t">“I never thought of myself as a thinker, scholar, writer, or anything whose work is mainly about conveying great ideas through writing.”</span><span class="s">On Professionalism</span></div>
-      <div class="line"><span class="t">“I am a passionate being, who tries to make everything counts.”</span><span class="s">Emotion Versus Reason</span></div>
-      <div class="line"><span class="t">“I always find comfort in staying in, and staying at home.”</span><span class="s">Why I Give Up Love · II</span></div>
-      <div class="line"><span class="t">“I am a coffee addict.”</span><span class="s">On My Coffee Addiction</span></div>
-    </section>
+    <button class="recompute" id="recompute" type="button">↻&nbsp;&nbsp;compute another</button><span class="seed" id="seed"></span>
 
-    <section class="movement">
-      <div class="movement-head"><span class="movement-num">II</span><span class="movement-title">how I came up</span></div>
-      <div class="line"><span class="t">“I only compete with myself.”</span><span class="s">On Bad Faith</span></div>
-      <div class="line"><span class="t">“I believe that I may have read every single English book in art and architecture that were available in Thailand then.”</span><span class="s">I Was Just Lucky</span></div>
-      <div class="line"><span class="t">“I don't think I would be where I am now if I was not being an outcast in the community of students that I happened to be placed.”</span><span class="s">I Was Just Lucky</span></div>
-      <div class="line"><span class="t">“I don't take things for granted when they are easy, and I don't give up when they are too hard.”</span><span class="s">On Professionalism</span></div>
-    </section>
-
-    <section class="movement">
-      <div class="movement-head"><span class="movement-num">III</span><span class="movement-title">what I wanted</span></div>
-      <div class="line"><span class="t">“I want the kind of love that is based entirely on the intellectual capacity of the two lovers.”</span><span class="s">The Love That Will Last</span></div>
-      <div class="line"><span class="t">“I am done with a possessive, superficial, and bad faith kind of love.”</span><span class="s">The Love That Will Last</span></div>
-      <div class="line"><span class="t">“I knew that she was the one since I first saw her, and that feeling has never changed.”</span><span class="s">We're Weirder Than We Think</span></div>
-      <div class="line"><span class="t">“I don't know where Nana is today.”</span><span class="s">We're Weirder Than We Think</span></div>
-    </section>
-
-    <section class="movement">
-      <div class="movement-head"><span class="movement-num">IV</span><span class="movement-title">my father, and getting old</span></div>
-      <div class="line"><span class="t">“I believe that I have learned this very aesthetics of aging from my father, who never dyed his hair in his entire life no matter how grey it looked.”</span><span class="s">Cicero, On Aging</span></div>
-      <div class="line"><span class="t">“I always think that people who are always worried about how they look are people who never lose someone they truly love.”</span><span class="s">Cicero, On Aging</span></div>
-      <div class="line"><span class="t">“I am not particularly feeling morbid right now or anything.”</span><span class="s">On Posting on Social Media</span></div>
-      <div class="line"><span class="t">“I always make sure that I would be okay leaving that post as my last words, by which people will remember me.”</span><span class="s">On Posting on Social Media</span></div>
-    </section>
-
-    <section class="movement">
-      <div class="movement-head"><span class="movement-num">V</span><span class="movement-title">where I arrived</span></div>
-      <div class="line"><span class="t">“I am pretty content with my waking life.”</span><span class="s">On Professionalism</span></div>
-      <div class="line"><span class="t">“I am thankful for the ability to read.”</span><span class="s">On Being a Skeptic</span></div>
-      <div class="line"><span class="t">“I want to cherish the moment that I have in the present.”</span><span class="s">We're Weirder Than We Think</span></div>
-    </section>
+    <section class="movement"><div class="movement-head"><span class="movement-num">I</span><span class="movement-title">what I am</span></div><div class="lines" data-m="I"></div></section>
+    <section class="movement"><div class="movement-head"><span class="movement-num">II</span><span class="movement-title">how I came up</span></div><div class="lines" data-m="II"></div></section>
+    <section class="movement"><div class="movement-head"><span class="movement-num">III</span><span class="movement-title">what I wanted</span></div><div class="lines" data-m="III"></div></section>
+    <section class="movement"><div class="movement-head"><span class="movement-num">IV</span><span class="movement-title">my father, and getting old</span></div><div class="lines" data-m="IV"></div></section>
+    <section class="movement"><div class="movement-head"><span class="movement-num">V</span><span class="movement-title">where I arrived</span></div><div class="lines" data-m="V"></div></section>
 
     <div class="colophon">
       <span class="big">Colophon</span>
-      Twenty-one sentences · twelve essays · one voice. Lifted <em>verbatim</em> — spelling kept exactly as he wrote it. Chosen and set in order by the workshop; written, every word, years ago, by him. He has not read it in this order before. Neither, until now, has anyone.
+      Drawn from a pool of <span id="pool">38</span> sentences across twelve essays of nonharvard.wordpress.com — twenty, freshly chosen, on every visit. Lifted <em>verbatim</em>; spelling kept exactly as he wrote it, typos and all. Selected and set in order by the workshop; written, every word, years ago, by him. He has not read this arrangement before. Neither, until you reloaded, had you.
     </div>
 
     <nav class="back">
@@ -119,5 +95,76 @@
     </nav>
 
   </main>
+
+  <script>
+  (function () {
+    // every line verbatim from the corpus; source-verified. {m: movement, t: text, s: source essay}
+    var POOL = [
+      {m:'I',t:"I believe that the self is something that I construct, with the help of the society into which I was born, smply to make myself miserable.",s:"Therefore I Bike"},
+      {m:'I',t:"I don't really know what I am in terms of profession.",s:"On Professionalism"},
+      {m:'I',t:"I never thought of myself as a thinker, scholar, writer, or anything whose work is mainly about conveying great ideas through writing.",s:"On Professionalism"},
+      {m:'I',t:"I am a passionate being, who tries to make everything counts.",s:"Emotion Versus Reason"},
+      {m:'I',t:"I always find comfort in staying in, and staying at home.",s:"Why I Give Up Love · II"},
+      {m:'I',t:"I am a coffee addict.",s:"On My Coffee Addiction"},
+      {m:'I',t:"I am a naturalist in the sense and I am very proud of it.",s:"Cicero, On Aging"},
+      {m:'I',t:"I am just not special, and I am just not the kind of person who ever do well in any competitions.",s:"16 Things I Never Have"},
+      {m:'I',t:"I am not a professional biker, so I don't care if I don't move very fast, and I don't care if I don't bike like a pro.",s:"Therefore I Bike"},
+      {m:'I',t:"I believe that I am a pragmatic existentialist (here we go, I just coined a new term!) and I am not just saying that.",s:"On Duty"},
+      {m:'I',t:"I don't believe in the notion of absolute freedom.",s:"On Duty"},
+
+      {m:'II',t:"I only compete with myself.",s:"On Bad Faith"},
+      {m:'II',t:"I believe that I may have read every single English book in art and architecture that were available in Thailand then.",s:"I Was Just Lucky"},
+      {m:'II',t:"I don't think I would be where I am now if I was not being an outcast in the community of students that I happened to be placed.",s:"I Was Just Lucky"},
+      {m:'II',t:"I don't take things for granted when they are easy, and I don't give up when they are too hard.",s:"On Professionalism"},
+      {m:'II',t:"I never liked how the teaching was done there: the system was highly hierarchical.",s:"I Was Just Lucky"},
+      {m:'II',t:"I want to do my best everyday.",s:"On Bad Faith"},
+      {m:'II',t:"I want to feel as though in each and every day of my life I have accomplished something.",s:"On Bad Arguments"},
+
+      {m:'III',t:"I want the kind of love that is based entirely on the intellectual capacity of the two lovers.",s:"The Love That Will Last"},
+      {m:'III',t:"I am done with a possessive, superficial, and bad faith kind of love.",s:"The Love That Will Last"},
+      {m:'III',t:"I knew that she was the one since I first saw her, and that feeling has never changed.",s:"We're Weirder Than We Think"},
+      {m:'III',t:"I don't know where Nana is today.",s:"We're Weirder Than We Think"},
+      {m:'III',t:"I want to replicate the kind of love that Simone de Beauvoir had for Jean-Paul Sartre.",s:"Why I Give Up Love · II"},
+      {m:'III',t:"I never met someone like her before.",s:"We're Weirder Than We Think"},
+      {m:'III',t:"I never liked the rain so much before.",s:"We're Weirder Than We Think"},
+      {m:'III',t:"I find working women to be very attractive, both physically and emotionally, as they are both mature, intelligent, and beautiful in the way that they chose to be.",s:"On Sex · I"},
+
+      {m:'IV',t:"I believe that I have learned this very aesthetics of aging from my father, who never dyed his hair in his entire life no matter how grey it looked.",s:"Cicero, On Aging"},
+      {m:'IV',t:"I always think that people who are always worried about how they look are people who never lose someone they truly love.",s:"Cicero, On Aging"},
+      {m:'IV',t:"I am not particularly feeling morbid right now or anything.",s:"On Posting on Social Media"},
+      {m:'IV',t:"I always make sure that I would be okay leaving that post as my last words, by which people will remember me.",s:"On Posting on Social Media"},
+      {m:'IV',t:"I never understood why my father liked tea that much, but he was not the only one.",s:"On My Coffee Addiction"},
+      {m:'IV',t:"I always admire people who age beautifully.",s:"Cicero, On Aging"},
+
+      {m:'V',t:"I am pretty content with my waking life.",s:"On Professionalism"},
+      {m:'V',t:"I am thankful for the ability to read.",s:"On Being a Skeptic"},
+      {m:'V',t:"I want to cherish the moment that I have in the present.",s:"We're Weirder Than We Think"},
+      {m:'V',t:"I am free to not having to follow things that don't makes sense.",s:"On Professionalism"},
+      {m:'V',t:"I don't want to be the richest man in the world who can buy anything.",s:"On Professionalism"},
+      {m:'V',t:"I don't let the society make me who I don't want to be, but I want to be useful to the society whenever I can.",s:"On Bad Arguments"}
+    ];
+    var PER = 4; // lines drawn per movement each visit
+    var movements = ['I','II','III','IV','V'];
+
+    function shuffle(a){ a = a.slice(); for (var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+    function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+
+    function build() {
+      movements.forEach(function (m) {
+        var pool = POOL.filter(function (x){ return x.m === m; });
+        var pick = shuffle(pool).slice(0, Math.min(PER, pool.length));
+        var box = document.querySelector('.lines[data-m="'+m+'"]');
+        box.innerHTML = pick.map(function (x) {
+          return '<div class="line"><span class="t">“'+esc(x.t)+'”</span><span class="s">'+esc(x.s)+'</span></div>';
+        }).join('');
+      });
+      document.getElementById('seed').textContent = 'draw #' + Math.random().toString(36).slice(2,7);
+    }
+
+    document.getElementById('pool').textContent = POOL.length;
+    document.getElementById('recompute').addEventListener('click', build);
+    build();
+  })();
+  </script>
 </body>
 </html>
