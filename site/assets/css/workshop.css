@@ -203,6 +203,13 @@ a { color: inherit; }
 .wrow.active { background: var(--soil-2); }
 
 .legend-foot { font-size: var(--t-micro); color: var(--faint); line-height: 1.5; margin-top: 0.8rem; letter-spacing: 0.02em; }
+.surprise {
+  display: block; margin-top: 1.2rem; padding: 0.9rem 1rem;
+  border: 1px solid var(--line-2); border-left: 2px solid var(--amber);
+  font-family: var(--serif); font-style: italic; color: var(--dim);
+  line-height: 1.5; text-decoration: none;
+}
+.surprise:hover { color: var(--text); border-left-color: var(--amber); background: var(--soil-2); }
 
 /* ── Analytics (ledger — reused) ───────────────────────────────── */
 
