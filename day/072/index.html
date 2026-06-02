@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>072 — 100 Days of Non</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <style>
+    .strip { position: fixed; top: var(--nav-h); left: 0; right: 0; height: var(--strip-h); background: var(--bg); border-bottom: 1px solid var(--faint); display: flex; align-items: center; padding: 0 48px; gap: 6px; overflow-x: auto; z-index: 100; font-family: var(--mono); font-size: var(--micro); letter-spacing: 0.08em; scrollbar-width: none; }
+    .strip::-webkit-scrollbar { display: none; }
+    .strip-title { display: none; }
+    .day-num { color: var(--faint); text-decoration: none; padding: 2px 4px; white-space: nowrap; transition: color 0.1s; }
+    .day-num:hover { color: rgba(255,255,255,0.5); }
+    .day-num.done  { color: rgba(255,255,255,0.55); }
+    .day-num.active { color: var(--accent); }
+    .col-rule { position: fixed; top: var(--header-h); left: var(--col-x); bottom: 0; width: 1px; background: var(--faint); z-index: 10; }
+    main { margin-top: var(--header-h); padding: 56px 56px 120px 56px; }
+    .day-counter { font-family: var(--mono); font-size: clamp(48px, 8vw, 96px); font-weight: 700; line-height: 0.85; letter-spacing: -0.04em; color: var(--fg); }
+    .day-meta { font-family: var(--mono); font-size: var(--micro); color: var(--dim); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 10px; }
+    .pull-image { font-family: var(--sans); font-size: clamp(32px, 5vw, 64px); font-weight: 700; line-height: 0.88; letter-spacing: -0.025em; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: clip; color: var(--fg); margin-top: 64px; margin-left: -56px; padding-left: 56px; }
+    .phase-row { display: flex; align-items: baseline; gap: 16px; margin-top: 72px; }
+    .phase-tag { font-family: var(--mono); font-size: var(--micro); color: var(--dim); letter-spacing: 0.15em; text-transform: uppercase; white-space: nowrap; }
+    .rule-h { width: 100%; height: 1px; background: var(--faint); }
+    .q-label { font-family: var(--mono); font-size: var(--micro); color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 20px; }
+    .q-text { font-size: clamp(24px, 4vw, 32px); line-height: 1.5; color: rgba(255,255,255,0.8); max-width: 660px; margin-top: 10px; }
+    .content-grid { display: grid; grid-template-columns: 1fr 320px; gap: 0 64px; margin-top: 56px; align-items: start; }
+    .col-label { font-family: var(--mono); font-size: var(--micro); color: var(--dim); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
+    .answer-text p { font-size: var(--body); line-height: 1.8; color: rgba(255,255,255,0.88); }
+    .answer-text p + p { margin-top: 1.4em; }
+    .narration { margin-top: 56px; padding-left: 28px; border-left: 1px solid var(--faint); }
+    .narration .col-label { margin-bottom: 14px; }
+    .narration-text p { font-size: var(--body); line-height: 1.8; color: rgba(255,255,255,0.45); }
+    .narration-text p + p { margin-top: 1.3em; }
+    .fc-col { font-family: var(--mono); font-size: 11px; position: sticky; top: calc(var(--header-h) + 16px); height: calc(100vh - var(--header-h) - 32px); overflow-y: auto; scrollbar-width: none; padding-right: 16px; }
+    .fc-col::-webkit-scrollbar { display: none; }
+    .claim { display: grid; grid-template-columns: 14px 80px 1fr; column-gap: 6px; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.05); align-items: start; }
+    .c-glyph { color: var(--dim); line-height: 1.4; }
+    .c-glyph.cx { color: var(--accent); }
+    .c-tag { color: rgba(255,255,255,0.25); text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.4; }
+    .c-tag.cx { color: var(--accent); }
+    .c-text { color: rgba(255,255,255,0.7); line-height: 1.4; }
+    .c-sub { grid-column: 3; color: rgba(255,255,255,0.3); font-size: 10px; margin-top: 2px; line-height: 1.4; }
+    .c-sub.cx { color: var(--accent); }
+    .fc-tally { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 0; margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--faint); }
+    .tally-n { font-size: 22px; font-weight: 700; line-height: 1; color: rgba(255,255,255,0.85); }
+    .tally-n.cx { color: var(--accent); }
+    .tally-l { font-size: 9px; color: rgba(255,255,255,0.25); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+    .telemetry { margin-top: 88px; padding-top: 32px; border-top: 1px solid var(--faint); }
+    .t-number { font-family: var(--mono); font-size: clamp(48px, 8vw, 96px); font-weight: 700; line-height: 0.85; letter-spacing: -0.04em; color: rgba(255,255,255,0.08); }
+    .t-meta { font-family: var(--mono); font-size: var(--micro); color: rgba(255,255,255,0.2); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 10px; }
+    @media (max-width: 1024px) { .content-grid { grid-template-columns: 1fr; } .fc-col { position: static; height: auto; overflow: visible; } }
+
+    /* ── Artifact Images ────────────────────────────────────── */
+    .artifact-img-container { margin: 40px 0; border: 1px solid var(--faint); background: var(--bg); display: block; }
+    .artifact-img-container.bleed { margin-left: -28px; margin-right: -28px; border-left: none; border-right: none; }
+    .artifact-img { display: block; width: 100%; height: auto; filter: grayscale(100%) contrast(1.2) brightness(0.9); mix-blend-mode: luminosity; }
+    .artifact-caption { font-family: var(--mono); font-size: 10px; color: var(--dim); padding: 12px 16px; text-transform: uppercase; letter-spacing: 0.15em; border-top: 1px solid var(--faint); }
+
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Site navigation">
+    <a href="/" class="nav-brand" style="text-decoration:none;">100 Days of Non</a>
+    <a href="/day/001/" class="here">RECORD</a>
+    <a href="/map/">MAP</a>
+    <a href="/corpus/">CORPUS</a>
+    <a href="/chronos/">CHRONOS</a>
+    <a href="/lexicon/">LEXICON</a>
+    <a href="/voices/">VOICES</a>
+    <a href="/archive/">ARCHIVE</a>
+    <a href="/method/">METHOD</a>
+    <a href="/game/">GAME</a>
+    <a href="/subject/">SUBJECT</a>
+    <a href="/bot/">BOT</a>
+    <a href="/notes/">NOTES</a>
+  </nav>
+
+  <nav class="strip" aria-label="Day navigation">
+<span class="strip-title">100 Days of Non</span>
+    <a href="/day/001/" class="day-num done">001</a>
+    <a href="/day/002/" class="day-num done">002</a>
+    <a href="/day/003/" class="day-num done">003</a>
+    <a href="/day/055/" class="day-num done">055</a>
+    <a href="/day/071/" class="day-num done">071</a>
+    <a href="/day/072/" class="day-num active">072</a>
+
+  </nav>
+
+  <div class="col-rule"></div>
+
+  <main>
+    <div class="day-counter">DAY 072</div>
+    <div class="day-meta">Phase Pending &nbsp;&middot;&nbsp; Recorded via Chronos</div>
+    
+    <div class="pull-image">ENTRY 072</div>
+    
+    <div class="phase-row">
+      <div class="phase-tag">Phase Record</div>
+      <div class="rule-h"></div>
+    </div>
+    
+    <div class="q-label">Question 072</div>
+    <div class="q-text">The Chonburi / Bangkok / Thailand smart-city work. The client behind it. What you tell them versus what you actually believe about whether smart-city tech helps.</div>
+
+    <div class="content-grid">
+      <div class="answer-col">
+        <div class="col-label">Answer</div>
+        <div class="answer-text">
+            <p>*Pre-submitted material received 2026-05-27 (project Day 3), covering two events in the same Phase 6 strand: the Chonburi anniversary lecture (2026-05-22) and the Chulalongkorn vice-rector meeting (2026-05-27, same day as filing). When Day 72's question fires later in the project, this combined material is the canonical starting frame.*</p>
+            <p>**Pre-submitted highlights — Bundle 1: Chonburi lecture, 2026-05-22**</p>
+            <p>- Raw transcript: `artifacts/2026-05-22-chonburi-lecture-transcript-raw.txt` — 240 lines, Thai
+- 14 lecture photos: `artifacts/2026-05-22-chonburi-lecture-photo-*.jpg`
+- Summary + Non's framing + lecture distillation + cross-references: `artifacts/2026-05-22-chonburi-lecture-summary.md`</p>
+            <p>**Pre-submitted highlights — Bundle 2: Chula vice-rector meeting, 2026-05-27**</p>
+            <p>- Raw transcript: `artifacts/2026-05-27-chula-vice-rector-meeting-transcript-raw.txt` — Thai, ~33 minutes
+- 2 photos: faculty page of **Assoc. Prof. Manoj Lohatepanont, Sc.D.** (the Vice-Rector) + screenshot of the **Chula Control Tower** dashboard Non built on the BTS ride over
+- Summary + Non's framing + meeting distillation + cross-references: `artifacts/2026-05-27-chula-vice-rector-meeting-summary.md`</p>
+            <p>**The Chula meeting adds a third live engagement to the Phase 6 strand.** Three engagements now sit on the same substrate: Nakhon Si Thammarat (4-year live, Mayor Ganop), Chonburi (current, Mayor + the AlphaEarth pilot in build), Chulalongkorn (initiated today, Vice-Rector Manoj — academic-zone Digital Twin + AI Center directorship offered to Non).</p>
+            <p>**The 4P framework — confirmed at last:** Purpose · Practical · Proof · People. Hand-drawn live during the lecture. NOT the same as TKC's 4C (Compensation/Cause/Community/Career — employee layer) or TKC's G/D/U/C (Growth/Delivery/Utilization/Communication — org outcome layer). The 4P is the *smart-city consulting methodology* — used to diagnose why specific cities fail (Songdo missing People, Masdar missing Proof, Ulaanbaatar 5G missing Purpose, etc.).</p>
+            <p>**The first-on-the-record affiliation:** **depa · SEIC · UNL FunIT Global** — the Smart City Officer jacket Non wears in the photos. This contextualizes the earlier UNL trial — Non is *inside* the depa/SEIC ecosystem, not a vendor evaluator outside it. The decision to abandon UNL and rebuild on free OSS is therefore an ecosystem-internal quality call by a badged senior practitioner.</p>
+            <p>**The Mayor Ganop / Nakhon Si Thammarat track record** anchors the lecture's claim to legitimacy. Four years of work, 68 → 42 hour resolution time, 300 → 10,000 annual citizen reports through the LINE bot + purple-dot mapping pattern. The Chonburi engagement is an attempt to repeat the pattern in a new geography.</p>
+            <p>**The political relationship texture:** the Chonburi connection started during the Mayor's **Buffalo Racing festival** hosting — not over a procurement document. Worth preserving for Phase 6.</p>
+            <p>**The honest stage admission:** Non told the Mayor, in front of his cabinet, that he had guessed at about 40% of what Chonburi actually needs, and the other 60% he didn't know yet. That 60% is the *brief* for the next AlphaEarth iteration — what embedding-based change detection is meant to surface without him having to guess.</p>
+            <p>**The no-localhost shipping principle, named on the record (Chula meeting):** *"I don't even do localhost anymore because I want to know that all my systems are liveable."* GitHub → CloudFlare tunnel → public URL from the first frame, every system. Local-only is reserved for bots and dev infra. If a system isn't reachable from a stranger's phone the moment it exists, it isn't finished — it isn't even started.</p>
+            <p>**The 20-year arc (Chula meeting):** Vice-Rector Manoj Lohatepanont gave a Fulbright talk to teenage Non ~20 years ago that helped point him at MIT. Today the same man, now Chula's Vice-Rector for academic-zone property and the interim caretaker of the new AI Center, offered Non the AI Office directorship. Non countered with **Practitioner-in-Residence** to avoid overcommitting. The fact that the offer came at all — after the BTS-ride 45-minute demo — is the *closing* of a career arc that opened with that Fulbright talk.</p>
+            <p>**The SLIC engagement vehicle is now explicit:** funded academic engagements go through SLIC, not depa (depa = policy-only, slow, royal-protocol). The currently-running **SLIC index v3** code-task is therefore not just tomorrow's TKC class material — it's the operational backbone for the Chula deal too.</p>
+            <p>When Day 72's question fires, this material is the canonical starting frame, and the question can sharpen to probe the *honest answer to the client-versus-belief question* in the original Day 72 prompt (`question.md`): what Non tells the Mayor / Vice-Rector versus what Non actually believes about whether smart-city tech helps the cities / institutions buying it. The Chula VR's Net-Zero-by-2050 ask is the softest KPI in the bundle, and probing Non's actual belief on whether that KPI is *real or theatrical* is the natural next move.</p>
+            <p>**Pre-submitted highlights — Bundle 3: Chula Smart Campus Meeting 2, 2026-06-03**</p>
+            <p>- Raw transcript: `resources/ai summaries/Chula_SmartCampus_Meeting_Transcript_EN.docx`
+- Summary: `artifacts/2026-06-03-meetings-summary.md`
+- **Context:** A follow-up to the initial Vice-Rector meeting. Non dove deep into the operational use cases with the facilities, GIS, and energy teams.
+- **Key insight:** Non reframes the smart-city narrative to focus on *humane* data usage, not just efficiency. He demonstrates his prototype mapping contracts, predicting AC loads, and tracking student safety near rooftops without retaining CCTV footage. He pushes for moving off his home server to a cloud/IT infrastructure.</p>
+            <p>**Pre-submitted highlights — Bundle 4: EAD Horizon AI Meeting & Student Summary, 2026-06-03**</p>
+            <p>- Raw transcripts/PDF: `resources/ai summaries/EAD_Horizon_AI_Transcript_Cleaned_EN.docx`, `resources/สรุปแบบย่อ วิชา AI ดร.นนท์ 28 ธ.ค.69.pdf`
+- Summary: `artifacts/2026-06-03-ai-lecture-summary.md`
+- **Context:** Further cementing the "Total Domination" theme of the day, a student's summary of Non's AI lecture emerged, perfectly distilling his 12 deployed projects (from the National TV Platform to the World Cup Switcher and Phuket Smart Bus). Meanwhile, in a meeting with EAD Horizon, Non openly critiques a 1.6-billion-baht national AI initiative that bypassed him, questioning the integrity of massive public tech spending that just functions as a ChatGPT wrapper.
+- **Key insight:** The contrast between Non's 0-baht, highly effective home-server prototypes and the sluggish, billion-baht vendor proposals defines his current stance. He advocates for "purpose-driven" AI and advises clients on how to avoid the theatricality of smart-city/tech spending.</p>
+
+        </div>
+        <div class="narration">
+          <div class="col-label">Biographer's Note</div>
+          <div class="narration-text">
+
+          </div>
+        </div>
+      </div>
+
+      <div class="fc-col">
+        <div class="col-label">Fact-check</div>
+
+        
+        <div class="fc-tally">
+          <div><div class="tally-n">0</div><div class="tally-l">&#10003; Verified</div></div>
+          <div><div class="tally-n">0</div><div class="tally-l">&#10007; Contradicted</div></div>
+          <div><div class="tally-n">0</div><div class="tally-l">? Unverified</div></div>
+          <div><div class="tally-n">0</div><div class="tally-l">&#8709; Unverifiable</div></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="telemetry">
+      <div class="t-number">&mdash;:&mdash;:&mdash;</div>
+      <div class="t-meta">0 words across 2 messages</div>
+    </div>
+  </main>
+</body>
+</html>
