@@ -33,3 +33,18 @@
 **The SLIC engagement vehicle is now explicit:** funded academic engagements go through SLIC, not depa (depa = policy-only, slow, royal-protocol). The currently-running **SLIC index v3** code-task is therefore not just tomorrow's TKC class material — it's the operational backbone for the Chula deal too.
 
 When Day 72's question fires, this material is the canonical starting frame, and the question can sharpen to probe the *honest answer to the client-versus-belief question* in the original Day 72 prompt (`question.md`): what Non tells the Mayor / Vice-Rector versus what Non actually believes about whether smart-city tech helps the cities / institutions buying it. The Chula VR's Net-Zero-by-2050 ask is the softest KPI in the bundle, and probing Non's actual belief on whether that KPI is *real or theatrical* is the natural next move.
+
+
+**Pre-submitted highlights — Bundle 3: Chula Smart Campus Meeting 2, 2026-06-03**
+
+- Raw transcript: `resources/ai summaries/Chula_SmartCampus_Meeting_Transcript_EN.docx`
+- Summary: `artifacts/2026-06-03-meetings-summary.md`
+- **Context:** A follow-up to the initial Vice-Rector meeting. Non dove deep into the operational use cases with the facilities, GIS, and energy teams.
+- **Key insight:** Non reframes the smart-city narrative to focus on *humane* data usage, not just efficiency. He demonstrates his prototype mapping contracts, predicting AC loads, and tracking student safety near rooftops without retaining CCTV footage. He pushes for moving off his home server to a cloud/IT infrastructure.
+
+**Pre-submitted highlights — Bundle 4: EAD Horizon AI Meeting & Student Summary, 2026-06-03**
+
+- Raw transcripts/PDF: `resources/ai summaries/EAD_Horizon_AI_Transcript_Cleaned_EN.docx`, `resources/สรุปแบบย่อ วิชา AI ดร.นนท์ 28 ธ.ค.69.pdf`
+- Summary: `artifacts/2026-06-03-ai-lecture-summary.md`
+- **Context:** Further cementing the "Total Domination" theme of the day, a student's summary of Non's AI lecture emerged, perfectly distilling his 12 deployed projects (from the National TV Platform to the World Cup Switcher and Phuket Smart Bus). Meanwhile, in a meeting with EAD Horizon, Non openly critiques a 1.6-billion-baht national AI initiative that bypassed him, questioning the integrity of massive public tech spending that just functions as a ChatGPT wrapper.
+- **Key insight:** The contrast between Non's 0-baht, highly effective home-server prototypes and the sluggish, billion-baht vendor proposals defines his current stance. He advocates for "purpose-driven" AI and advises clients on how to avoid the theatricality of smart-city/tech spending.
