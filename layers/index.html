@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Two Layers — 100 Days of Non</title>
+  <meta name="description" content="Two layers, side by side. The left is recorded, one day at a time, as it happened. The right is invented — a novel, Hard Mode. Lately he cannot tell which one is the dream.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Two Layers — the record, and the novel">
+  <meta property="og:description" content="One column is recorded. One is invented. Which one is real?">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;1,7..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/surface.css">
+  <style>
+    html,body{height:100%;}
+    body{display:flex;flex-direction:column;min-height:100vh;}
+
+    .lh{flex:0 0 auto;border-bottom:1px solid var(--rule);padding:0.9rem 1.4rem;}
+    .lh-row{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:0.3rem 1rem;max-width:74rem;margin:0 auto;}
+    .lh .eyebrow{margin:0;}
+    .lh .mark{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink);}
+    .lh .mark b{color:var(--amber);font-weight:700;}
+    .lh .thesis{font-style:italic;color:var(--soft);font-size:0.95rem;}
+    .lh-back{font-family:var(--mono);font-size:0.625rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--soft);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px;}
+    .lh-back:hover{color:var(--amber);border-color:var(--amber);}
+
+    /* mobile toggle (hidden on desktop) */
+    .vtoggle{display:none;max-width:74rem;margin:0.7rem auto 0;border:1px solid var(--rule);width:fit-content;}
+    .vtoggle button{font-family:var(--mono);font-size:0.625rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--soft);background:transparent;border:none;border-right:1px solid var(--rule);padding:0.55rem 0.9rem;min-height:42px;cursor:pointer;}
+    .vtoggle button:last-child{border-right:none;}
+    .vtoggle button[aria-selected="true"]{background:var(--amber);color:var(--paper);font-weight:700;}
+
+    .split{flex:1 1 auto;display:flex;min-height:0;max-width:74rem;width:100%;margin:0 auto;}
+    .col{flex:1 1 0;min-height:0;overflow-y:auto;padding:1.6rem clamp(1.1rem,3vw,2.2rem) 4rem;}
+    .col.record{border-right:1px solid var(--rule);}
+
+    .col-head{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;color:var(--ink);}
+    .col-head .tag{color:var(--faint);font-weight:400;}
+    .col-intro{font-style:italic;color:var(--soft);line-height:1.5;margin:0.7rem 0 1.6rem;font-size:0.95rem;}
+
+    /* the record — a dated log */
+    .entry{padding:1rem 0;border-bottom:1px solid var(--rule);}
+    .entry .when{font-family:var(--mono);font-size:0.625rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--amber);}
+    .entry .q{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.02em;color:var(--soft);margin:0.3rem 0 0.5rem;}
+    .entry .a{font-family:var(--serif);font-size:1.0625rem;line-height:1.5;color:var(--ink);}
+    .entry.pending .a{color:var(--faint);font-style:italic;}
+    .grows{font-family:var(--mono);font-size:0.5625rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);margin-top:1.2rem;}
+
+    /* the novel — prose */
+    .novel-logline{font-style:italic;color:var(--ink);font-size:1.125rem;line-height:1.5;border-left:2px solid var(--amber);padding-left:0.9rem;margin-bottom:1.6rem;}
+    .chapter-mark{font-family:var(--mono);font-size:0.625rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--faint);margin-bottom:0.8rem;}
+    .prose p{font-family:var(--serif);font-size:1.0625rem;line-height:1.62;margin-bottom:1em;text-wrap:pretty;}
+    .prose p.first{text-indent:0;}
+    .prose p+p{text-indent:1.4em;}
+    .wip{font-family:var(--mono);font-size:0.5625rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);margin-top:1rem;}
+
+    .lf{flex:0 0 auto;border-top:1px solid var(--rule);padding:1rem 1.4rem;text-align:center;}
+    .lf .note{font-style:italic;color:var(--faint);font-size:0.85rem;max-width:44rem;margin:0 auto;line-height:1.5;}
+
+    @media (max-width:860px){
+      html,body{height:auto;}
+      body{display:block;}
+      .vtoggle{display:flex;}
+      .split{display:block;}
+      .col{overflow:visible;max-height:none;border-right:0;}
+      .col.record{border-bottom:1px solid var(--rule);}
+      .split[data-view="record"] .col.novel{display:none;}
+      .split[data-view="novel"] .col.record{display:none;}
+    }
+  </style>
+</head>
+<body>
+
+  <header class="lh">
+    <div class="lh-row">
+      <span class="mark">TWO&nbsp;<b>LAYERS</b></span>
+      <span class="thesis">one column is recorded, one is invented — which one is real?</span>
+      <a class="lh-back" href="/universe/">← the universe</a>
+    </div>
+    <div class="vtoggle" role="tablist" aria-label="Layer">
+      <button id="v-rec" role="tab" aria-selected="true">The Record</button>
+      <button id="v-nov" role="tab" aria-selected="false">The Novel</button>
+    </div>
+  </header>
+
+  <div class="split" id="split" data-view="record">
+
+    <!-- LEFT — the recorded layer -->
+    <section class="col record" aria-label="The Record">
+      <p class="col-head">The Record <span class="tag">· every day, as it happened</span></p>
+      <p class="col-intro">The real layer. One question a day, recorded the day it was asked — the raw material the biography is built from. Three of one hundred filed.</p>
+
+      <div class="entry">
+        <p class="when">Day 001 · 2026-05-24</p>
+        <p class="q">Where you were born, and the shop your family kept.</p>
+        <p class="a">Phyathai Hospital, the first of November 1981, a Sunday. In Sikhio: Suwan Panit — <span lang="th">發祥</span>, the auspicious-beginnings house — the registration paper dated 1969. Near a hotel shaped like a hat, on the ground that is now Siam Paragon.</p>
+      </div>
+
+      <div class="entry">
+        <p class="when">Day 002 · 2026-05-25</p>
+        <p class="q">The deaths that shaped the house.</p>
+        <p class="a">Three in one year, 2010 — Agong, then Ama, then his father, in September. The Sikhio summers, one television for the whole neighbourhood. The suburb his grandmother bought ground for, thirty years early.</p>
+      </div>
+
+      <div class="entry">
+        <p class="when">Day 003 · 2026-05-27</p>
+        <p class="q">Your father, in full.</p>
+        <p class="a">Kongkiet — civil servant, Governor of Buriram. Japan, the third of November 2006; Kengo Kuma near midnight; the three million baht that bought his freedom. From the first paycheck to now, the whole salary goes to his mother. The chain has never broken.</p>
+      </div>
+
+      <div class="entry pending">
+        <p class="when">Day 004 —</p>
+        <p class="q">Siblings: names, birth order, the fight that mattered.</p>
+        <p class="a">not yet recorded.</p>
+      </div>
+
+      <p class="grows">↓ the record grows, one day at a time, to one hundred</p>
+    </section>
+
+    <!-- RIGHT — the invented layer -->
+    <section class="col novel" aria-label="The Novel">
+      <p class="col-head">The Novel <span class="tag">· Hard&nbsp;Mode</span></p>
+      <p class="col-intro">The invented layer. The same man, suspecting the forty-four years were a chosen simulation, in a future where the only way to test which world is real can kill you for good.</p>
+
+      <p class="novel-logline">A man who has won everything a mind can win, and still does not know what any of it was for, sets out to find the one person who can tell him — in the only world where the roles come off.</p>
+
+      <p class="chapter-mark">Opening — “If I Woke Up”</p>
+      <div class="prose">
+        <p class="first">I am forty-four, turning forty-five, on the balcony again, and the smoke is doing the thing it does, which is to loosen the wall between the question I carry around all day and the question underneath it. The day-question is ordinary: what am I doing, am I doing it well, who needs what by Friday. The one underneath has not changed in ten years, not since I lost the lectureship — which at the time felt like the end of a life and now looks like a pastime I used to have. The question underneath is just: what is this for.</p>
+        <p>So here is the thing the smoke handed me tonight. What if I die, at some decent age, and I simply wake up — not as a baby, not as a light, but in this exact body, at exactly this age, which is, I suspect, the prime of me. And I understand, the way you understand a dream the instant it ends, that the life I just finished — seventy-eight years of it — took about half an hour. That the waking is the real world. And that everyone else has just woken up too.</p>
+        <p>And the first person I would look for is a girl I knew in college, a quarter of a century ago, in an architecture school so far out of Bangkok you took a train to it and then gave up and lived there. In the world I just left, she died young, of a cancer she seemed almost to allow, because the game had gone banal for her around thirty. In the waking world she gets up a few seconds before me, because she left a little early — and she is the one who tells me the rule. That the world we call real is unbearably good. That nobody is sick, nobody dies, and the only thing left to do is stay sane. That you check yourself into a hard life the way you'd check into anything that lets you feel something again.</p>
+        <p>What I am really looking for is not the rule. It is the woman who played my mother. Because in there she was cast as my mother, and a mother and a son only ever get the lines a mother and a son are allowed; there is a whole register we both feel and never find the way to say. Out here, where the roles come off, she could finally just tell me — before the memory of that life goes quiet — what it was actually like. And then I would go and find my father, who died in the autumn of the life I just left, and was fun to have as a father, and believed and did not believe, all at once. I would ask him the thing I never asked.</p>
+        <p>It would be okay if I woke up tomorrow.</p>
+      </div>
+      <p class="wip">— chapter one of a book being written across the hundred days · in progress</p>
+    </section>
+
+  </div>
+
+  <footer class="lf">
+    <p class="note">After <a href="https://tenderclaws.com/pry" style="color:var(--soft)">Pry</a>, where the form is the meaning: two layers, and you decide which is real. The left is recorded as it happens. The right is invented. Lately he cannot tell which is the dream.</p>
+  </footer>
+
+  <script>
+  (function(){
+    var split=document.getElementById('split');
+    var rec=document.getElementById('v-rec'), nov=document.getElementById('v-nov');
+    function set(v){ split.setAttribute('data-view',v); rec.setAttribute('aria-selected',v==='record'); nov.setAttribute('aria-selected',v==='novel'); }
+    rec.addEventListener('click',function(){set('record');});
+    nov.addEventListener('click',function(){set('novel');});
+  })();
+  </script>
+
+</body>
+</html>
