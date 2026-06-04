@@ -61,6 +61,24 @@ Dreams as leak · the broken luggage · the whole salary to his mother · his fa
 
 ---
 
+## Continuation — the real world, the body, the mother (2026-06-05, ii)
+
+### The real world, in close-up *[his]*
+Non has run this maybe half a dozen times or more — he is in his 40s out there too — and goes back in every few years because there is nothing else to do. Out there he had a beautiful wife and everything; they no longer live together. He lives alone in a perfect house, takes algorithm-matched dates, has sex, sometimes meets again (so few people left), tires of it, never again. Round and round. *(Fiction — the real-world frame. **Do not fold into the biography:** the real Non chose not to marry.)*
+
+### The numbness — the body that utopia erased *[his + push]*
+Maybe a thousand years after 2026. Humanity has evolved *out of* sex. Only ~1% still reach orgasm. Touch, sweat, the kiss, the bite still register — but the genitals have gone quiet; the act happens, the arrival doesn't. With the arrival gone, the chromosome-deep drive to reproduce drains away — which is why the species is dying inside its own abundance. **[push]** This is the somatic floor under the boredom: utopia didn't only go dull, it went **numb.** The cocoon is where the body still *works* — the two hours of it, the sweat, the mess, the cheats you pay your own dry-cleaning for, the moment one of them actually arrives. People don't go down into the hard lives only to suffer. They go to **feel.**
+
+**[push] — the reality test is sensation.** This reframes the search. "Which world is real" cannot be settled by logic; both look real. It can only be answered by the body: **you are real where you can still feel.** And that is already pure Non — Mantra 1, *"the fun is in the flow"*; the present moment; wabi-sabi's love of the worn, sweating, impermanent body. The numb perfect world fails the only test that matters. The detective's instrument is not a clue-board. It is his own skin.
+
+### The mother-search — the heart *[his + push]*
+Death stops frightening him, because death = waking next to Pui. And then the real quest: **find the woman who played his mother.** Maybe she was a character — a Westworld host with no one inside her. Maybe she was a real player, and out there she is now a stranger in her twenties. He wants to find her and ask one thing: *how was it, to have me as a son?* **[push]** Pair it with Pui-as-Case-Zero: **Pui is the grief that opens the case; the mother is the love that drives it to the end.** And it closes the oxytocin question — if she was "only" a character, was the love false? The book's answer holds: no. It was the realest thing in any layer. The chemistry was never the opposite of the love; it was the love.
+
+### Discretion / register
+The sexual material is, in his voice, frank and graphic. For any public or literary form the register is **his call** — the theme (embodiment, anhedonia, the body as the last real thing) is profound and keepable; the anatomical catalogue is not the point and should be handled with restraint. Not public until he calibrates it.
+
+---
+
 ## Raw appendix (verbatim, 2026-06-05 — do not edit)
 
 *[Full stream preserved in the session capture; the load-bearing cosmology is extracted above. Key verbatim anchors:]* "religion itself has been constructed as a set of codes to irrationally tie people down to certain values, otherwise they would get out of this game too quickly." · "if i get out of it tonight i would never look back ever again… but after maybe a couple months you want to come back here again." · "are they dying for real, or is there another layer below this — and that is the premise of this entire detective-ish futuristic story: which one is real." · "this time i wanted to be born in the 1940s… a yippie… die at maybe James Dean's or Kurt Cobain's [age]." · "can this just be a chemical process in your brain induced by nano-bullets running through your neurons… in order to create this simulation that you cannot tell whether it's real or not." · "utopian turning dystopian."
