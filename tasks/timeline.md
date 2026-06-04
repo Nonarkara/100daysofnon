@@ -476,4 +476,22 @@ DAY 100    [OPEN]   The final question (not yet written)
 
 *This document is a working instrument, not an archive. Update it after each filed day: move facts from GAPS to CONFIRMED, cross off mapped days, add new partial information as it surfaces.*
 
-*Last updated: 2026-05-31*
+---
+
+## UPDATE 2026-06-01 — balcony capture (facts + a direction)
+*Source: `diary/_seeds/2026-06-01-simulation-and-pui-raw.md`. Facts below are new to the record; the simulation frame is a creative direction, not a fact.*
+
+### New CONFIRMED facts → phase / day mapping
+- **Pui** (→ Day 12 first close friend / Days 36–41 relationships): architecture classmate at KMITL from ~1998; one of few women → "the star." Met ~1999 on his return from Oklahoma City. Grew close. **Died ~2024/25 of cancer**; Non learned via Facebook (he'd posted a birthday note) + friend **Kamashit**; missed the funeral (overseas). A major new relationship-thread figure.
+- **AFS detail** (→ Phase 3 / Day 15, 27): dropped his first year after a poor first semester (1998) → AFS to Oklahoma City. Represented **Nonthaburi province** (his school's location) — "didn't have to compete with Bangkok kids' tutoring/materials."
+- **The campus apartment** (→ Phase 4 / Day 5): father rented him an apartment near KMITL (now ~25 yrs old); lived there years; first sexual experience there, 4th year.
+- **The 24h computer center** (→ Phase 4, enriches the library years): Linux terminals, scratch-card login, cup noodles, **emailing professors worldwide** (1999–2000) — this is *how* he wrote to professors for reading lists. "Wish I'd studied more computer stuff."
+- **Career arc, named** (→ Phase 13 Now): academic → lost lectureship ~2016 ("almost ten years") → practitioner, **high position at DEPA** (Digital Economy Promotion Agency) + international community; teaching ~**5×/week to mayors/governors/ministers**, representing Thailand "so it isn't undermined." "I didn't think I survived this but I did."
+- **The Chula digital twin** (→ Phase 13): currently designing a dashboard / digital twin for **Chulalongkorn University** — connects to the day-072 Manoj Lohatepanont material. "A no-name guy from a government agency" hired by world-class Chula.
+- **The generosity turn** (→ character arc, "After"/"Now"): was stingy; became generous over time — influenced by **Piyai** (acting CEO, DEPA) and **P. Kasama** (senior EVP). "We all had hard times." A real change-of-character beat for the biography.
+- **State at 44→45**: still searching for meaning; "lost since the lectureship"; "I don't even know why I was born."
+
+### DIRECTION (not fact) — the simulation frame, the "deeper part of the biography"
+Core-Mantra 6 made literary: this life as a chosen hard-mode simulation inside a deathless, too-perfect far-future; waking after a 78-yr life that took ~½ hour; the Pui reunion; dreams as cross-scenario bleed-through; the search for meaning if neither layer is "real enough." Shaped draft: `diary/_seeds/2026-06-01-the-simulation-DRAFT.md`. **Pending Non's call** on how it enters the universe (book chapter / companion piece / frame) and discretion (Pui + intimate content + named people).
+
+*Last updated: 2026-06-01*
