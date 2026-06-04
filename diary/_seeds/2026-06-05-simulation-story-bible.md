@@ -77,6 +77,20 @@ Death stops frightening him, because death = waking next to Pui. And then the re
 ### Discretion / register
 The sexual material is, in his voice, frank and graphic. For any public or literary form the register is **his call** — the theme (embodiment, anhedonia, the body as the last real thing) is profound and keepable; the anatomical catalogue is not the point and should be handled with restraint. Not public until he calibrates it.
 
+## Continuation — the role is the cage (2026-06-05, iii)
+
+### Why outside, and not inside *(his Q1, which he answered himself)* *[his]*
+**Inside, she is not a person — she is his mother, and the role is the cage.** A mother and a son are bound by what a mother and a son are permitted to say; the love itself enforces the silence. There are things they both feel and cannot find the way to say, so they never say them. The matrix is *made of roles.* Only **outside** — when she is no longer cast as his mother but is simply the one who *played* her — is she free to tell him the truth of it, and he free to hear it. The real world is where the roles come off. And it must be soon: as new memory comes in the old fades (the reason no one remembers past lives), so there is **one short window** to ask before the life he lived with her goes quiet.
+
+### The real-life echo *[his — fact]*
+He has actually asked his mother, more than once, how it is to have him as a son. She tells him things. But he wants it *from the person, not the role* — because in the roles of mother and son there is a whole register they feel and cannot speak.
+
+### The father, again *[his + push]*
+He wants to meet his father too — "it was fun to have him as a father, and he was fun to be a father." And: **"he believed and non-believed too"** — the father held the same suspension, the both-at-once (Mantra 6, *work with the symbols anyway*). The father modeled Nonism before it had a name. **[push] — the grief under the whole book:** his father died in 2010 (real). The mother is alive; the father is gone. The two searches are not symmetrical. The mother-search is *ask the person behind the role what the role won't let you ask.* The father-search is *get him back, for one window, to say what was never said and ask what was never asked.* The simulation is the only frame in which that conversation is even thinkable. **This is not escapism — the book is a machine for one more conversation with his father,** and for saying, to both of them, the things the roles never allowed. That every player's deepest reason for going back down might be exactly this — someone they have to find and finally speak to — is the warmest, saddest engine the story could have.
+
+### Discretion
+The father-grief is real and tender; the mother is living. Handle with the same care as Pui. Not public until Non calibrates.
+
 ---
 
 ## Raw appendix (verbatim, 2026-06-05 — do not edit)
