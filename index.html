@@ -48,12 +48,12 @@
     .grows{font-family:var(--mono);font-size:0.5625rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);margin-top:1.2rem;}
 
     /* the novel — prose */
-    .ch-image{display:block;width:calc(100% + clamp(2.2rem,6vw,4.4rem));margin-left:calc(-1 * clamp(1.1rem,3vw,2.2rem));margin-right:calc(-1 * clamp(1.1rem,3vw,2.2rem));margin-bottom:0;aspect-ratio:3/4;object-fit:cover;object-position:center top;}
+    .ch-image{display:block;width:100%;height:auto;margin-bottom:0;}
     .ch-caption{font-family:var(--mono);font-size:0.5625rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint);padding:0.5rem 0 1.4rem;border-bottom:1px solid var(--rule);margin-bottom:1.4rem;}
     .ch-caption b{color:var(--amber);font-weight:500;}
     .novel-logline{font-style:italic;color:var(--ink);font-size:1.125rem;line-height:1.5;border-left:2px solid var(--amber);padding-left:0.9rem;margin-bottom:1.6rem;}
     .chapter-mark{font-family:var(--mono);font-size:0.625rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--faint);margin-bottom:0.8rem;}
-    .prose p{font-family:var(--serif);font-size:1.125rem;line-height:1.72;margin-bottom:1.55em;text-wrap:pretty;}
+    .prose p{font-family:var(--serif);font-size:1.125rem;line-height:1.72;margin:0 0 1.55em 0 !important;text-wrap:pretty;}
     .prose p.first,.prose p+p{text-indent:0;}
     .wip{font-family:var(--mono);font-size:0.5625rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);margin-top:1rem;}
 
@@ -132,44 +132,73 @@
       <p class=”chapter-mark”>Chapter One — “The Noiseless Kind”</p>
       <div class=”prose”>
         <p class=”first”>Let me ask you something before we begin.</p>
+
         <p>Have you ever been in a room that was exactly the right temperature? Not warm. Not cool. The precise degree at which your body stops noticing itself.</p>
+
         <p>In a room like that, you do not feel comfort. You feel a specific, almost clinical dread.</p>
-        <p>That is where I am right now.</p>
-        <p>My apartment. Bangkok — or what Bangkok became, which I will get to — on a Tuesday indistinguishable from all the other Tuesdays. They have been indistinguishable from each other for longer than I can comfortably remember.</p>
-        <p>In an hour, someone is coming over. An algorithm matched us. She is exactly as advertised — I say this without cruelty, only precision. We will have a drink. We will have sex. The kind that is technically correct in every parameter. The kind that delivers, for both of us, something slightly less than what either of us had in mind. We have met three times. The fourth will probably be the last. Not because anything goes wrong. Because nothing — precisely nothing — goes wrong.</p>
+
+        <p>That is where I am right now. My apartment. Bangkok — or what Bangkok became, which I will get to. A Tuesday like all the others.</p>
+
+        <p>In an hour, someone is coming over. An algorithm matched us. She is exactly as advertised. We will have a drink. We will have sex. The kind that is technically correct and delivers, for both of us, something slightly less than what either of us had in mind. We have met three times. The fourth will probably be the last. Not because anything goes wrong. Because nothing — precisely nothing — goes wrong.</p>
+
         <p>This is the tell. I have been learning to read it.</p>
-        <p>Camus opened his most famous essay with one claim: there is only one truly serious philosophical problem, and that is suicide. He was right. But he was asking the wrong version of the question.</p>
-        <p>The interesting version is not <em>whether</em> to continue. It is <em>which layer</em> to continue in. Nobody asks that version. The reason: for most of human history, there was only one layer to be in. You were born. You suffered. You died. The options were stark but uncomplicated.</p>
-        <p>I am going to tell you a story that starts forty-four years into one life and ends, maybe, at the beginning of another. I should warn you. I am Thai. I am forty-four. I am tired. I am not dead. And I have recently come to suspect that none of those facts mean what I thought they meant.</p>
-        <p>Also — (pun not intended) — I may be inside a simulation. But let me get to that in a moment.</p>
+
+        <p>I used to think the only serious question was whether to continue. I have since revised my opinion. The real question is which layer to continue in. Nobody asks that version. For most of human history, there was only one layer. You were born. You suffered. You died.</p>
+
+        <p>Something happened recently that made me think there might be more.</p>
+
         <p>The message came on a Tuesday. Her name was Pui.</p>
-        <p>She had been my classmate, twenty-five years ago, in an architecture school so far out of Bangkok that you took the train to Ladkrabang and then another from there. I did that for exactly one week before my father rented me an apartment near campus. She was one of maybe eight women in our entire cohort. Architecture schools in that part of Bangkok, late nineties, were not known for their gender balance.</p>
-        <p>She was funny. She knew exactly what she was doing in a crit. She had a way of making a model out of materials nobody else would have thought of.</p>
-        <p>We were not close. We were the kind of people who would have been closer if we had been anywhere else, or had tried a little harder, or had been a little less afraid.</p>
+
+        <p>She had been my classmate, twenty-five years ago, at a school at the far edge of the city. Far enough that you took two trains to get there. I did that for one week before finding a room near campus. She was one of a handful of women in our cohort. She was funny. She was good at what she did. She had a way of making something beautiful out of materials nobody else would have thought of.</p>
+
+        <p>We were not close. We were the kind of people who would have been closer if we had been a little less afraid.</p>
+
         <p>I had been writing on her Facebook wall every year on her birthday for four years. A few words. You do this for people you were not quite close enough to call. That is most people, eventually.</p>
-        <p>That Tuesday I wrote: “Twenty-five years since Ladkrabang. Hope you're well.”</p>
-        <p>Within two hours, a message from Kamashit. He had been close to her. I had not spoken to him in longer than I can reconstruct.</p>
+
+        <p>That Tuesday I wrote: “Twenty-five years. Hope you're well.”</p>
+
+        <p>Within two hours, a message from a mutual friend. He had been close to her.</p>
+
         <p><em>Non. You didn't know. She died. Last year. Cancer.</em></p>
+
         <p>I scrolled. The way you do.</p>
-        <p>Posts from friends that accumulate on a dead person's wall and never know what tone to take. Photographs from a ceremony I did not recognize. A date I will not give you, because it is hers.</p>
+
+        <p>Posts that accumulate on a dead person's wall and never quite know what tone to take. Photographs from a ceremony I did not recognize. A date I will not give you, because it is hers.</p>
+
         <p>And then, two weeks before all of that: her last post.</p>
-        <p>It was not what you would write if you knew you were dying. Too calm. Too specific. Too much like something she had been thinking about for a long time and had decided, in that window, to finally write down.</p>
-        <p>The Thai was careful. Clear. I will translate it roughly:</p>
+
+        <p>It was not what you would write if you knew you were dying. Too calm. Too specific. It read like something she had been sitting with for a long time and had finally decided to put down.</p>
+
+        <p>I will translate it roughly:</p>
+
         <p><em>”To whoever reads this first after I'm gone — don't waste time looking for meaning in the part you just lived. The door is always on the left, not the right. I went back early, but only because I got bored, which you'll understand when you get here. The only thing worth asking when you wake up is: who played your mother? Ask before the memory goes. — P.”</em></p>
+
         <p>I read it three times.</p>
+
         <p>Then I put my phone face-down on the table.</p>
+
         <p>I looked at the wall. The exact-right-temperature air. The date in an hour. The city outside that had stopped surprising me.</p>
+
         <p>I felt something I had not felt in years.</p>
+
         <p>I felt the hair on my arms.</p>
-        <p>Because here is the thing I am not going to explain to you tonight. It sat in my chest like a key finding a lock it did not know it had been cut for.</p>
-        <p>I already knew what she meant by the door.</p>
+
+        <p>Because I already knew what she meant by the door.</p>
+
         <p>Not consciously. Not in any way I could have told you a minute before reading her post. But in my body. The way you know a place from a dream so vivid it left a residue.</p>
+
         <p>Left, not right. Ask before the memory goes.</p>
+
         <p>The date arrived at seven. Rang the buzzer. I let her up.</p>
+
         <p>We had a drink. We had sex — the technically correct kind. She fell asleep before ten.</p>
+
         <p>I lay on my back in the exact-right-temperature dark, looking at the ceiling.</p>
+
         <p>And I thought: <em>How many times have I done this before?</em></p>
+
         <p>Not the sex.</p>
+
         <p>The whole thing.</p>
       </div>
       <p class=”wip”>— chapter one of Hard Mode · the novel being written across one hundred days</p>
