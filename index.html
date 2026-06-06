@@ -63,6 +63,17 @@
     .ch-nav-item{display:block;font-family:var(--mono);font-size:0.5625rem;letter-spacing:0.08em;color:var(--soft);text-decoration:none;padding:0.25rem 0;}
     .ch-nav-item:hover{color:var(--amber);}
 
+    /* audio narration player */
+    .audio-player{display:flex;align-items:center;gap:0.7rem;margin:0 0 1.6rem;padding:0.6rem 0.8rem;border:1px solid var(--rule);}
+    .audio-label{font-family:var(--mono);font-size:0.5rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--faint);flex-shrink:0;}
+    .audio-btn{width:26px;height:26px;border:1px solid var(--rule);background:none;cursor:pointer;color:var(--amber);display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:0;min-height:26px;}
+    .audio-btn:hover{border-color:var(--amber);}
+    .audio-btn svg{display:block;}
+    .audio-bar-wrap{flex:1;height:1px;background:var(--rule);cursor:pointer;position:relative;min-height:10px;display:flex;align-items:center;}
+    .audio-bar-track{width:100%;height:1px;background:var(--rule);position:relative;}
+    .audio-bar-fill{position:absolute;left:0;top:0;height:100%;background:var(--amber);width:0;pointer-events:none;}
+    .audio-time{font-family:var(--mono);font-size:0.5rem;letter-spacing:0.08em;color:var(--faint);flex-shrink:0;min-width:5rem;text-align:right;}
+
     .lf{flex:0 0 auto;border-top:1px solid var(--rule);padding:1rem 1.4rem;text-align:center;}
     .lf .note{font-style:italic;color:var(--faint);font-size:0.85rem;max-width:44rem;margin:0 auto;line-height:1.5;}
 
@@ -141,8 +152,21 @@
       <p class="ch-caption">Hard Mode · Chapter One · <b>the door is on the left</b></p>
       <p class="novel-logline">A man who has won everything a mind can win, and still does not know what any of it was for, sets out to find the one person who can tell him — in the only world where the roles come off.</p>
 
-      <p class="chapter-mark">Chapter One — “The Noiseless Kind”</p>
-      <div class="prose">
+      <p class=”chapter-mark”>Chapter One — “The Noiseless Kind”</p>
+
+      <div class=”audio-player” id=”ch1-player”>
+        <span class=”audio-label”>listen</span>
+        <button class=”audio-btn” id=”ch1-play” aria-label=”Play chapter one narration”>
+          <svg id=”ch1-icon” width=”9” height=”11” viewBox=”0 0 9 11” fill=”currentColor”><polygon points=”0,0 9,5.5 0,11”/></svg>
+        </button>
+        <div class=”audio-bar-wrap” id=”ch1-bar” role=”progressbar” aria-valuemin=”0” aria-valuemax=”100” aria-valuenow=”0”>
+          <div class=”audio-bar-track”><div class=”audio-bar-fill” id=”ch1-fill”></div></div>
+        </div>
+        <span class=”audio-time” id=”ch1-time”>—:——</span>
+        <audio id=”ch1-audio” preload=”none” src=”/assets/artifacts/hard-mode-ch1-narration.mp3”></audio>
+      </div>
+
+      <div class=”prose”>
         <p class="first">Let me ask you something before we begin.</p>
 
         <p>Have you ever been in a room that was exactly the right temperature? Not warm. Not cool. The precise degree at which your body stops noticing itself.</p>
@@ -365,6 +389,46 @@
           col.scrollBy({top:diff - 8, behavior:'smooth'});
         }
       });
+    });
+  })();
+
+  // chapter one audio player
+  (function(){
+    var audio=document.getElementById('ch1-audio');
+    var btn=document.getElementById('ch1-play');
+    var icon=document.getElementById('ch1-icon');
+    var fill=document.getElementById('ch1-fill');
+    var bar=document.getElementById('ch1-bar');
+    var timeEl=document.getElementById('ch1-time');
+    if(!audio||!btn) return;
+
+    var PLAY='<polygon points="0,0 9,5.5 0,11"/>';
+    var PAUSE='<rect x="0" y="0" width="3" height="11"/><rect x="6" y="0" width="3" height="11"/>';
+
+    function fmt(s){
+      if(!isFinite(s)) return '—:——';
+      var m=Math.floor(s/60), sec=Math.floor(s%60);
+      return m+':'+(sec<10?'0':'')+sec;
+    }
+
+    btn.addEventListener('click',function(){
+      if(audio.paused){ audio.play(); } else { audio.pause(); }
+    });
+    audio.addEventListener('play',function(){ icon.innerHTML=PAUSE; });
+    audio.addEventListener('pause',function(){ icon.innerHTML=PLAY; });
+    audio.addEventListener('ended',function(){ icon.innerHTML=PLAY; fill.style.width='0'; });
+    audio.addEventListener('loadedmetadata',function(){ timeEl.textContent='0:00 / '+fmt(audio.duration); });
+    audio.addEventListener('timeupdate',function(){
+      if(!audio.duration) return;
+      var pct=(audio.currentTime/audio.duration)*100;
+      fill.style.width=pct+'%';
+      bar.setAttribute('aria-valuenow',Math.round(pct));
+      timeEl.textContent=fmt(audio.currentTime)+' / '+fmt(audio.duration);
+    });
+    bar.addEventListener('click',function(e){
+      if(!audio.duration) return;
+      var rect=bar.getBoundingClientRect();
+      audio.currentTime=((e.clientX-rect.left)/rect.width)*audio.duration;
     });
   })();
   </script>
