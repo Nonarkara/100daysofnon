@@ -22,6 +22,9 @@ voice/models/
 *.pth
 *.safetensors
 
+# allow published narration audio in site assets
+!site/assets/artifacts/*.mp3
+
 # OS
 .DS_Store
 
