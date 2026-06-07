@@ -65,14 +65,14 @@
 
     /* audio narration player */
     audio{display:none !important;}
-    .audio-player{display:flex;align-items:center;gap:0.7rem;margin:0 0 1.6rem;padding:0.65rem 0.8rem;border:1px solid var(--rule);}
-    .audio-label{font-family:var(--mono);font-size:0.5rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--faint);flex-shrink:0;}
-    .audio-btn{width:26px;height:26px;border:1px solid var(--rule);background:none;cursor:pointer;color:var(--amber);display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:0;}
-    .audio-btn:hover{border-color:var(--amber);}
-    .audio-btn svg{display:block;}
+    .audio-player{display:flex;align-items:center;gap:0.55rem;margin:0 0 1.4rem;}
+    .audio-play{display:flex;align-items:center;justify-content:center;width:20px;height:20px;color:var(--amber);cursor:pointer;flex-shrink:0;text-decoration:none;}
+    .audio-play:hover{opacity:0.65;}
+    .audio-play svg{display:block;}
     .audio-bar-wrap{flex:1;height:1px;background:var(--rule);cursor:pointer;position:relative;}
     .audio-bar-fill{position:absolute;left:0;top:0;height:100%;background:var(--amber);width:0;pointer-events:none;}
-    .audio-time{font-family:var(--mono);font-size:0.5rem;letter-spacing:0.08em;color:var(--faint);flex-shrink:0;min-width:5rem;text-align:right;}
+    .audio-label{font-family:var(--mono);font-size:0.5rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--faint);flex-shrink:0;}
+    .audio-time{font-family:var(--mono);font-size:0.5rem;letter-spacing:0.08em;color:var(--faint);flex-shrink:0;min-width:4.5rem;text-align:right;}
 
     /* paginated chapter pages */
     .col.novel{padding:0;overflow:hidden;display:flex;flex-direction:column;}
@@ -178,13 +178,13 @@
       <p class=”chapter-mark”>Chapter One — “The Noiseless Kind”</p>
 
       <div class=”audio-player” id=”ch1-player”>
-        <span class=”audio-label”>listen</span>
-        <button class=”audio-btn” id=”ch1-play” aria-label=”Play chapter one narration”>
+        <a class=”audio-play” id=”ch1-play” role=”button” tabindex=”0” aria-label=”Play chapter one narration” href=”#”>
           <svg id=”ch1-icon” width=”9” height=”11” viewBox=”0 0 9 11” fill=”currentColor”><polygon points=”0,0 9,5.5 0,11”/></svg>
-        </button>
+        </a>
         <div class=”audio-bar-wrap” id=”ch1-bar” role=”progressbar” aria-valuemin=”0” aria-valuemax=”100” aria-valuenow=”0”>
           <div class=”audio-bar-fill” id=”ch1-fill”></div>
         </div>
+        <span class=”audio-label”>listen · ch. i</span>
         <span class=”audio-time” id=”ch1-time”>—:——</span>
       </div>
 
@@ -559,7 +559,8 @@
       return m+':'+(sec<10?'0':'')+sec;
     }
 
-    btn.addEventListener('click',function(){
+    btn.addEventListener('click',function(e){
+      e.preventDefault();
       if(audio.paused){ audio.play(); } else { audio.pause(); }
     });
     audio.addEventListener('play',function(){ icon.innerHTML=PAUSE; });
