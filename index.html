@@ -76,20 +76,20 @@
     .audio-time{font-family:var(--mono);font-size:0.5rem;letter-spacing:0.08em;color:var(--faint);flex-shrink:0;min-width:4.5rem;text-align:right;}
 
     /* paginated chapter pages */
-    .col.novel{padding:0;overflow:hidden;display:flex;flex-direction:column;}
-    .ch-header{flex-shrink:0;padding:1.2rem clamp(1.1rem,3vw,2.2rem) 0.8rem;border-bottom:1px solid var(--rule);}
+    .col.novel{padding:0;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;}
+    .ch-header{flex-shrink:0;padding:1.2rem clamp(1.1rem,3vw,2.2rem) 0.8rem;border-bottom:1px solid var(--rule);position:sticky;top:0;background:var(--paper);z-index:10;}
     .ch-header .ch-nav{margin:0.8rem 0 0;}
-    .ch-viewport{flex:1;overflow:hidden;min-height:0;}
-    .ch-track{display:flex;height:100%;will-change:transform;transition:transform 0.38s cubic-bezier(0.4,0,0.2,1);}
-    .ch-page{flex:0 0 100%;width:100%;height:100%;overflow-y:auto;padding:1.4rem clamp(1.1rem,3vw,2.2rem) 2.5rem;-webkit-overflow-scrolling:touch;}
-    .ch-pgnav{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0.65rem clamp(1.1rem,3vw,2.2rem);border-top:1px solid var(--rule);}
+    .ch-viewport{overflow:hidden;}
+    .ch-track{display:flex;align-items:flex-start;will-change:transform;transition:transform 0.38s cubic-bezier(0.4,0,0.2,1);}
+    .ch-page{flex:0 0 100%;width:100%;height:auto;padding:1.4rem clamp(1.1rem,3vw,2.2rem) 2.5rem;}
+    .ch-pgnav{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0.65rem clamp(1.1rem,3vw,2.2rem);border-top:1px solid var(--rule);position:sticky;bottom:0;background:var(--paper);z-index:10;}
     .ch-pgbtn{font-family:var(--mono);font-size:0.5625rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--soft);background:none;border:none;cursor:pointer;padding:0;min-height:44px;display:flex;align-items:center;}
     .ch-pgbtn:hover:not([disabled]){color:var(--amber);}
     .ch-pgbtn[disabled]{color:var(--rule);cursor:default;}
     .ch-pgpos{font-family:var(--mono);font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--faint);}
     @media (max-width:860px){
-      .col.novel{display:flex !important;overflow:hidden !important;min-height:80dvh;}
-      .ch-page{height:auto;min-height:calc(80dvh - 110px);}
+      .col.novel{min-height:80dvh;}
+
     }
 
     .lf{flex:0 0 auto;border-top:1px solid var(--rule);padding:1rem 1.4rem;text-align:center;}
@@ -141,7 +141,7 @@
 
           <p>She sat up slowly.</p>
 
-          <p>The hub was quiet at this hour. A long room, pale, no shadows &#x2014; the machine had decided that shadows were not optimal. Forty-three chairs in this room. Most of them occupied. Bodies lying still, breathing at the rate the machine calibrated, dreaming forty or fifty or seventy years of life in whatever period they had chosen. Behind the eyes: Bangkok in 1998. Rome in the twelfth century. The Mekong delta in 1975. Ice age. Every version of the world that ever existed, running in parallel, full of people who lived there and did not know they had a body in a room that smelled faintly of circulated air and nutrient solution.</p>
+          <p>The hub was quiet at this hour. A long room, pale, no shadows &#x2014; the machine had decided that shadows were not optimal. Forty-three chairs in this room. Most of them occupied. Bodies lying still, breathing at the rate the machine calibrated, dreaming forty or fifty or seventy years of life in whatever period they had chosen. Behind the eyes: Bangkok in 1999. Rome in the twelfth century. The Mekong delta in 1975. Ice age. Every version of the world that ever existed, running in parallel, full of people who lived there and did not know they had a body in a room that smelled faintly of circulated air and nutrient solution.</p>
 
           <p>She counted the occupied chairs the way she always did when she came back. Thirty-nine out of forty-three.</p>
 
@@ -204,7 +204,7 @@
 
           <p>He always finds it eventually. He is better at this than anyone she has run sessions with. Something about the particular way he pays attention to faces. To rooms. To the specific texture of recognition.</p>
 
-          <p>In the first session she ran with him, she played a minor character in his childhood. A province called Sikhio. A woman selling vegetables from a bicycle, twice a week, past a house where a five-year-old boy sometimes stood at the gate.</p>
+          <p>In the first session she ran with him, she played a minor character in his childhood. A province north of Bangkok. A woman selling vegetables from a bicycle, twice a week, past a house where a five-year-old boy sometimes stood at the gate.</p>
 
           <p>She rode past. He looked at her face.</p>
 
@@ -278,13 +278,19 @@
 
         <p>We were not close. We were the kind of people who would have been, if either of us had known how to close that last ten centimetres.</p>
 
-        <p>For four years I had been writing on her Facebook wall on her birthday. A few words. The contact you maintain for someone you care about in the specific way of people who never acted on it.</p>
+        <p>For years I had been writing on her Facebook wall on her birthday. A few words. The contact you maintain for someone you care about in the specific way of people who never acted on it.</p>
 
-        <p>That Tuesday I wrote: <em>Twenty-five years. Hope you&#x2019;re well.</em></p>
+        <p>She had died in 2018. I did not know.</p>
 
-        <p>Two hours later, a message from a mutual friend.</p>
+        <p>I wrote in 2019. The wall received it. I wrote in 2020. The wall received that too.</p>
 
-        <p><em>Non. You didn&#x2019;t know. She died. Last year. Cancer.</em></p>
+        <p>That Tuesday &#x2014; 2021 &#x2014; I wrote: <em>Twenty-five years. Hope you&#x2019;re well.</em></p>
+
+        <p>A mutual friend had seen my messages on her wall. Within hours, a reply.</p>
+
+        <p><em>Non. You didn&#x2019;t know. She died. Three years ago. Cancer.</em></p>
+
+        <p>The shame of it was specific. Not grief &#x2014; grief requires presence. This was two years of birthday messages to a dead woman&#x2019;s wall. Neither of us &#x2014; the wall or I &#x2014; had any particular reason to change what we were doing.</p>
 
         <p>I scrolled.</p>
 
@@ -331,7 +337,7 @@
       </div><!-- /ch-page ch1 -->
 
       <div class="ch-page" id="ch2">
-      <img class="ch-image" src="/assets/artifacts/hard-mode-ch2.jpg" alt="Two architecture students, white uniforms, Bangkok. The studio, 1998. Or somewhere like it." loading="lazy">
+      <img class="ch-image" src="/assets/artifacts/hard-mode-ch2.jpg" alt="Two architecture students, white uniforms, Bangkok. The studio, 1999. Or somewhere like it." loading="eager">
       <p class="ch-caption">Hard Mode · Chapter Two · <b>twelve minutes</b></p>
 
       <p class="chapter-mark">Chapter Two — "Twelve Minutes"</p>
@@ -356,7 +362,7 @@
 
         <p>In that state, lying on the floor, I thought about a woman on a bicycle.</p>
 
-        <p>I was five years old. Sikhio. The street outside our house had enough foot traffic then to support a woman who rode slowly through it twice a week, calling out her inventory in a practised rhythm. Morning glory. Bitter melon. Galangal. I watched her face as she passed our gate.</p>
+        <p>I was five years old. A small city north of Bangkok &#x2014; my family&#x2019;s house, before we moved. The street outside our house had enough foot traffic then to support a woman who rode slowly through it twice a week, calling out her inventory in a practised rhythm. Morning glory. Bitter melon. Galangal. I watched her face as she passed our gate.</p>
 
         <p>And something in me said: <em>I know this person.</em></p>
 
@@ -370,11 +376,15 @@
 
         <p>I had stopped being able to move on.</p>
 
-        <p>The architecture school was at the edge of the city, and in 1998 you had to want to be there. The studio smelled like paper and fixative and the exhaustion of fifty-five people who had not slept enough. She was plain, short, hair pulled back efficiently. Outside the building she would have vanished into any crowd.</p>
+        <p>The architecture school was at the edge of the city, and in 1999 you had to want to be there. The studio smelled like paper and fixative and the exhaustion of fifty-five people who had not slept enough. The work was entirely manual then. Large drafting boards tilted at forty-five degrees, poster-wide, each drawing earned line by line. A studio session ran from six in the evening to six in the morning. You left at dawn carrying the particular exhaustion of sustained attention &#x2014; not tired, exactly. Emptied.</p>
+
+        <p>She was plain the first year. Short, hair pulled back efficiently, carrying more weight than she would have chosen. Outside the building she would have vanished into any crowd.</p>
 
         <p>Inside, in the studio where we spent eleven hours a day, I was always &#x2014; without deciding to be &#x2014; aware of exactly where she was.</p>
 
         <p>The same frequency as the vegetable seller.</p>
+
+        <p>Each year she arrived different. A little lighter, a little more arranged. By the third year she was something else &#x2014; as if the work, or the years, had clarified something that had always been there. By the fifth she was beautiful in the way particular to women who were not beautiful early. Earned. Without vanity. Like something grown into rather than applied.</p>
 
         <p>I closed my eyes on the floor beside the desk.</p>
 
@@ -382,7 +392,7 @@
 
         <p>In the dream she was at the drafting table.</p>
 
-        <p>1998 light. Fixative. Late hours.</p>
+        <p>1999 light. Fixative. Late hours.</p>
 
         <p>She looked up.</p>
 
@@ -396,7 +406,7 @@
 
         <p>The studio shortened. I crossed it.</p>
 
-        <p>She was still that 1998 version of herself. And she was not. Her eyes were doing something they had never done in five years of the same building &#x2014; all those years of almost-meeting, brief encounters in corridors and crits that went no further, because there was no mechanism, because I had a girlfriend and she was always with someone older and the feeling had no shape that either of us could act on.</p>
+        <p>She was still that 1999 version of herself. And she was not. Her eyes were doing something they had never done in five years of the same building &#x2014; all those years of almost-meeting, brief encounters in corridors and crits that went no further, because there was no mechanism, because I had a girlfriend and she was always with someone older and the feeling had no shape that either of us could act on.</p>
 
         <p>She was looking at me the way you look at someone you agreed to find.</p>
 
@@ -407,7 +417,7 @@
       </div><!-- /ch-page ch2 -->
 
       <div class="ch-page" id="ch3">
-      <img class="ch-image" src="/assets/artifacts/hard-mode-ch3.jpg" alt="A young woman and an older man in a dark corridor. Something older than memory passes between them." loading="lazy">
+      <img class="ch-image" src="/assets/artifacts/hard-mode-ch3.jpg" alt="A young woman and an older man in a dark corridor. Something older than memory passes between them." loading="eager">
       <p class="ch-caption">Hard Mode · Chapter Three · <b>the prior</b></p>
 
       <p class="chapter-mark">Chapter Three — "The Prior"</p>
@@ -422,7 +432,7 @@
 
         <p><em>You never do. That&#x2019;s the design.</em></p>
 
-        <p>She set down the pencil. In 1998 she would not have done this. In 1998 she held everything close, gave nothing away &#x2014; that was how you survived the studio. But in this version she set it down and looked at me directly.</p>
+        <p>She set down the pencil. In 1999 she would not have done this. In 1999 she held everything close, gave nothing away &#x2014; that was how you survived the studio. But in this version she set it down and looked at me directly.</p>
 
         <p>Something in me registered that was not memory. Prior to memory. Beneath it.</p>
 
@@ -470,7 +480,7 @@
 
         <p>I considered this.</p>
 
-        <p><em>The woman on the bicycle,</em> I said. <em>Sikhio. When I was five.</em></p>
+        <p><em>The woman on the bicycle,</em> I said. <em>My hometown. When I was five.</em></p>
 
         <p>She went very still.</p>
 
@@ -484,17 +494,17 @@
 
         <p><em>The system doesn&#x2019;t erase everything between runs. It can&#x2019;t. Some things travel through. The body knows what the mind is not supposed to remember.</em></p>
 
-        <p>I was five years old. I stood at a gate in Sikhio and felt &#x2014; for the first and not the last time &#x2014; that the world contained a person I had already known for a very long time, in a place I could not name. My brother laughed. He thought I had a crush on the vegetable seller.</p>
+        <p>I was five years old. I stood at a gate in my hometown and felt &#x2014; for the first and not the last time &#x2014; that the world contained a person I had already known for a very long time, in a place I could not name. My brother laughed. He thought I had a crush on the vegetable seller.</p>
 
         <p>He could not have known what he was laughing at.</p>
 
-        <p><em>Every time,</em> I said. <em>The university crowd. Tokyo. Singapore. Pui, in 1998. The same frequency. Was it always you?</em></p>
+        <p><em>Every time,</em> I said. <em>The university crowd. Tokyo. Singapore. Pui, in 1999. The same frequency. Was it always you?</em></p>
 
         <p>She considered this honestly. <em>Not always. But often enough that you learned to recognise it &#x2014; without knowing that&#x2019;s what you were doing. The system didn&#x2019;t account for that. It&#x2019;s not supposed to be possible to find the same person across runs.</em></p>
 
         <p><em>But I did.</em></p>
 
-        <p><em>You&#x2019;re getting faster.</em> And for the first time &#x2014; in this dream, in this studio that was not quite 1998 &#x2014; she smiled. Something small. Something that had been waiting a long time. <em>A little faster each time.</em></p>
+        <p><em>You&#x2019;re getting faster.</em> And for the first time &#x2014; in this dream, in this studio that was not quite 1999 &#x2014; she smiled. Something small. Something that had been waiting a long time. <em>A little faster each time.</em></p>
 
         <p>She was already going. Not leaving &#x2014; thinning. The studio still there, the amber-grey light still there, but her presence dissolving at the edges the way a signal fades past the transmitter.</p>
 
@@ -512,7 +522,7 @@
 
         <p>Already going. The body takes what it cannot store. The mind clears it like a debt it cannot carry.</p>
 
-        <p>What stayed: a woman on a bicycle in Sikhio. Thirty years ago. Her face at our gate. I had been five years old and felt something I could not name.</p>
+        <p>What stayed: a woman on a bicycle from my childhood. Thirty years ago. Her face at our gate. I had been five years old and felt something I could not name.</p>
 
         <p>I can name it now.</p>
 
@@ -566,11 +576,16 @@
       var pages=track.querySelectorAll('.ch-page');
       var cur=0;
       var LABELS=['chapter · i','chapter · ii','chapter · iii'];
+      function setVpH(){
+        var vp=document.querySelector('.ch-viewport');
+        if(vp&&pages[cur]) vp.style.height=pages[cur].scrollHeight+'px';
+      }
       function goTo(n){
         if(n<0||n>=pages.length) return;
         cur=n;
         track.style.transform='translateX(-'+cur*100+'%)';
-        pages[cur].scrollTop=0;
+        var nc=document.querySelector('.col.novel');if(nc)nc.scrollTop=0;
+        requestAnimationFrame(setVpH);
         prevBtn.disabled=cur===0;
         nextBtn.disabled=cur===pages.length-1;
         if(posEl) posEl.textContent=LABELS[cur]||'';
@@ -591,6 +606,7 @@
         var dy=e.changedTouches[0].clientY-sy;
         if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>50){goTo(dx<0?cur+1:cur-1);}
       },{passive:true});
+      window.addEventListener('load',setVpH);
       goTo(0);
     }
   })();
