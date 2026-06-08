@@ -79,9 +79,9 @@
     .col.novel{padding:0;overflow:hidden;display:flex;flex-direction:column;}
     .ch-header{flex-shrink:0;padding:1.2rem clamp(1.1rem,3vw,2.2rem) 0.8rem;border-bottom:1px solid var(--rule);}
     .ch-header .ch-nav{margin:0.8rem 0 0;}
-    .ch-viewport{flex:1;overflow:hidden;min-height:0;}
-    .ch-track{display:flex;align-items:flex-start;height:100%;will-change:transform;transition:transform 0.38s cubic-bezier(0.4,0,0.2,1);}
-    .ch-page{flex:0 0 100%;width:100%;height:auto;max-height:100%;overflow-y:auto;padding:1.4rem clamp(1.1rem,3vw,2.2rem) 2.5rem;-webkit-overflow-scrolling:touch;}
+    .ch-viewport{flex:0 0 auto;overflow:hidden;}
+    .ch-track{display:flex;align-items:flex-start;will-change:transform;transition:transform 0.38s cubic-bezier(0.4,0,0.2,1);}
+    .ch-page{flex:0 0 100%;width:100%;overflow-y:auto;padding:1.4rem clamp(1.1rem,3vw,2.2rem) 2.5rem;-webkit-overflow-scrolling:touch;}
     .ch-pgnav{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0.65rem clamp(1.1rem,3vw,2.2rem);border-top:1px solid var(--rule);}
     .ch-pgbtn{font-family:var(--mono);font-size:0.5625rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--soft);background:none;border:none;cursor:pointer;padding:0;min-height:44px;display:flex;align-items:center;}
     .ch-pgbtn:hover:not([disabled]){color:var(--amber);}
@@ -192,6 +192,37 @@
       </div>
 
       <div class="entry">
+        <p class="when">The City That Replaced Bangkok &middot; Before</p>
+        <div class="prose">
+          <p>She had seen him in the corridor three times before they spoke. This is typical of 3026. Spatial proximity and social distance coexist without contradiction. You can live beside someone for a year and achieve something that looks exactly like not knowing them.</p>
+
+          <p>The first time, she was carrying a supplement pack. He was looking at his hands in a way she recognized.</p>
+
+          <p>The second time, he was at the window at 4am. She does not know why she was also at the window at 4am. The city outside is always the same. The machine has decided that light variation is suboptimal, so the city holds an even 6000 Kelvin at all hours. The only exception is between three and five in the morning, when usage drops and the streets dim slightly. He was watching this. She was watching this. Neither of them said anything.</p>
+
+          <p>The third time, he asked her when she was planning to go back.</p>
+
+          <p>He meant the hub. Everyone means the hub.</p>
+
+          <p>She said she had not decided. He said he had been thinking of going back soon. She asked what version of the world he had been in. He said 2026, Bangkok. She said she had been in the same run. He said he knew. She asked how. He said: you were the one on the bicycle.</p>
+
+          <p>She had not expected him to say that.</p>
+
+          <p>You are only ever assigned roles in the simulation. The role is played by you but it is not you &#x2014; the machine decides the assignment based on whatever it is modeling. She had not chosen to be the vegetable seller. She had not known he would be the boy at the gate. She had been in character, fully, as the machine requires. But something had passed through the role anyway. Something that the machine logs as an anomaly and she logs as the reason she keeps going back.</p>
+
+          <p>She asked him: what did you feel?</p>
+
+          <p>He said: I recognized you.</p>
+
+          <p>She picked up her supplement. She said she would probably go back next week.</p>
+
+          <p>He said: I&#x2019;ll be in forty-four.</p>
+
+          <p>She went back the following Thursday.</p>
+        </div>
+      </div>
+
+            <div class="entry">
         <p class="when">The Hub &middot; Room 7 &middot; The Panel</p>
         <div class="prose">
           <p>The panel beside his chair displays one number.</p>
@@ -576,6 +607,19 @@
       var pages=track.querySelectorAll('.ch-page');
       var cur=0;
       var LABELS=['chapter · i','chapter · ii','chapter · iii'];
+      function setVpH(){
+        var vp=document.querySelector('.ch-viewport');
+        var novel=document.querySelector('.col.novel');
+        var hdr=document.querySelector('.ch-header');
+        var nav=document.querySelector('.ch-pgnav');
+        if(!vp||!novel||!hdr||!nav||!pages[cur]) return;
+        pages[cur].style.height='';
+        var avail=novel.clientHeight-hdr.offsetHeight-nav.offsetHeight;
+        var content=pages[cur].scrollHeight;
+        var h=Math.min(content,Math.max(avail,80));
+        vp.style.height=h+'px';
+        pages[cur].style.height=h+'px';
+      }
       function goTo(n){
         if(n<0||n>=pages.length) return;
         cur=n;
@@ -587,6 +631,7 @@
         document.querySelectorAll('.ch-nav-item').forEach(function(a,i){
           a.style.color=i===cur?'var(--amber)':'';
         });
+        requestAnimationFrame(setVpH);
       }
       prevBtn.addEventListener('click',function(){goTo(cur-1);});
       nextBtn.addEventListener('click',function(){goTo(cur+1);});
@@ -602,6 +647,8 @@
         if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>50){goTo(dx<0?cur+1:cur-1);}
       },{passive:true});
       goTo(0);
+      window.addEventListener('load',setVpH);
+      window.addEventListener('resize',function(){requestAnimationFrame(setVpH);});
     }
   })();
 
