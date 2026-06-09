@@ -144,6 +144,34 @@
       --rule:#21262d;
     }
 
+
+    /* ── FIX: dark-column color inheritance ──────────────────────────────────
+       CSS custom props don't auto-inherit computed values. Declaring
+       color:var(--ink) on the container forces re-resolution with the
+       locally-scoped --ink (#c9d1d9), which then cascades to every child.  */
+    .col.record{ color:var(--ink); }
+    #ch10{ color:var(--ink); }
+
+    /* ── LARGER PROSE ─────────────────────────────────────────────────────── */
+    .prose p{
+      font-size:1.3125rem;
+      line-height:1.84;
+    }
+    .col.record .prose p{
+      font-size:1.125rem;
+      line-height:1.80;
+    }
+
+    /* ── 3026 ARTWORK: visible frame + tighter entry spacing ──────────────── */
+    .col.record .ch-art{
+      border-color:#2e3d50;
+      margin-bottom:2rem;
+    }
+    .col.record .ch-art figcaption{
+      color:#5a6e80;
+      border-top-color:#2e3d50;
+    }
+
   </style>
 </head>
 <body>
