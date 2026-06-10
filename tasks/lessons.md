@@ -2,6 +2,12 @@
 
 The same mistake never happens twice. Read at the start of every session.
 
+## 2026-06-08 · Edit tool corrupts HTML attribute delimiter quotes to U+201D
+
+- **What went wrong:** The Edit tool silently converts ASCII straight double quotes (`"`, U+0022) to typographic RIGHT DOUBLE QUOTATION MARK (`"`, U+201D) when they appear as HTML attribute value delimiters in replacement strings. This caused: (1) `class="prose"` not parsed by browser → CSS `.prose p` rules didn't match → no paragraph spacing, asked about multiple times. (2) `href="javascript:void(0)"` rendered as literal URL path `"javascript:void(0)"` → 404 on every click. (3) `id="ch1-audio"` and `id="ch1-play"` not parsed → `getElementById` returned null → JS guard returned early → no click handler added.
+- **Correct behaviour:** Never use the Edit tool for HTML attribute values. Use Python `open/read/write` for any HTML attribute edits — byte-level replacement avoids the encoding conversion. Pattern: `content.replace(chr(0x201D), '"')` to fix retrospectively.
+- **How to recognise:** User reports a button click navigates to a 404 with a URL like `100.nonarkara.org/"something"` (literal quote chars in URL). Or CSS styles stop applying to a newly edited section. Hex-dump the file: `\xe2\x80\x9d` bytes where `\x22` should be is the signature. Fix with Python byte replacement, not Edit tool.
+
 ## 2026-05-31 · Claude_Preview proxies ONE origin — navigate with relative paths, screenshot without fullPage
 
 - **What went wrong:** Wasted several cycles trying to screenshot a deep page (`/workshop/`). `preview_start` ignores a plain background `python -m http.server` (shows "Awaiting server…") and instead spins up its OWN proxy on :4242 bound to a single origin. `preview_start({url:'.../workshop/'})` and `preview_eval(location.href='https://…/workshop/')` both kept showing the site ROOT — absolute cross-origin navigations don't take. `fullPage:true` screenshots appeared to reload the page and reset JS tab-state to default.
