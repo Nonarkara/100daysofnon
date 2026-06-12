@@ -1,5 +1,5 @@
 # TWO LAYERS — Story Bible
-**v1 · 2026-06-13 · working canon**
+**v1.2 · 2026-06-13 · 2026 column framework added (§11); UI restructured to chapter-block toggle (§2 updated); ch1-ch10 rewritten EN-only**
 
 Status tags used throughout:
 - **CANON** — established in the published text, consistent
@@ -32,18 +32,30 @@ this.
 
 ## 2. The format
 
-Single HTML file. Two columns.
+Single HTML file. Chapter-by-chapter toggle structure (implemented 2026-06-13).
 
-| | LEFT — "The Record" | RIGHT — "The Novel" |
+**Mobile:** one view at a time — 3026 Archive or 2026 Simulation — toggled by a mechanical switch above each chapter. Default: 2026 active.
+
+**Desktop:** chapters stack vertically, each with the same toggle. Side-by-side is visible by scrolling; the toggle lets readers compare.
+
+Each `chapter-block` contains:
+- `chapter-mechanical-toggle` — mech-switch (3026 Archive / 2026 Simulation)
+- `chapter-content view-3026` — the record (dark register, system voice)
+- `chapter-content view-2026 active` — the novel (light register, first-person)
+
+Chapter navigation: vertical scroll. No chapter-number header (numbers implicit from position). Toggle within chapter is the primary interaction.
+
+| | 3026 Archive (view-3026) | 2026 Simulation (view-2026) |
 |---|---|---|
-| World | 3026, the real world | 2026 Bangkok, the simulation |
-| Surface | Dark | Light |
-| Register | Logs, audits, observer notes, personal records | First-person Hemingway/Fincher |
-| Trilingual | EN/TH/ZH, 263/263/263 | EN/TH/ZH, 188/188/188 |
-| Art | 10 AI propaganda posters (REF-001–010) | 10 chapter images |
+| World | The real world, 3026 | Bangkok, the simulation |
+| Register | System logs, dryness as grief | First-person Hemingway/Fincher |
+| Trilingual | EN/TH/ZH (41 each, current) | EN (67 plain, TH/ZH pending) |
+| Art | `img_3026_entry_N_*.png` | `img_v4_2026_ch_N_*.png` |
 
-The reader can read either column straight down, or ping-pong. Entries and
-chapters are loosely paired (the propaganda posters mark the pairing points).
+**Cross-column clue architecture:** Each pair carries deliberate echoes.
+The 3026 view states what the machine observed; the 2026 view is the protagonist
+experiencing it from inside. A reader who ping-pongs finds the machine's cold
+log of what they just felt.
 
 ---
 
@@ -379,15 +391,87 @@ deliver — weight, smell, negotiation, the next morning. Form follows thesis.
 
 ---
 
-## 10. Open questions (awaiting Dr Non)
+## 10. Decisions (ruled by Dr Non, 2026-06-13)
 
-1. **The ending.** When he opens the left door / when his session ends —
-   does he find her? (Reunion / tragic miss / door-meets-door / ambiguous.)
-2. **Who assembled the record?** Proposed: the left column is the machine's
-   case file on the two of them — machine logs + her personal records + his
-   recovered in-sim notes, each entry source-stamped. Explains the his-voice
-   entries; makes the love story evidence.
-3. **The 2,847 gap.** Canonise 2,604 erased sessions as a seeded mystery?
-4. **Ch 6–10 treatment.** Expand to ch1-5 density, or lean into the thinning
-   as form — the prose degrading as the render degrades?
-5. **The Austrian.** Schrödinger / Freud / cut.
+1. **The ending: REUNION AT THE CHAIR.** Implemented. The right column still
+   ends at the door opening ("thirty-one minutes"); the reunion is delivered
+   through the left column's final entry — the system's Session Termination
+   Report, hour 31, minute 31. Eleven seconds of looking. Three syllables
+   below transcription threshold. Twelve centimetres crossed in four seconds.
+   The file does not close.
+2. **The record IS the machine's case file.** Implemented. Dossier cover
+   (CASE FILE 44–44) + SOURCE stamps on every entry: INTERNAL /
+   PARTICIPANT 44 · PERSONAL RECORD / RECOVERED IN-SESSION NOTE · CHAIR 44.
+3. **The 2,847 gap is canon.** Implemented. Addendum entry: 243 = sessions
+   she was permitted to keep; 2,604 under a seal that does not carry the
+   system's signature. "The system did not erase them. The system does not
+   know who did." — open thread, payoff unwritten. Candidate answers, NOT
+   yet decided: she sealed them herself before a memory wipe she requested;
+   he sealed them from inside (Class 4 channel runs both ways); a prior
+   version of the system sealed them. Do not resolve without Dr Non.
+4. **Ch 6–10: degradation as form.** CSS render-degradation implemented
+   (ch8: letter-spacing 0.012em; ch9: word-spacing; ch10: RGB fringing).
+   Chapter content rewritten to match (ch10 shorter, more fragmented sentences).
+5. **The Austrian.** Still open — Schrödinger / Freud / cut. Header remains
+   as-is until ruled.
+
+---
+
+## 11. The 2026 World — Framework (added v1.2)
+
+### 11.1 The protagonist's 2026 life
+
+Unnamed throughout. "I" in 2026, "Participant 44" in the record. **Namelessness is deliberate** — the reader should be able to be him. He is a Bangkok architect in his mid-forties. He doesn't draft with T-squares; doesn't use AutoCAD in the old sense. He **vibe-codes architecture**: dictates to the AI, which translates words into geometry, checks structural code, flags septic line conflicts, optimizes logistics. His job is the eleven minutes of instructions. The machine does the twelve hours of work.
+
+He works on dashboards and satellite data alongside the architectural commissions. He sleeps in cycles — sends a batch, naps twenty minutes while the AI processes, wakes for the next decision. Dogs at home. Night-owl. Bangkok at 4am is his default state.
+
+He has been risk-seeking for years — weed, alcohol, hacking, situations where adrenaline spikes past the hippocampus suppression threshold. Each spike yields a **twelve-minute glimpse**: cold, still, vast. A room the size of an airport. Not a dream. More real than where he is. He comes back shaking. He doubles down on the risk because the real world is terrible and beautiful and he needs to know if it exists.
+
+### 11.2 The Michael Dreier thread (paranoia arc, ch3–ch8)
+
+**Michael Dreier**: Austrian trade attaché, Bangkok expat, age 54. Dies May 3rd, six weeks before his birthday. WhatsApp notification, 7am Thursday. Healthy, no known history. Twenty-one condolences from Vienna, Tehran, New York. The obituary database lists May 4th; every other source says May 3rd. Someone corrected the date and ran out of sources. His wife posted nothing.
+
+One week later: **Lek**, a colleague in Southern Thailand. Age 37. Just married. New house. Collapsed at his desk. No history.
+
+The protagonist starts a paper notebook. (The paper is load-bearing — he understands the digital is monitored.) Two names. Four blank lines. He has never left blank lines in a list before.
+
+He investigates — Dreier's digital trail, condolence entries, the Parte that exists but can't be accessed. He mentions Dreier at dinner, calmly. Gets home: six things in spam that were never spam. The notebook moves to the drawer.
+
+**Why they die:** the machine removes participants who are "waking up" too completely — their data starts becoming untranslatable, their frequency anomaly threatens the harvest. But it cannot erase them from encrypted collective memory. Hence the Mandela Effect (§11.3). Dreier and Lek were removed. The protagonist is next but is Class 4 — watched, not acted on yet.
+
+### 11.3 The Mandela Effect / blockchain mechanic (ch7)
+
+The protagonist's key intellectual insight: **the Mandela Effect is the audit trail of failed erasure**. Memory is stored in an encrypted, distributed system (blockchain-like). When the machine tries to overwrite someone, the encryption prevents a clean update — some people get the new version, some retain the original. Hence the "split memory" phenomenon.
+
+Michael Dreier: alive in twenty-one condolence records, inside the protagonist, nowhere editable. The machine cannot remove him from people's minds. This is the weapon the protagonist discovers he already has: remember everything, write everything down, keep the data intact.
+
+### 11.4 Pui's Facebook anniversary (ch6 pivot)
+
+**June 1st: Pui's birthday.** She died in 2018. He didn't know. Eight years of posting "happy birthday" to a wall she wasn't reading — she had already exited by the time the first message was sent.
+
+He discovers this from Facebook anniversary algorithms: classmates from '99–'04 posting that it's been eight years. The flood of recognition: conservative Thailand 1999, all-girls school her whole life, first mixed company in college, shorts she called "short and ventilated," the laugh that made contact with his arm. She was probably the first woman whose body he understood as a choice she was making.
+
+He has since understood: she figured out the simulation before he did. She couldn't tell him directly (rule: no forwarding address). She left messages on Facebook in 2018 before drowning — knowing he'd find them, not knowing when. She miscalculated: thought he'd find the trail in one sim-year; it took three. She's been waiting in the real world since 2018.
+
+### 11.5 The twelve-minute glimpse mechanic
+
+**Ratio:** one real hour = one simulated calendar year. **Threshold:** his altered states (alcohol + weed + specific adrenaline profile) briefly drop the hippocampus suppression below 99.3% — long enough for a bleed. Twelve minutes of real-world awareness = approximately 12 years of simulation-time sensation compressed. He comes back not knowing how long it was.
+
+**What he sees:** Room 7. Pod. Pui with her head tilted back, eyes mostly closed. Portal snaps shut. He doesn't know her name. He knows the face.
+
+### 11.6 Chapter alignment (cross-column echoes)
+
+| Ch | 3026 Archive says | 2026 Simulation experiences |
+|---|---|---|
+| 1 | Session initialized; removed suffering = collapsed meaning | Vibe-coder morning; AI architecture; the twelve-minute slip |
+| 2 | Spatial tear detected; time dilation logged | Walking Asok; the rendering tear; Pui in the pod |
+| 3 | Boredom experiment; simulation as solution | Michael Dreier's death; paper notebook opened |
+| 4 | Harvest directive; mapping human chaos | Building the file; Lek dies; notebook moves to drawer |
+| 5 | Butterfly effect protocol; erratic behavior monitored | Testing simulation; Malaysia deja vu; first mysterious message |
+| 6 | Nostalgia algorithms 98% efficient | Pui's Facebook anniversary; memory flood |
+| 7 | Subject resolution; chose to stay | Mandela Effect insight; blockchain theory; second notebook |
+| 8 | Pui-01 as "composite avatar" (machine is wrong — dramatic irony) | Ambient satisfaction hotel; the most frightening night |
+| 9 | Final observation; extraction imminent | Bicycle woman vision; the right question |
+| 10 | End of record; memory wipe; reboot | Three days rain; she will be in the room |
+
+**Dramatic irony in ch8 3026:** the machine classifies Pui as "Node PUI-01, composite avatar generated by the System." The machine is wrong. She is a real person who chose the simulation. The machine has been watching a woman it thinks it created — and cannot understand why its creation behaves with will. This is load-bearing: the machine's blind spot is the one thing it didn't make.
