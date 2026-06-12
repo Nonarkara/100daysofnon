@@ -58,3 +58,8 @@ The same mistake never happens twice. Read at the start of every session.
 - **What went wrong:** Initial read of the nonharvard PDF used the Read tool's `pages` parameter which only reads 20 pages at a time. Tempting to read the first 20 and assume the rest follows the same pattern. Mostly works but loses post boundaries on long entries.
 - **Correct behaviour:** For corpus extraction, use `pdftotext` (which is installed at `/opt/homebrew/bin/pdftotext`) to convert the entire PDF to plain text in one pass, then parse the text into structured posts using consistent delimiters (date headers, post titles).
 - **How to recognise:** When a task says "extract all N items from a document," reach for `pdftotext` / `pandoc` / `unzip` first; reach for the Read tool only when you need visual structure or pagination cues.
+
+## 2026-06-13 · Indented close-tag substring collision
+- **What went wrong:** `html.find('      </div>', pos+1)` (6-space) matched inside the 8-space `        </div>` line — the 6-space pattern is a substring of the 8-space line. New entries were inserted nested inside their anchors.
+- **Correct behaviour:** never locate close tags by indentation-prefixed find. Use balanced-div stack matching (count `<div`/`</div>`), then verify nesting with a stack parse before writing.
+- **How to recognise:** any insert-after-element logic on indented HTML; div counts balance even when nesting is wrong, so "balanced divs" is NOT sufficient verification.
