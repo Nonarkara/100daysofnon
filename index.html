@@ -32,7 +32,7 @@
     .vtoggle button[aria-selected="true"]{background:var(--amber);color:var(--paper);font-weight:700;}
 
     .split{flex:1 1 auto;display:flex;min-height:0;max-width:74rem;width:100%;margin:0 auto;}
-    .col{flex:1 1 0;min-height:0;overflow-y:auto;padding:1.6rem clamp(1.1rem,3vw,2.2rem) 4rem;}
+    .col{flex:1 1 50%;min-width:0;min-height:0;overflow-y:auto;padding:1.6rem clamp(1.1rem,3vw,2.2rem) 4rem;}
     .col.record{border-right:1px solid var(--rule);}
 
     .col-head{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;color:var(--ink);}
@@ -63,7 +63,7 @@
     .prose hr{border:none;border-top:1px solid var(--rule);margin:2.2rem 0;}
     .ch-nav{margin:0 0 1.6rem;border-left:1px solid var(--rule);padding-left:0.9rem;display:grid;grid-template-columns:1fr 1fr;gap:0.25rem 1rem;}
     .ch-nav-label{display:none;font-family:var(--mono);font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--faint);margin-bottom:0.45rem;}
-    .ch-nav-item{display:inline-block;white-space:nowrap;background:var(--rule);padding:0.3rem 0.6rem;border-radius:4px;font-family:var(--mono);font-size:0.5625rem;letter-spacing:0.08em;color:var(--soft);text-decoration:none;padding:0.25rem 0;}
+    .ch-nav-item{display:inline-block;white-space:nowrap;background:var(--rule);font-family:var(--mono);font-size:0.5625rem;letter-spacing:0.08em;color:var(--soft);text-decoration:none;padding:0.25rem 0;}
     .ch-nav-item:hover{color:var(--amber);}
 
     /* audio narration player */
@@ -83,7 +83,7 @@
     .ch-header .ch-nav{margin:0.8rem 0 0;display:flex;overflow-x:auto;gap:0.5rem;padding-bottom:0.5rem;scrollbar-width:none;}
     .ch-header .ch-nav::-webkit-scrollbar{display:none;}
     .ch-viewport{flex:0 0 auto;overflow:hidden;}
-    .ch-track{display:flex;align-items:flex-start;will-change:transform;transition:transform 0.38s cubic-bezier(0.4,0,0.2,1);}
+    .ch-track{display:flex;align-items:flex-start;will-change:transform;}
     .ch-page{flex:0 0 100%;width:100%;overflow-y:auto;padding:1.4rem clamp(1.1rem,3vw,2.2rem) 2.5rem;-webkit-overflow-scrolling:touch;}
     .ch-pgnav{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0.65rem clamp(1.1rem,3vw,2.2rem);border-top:1px solid var(--rule);}
     .ch-pgbtn{font-family:var(--mono);font-size:0.5625rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--soft);background:none;border:none;cursor:pointer;padding:0;min-height:44px;display:flex;align-items:center;}
@@ -105,8 +105,8 @@
       .split{display:block;}
       .col{overflow:visible;max-height:none;border-right:0;}
       .col.record{border-bottom:1px solid var(--rule);}
-      .split[data-view="record"] .col.novel{display:none;}
-      .split[data-view="novel"] .col.record{display:none;}
+      .split[data-view="record"] .col.novel{display:none !important;}
+      .split[data-view="novel"] .col.record{display:none !important;}
     }
 
     /* ── 3026: DARK INSTITUTIONAL RECORD ─────────────────────────────────── */
@@ -282,7 +282,6 @@
         text-transform: uppercase;
         padding: 0.2rem 0.5rem;
         cursor: pointer;
-        transition: all 0.2s;
         letter-spacing: 0.1em;
     }
     .lang-btn.active {
@@ -370,99 +369,31 @@
 #ch9 .prose p{letter-spacing:0.026em;word-spacing:0.05em;}
 #ch10 .prose p{letter-spacing:0.045em;word-spacing:0.08em;text-shadow:0.5px 0 rgba(255,0,60,0.16),-0.5px 0 rgba(0,180,255,0.16);}
 
-    /* ═══════════════════════════════════════════════════════════════════════
-       TERMINAL & THE GLITCH — Redesign Frame 
-       ═══════════════════════════════════════════════════════════════════════ */
-    body, html {
-        background: #080a0f !important;
-        background-image: radial-gradient(circle at 50% 50%, #111520 0%, #040508 100%) !important;
-    }
-    
-    .split {
-        max-width: 88rem !important;
-        margin: 2rem auto 3rem !important;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.08) !important;
-        background: #0d1117; 
-        height: calc(100vh - 5rem) !important;
-        display: flex !important;
-    }
 
-    /* 3026 Side */
-    .col.record {
-        background: #0d1117 !important;
-        border-right: 1px solid rgba(255,255,255,0.05) !important;
-        box-shadow: inset -15px 0 30px rgba(0,0,0,0.3);
+    /* ── RESEARCH SIDEBAR ────────────────────────────────────────────────── */
+    .research-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+      z-index: 998; opacity: 0; pointer-events: none; transition: opacity 0.3s;
     }
-
-    /* 2026 Side */
-    .col.novel {
-        /* Remove the background rule to let chapter moods show, or set a base */
-        background: #f4f1eb;
-        --ink: #1c1a17;
-        --soft: #6e6a5e;
-        --faint: #a19d91;
-        --rule: rgba(0,0,0,0.1);
-        --paper: #f4f1eb;
-        --amber: #c55a11;
-        box-shadow: inset 10px 0 20px rgba(0,0,0,0.05);
+    .research-overlay.open { opacity: 1; pointer-events: auto; }
+    .research-sidebar {
+      position: fixed; top: 0; right: -420px; bottom: 0; width: 400px; max-width: 85vw;
+      background: #0d1117; border-left: 1px solid var(--rule); z-index: 999;
+      padding: 2rem; overflow-y: auto; transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      color: #c9d1d9;
     }
-    
-    /* Enforce the new colors on the chapter header */
-    .col.novel .ch-header {
-        background: #f4f1eb;
-        border-bottom: 1px solid var(--rule);
-    }
-
-    /* Mobile toggle */
-    .vtoggle {
-        background: rgba(255,255,255,0.05) !important;
-        border: 1px solid rgba(255,255,255,0.1) !important;
-        border-radius: 8px;
-        overflow: hidden;
-        margin: 1.5rem auto 1rem !important;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-    }
-    .vtoggle button {
-        color: #8b949e !important;
-        border-right: 1px solid rgba(255,255,255,0.1) !important;
-    }
-    .vtoggle button[aria-selected="true"] {
-        background: #f0a030 !important;
-        color: #0d1117 !important;
-        font-weight: bold;
-    }
-
-    /* Scrollbars */
-    .col::-webkit-scrollbar {
-        width: 8px;
-    }
-    .col::-webkit-scrollbar-track {
-        background: transparent;
-    }
-    .col.record::-webkit-scrollbar-thumb {
-        background: rgba(255,255,255,0.15);
-        border-radius: 4px;
-    }
-    .col.novel::-webkit-scrollbar-thumb {
-        background: rgba(0,0,0,0.15);
-        border-radius: 4px;
-    }
-
-    @media (max-width:860px) {
-        .split {
-            margin: 0 !important;
-            height: auto !important;
-            min-height: 100vh !important;
-            border-radius: 0 !important;
-            border: none !important;
-            box-shadow: none !important;
-        }
-        .col.record { box-shadow: none; border-right: none !important; }
-        .col.novel { box-shadow: none; }
-    }
+    .research-sidebar.open { right: 0; }
+    .research-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+    .research-header h2 { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--amber); margin: 0; }
+    .research-header button { background: none; border: none; color: var(--soft); font-size: 1.8rem; cursor: pointer; padding: 0; line-height: 1; }
+    .research-header button:hover { color: #fff; }
+    .research-sort { display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 1px solid var(--rule); padding-bottom: 0.75rem; }
+    .rs-btn { background: none; border: none; color: var(--soft); font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; padding: 0; }
+    .rs-btn.active { color: var(--amber); font-weight: bold; }
+    .rs-item { margin-bottom: 1.8rem; }
+    .rs-item h3 { font-family: var(--serif); font-size: 1.1rem; color: #fff; margin: 0 0 0.4rem; }
+    .rs-item p { font-family: var(--serif); font-size: 0.95rem; line-height: 1.6; color: #8b949e; margin: 0; text-wrap: pretty;}
 
 </style>
 </head>
@@ -470,25 +401,26 @@
 
   <header class="lh">
     <div class="lh-row">
-      <div class="lang-toggle" style="margin-left:auto; display:flex; gap:0.5rem;">
-            <button class="lang-btn" data-lang="en">EN</button>
-            <button class="lang-btn" data-lang="th">TH</button>
-            <button class="lang-btn" data-lang="zh">ZH</button>
+      <div class="lang-toggle" role="group" aria-label="Language" style="margin-left:auto; display:flex; gap:0.5rem;">
+            <button class="lang-btn" type="button" data-lang="en" aria-pressed="false">EN</button>
+            <button class="lang-btn" type="button" data-lang="th" aria-pressed="false">TH</button>
+            <button class="lang-btn" type="button" data-lang="zh" aria-pressed="false">ZH</button>
         </div>
       <span class="mark">TWO&nbsp;<b>LAYERS</b></span>
       <span class="thesis">2026 on the right. 3026 on the left. one of them is real.</span>
       <a class="lh-back" href="/universe/">The Universe ↗</a>
     </div>
     <div class="vtoggle" role="tablist" aria-label="Layer">
-      <button id="v-rec" role="tab" aria-selected="true">3026</button>
-      <button id="v-nov" role="tab" aria-selected="false">2026</button>
+      <button id="v-rec" type="button" role="tab" aria-selected="true" aria-controls="record-panel" tabindex="0">3026</button>
+      <button id="v-nov" type="button" role="tab" aria-selected="false" aria-controls="novel-panel" tabindex="-1">2026</button>
+      <button id="v-res" type="button" role="tab" aria-selected="false" aria-controls="research-sidebar" tabindex="-1">RESEARCH</button>
     </div>
   </header>
 
   <div class="split" id="split" data-view="record">
 
     <!-- LEFT &#x2014; the 3026 layer -->
-    <section class="col record" aria-label="3026">
+    <section class="col record" id="record-panel" role="tabpanel" aria-labelledby="v-rec">
       <p class="col-head">3026 <span class="tag">&middot; The Real World</span></p>
       <p class="col-intro">One thousand years from now. The left side. Read this first. It will not make sense immediately. That is correct.</p>
 
@@ -1823,7 +1755,7 @@
     </section>
 
     <!-- RIGHT — the invented layer -->
-    <section class="col novel" aria-label="The Novel">
+    <section class="col novel" id="novel-panel" role="tabpanel" aria-labelledby="v-nov">
 
       <div class="ch-header">
         <p class="col-head">2026 <span class="tag">· Hard&nbsp;Mode</span></p>
@@ -1848,7 +1780,7 @@
       <div class="ch-page" id="ch1">
       <p class="ch-caption">Hard Mode &middot; Chapter One &middot; <b>the door is on the left</b></p>
       <p class="chapter-mark">Chapter One &#x2014; &#x201C;The Noiseless Kind&#x201D;</p>
-      <figure class="ch-art" style="margin: 1.5rem 0;"><img src="./images/v5_2026_ch_1.png" alt="2026 Scene" loading="lazy" style="width:100%; border-radius:4px; border:1px solid var(--rule);"></figure>
+      <figure class="ch-art" style="margin: 1.5rem 0;"><img src="./images/v5_2026_ch_1.png" alt="2026 Scene" loading="lazy"></figure>
       <div class="prose">
 <p lang="en">The apartment is exactly the right temperature. Not warm. Not cool. Just that weird baseline where your body completely forgets it exists. I've learned to be highly suspicious of this kind of comfort.</p>
 <p lang="th">อพาร์ตเมนต์มีอุณหภูมิที่พอดีเป๊ะ ไม่ร้อน ไม่เย็น แค่เส้นฐานแปลกๆ ที่ร่างกายลืมไปเลยว่าตัวเองมีตัวตนอยู่ ผมเรียนรู้ที่จะระแวงความสบายแบบนี้แบบสุดๆ</p>
@@ -1948,7 +1880,7 @@
       <div class="ch-page" id="ch2">
       <p class="ch-caption">Hard Mode &middot; Chapter Two &middot; <b>twelve minutes</b></p>
       <p class="chapter-mark">Chapter Two &#x2014; &#x201C;Twelve Minutes&#x201D;</p>
-      <figure class="ch-art" style="margin: 1.5rem 0;"><img src="./images/v5_2026_ch_2.png" alt="2026 Scene" loading="lazy" style="width:100%; border-radius:4px; border:1px solid var(--rule);"></figure>
+      <figure class="ch-art" style="margin: 1.5rem 0;"><img src="./images/v5_2026_ch_2.png" alt="2026 Scene" loading="lazy"></figure>
       <div class="prose">
 <p lang="en">Three days after the Facebook wall, I watched 'The Island'.</p>
 <p lang="th">สามวันหลังจากเห็นวอลล์เฟซบุ๊ก ผมดูหนังเรื่อง 'The Island'</p>
@@ -2051,7 +1983,7 @@
       <div class="ch-page" id="ch3">
       <p class="ch-caption">Hard Mode &middot; Chapter Three &middot; <b>the door on the left</b></p>
       <p class="chapter-mark">Chapter Three &#x2014; &#x201C;The Prior&#x201D;</p>
-      <figure class="ch-art" style="margin: 1.5rem 0;"><img src="./images/v5_2026_ch_3.png" alt="2026 Scene" loading="lazy" style="width:100%; border-radius:4px; border:1px solid var(--rule);"></figure>
+      <figure class="ch-art" style="margin: 1.5rem 0;"><img src="./images/v5_2026_ch_3.png" alt="2026 Scene" loading="lazy"></figure>
       <div class="prose">
 <p lang="en">The dream lasted longer than twelve minutes.</p>
 <p lang="th">ความฝันนั้นกินเวลานานกว่าสิบสองนาที</p>
@@ -2136,7 +2068,7 @@
       <div class="ch-page" id="ch4">
       <p class="ch-caption">Hard Mode &middot; Chapter Four &middot; <b>wrong frequency</b></p>
       <p class="chapter-mark">Chapter Four &#x2014; &#x201C;Signal Loss&#x201D;</p>
-      <figure class="ch-art" style="margin: 1.5rem 0;"><img src="./images/v5_2026_ch_4.png" alt="2026 Scene" loading="lazy" style="width:100%; border-radius:4px; border:1px solid var(--rule);"></figure>
+      <figure class="ch-art" style="margin: 1.5rem 0;"><img src="./images/v5_2026_ch_4.png" alt="2026 Scene" loading="lazy"></figure>
       <div class="prose">
 <p lang="en">I tried marijuana first.</p>
 <p lang="th">ผมลองใช้กัญชาก่อน</p>
@@ -2209,7 +2141,7 @@
       <div class="ch-page" id="ch5">
       <p class="ch-caption">Hard Mode &middot; Chapter Five &middot; <b>the feeling of want</b></p>
       <p class="chapter-mark">Chapter Five &#x2014; &#x201C;The Steak&#x201D;</p>
-      <figure class="ch-art" style="margin: 1.5rem 0;"><img src="./images/v5_2026_ch_5.png" alt="2026 Scene" loading="lazy" style="width:100%; border-radius:4px; border:1px solid var(--rule);"></figure>
+      <figure class="ch-art" style="margin: 1.5rem 0;"><img src="./images/v5_2026_ch_5.png" alt="2026 Scene" loading="lazy"></figure>
       <div class="prose">
 <p lang="en">She was asleep. I was looking at the ceiling.</p>
 <p lang="th">เธอหลับไปแล้ว ผมกำลังมองเพดาน</p>
@@ -2291,7 +2223,7 @@
       <div class="ch-page" id="ch6">
       <p class="ch-caption">Hard Mode &middot; Chapter Six &middot; <b>nodes</b></p>
       <p class="chapter-mark">Chapter Six &#x2014; &#x201C;The Attaché&#x201D;</p>
-      <figure class="ch-art" style="margin: 1.5rem 0;"><img src="./images/v5_2026_ch_6.png" alt="2026 Scene" loading="lazy" style="width:100%; border-radius:4px; border:1px solid var(--rule);"></figure>
+      <figure class="ch-art" style="margin: 1.5rem 0;"><img src="./images/v5_2026_ch_6.png" alt="2026 Scene" loading="lazy"></figure>
       <div class="prose">
 <p lang="en">The Attaché.</p>
 <p lang="th">อทาเช่</p>
@@ -2335,7 +2267,7 @@
       <div class="ch-page" id="ch7">
       <p class="ch-caption">Hard Mode &middot; Chapter Seven &middot; <b>are you sure?</b></p>
       <p class="chapter-mark">Chapter Seven &#x2014; &#x201C;The Test&#x201D;</p>
-      <figure class="ch-art" style="margin: 1.5rem 0;"><img src="./images/v5_2026_ch_7.png" alt="2026 Scene" loading="lazy" style="width:100%; border-radius:4px; border:1px solid var(--rule);"></figure>
+      <figure class="ch-art" style="margin: 1.5rem 0;"><img src="./images/v5_2026_ch_7.png" alt="2026 Scene" loading="lazy"></figure>
       <div class="prose">
 <p lang="en">The test was simple. Push the boundaries of the rendering engine.</p>
 <p lang="th">การทดสอบนั้นเรียบง่าย ผลักดันขีดจำกัดของเอนจิ้นที่ใช้เรนเดอร์โลกนี้</p>
@@ -2380,7 +2312,7 @@
       <div class="ch-page" id="ch8">
       <p class="ch-caption">Hard Mode &middot; Chapter Eight &middot; <b>the glitch</b></p>
       <p class="chapter-mark">Chapter Eight &#x2014; &#x201C;The Mira Loop&#x201D;</p>
-      <figure class="ch-art" style="margin: 1.5rem 0;"><img src="./images/v5_2026_ch_8.png" alt="2026 Scene" loading="lazy" style="width:100%; border-radius:4px; border:1px solid var(--rule);"></figure>
+      <figure class="ch-art" style="margin: 1.5rem 0;"><img src="./images/v5_2026_ch_8.png" alt="2026 Scene" loading="lazy"></figure>
       <div class="prose">
 <p lang="en">Kuala Lumpur. A glitzy rooftop bar. Chandeliers like disco balls.</p>
 <p lang="th">กัวลาลัมเปอร์ รูฟท็อปบาร์สุดหรู โคมไฟระย้าที่เหมือนกับดิสโก้บอล</p>
@@ -2418,7 +2350,7 @@
       <div class="ch-page" id="ch9">
       <p class="ch-caption">Hard Mode &middot; Chapter Nine &middot; <b>the pain</b></p>
       <p class="chapter-mark">Chapter Nine &#x2014; &#x201C;The Room&#x201D;</p>
-      <figure class="ch-art" style="margin: 1.5rem 0;"><img src="./images/v5_2026_ch_9.png" alt="2026 Scene" loading="lazy" style="width:100%; border-radius:4px; border:1px solid var(--rule);"></figure>
+      <figure class="ch-art" style="margin: 1.5rem 0;"><img src="./images/v5_2026_ch_9.png" alt="2026 Scene" loading="lazy"></figure>
       <div class="prose">
 <p lang="en">A sterile hotel shower stall. Thick cigarette smoke pulling into the fan. He sat facing Mira.</p>
 <p lang="th">ห้องอาบน้ำในโรงแรมที่ปลอดเชื้อ ควันบุหรี่หนาทึบถูกดูดเข้าไปในพัดลม เขานั่งเผชิญหน้ากับมิรา</p>
@@ -2467,7 +2399,7 @@
       <div class="ch-page" id="ch10">
       <p class="ch-caption">Hard Mode &middot; Chapter Ten &middot; <b>the realization</b></p>
       <p class="chapter-mark">Chapter Ten &#x2014; &#x201C;Thirty Minutes&#x201D;</p>
-      <figure class="ch-art" style="margin: 1.5rem 0;"><img src="./images/v5_2026_ch_10.png" alt="2026 Scene" loading="lazy" style="width:100%; border-radius:4px; border:1px solid var(--rule);"></figure>
+      <figure class="ch-art" style="margin: 1.5rem 0;"><img src="./images/v5_2026_ch_10.png" alt="2026 Scene" loading="lazy"></figure>
       <div class="prose">
 <p lang="en">Thirty-one minutes.</p>
 <p lang="th">สามสิบเอ็ดนาที</p>
@@ -2537,9 +2469,25 @@
   (function(){
     var split=document.getElementById('split');
     var rec=document.getElementById('v-rec'), nov=document.getElementById('v-nov');
-    function set(v){ split.setAttribute('data-view',v); rec.setAttribute('aria-selected',v==='record'); nov.setAttribute('aria-selected',v==='novel'); }
+    function set(v){
+      var showRecord=v==='record';
+      split.setAttribute('data-view',v);
+      rec.setAttribute('aria-selected',showRecord);
+      rec.tabIndex=showRecord?0:-1;
+      nov.setAttribute('aria-selected',!showRecord);
+      nov.tabIndex=showRecord?-1:0;
+    }
     rec.addEventListener('click',function(){set('record');});
     nov.addEventListener('click',function(){set('novel');});
+    [rec,nov].forEach(function(tab){
+      tab.addEventListener('keydown',function(e){
+        if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight'&&e.key!=='Home'&&e.key!=='End') return;
+        e.preventDefault();
+        var target=(e.key==='ArrowLeft'||e.key==='Home')?rec:nov;
+        set(target===rec?'record':'novel');
+        target.focus();
+      });
+    });
 
     // chapter pagination — swipe like a book
     var track=document.getElementById('ch-track');
@@ -2643,7 +2591,9 @@
         document.body.className = document.body.className.replace(/lang-\w+/, '');
         document.body.classList.add('lang-' + lang);
         document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.lang === lang);
+            const active = btn.dataset.lang === lang;
+            btn.classList.toggle('active', active);
+            btn.setAttribute('aria-pressed', active);
         });
         localStorage.setItem('novel_lang', lang);
     }
@@ -2651,11 +2601,27 @@
         const savedLang = localStorage.getItem('novel_lang') || 'en';
         document.body.classList.add('lang-' + savedLang);
         document.querySelectorAll('.lang-btn').forEach(btn => {
-            if(btn.dataset.lang === savedLang) btn.classList.add('active');
+            const active = btn.dataset.lang === savedLang;
+            btn.classList.toggle('active', active);
+            btn.setAttribute('aria-pressed', active);
             btn.addEventListener('click', () => setLang(btn.dataset.lang));
         });
     });
   </script>
+
+<div id="research-overlay" class="research-overlay"></div>
+<div id="research-sidebar" class="research-sidebar">
+  <div class="research-header">
+    <h2>Research & Lore</h2>
+    <button id="close-research">&times;</button>
+  </div>
+  <div class="research-sort">
+    <button class="rs-btn active" data-sort="chron">Order of Appearance</button>
+    <button class="rs-btn" data-sort="alpha">Alphabetical</button>
+  </div>
+  <div id="research-list" class="research-list"></div>
+</div>
+
 </body>
 
 </html>
