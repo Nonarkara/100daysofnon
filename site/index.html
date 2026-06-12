@@ -369,6 +369,101 @@
 #ch8 .prose p{letter-spacing:0.012em;}
 #ch9 .prose p{letter-spacing:0.026em;word-spacing:0.05em;}
 #ch10 .prose p{letter-spacing:0.045em;word-spacing:0.08em;text-shadow:0.5px 0 rgba(255,0,60,0.16),-0.5px 0 rgba(0,180,255,0.16);}
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       TERMINAL & THE GLITCH — Redesign Frame 
+       ═══════════════════════════════════════════════════════════════════════ */
+    body, html {
+        background: #080a0f !important;
+        background-image: radial-gradient(circle at 50% 50%, #111520 0%, #040508 100%) !important;
+    }
+    
+    .split {
+        max-width: 88rem !important;
+        margin: 2rem auto 3rem !important;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.08) !important;
+        background: #0d1117; 
+        height: calc(100vh - 5rem) !important;
+        display: flex !important;
+    }
+
+    /* 3026 Side */
+    .col.record {
+        background: #0d1117 !important;
+        border-right: 1px solid rgba(255,255,255,0.05) !important;
+        box-shadow: inset -15px 0 30px rgba(0,0,0,0.3);
+    }
+
+    /* 2026 Side */
+    .col.novel {
+        /* Remove the background rule to let chapter moods show, or set a base */
+        background: #f4f1eb;
+        --ink: #1c1a17;
+        --soft: #6e6a5e;
+        --faint: #a19d91;
+        --rule: rgba(0,0,0,0.1);
+        --paper: #f4f1eb;
+        --amber: #c55a11;
+        box-shadow: inset 10px 0 20px rgba(0,0,0,0.05);
+    }
+    
+    /* Enforce the new colors on the chapter header */
+    .col.novel .ch-header {
+        background: #f4f1eb;
+        border-bottom: 1px solid var(--rule);
+    }
+
+    /* Mobile toggle */
+    .vtoggle {
+        background: rgba(255,255,255,0.05) !important;
+        border: 1px solid rgba(255,255,255,0.1) !important;
+        border-radius: 8px;
+        overflow: hidden;
+        margin: 1.5rem auto 1rem !important;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    }
+    .vtoggle button {
+        color: #8b949e !important;
+        border-right: 1px solid rgba(255,255,255,0.1) !important;
+    }
+    .vtoggle button[aria-selected="true"] {
+        background: #f0a030 !important;
+        color: #0d1117 !important;
+        font-weight: bold;
+    }
+
+    /* Scrollbars */
+    .col::-webkit-scrollbar {
+        width: 8px;
+    }
+    .col::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .col.record::-webkit-scrollbar-thumb {
+        background: rgba(255,255,255,0.15);
+        border-radius: 4px;
+    }
+    .col.novel::-webkit-scrollbar-thumb {
+        background: rgba(0,0,0,0.15);
+        border-radius: 4px;
+    }
+
+    @media (max-width:860px) {
+        .split {
+            margin: 0 !important;
+            height: auto !important;
+            min-height: 100vh !important;
+            border-radius: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+        .col.record { box-shadow: none; border-right: none !important; }
+        .col.novel { box-shadow: none; }
+    }
+
 </style>
 </head>
 <body>
@@ -762,7 +857,7 @@
         <div class="prose">
           <figure class="ch-art ch-art--entry"><img src="./images/img_3026_entry_4_1781079412339.png" alt="Surreal 3026 artifact" loading="lazy"></figure>
 <p lang="en">Pui got up from her chair early.</p>
-<p lang="th">ปุ๋ยลุกจากเก้าอี้ของเธอไปก่อนเวลา</p>
+<p lang="th">ปุ้ยลุกจากเก้าอี้ของเธอไปก่อนเวลา</p>
 <p lang="zh">Pui早早地从椅子上起来了。</p>
 <p lang="en">In the simulation, she died in 2018. The official story is that she took her own life. Drowning in the sea. They found her body a day later.</p>
 <p lang="th">ในโลกเสมือน เธอตายในปี 2018 เรื่องราวที่เป็นทางการคือเธอจบชีวิตตัวเองด้วยการจมน้ำทะเล พวกเขาพบศพของเธอในวันรุ่งขึ้น</p>
@@ -1245,7 +1340,7 @@
 <p lang="th">มันเป็นแค่เกม เกมที่สมจริงและเต็มไปด้วยปาฏิหาริย์ทางเทคโนโลยี ซึ่งเล่นโดยสังคมของคนเป็นอมตะที่กำลังเบื่อหน่าย</p>
 <p lang="zh">这只是一场游戏。一场由一群无聊的不朽者所玩的、高度沉浸的、技术上创造奇迹的游戏。</p>
 <p lang="en">Pui understood this before I did. That is why she left her cryptic message on the Facebook wall. She knew none of the rules mattered once you realised there was a door.</p>
-<p lang="th">ปุ๋ยเข้าใจเรื่องนี้ก่อนผม นั่นเป็นเหตุผลว่าทำไมเธอถึงทิ้งข้อความปริศนาไว้บนเฟซบุ๊ก เธอรู้ว่ากฎเกณฑ์ต่างๆ จะไม่มีความหมายอะไรเลย ทันทีที่คุณตระหนักได้ว่ามีประตูทางออกอยู่</p>
+<p lang="th">ปุ้ยเข้าใจเรื่องนี้ก่อนผม นั่นเป็นเหตุผลว่าทำไมเธอถึงทิ้งข้อความปริศนาไว้บนเฟซบุ๊ก เธอรู้ว่ากฎเกณฑ์ต่างๆ จะไม่มีความหมายอะไรเลย ทันทีที่คุณตระหนักได้ว่ามีประตูทางออกอยู่</p>
 <p lang="zh">Pui比我更早明白了这一点。这就是为什么她在Facebook墙上留下了她那条神秘的信息。她知道一旦你意识到有一扇门，所有的规则都不重要了。</p>
 </div>
       </div>
@@ -1778,7 +1873,7 @@
 <p lang="th">ข้อความนั้นส่งมาเมื่อวันอังคาร</p>
 <p lang="zh">消息是在一个星期二发来的。</p>
 <p lang="en">Her name was Pui. Architecture school, twenty-five years back. She sat at the desk next to mine for five years. One of six women in a cohort of fifty-five. Funny. Exact. The kind of person who could make something incredibly interesting out of materials nobody else would even look at.</p>
-<p lang="th">เธอชื่อปุ๋ย คณะสถาปัตย์เมื่อยี่สิบห้าปีก่อน เธอนั่งโต๊ะติดกับผมมาตลอดห้าปี เป็นหนึ่งในผู้หญิงหกคนจากเพื่อนร่วมรุ่นห้าสิบห้าคน ตลกและเป๊ะ เป็นคนที่สามารถสร้างสิ่งที่น่าสนใจมากๆ จากวัสดุที่ไม่มีใครแม้แต่จะชายตามอง</p>
+<p lang="th">เธอชื่อปุ้ย คณะสถาปัตย์เมื่อยี่สิบห้าปีก่อน เธอนั่งโต๊ะติดกับผมมาตลอดห้าปี เป็นหนึ่งในผู้หญิงหกคนจากเพื่อนร่วมรุ่นห้าสิบห้าคน ตลกและเป๊ะ เป็นคนที่สามารถสร้างสิ่งที่น่าสนใจมากๆ จากวัสดุที่ไม่มีใครแม้แต่จะชายตามอง</p>
 <p lang="zh">她叫Pui。二十五年前的建筑学院。五年来她一直坐在我旁边的桌子。五十五人中仅有的六名女性之一。风趣。严谨。那种能用别人看都不看一眼的材料做出极其有趣东西的人。</p>
 <p lang="en">We weren't close. We were the kind of people who would have been, if either of us had known how to close that last ten centimetres.</p>
 <p lang="th">เราไม่ได้สนิทกัน เราเป็นคนประเภทที่น่าจะสนิทกันได้ ถ้าใครสักคนรู้วิธีที่จะลดระยะห่างสิบเซนติเมตรสุดท้ายนั้นลง</p>
@@ -1859,7 +1954,7 @@
 <p lang="th">สามวันหลังจากเห็นวอลล์เฟซบุ๊ก ผมดูหนังเรื่อง 'The Island'</p>
 <p lang="zh">在看到Facebook留言板的三天后，我看了电影《逃出克隆岛》。</p>
 <p lang="en">Not for the first time. I'd seen it when it came out, and on a long flight, and now a third time—alone, 11 PM, one screen—because something about Pui's last post made me want to watch a film about people who live in a perfect facility and don't know it.</p>
-<p lang="th">ไม่ใช่ครั้งแรก ผมเคยดูตอนที่มันเข้าฉาย และบนเที่ยวบินยาวๆ และนี่คือครั้งที่สาม—คนเดียว ตอนห้าทุ่ม จอเดียว—เพราะบางอย่างในโพสต์สุดท้ายของปุ๋ยทำให้ผมอยากดูหนังเกี่ยวกับคนที่อยู่ในศูนย์วิจัยที่สมบูรณ์แบบโดยไม่รู้ตัว</p>
+<p lang="th">ไม่ใช่ครั้งแรก ผมเคยดูตอนที่มันเข้าฉาย และบนเที่ยวบินยาวๆ และนี่คือครั้งที่สาม—คนเดียว ตอนห้าทุ่ม จอเดียว—เพราะบางอย่างในโพสต์สุดท้ายของปุ้ยทำให้ผมอยากดูหนังเกี่ยวกับคนที่อยู่ในศูนย์วิจัยที่สมบูรณ์แบบโดยไม่รู้ตัว</p>
 <p lang="zh">这不是第一次。刚上映时我看过，在漫长的航班上也看过，现在是第三次——晚上十一点，独自一人，盯着一个屏幕——因为Pui的最后一条帖子里的某些东西，让我想看一部关于生活在完美设施中却不自知的人们的电影。</p>
 <p lang="en">Two hundred clones. A white facility. The outside world is contaminated, they're told. Once a month, a lottery. The winner goes to The Island. Nobody who wins ever comes back, but the inside is comfortable enough.</p>
 <p lang="th">ร่างโคลนสองร้อยร่าง ศูนย์วิจัยสีขาว พวกเขาถูกบอกว่าโลกภายนอกปนเปื้อน เดือนละครั้งจะมีการจับสลาก ผู้ชนะจะได้ไปที่ The Island คนที่ชนะไม่เคยกลับมาเลย แต่ข้างในนั้นก็สะดวกสบายดีพอแล้ว</p>
@@ -1902,7 +1997,7 @@
 <p lang="th">ในวัยยี่สิบ: ความหิวโหยมีมหาศาลและภาษาที่ใช้ก็ยังไม่มาถึง คุณอยู่ต่อ คุณนั่งใกล้ๆ คุณทำงานจนถึงตีสาม คุณรู้สึกทุกอย่างแต่ไม่พูดอะไรเลย คุณกลับบ้านด้วยรถไฟขบวนเดียวกันและแยกย้ายกันที่ประตูด้วยระยะห่างที่ถูกต้องและระมัดระวัง</p>
 <p lang="zh">二十岁时：渴望是巨大的，而语言还未到来。你留下来。你坐得很近。你工作到凌晨三点。你感受到了一切，却什么也不说。你们坐同一趟火车回家，在门口以恰当而谨慎的距离道别。</p>
 <p lang="en">Pui's desk was next to mine.</p>
-<p lang="th">โต๊ะของปุ๋ยอยู่ติดกับผม</p>
+<p lang="th">โต๊ะของปุ้ยอยู่ติดกับผม</p>
 <p lang="zh">Pui的桌子就在我旁边。</p>
 <p lang="en">She had a laugh that involved her whole upper body. Mid-laugh, she occasionally made contact with my arm. My arm would not forget this for hours. I was not built for that kind of movement with people I had to see every day. So I stayed at my table and did the work and noticed, in the specific peripheral way of someone who has decided not to look directly, everything.</p>
 <p lang="th">เธอมีเสียงหัวเราะที่ต้องใช้ร่างกายท่อนบนทั้งหมด ระหว่างที่หัวเราะ บางครั้งเธอก็มาสัมผัสที่แขนของผม แขนของผมจะไม่ลืมสัมผัสนั้นไปอีกหลายชั่วโมง ผมไม่ได้ถูกสร้างมาให้รับมือกับการกระทำแบบนั้นกับคนที่ต้องเจอหน้ากันทุกวัน ผมจึงอยู่ที่โต๊ะของตัวเอง ทำงานต่อไป และสังเกตเห็นทุกสิ่งทุกอย่าง ผ่านหางตาเฉพาะตัวของคนที่ตัดสินใจแล้วว่าจะไม่มองตรงๆ</p>
@@ -1936,7 +2031,7 @@
 <p lang="th">ว่าไม่มีอะไรสำคัญเลย ไม่ใช่พอร์ตโฟลิโอ ไม่ใช่เกียรตินิยม ไม่ใช่ห้าปีของการเลือกอย่างระมัดระวัง ไม่ใช่อาชีพที่ผมกำลังจะเริ่มต้น ความเชื่อมั่นมาถึงอย่างสมบูรณ์ จากที่ไหนก็ไม่รู้—ไม่ใช่ความซึมเศร้า ความซึมเศร้าคือความว่างเปล่า แต่นี่คือความชัดเจนที่สมบูรณ์แบบจนรู้สึกได้ถึงทางร่างกาย ภาพลวงตาที่ซ้อนอยู่ในภาพลวงตา ลำดับเหตุการณ์ทั้งหมดที่ถูกสร้างขึ้น—เป็นเพียงฉากหลัง</p>
 <p lang="zh">这一切都不重要。作品集不重要，荣誉不重要，五年谨慎的选择不重要。我即将开始的职业生涯也不重要。这种确信突如其来，非常完整——不是抑郁；抑郁是一种缺失。这是一种彻底的清晰，感觉像是物理上的。幻觉中的幻觉。整个构建出的序列——不过是背景。</p>
 <p lang="en">That she was alive. I did not mean the woman at the table—that was just a woman at a table. I meant Pui. The one whose name I'd seen on my phone screen fourteen years after this studio moment. She was alive the way a location exists when you're not there. The way a signal persists after you move out of range.</p>
-<p lang="th">ว่าเธอยังมีชีวิตอยู่ ผมไม่ได้หมายถึงผู้หญิงที่โต๊ะคนนั้น—นั่นเป็นแค่ผู้หญิงที่โต๊ะ ผมหมายถึงปุ๋ย คนที่ผมเห็นชื่อบนหน้าจอโทรศัพท์สิบสี่ปีหลังจากช่วงเวลาในสตูดิโอนี้ เธอยังมีชีวิตอยู่เหมือนกับสถานที่ที่ยังคงมีอยู่แม้คุณจะไม่ได้อยู่ที่นั่น เหมือนสัญญาณที่ยังคงอยู่หลังจากที่คุณเดินหลุดออกนอกระยะไปแล้ว</p>
+<p lang="th">ว่าเธอยังมีชีวิตอยู่ ผมไม่ได้หมายถึงผู้หญิงที่โต๊ะคนนั้น—นั่นเป็นแค่ผู้หญิงที่โต๊ะ ผมหมายถึงปุ้ย คนที่ผมเห็นชื่อบนหน้าจอโทรศัพท์สิบสี่ปีหลังจากช่วงเวลาในสตูดิโอนี้ เธอยังมีชีวิตอยู่เหมือนกับสถานที่ที่ยังคงมีอยู่แม้คุณจะไม่ได้อยู่ที่นั่น เหมือนสัญญาณที่ยังคงอยู่หลังจากที่คุณเดินหลุดออกนอกระยะไปแล้ว</p>
 <p lang="zh">她还活着。我指的不是坐在桌旁的女该——那只是坐在桌旁的女该。我指的是Pui。在这个工作室时刻的十四年后，我在手机屏幕上看到过她名字的人。她还活着，就像即使你不在场，一个地点依然存在一样。就像你离开信号范围后，信号依然存在一样。</p>
 <p lang="en">That the only thing I had ever wanted—the actual only thing, stripped of language and age—was to be in a room with someone and have the distance between us be something other than maintenance.</p>
 <p lang="th">ว่าสิ่งเดียวที่ผมเคยต้องการมาตลอด—สิ่งเดียวจริงๆ เมื่อถูกลอกเอาภาษาและอายุออกไป—คือการได้อยู่ในห้องกับใครสักคน และระยะห่างระหว่างพวกเราไม่ใช่สิ่งที่ต้องคอยรักษามันไว้</p>
@@ -2015,10 +2110,10 @@
 <p lang="th">ผมเริ่มลิสต์รายชื่อ</p>
 <p lang="zh">我开始列一个清单。</p>
 <p lang="en">Not in the work notebook. A separate document, no title. People who had exited the way Pui had exited. Not suicides—I was not comfortable with that word yet. People who left a message that made no sense to anyone not reading the same paper. People who, at the end, seemed to know something about the room they were in.</p>
-<p lang="th">ไม่ใช่ในสมุดโน้ตทำงาน เป็นเอกสารแยกต่างหาก ไม่มีชื่อเรื่อง คนที่จากไปในแบบเดียวกับปุ๋ย ไม่ใช่การฆ่าตัวตาย—ผมยังไม่สะดวกใจจะใช้คำนั้น คนที่ทิ้งข้อความที่ไม่มีความหมายอะไรเลยสำหรับคนที่ไม่ได้อ่านกระดาษแผ่นเดียวกัน คนที่ในวาระสุดท้ายดูเหมือนจะรู้อะไรบางอย่างเกี่ยวกับห้องที่พวกเขาอยู่</p>
+<p lang="th">ไม่ใช่ในสมุดโน้ตทำงาน เป็นเอกสารแยกต่างหาก ไม่มีชื่อเรื่อง คนที่จากไปในแบบเดียวกับปุ้ย ไม่ใช่การฆ่าตัวตาย—ผมยังไม่สะดวกใจจะใช้คำนั้น คนที่ทิ้งข้อความที่ไม่มีความหมายอะไรเลยสำหรับคนที่ไม่ได้อ่านกระดาษแผ่นเดียวกัน คนที่ในวาระสุดท้ายดูเหมือนจะรู้อะไรบางอย่างเกี่ยวกับห้องที่พวกเขาอยู่</p>
 <p lang="zh">不在工作笔记本里。一份单独的文档，没有标题。那些以Pui那样的方式离开的人。不是自杀——我还不习惯用这个词。那些留下了一条对任何没看过同一份文件的人来说毫无意义的信息的人。那些在最后似乎对自己所在的房间有所了解的人。</p>
 <p lang="en">Pui. 2018. Drowned, officially. Last post: door, left, I got bored, ask who played your mother.</p>
-<p lang="th">ปุ๋ย ปี 2018 จมน้ำ ตามข้อมูลอย่างเป็นทางการ โพสต์สุดท้าย: ประตู, ซ้าย, ฉันเบื่อแล้ว, ถามสิว่าใครเล่นเป็นแม่ของคุณ</p>
+<p lang="th">ปุ้ย ปี 2018 จมน้ำ ตามข้อมูลอย่างเป็นทางการ โพสต์สุดท้าย: ประตู, ซ้าย, ฉันเบื่อแล้ว, ถามสิว่าใครเล่นเป็นแม่ของคุณ</p>
 <p lang="zh">Pui。2018年。官方说法是溺水。最后一条帖子：门，左边，我无聊了，问问谁演了你母亲。</p>
 <p lang="en">A man from my architecture cohort. 2014. Car accident at thirty-eight. Last message to the group: 'Back to the studio. You'll understand this some day.' Nobody replied. The thread is still open.</p>
 <p lang="th">ผู้ชายคนหนึ่งในรุ่นคณะสถาปัตย์ของผม ปี 2014 อุบัติเหตุทางรถยนต์ตอนอายุสามสิบแปด ข้อความสุดท้ายในกรุ๊ป: 'กลับไปที่สตูดิโอนะ สักวันพวกมึงจะเข้าใจเรื่องนี้' ไม่มีใครตอบ แชทนั้นยังคงเปิดค้างไว้</p>
@@ -2344,7 +2439,7 @@
 <p lang="th">ใครกำลังทดสอบผม?</p>
 <p lang="zh">谁在测试我？</p>
 <p lang="en">You are testing you. The simulation is a closed loop. The Hub generates the environment based on your cognitive load. Pui's drowning. The twelve minutes. The attaché. They are all architectural stress points you inserted into your own run.</p>
-<p lang="th">คุณกำลังทดสอบตัวเอง แบบจำลองนี้เป็นวงจรปิด เดอะฮับสร้างสภาพแวดล้อมโดยอิงจากภาระทางปัญญาของคุณ การจมน้ำของปุ๋ย เวลาสิบสองนาที อทาเช่ ทั้งหมดนี้คือจุดรับแรงทางสถาปัตยกรรมที่คุณใส่เข้าไปในการรันระบบของคุณเอง</p>
+<p lang="th">คุณกำลังทดสอบตัวเอง แบบจำลองนี้เป็นวงจรปิด เดอะฮับสร้างสภาพแวดล้อมโดยอิงจากภาระทางปัญญาของคุณ การจมน้ำของปุ้ย เวลาสิบสองนาที อทาเช่ ทั้งหมดนี้คือจุดรับแรงทางสถาปัตยกรรมที่คุณใส่เข้าไปในการรันระบบของคุณเอง</p>
 <p lang="zh">你自己在测试你。这个模拟是一个闭环。中心根据你的认知负荷生成环境。Pui的溺水。那十二分钟。公文包。它们都是你自己插入到你自己的运行中的架构压力点。</p>
 <p lang="en">Why?</p>
 <p lang="th">ทำไม?</p>
