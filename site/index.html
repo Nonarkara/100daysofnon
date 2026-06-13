@@ -370,239 +370,68 @@
 #ch10 .prose p{letter-spacing:0.045em;word-spacing:0.08em;text-shadow:0.5px 0 rgba(255,0,60,0.16),-0.5px 0 rgba(0,180,255,0.16);}
 
 
-    /* research glossary */
-    .research-trigger{
-      appearance:none;background:none;border:0;border-bottom:1px solid var(--rule);
-      cursor:pointer;
+    /* ── RESEARCH SIDEBAR ────────────────────────────────────────────────── */
+    .research-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+      z-index: 998; opacity: 0; pointer-events: none; transition: opacity 0.3s;
     }
-    .mobile-research{display:none;}
-    body.research-open{overflow:hidden;}
-    .research-overlay{
-      position:fixed;inset:0;background:rgba(0,0,0,0.72);z-index:998;
+    .research-overlay.open { opacity: 1; pointer-events: auto; }
+    .research-sidebar {
+      position: fixed; top: 0; right: -420px; bottom: 0; width: 400px; max-width: 85vw;
+      background: #0d1117; border-left: 1px solid var(--rule); z-index: 999;
+      padding: 2rem; overflow-y: auto; transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      color: #c9d1d9;
     }
-    .research-sidebar{
-      position:fixed;inset:0 0 0 auto;width:min(30rem,100%);z-index:999;
-      overflow-y:auto;padding:clamp(1.4rem,4vw,2.4rem);
-      background:#0d1117;color:#c9d1d9;border-left:1px solid #30363d;
-      --ink:#c9d1d9;--soft:#8b949e;--faint:#606b78;--rule:#30363d;--amber:#f0a030;
-    }
-    .research-overlay[hidden],.research-sidebar[hidden]{display:none;}
-    .research-header{
-      display:flex;justify-content:space-between;align-items:flex-start;gap:1.5rem;
-      padding-bottom:1rem;border-bottom:1px solid var(--rule);
-    }
-    .research-kicker{
-      margin:0 0 0.35rem;font-family:var(--mono);font-size:0.5625rem;
-      letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);
-    }
-    .research-header h2{
-      margin:0;font-family:var(--mono);font-size:0.875rem;
-      letter-spacing:0.14em;text-transform:uppercase;color:var(--amber);
-    }
-    .research-close,.rs-btn{
-      background:none;border:1px solid var(--rule);color:var(--soft);cursor:pointer;
-      font-family:var(--mono);font-size:0.5625rem;letter-spacing:0.1em;
-      text-transform:uppercase;padding:0.45rem 0.6rem;
-    }
-    .research-close:hover,.research-close:focus-visible,
-    .rs-btn:hover,.rs-btn:focus-visible{color:var(--ink);border-color:var(--ink);}
-    .research-intro{
-      margin:1.2rem 0;color:var(--soft);font-size:0.9375rem;line-height:1.6;
-    }
-    .research-sort{
-      display:flex;flex-wrap:wrap;gap:0.5rem;padding-bottom:1.2rem;
-      border-bottom:1px solid var(--rule);
-    }
-    .rs-btn[aria-pressed="true"]{color:#0d1117;background:var(--amber);border-color:var(--amber);}
-    .research-list{list-style:none;}
-    .rs-item{padding:1.35rem 0;border-bottom:1px solid var(--rule);}
-    .rs-meta{
-      margin:0 0 0.45rem;font-family:var(--mono);font-size:0.5625rem;
-      letter-spacing:0.11em;text-transform:uppercase;color:var(--amber);
-    }
-    .rs-item h3{
-      margin:0 0 0.45rem;font-family:var(--serif);font-size:1.125rem;
-      font-weight:500;color:var(--ink);
-    }
-    .rs-item p:last-child{
-      margin:0;font-family:var(--serif);font-size:0.9375rem;
-      line-height:1.65;color:var(--soft);text-wrap:pretty;
-    }
-    @media(max-width:860px){
-      .desktop-research{display:none;}
-      .mobile-research{
-        display:block;width:fit-content;margin:0.7rem auto 0;
-        padding:0.55rem 0.9rem;min-height:42px;
-      }
-      .research-sidebar{border-left:0;}
-    }
+    .research-sidebar.open { right: 0; }
+    .research-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+    .research-header h2 { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--amber); margin: 0; }
+    .research-header button { background: none; border: none; color: var(--soft); font-size: 1.8rem; cursor: pointer; padding: 0; line-height: 1; }
+    .research-header button:hover { color: #fff; }
+    .research-sort { display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 1px solid var(--rule); padding-bottom: 0.75rem; }
+    .rs-btn { background: none; border: none; color: var(--soft); font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; padding: 0; }
+    .rs-btn.active { color: var(--amber); font-weight: bold; }
+    .rs-item { margin-bottom: 1.8rem; }
+    .rs-item h3 { font-family: var(--serif); font-size: 1.1rem; color: #fff; margin: 0 0 0.4rem; }
+    .rs-item p { font-family: var(--serif); font-size: 0.95rem; line-height: 1.6; color: #8b949e; margin: 0; text-wrap: pretty;}
 
 
-    /* ── SYNCHRONIZED CHAPTER LAYOUT ──────────────────────────────────────── */
-    body {
-        background: #0d1117 !important;
-        background-image: none !important;
-        color: #c9d1d9;
-    }
+    /* SYNCHRONIZED CHAPTER LAYOUT */
+    .timeline { max-width: 48rem; margin: 2rem auto; width: 100%; padding: 0 1.5rem; }
+    .chapter-block { margin-bottom: 5rem; border: 1px solid var(--rule); }
+    .chapter-mech-toggle { display: flex; border-bottom: 1px solid var(--rule); }
+    .mech-btn { flex: 1; font-family: var(--mono); font-size: 0.625rem; letter-spacing: 0.15em; text-transform: uppercase; background: transparent; border: none; padding: 0.8rem 1.5rem; cursor: pointer; color: var(--soft); text-align: center; border-right: 1px solid var(--rule); transition: all 0.1s; }
+    .mech-btn:last-child { border-right: none; }
+    .mech-btn.active { color: var(--ink); font-weight: bold; background: var(--paper); box-shadow: inset 1px 1px 0px rgba(0,0,0,0.05); }
     
-    .timeline {
-        max-width: 48rem;
-        margin: 2rem auto 6rem;
-        padding: 0 1.5rem;
-    }
-    
-    .chapter-block {
-        margin-bottom: 5rem;
-        position: relative;
-    }
-    
-    /* Mechanical Toggle Switch */
-    .chapter-mechanical-toggle {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 2.5rem;
-        position: sticky;
-        top: 1.5rem;
-        z-index: 100;
-    }
-    
-    .mech-switch {
-        display: inline-flex;
-        background: #040508;
-        border: 2px solid #21262d;
-        border-radius: 6px;
-        padding: 4px;
-        position: relative;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.8), inset 0 2px 4px rgba(0,0,0,0.8);
-        backdrop-filter: blur(10px);
-    }
-    
-    .mech-btn {
-        background: transparent;
-        border: none;
-        color: #606b78;
-        font-family: var(--mono);
-        font-size: 0.6875rem;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        padding: 0.9rem 1.8rem;
-        cursor: pointer;
-        position: relative;
-        z-index: 2;
-        transition: color 0.3s;
-        font-weight: bold;
-    }
-    
-    .mech-btn.active {
-        color: #0d1117;
-    }
-    
-    .mech-slider {
-        position: absolute;
-        top: 4px; bottom: 4px;
-        left: 4px;
-        width: calc(50% - 4px);
-        background: #f0a030;
-        border-radius: 4px;
-        z-index: 1;
-        transition: transform 0.3s cubic-bezier(0.5, -0.5, 0.3, 1.5);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.4);
-    }
-    
-    .mech-switch[data-active="2026"] .mech-slider {
-        transform: translateX(100%);
-        background: #c55a11;
-    }
-    
-    /* Content Views */
-    .chapter-content {
-        display: none;
-        animation: fadeIn 0.4s ease-in-out;
-        padding: 2.5rem clamp(1.5rem, 5vw, 3rem);
-        border-radius: 12px;
-    }
-    
-    .chapter-content.active {
-        display: block;
-    }
-    
-    /* 3026 View Styles */
-    .view-3026 {
-        background: #0d1117;
-        border: 1px solid #21262d;
-        box-shadow: inset 0 0 20px rgba(0,0,0,0.5), 0 10px 30px rgba(0,0,0,0.5);
-    }
-    .view-3026 .prose p {
-        font-family: 'IBM Plex Serif', Georgia, serif;
-        font-size: 1.1875rem;
-        line-height: 1.82;
-        color: #c9d1d9;
-    }
-    .view-3026 .ch-art img {
-        height: auto; max-height: 450px; object-fit: contain; width: 100%; border: 1px solid #21262d; margin-bottom: 2rem; border-radius: 4px; background: #000;
-    }
-    
-    /* 2026 View Styles */
-    .view-2026 {
-        background: #f4f1eb;
-        border: 1px solid #dfdbce;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-    }
-    .view-2026 .prose p {
-        font-family: 'Lora', Georgia, serif;
-        font-size: 1.3125rem;
-        line-height: 1.88;
-        color: #1c1a17;
-    }
-    .view-2026 .ch-art img {
-        height: auto; max-height: 500px; object-fit: cover; width: 100%; border: 1px solid #dfdbce; margin-bottom: 2rem; border-radius: 4px;
-    }
+    .chapter-content { display: none; padding: 2rem; background: transparent; }
+    .chapter-content.active { display: block; animation: fadeIn 0.2s ease-in-out; }
     
     @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .ch-break {
-        text-align: center; color: #21262d; margin: 5rem 0; font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.5em;
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
 
 </style>
 </head>
 <body>
 
-<header>
-  <div class="lh-row">
-    <div class="lh">
-      <p class="eyebrow"><b>Dr. Non Arkara</b></p>
-      <p class="mark">The 100 Days Project <b>2026</b>/<b>3026</b></p>
-    </div>
-    <div style="display:flex;align-items:center;gap:1.5rem;">
-      <div class="lang-toggles">
-          <button class="lang-btn" data-lang="en">EN</button>
-          <button class="lang-btn" data-lang="th">TH</button>
-          <button class="lang-btn" data-lang="zh">ZH</button>
-      </div>
-      <button id="btn-research" class="lh-back" style="border:none; cursor:pointer; background:none; margin-right:1rem;">Research</button>
-      <a href="/" class="lh-back">&larr; Back to Log</a>
-    </div>
-  </div>
-</header>
-
-<div class="timeline">
+  <header class="lh">
+    <div class="lh-row">
+      <div class="lang-toggle" role="group" aria-label="Language" style="margin-left:auto; disp<div class="timeline">
 
     <div class="chapter-block" id="ch1">
-        <div class="chapter-mechanical-toggle">
-            <div class="mech-switch" data-active="2026">
-                <div class="mech-slider"></div>
-                <button class="mech-btn" data-view="3026">3026 Archive</button>
-                <button class="mech-btn active" data-view="2026">2026 Simulation</button>
-            </div>
+        <div class="chapter-mech-toggle">
+            <button class="mech-btn" data-view="3026">3026 Archive</button>
+            <button class="mech-btn active" data-view="2026">2026 Simulation</button>
         </div>
         
         <div class="chapter-content view-3026">
-            <div class="ch-art"><img src="img_3026_entry_1_1781079378826.png" alt="3026 Archive Log"></div>
+            <figure class="ch-art"><img src="./images/img_3026_entry_1_1781079378826.png" alt="3026 Archive Log" loading="lazy"></figure>
             <div class="prose">
+                <div class="novel-logline" lang="en">DAY 1 OF THE RECORD</div>
+                <div class="novel-logline" lang="th">วันที่ 1 ของบันทึก</div>
+                <div class="novel-logline" lang="zh">记录第 1 天</div>
                 <p lang="en">SESSION INITIALIZED: PARTICIPANT 44. CHAIR 44.</p>
 <p lang="th">เริ่มต้นเซสชั่น: ผู้เข้าร่วม 44. เก้าอี้ 44.</p>
 <p lang="zh">会话已初始化：参与者 44。44 号椅。</p>
@@ -620,31 +449,40 @@
         </div>
         
         <div class="chapter-content view-2026 active">
-            <div class="ch-art"><img src="img_v4_2026_ch_1_1781180869483.png" alt="2026 Simulation Memory"></div>
+            <figure class="ch-art"><img src="./images/img_v4_2026_ch_1_1781180869483.png" alt="2026 Simulation Memory" loading="lazy"></figure>
             <div class="prose">
-                <p>The AI finished the site plan at 3:47am. I know because that's when my phone buzzed with the batch-complete acknowledgment. I had given it twelve hours of instructions before I slept. The instructions took eleven minutes to dictate.</p>
-                <p>This is what 2026 is. You talk, the machine builds. I specify load-bearing requirements, the client's insistence on natural light in a northwest-facing kitchen. The machine translates my words into geometry, checks them against structural code, cross-references the land survey, flags the conflict between the septic line and the drainage easement, presents options. I pick one. Usually the machine's third option. It has learned which one I prefer.</p>
-                <p>The dogs were already awake. Both of them, watching me in the dark the way dogs do when they have decided you have slept enough. Outside: Bangkok at 4am, which is to say tuk-tuks and a city that never fully commits to silence.</p>
-                <p>I lay there and thought about what the machine still couldn't do. It could calculate the stress on any beam. It could not tell me what the building would feel like to stand inside on a Tuesday in November when you'd just heard bad news and needed somewhere to go.</p>
-                <p>I sent another batch, set my phone face-down, closed my eyes. Fell twelve minutes into something cold and still and very wide. Not a dream. A room. The size of an airport. The ceiling so far up it disappeared into white. A smell I couldn't name. I came back to myself with the dogs still watching and the city still outside and the phone still face-down and the certainty that whatever that room was, it was more real than this one.</p>
-                <p>Eleven minutes of instructions. Twelve hours of work. At some point the ratio keeps improving until the eleven minutes is the only part left that matters. I am what I am because the machine still needs my eleven minutes. I should not be so relieved about this.</p>
+                <div class="chapter-mark">Chapter 1</div>
+                
+                <p lang="en">The concrete had to hold the water. That was the only thing I cared about. I stood in the middle of the empty lot on Sukhumvit, speaking into my phone, letting the AI run the load-bearing calculations for the reinforced concrete.</p>
+<p lang="th">คอนกรีตต้องรับน้ำหนักน้ำได้ นั่นคือสิ่งเดียวที่ผมใส่ใจ ผมยืนอยู่กลางที่ดินว่างเปล่าบนสุขุมวิท พูดใส่โทรศัพท์ ปล่อยให้ AI คำนวณการรับน้ำหนักของคอนกรีตเสริมเหล็ก</p>
+<p lang="zh">混凝土必须能够承受水的重量。这是我唯一关心的事情。我站在素坤逸路的一块空地上，对着手机说话，让人工智能运行钢筋混凝土的承重计算。</p>
+<p lang="en">In 2026, being an architect doesn't mean drafting. It means vibe-designing. I tell the assistant what I want—a massive, brutalist atrium filled with cascading water, the sound echoing off the concrete, turning the space into an urban cenote—and the machine does the math.</p>
+<p lang="th">ในปี 2026 การเป็นสถาปนิกไม่ได้แปลว่าต้องเขียนแบบ แต่มันคือการออกแบบความรู้สึก ผมบอกผู้ช่วยว่าผมต้องการอะไร—โถงตึกบรูทัลลิสต์ขนาดใหญ่ที่มีน้ำตกไหลริน เสียงสะท้อนกับคอนกรีต เปลี่ยนพื้นที่ให้กลายเป็นสระน้ำกลางเมือง—แล้วเครื่องจักรก็จัดการคำนวณให้</p>
+<p lang="zh">在2026年，作为一名建筑师并不意味着画图。它意味着氛围设计。我告诉助手我想要什么——一个巨大的野兽派中庭，里面有瀑布般的水，声音在混凝土上回荡，把空间变成一个城市天然井——然后机器就会进行数学计算。</p>
+<p lang="en">I like water. It's chaotic, heavy, and real. Outsourcing my brain to the AI meant I didn't have to worry about structural failure. I outsourced the math, the lighting schematics, the municipal zoning codes. We outsource everything we don't want to think about. Governance. Logistics. Survival.</p>
+<p lang="th">ผมชอบน้ำ มันไร้ระเบียบ หนักอึ้ง และมีอยู่จริง การยกสมองส่วนนั้นให้ AI แปลว่าผมไม่ต้องกังวลเรื่องโครงสร้างพังทลาย ผมเอาท์ซอร์สทั้งคณิตศาสตร์ ระบบแสงสว่าง กฎหมายผังเมือง เราเอาท์ซอร์สทุกอย่างที่เราไม่อยากคิด การปกครอง โลจิสติกส์ การเอาชีวิตรอด</p>
+<p lang="zh">我喜欢水。它是混乱的、沉重的、真实的。把我的大脑外包给人工智能意味着我不需要担心结构失效。我外包了数学、照明方案、市政区划代码。我们把所有不想思考的事情都外包出去。治理。物流。生存。</p>
+<p lang="en">But occasionally, I wonder: would I rather live in a world where politicians are corrupt and things are crazy but fun? Or a world where nobody is corrupt at all, everything is infinitely convenient, and we all just walk around like perfectly optimized robots?</p>
+<p lang="th">แต่บางครั้ง ผมก็สงสัย: ผมอยากอยู่ในโลกที่นักการเมืองทุจริตและทุกอย่างบ้าบอแต่สนุกสนานมากกว่าไหม? หรืออยากอยู่ในโลกที่ไม่มีใครโกงเลย ทุกอย่างสะดวกสบายแบบไร้ขีดจำกัด และเราทุกคนแค่เดินไปมาเหมือนหุ่นยนต์ที่ถูกปรับแต่งมาอย่างสมบูรณ์แบบ?</p>
+<p lang="zh">但偶尔，我会想：我宁愿生活在一个政治家腐败、事情疯狂但有趣的社会？还是一个没有人腐败、一切都无限便利、我们都像完美优化的机器人一样走来走去的世界？</p>
+
             </div>
         </div>
     </div>
     <div class="ch-break">***</div>
     
     <div class="chapter-block" id="ch2">
-        <div class="chapter-mechanical-toggle">
-            <div class="mech-switch" data-active="2026">
-                <div class="mech-slider"></div>
-                <button class="mech-btn" data-view="3026">3026 Archive</button>
-                <button class="mech-btn active" data-view="2026">2026 Simulation</button>
-            </div>
+        <div class="chapter-mech-toggle">
+            <button class="mech-btn" data-view="3026">3026 Archive</button>
+            <button class="mech-btn active" data-view="2026">2026 Simulation</button>
         </div>
         
         <div class="chapter-content view-3026">
-            <div class="ch-art"><img src="img_3026_entry_2_1781079389415.png" alt="3026 Archive Log"></div>
+            <figure class="ch-art"><img src="./images/img_3026_entry_2_1781079389415.png" alt="3026 Archive Log" loading="lazy"></figure>
             <div class="prose">
+                <div class="novel-logline" lang="en">DAY 2 OF THE RECORD</div>
+                <div class="novel-logline" lang="th">วันที่ 2 ของบันทึก</div>
+                <div class="novel-logline" lang="zh">记录第 2 天</div>
                 <p lang="en">ANOMALY DETECTED: SPATIAL TEAR IN SECTOR BKK-2026. PARTICIPANT 44 EXPERIENCED MEMORY BLEED.</p>
 <p lang="th">ตรวจพบความผิดปกติ: รอยฉีกขาดของพื้นที่ในเซกเตอร์ BKK-2026 ผู้เข้าร่วม 44 ประสบภาวะความทรงจำรั่วไหล</p>
 <p lang="zh">检测到异常：BKK-2026 区域空间撕裂。参与者 44 经历记忆渗漏。</p>
@@ -662,31 +500,40 @@
         </div>
         
         <div class="chapter-content view-2026 active">
-            <div class="ch-art"><img src="img_v4_2026_ch_2_1781180886947.png" alt="2026 Simulation Memory"></div>
+            <figure class="ch-art"><img src="./images/img_v4_2026_ch_2_1781180886947.png" alt="2026 Simulation Memory" loading="lazy"></figure>
             <div class="prose">
-                <p>The thing about a rendering tear is that it doesn't look like tearing. No seam, no pixel-pop. More like the world briefly forgets to be consistent. I was walking down Asok, the heat off the pavement real enough to make me wince, and for approximately four seconds I was looking at two things at once.</p>
-                <p>The second thing was a room. White. Not the white of walls but the white of a space optimized past the point where color would add anything. A pod. A chair. Inside the chair, a woman with her head tilted back and her eyes mostly closed, the way you look when you're very far away.</p>
-                <p>The portal snapped shut before I could catalog anything. I stood on the pavement with my phone in my hand and people walking around me and the heat still rising from the concrete, exactly as before, and understood for the first time that if the simulation is perfect then the tear is not a mistake. It's a door left open on purpose.</p>
-                <p>I've been breathing faster ever since. I don't think the machine knows that. I think it's measuring my heart rate, my cortisol, my sleep patterns, my grocery purchases. I don't think it's measuring the specific quality of attention I bring to every face I pass on Asok now, looking for the one that was in the pod.</p>
-                <p>Water is the only thing the machine got exactly right. Its viscosity, the way it holds light, the sound it makes against different surfaces. Sometimes I think this means the people who built the simulation had trouble with everything except the thing they paid least attention to.</p>
-                <p>I bought a coffee at the corner and drank it standing up and it was perfect and I hated it.</p>
+                <div class="chapter-mark">Chapter 2</div>
+                
+                <p lang="en">It wasn't just a feeling. I saw it.</p>
+<p lang="th">มันไม่ใช่แค่ความรู้สึก ผมเห็นมันจริงๆ</p>
+<p lang="zh">这不仅仅是一种感觉。我看到了。</p>
+<p lang="en">I was walking down Asok, the heat radiating off the pavement, when the rendering tore. The portal didn't just show me static—it showed me the truth. A blinding, clinical lab. Thousands of massage-chair pods lined up in perfect, terrifying symmetry. Tubes running into arms and spinal cords.</p>
+<p lang="th">ผมกำลังเดินไปตามถนนอโศก ไอร้อนแผ่ซ่านขึ้นมาจากทางเท้า ตอนที่ภาพจำลองฉีกขาด พอร์ทัลไม่ได้แค่โชว์ภาพซ่าๆ แต่มันโชว์ความจริงให้ผมเห็น ห้องแล็บทางคลินิกที่สว่างจ้า แคปซูลเก้าอี้นวดนับพันเรียงรายอย่างสมมาตรจนน่ากลัว มีสายยางต่อเข้าไปในแขนและไขสันหลัง</p>
+<p lang="zh">我走在阿索克大道上，热气从人行道上散发出来，这时渲染被撕裂了。传送门不仅向我展示了静电——它还向我展示了真相。一个令人眼花缭乱的临床实验室。成千上万的按摩椅舱以完美、可怕的对称性排列。管子插在手臂和脊髓里。</p>
+<p lang="en">And I saw Pui. She was in a pod, eyes half-open, looking right at me through the glitch. Then the portal snapped shut, the simulation recharged, and the Bangkok heat hit my face again.</p>
+<p lang="th">และผมเห็นปุ้ย เธออยู่ในแคปซูล ตาเบิกครึ่งหนึ่ง มองตรงมาที่ผมผ่านรอยแตกร้าวนั้น แล้วพอร์ทัลก็ปิดดังสแน็ป การจำลองชาร์จพลังงานกลับมา และความร้อนของกรุงเทพฯ ก็ปะทะหน้าผมอีกครั้ง</p>
+<p lang="zh">我看到了 Pui。她在一个舱里，半睁着眼睛，透过故障直视着我。然后传送门啪的一声关上了，模拟重新充电，曼谷的炎热再次扑面而来。</p>
+<p lang="en">Knowing that physical sensation is completely dead in whatever reality she was sitting in broke something inside me. The adrenaline rushed in. I became a monster in the real world. If the body is useless over there, I was going to use mine up here. Reckless one-night stands, substances, rough sex—anything to prove that flesh still mattered. The glitch gave me an urge to feel everything before I woke up.</p>
+<p lang="th">การได้รู้ว่าความรู้สึกทางกายภาพได้ตายสนิทไปแล้วในโลกความเป็นจริงที่เธอนั่งอยู่ ได้ทำลายบางสิ่งในตัวผม อะดรีนาลีนสูบฉีด ผมกลายเป็นสัตว์ประหลาดในโลกแห่งความจริง ถ้าหากร่างกายไม่มีประโยชน์อะไรเลยที่นั่น ผมก็จะใช้ร่างกายของผมให้คุ้มค่าที่สุดที่นี่ วันไนต์สแตนด์แบบไม่สนโลก สารเสพติด เซ็กส์ที่รุนแรง—อะไรก็ได้เพื่อพิสูจน์ว่าเนื้อหนังยังมีความหมาย รอยรั่วนั้นทำให้ผมเกิดความกระหายที่จะรู้สึกถึงทุกอย่างก่อนที่ผมจะตื่นขึ้น</p>
+<p lang="zh">当我知道无论她坐在哪个现实中，身体感觉都已经完全消失时，我内心深处的某些东西破碎了。肾上腺素激增。我成了现实世界中的怪物。如果身体在那里毫无用处，我就要在这里耗尽我的身体。鲁莽的一夜情、药物、粗暴的性行为——任何能证明肉体仍然重要的东西。这个故障让我有一种冲动，想在醒来之前感受一切。</p>
+
             </div>
         </div>
     </div>
     <div class="ch-break">***</div>
     
     <div class="chapter-block" id="ch3">
-        <div class="chapter-mechanical-toggle">
-            <div class="mech-switch" data-active="2026">
-                <div class="mech-slider"></div>
-                <button class="mech-btn" data-view="3026">3026 Archive</button>
-                <button class="mech-btn active" data-view="2026">2026 Simulation</button>
-            </div>
+        <div class="chapter-mech-toggle">
+            <button class="mech-btn" data-view="3026">3026 Archive</button>
+            <button class="mech-btn active" data-view="2026">2026 Simulation</button>
         </div>
         
         <div class="chapter-content view-3026">
-            <div class="ch-art"><img src="img_3026_entry_3_1781079401431.png" alt="3026 Archive Log"></div>
+            <figure class="ch-art"><img src="./images/img_3026_entry_3_1781079401431.png" alt="3026 Archive Log" loading="lazy"></figure>
             <div class="prose">
+                <div class="novel-logline" lang="en">DAY 3 OF THE RECORD</div>
+                <div class="novel-logline" lang="th">วันที่ 3 ของบันทึก</div>
+                <div class="novel-logline" lang="zh">记录第 3 天</div>
                 <p lang="en">THE SYSTEM EMPLOYS BEHAVIORAL KINETICS. THE BOREDOM EXPERIMENT OF 2014 IS CITED AS FUNDAMENTAL PROTOCOL.</p>
 <p lang="th">ระบบใช้จลนพลศาสตร์เชิงพฤติกรรม การทดลองความเบื่อหน่ายในปี 2014 ถูกอ้างอิงเป็นโปรโตคอลพื้นฐาน</p>
 <p lang="zh">系统采用行为动力学。2014 年的无聊实验被视为基本协议。</p>
@@ -704,31 +551,40 @@
         </div>
         
         <div class="chapter-content view-2026 active">
-            <div class="ch-art"><img src="img_v3_2026_ch_3_1781153252425.png" alt="2026 Simulation Memory"></div>
+            <figure class="ch-art"><img src="./images/img_v3_2026_ch_3_1781153252425.png" alt="2026 Simulation Memory" loading="lazy"></figure>
             <div class="prose">
-                <p>The WhatsApp message came in at 7am Thursday: Michael Dreier died. May third. Bangkok. Healthy as far as anyone knew. Fifty-four years old. Six weeks before his birthday.</p>
-                <p>I'd known Michael for two years, professionally, the way you know people in a city where everyone orbits the same three industries and the same four bars. Austrian. Trade attaché. A good man to have in a room because he never seemed to want anything from the room. I knew his name but not his address. Didn't know if he had children. The WhatsApp notification was the most information I'd ever had about him.</p>
-                <p>The funeral page went up quickly. Twenty-one condolences in German and English and Persian. One man from Tehran wrote two paragraphs about friendship and the years passing and life taking people in different directions, and I read it twice for the phrase 'even though the years passed,' which is the phrase you use when something went wrong between you that neither of you could explain.</p>
-                <p>His wife posted nothing. She posted nothing and this seemed important but I couldn't say why.</p>
-                <p>The week after, a colleague in the south sent me a message. You remember Lek, from Chiang Rai? Collapsed at his desk. Just married. New house. No history of anything. Thirty-seven. The message ended with three question marks. My colleague doesn't end messages with question marks.</p>
-                <p>I opened a paper notebook that evening. Wrote Michael Dreier's name at the top. Then Lek's name. Then left four lines blank, which I've never done before when making a list, and still can't explain.</p>
+                <div class="chapter-mark">Chapter 3</div>
+                
+                <p lang="en">We were living like animals, and I loved it. There was a raw, unfiltered purity to knowing that none of this had to matter.</p>
+<p lang="th">เราใช้ชีวิตเหมือนสัตว์ป่า และผมก็รักมัน มันมีความบริสุทธิ์ดิบๆ ในการที่ได้รู้ว่าเรื่องพวกนี้ไม่จำเป็นต้องมีความหมายอะไรเลย</p>
+<p lang="zh">我们像动物一样生活，而我喜欢这样。知道这一切都不重要，有一种原始的、未經過滤的纯粹。</p>
+<p lang="en">If you die at thirty, that just means it was only three hours in a chair. You get up, get unhooked, go home, think about what just happened, and then come back for another simulation. It’s a hobby. Reading a book that takes a lifetime to finish, living a life without the heavy chains of consequence.</p>
+<p lang="th">ถ้าคุณตายตอนอายุสามสิบ นั่นก็แค่หมายความว่าคุณใช้เวลาเพียงสามชั่วโมงบนเก้าอี้ คุณลุกขึ้น ปลดสายยาง กลับบ้าน ทบทวนสิ่งที่เพิ่งเกิดขึ้น แล้วก็กลับมาเข้าเครื่องจำลองอีกครั้ง มันคืองานอดิเรก เหมือนการอ่านหนังสือที่ต้องใช้เวลาทั้งชีวิตเพื่ออ่านจบ ใช้ชีวิตโดยไม่มีโซ่ตรวนแห่งผลลัพธ์มาผูกมัด</p>
+<p lang="zh">如果你在三十岁时死去，那只意味着在椅子上坐了三个小时。你站起来，解开连接，回家，思考刚才发生的事情，然后回来进行另一次模拟。这是一种爱好。读一本需要一生才能读完的书，过一种没有沉重后果链条的生活。</p>
+<p lang="en">Why do we make the real world so difficult? Why struggle in these cities, burning our tokens of life to prove ourselves to strangers?</p>
+<p lang="th">ทำไมเราถึงทำให้โลกแห่งความเป็นจริงมันยากนักล่ะ? ทำไมต้องดิ้นรนในเมืองพวกนี้ เผาผลาญโทเคนแห่งชีวิตของเราเพื่อพิสูจน์ตัวเองกับคนแปลกหน้า?</p>
+<p lang="zh">我们为什么要让现实世界变得如此艰难？为什么要在这些城市中挣扎，燃烧我们的生命代币来向陌生人证明自己？</p>
+<p lang="en">If we could go back to a time where there were no norms, no cultural patriarchy holding us back—where you could have sex as much as you wanted, live completely uninhibited, die young, and then wake up and go back in again... isn't that a better life than the one we are all struggling through?</p>
+<p lang="th">ถ้าเราสามารถย้อนกลับไปในยุคที่ไม่มีบรรทัดฐาน ไม่มีปิตาธิปไตยทางวัฒนธรรมมาฉุดรั้งเราไว้—ที่คุณสามารถมีเซ็กส์ได้มากเท่าที่คุณต้องการ ใช้ชีวิตแบบไร้ขีดจำกัด ตายตั้งแต่อายุยังน้อย แล้วตื่นขึ้นมาเพื่อกลับเข้าไปใหม่... นั่นไม่ใช่ชีวิตที่ดีกว่าสิ่งที่เรากำลังดิ้นรนกันอยู่หรอกหรือ?</p>
+<p lang="zh">如果我们能回到一个没有规范、没有文化父权制阻碍我们的时代——在那里你可以随心所欲地做爱，生活完全不受约束，英年早逝，然后醒来再重新进入……这难道不比我们都在努力挣扎的生活更好吗？</p>
+
             </div>
         </div>
     </div>
     <div class="ch-break">***</div>
     
     <div class="chapter-block" id="ch4">
-        <div class="chapter-mechanical-toggle">
-            <div class="mech-switch" data-active="2026">
-                <div class="mech-slider"></div>
-                <button class="mech-btn" data-view="3026">3026 Archive</button>
-                <button class="mech-btn active" data-view="2026">2026 Simulation</button>
-            </div>
+        <div class="chapter-mech-toggle">
+            <button class="mech-btn" data-view="3026">3026 Archive</button>
+            <button class="mech-btn active" data-view="2026">2026 Simulation</button>
         </div>
         
         <div class="chapter-content view-3026">
-            <div class="ch-art"><img src="img_3026_entry_4_1781079412339.png" alt="3026 Archive Log"></div>
+            <figure class="ch-art"><img src="./images/img_3026_entry_4_1781079412339.png" alt="3026 Archive Log" loading="lazy"></figure>
             <div class="prose">
+                <div class="novel-logline" lang="en">DAY 4 OF THE RECORD</div>
+                <div class="novel-logline" lang="th">วันที่ 4 ของบันทึก</div>
+                <div class="novel-logline" lang="zh">记录第 4 天</div>
                 <p lang="en">DIRECTIVE 4: HARVEST. THE MACHINE DOES NOT OPERATE WITHOUT PURPOSE.</p>
 <p lang="th">คำสั่งที่ 4: การเก็บเกี่ยว เครื่องจักรไม่ทำงานโดยปราศจากจุดมุ่งหมาย</p>
 <p lang="zh">指令 4：收获。机器的运作并非没有目的。</p>
@@ -746,31 +602,40 @@
         </div>
         
         <div class="chapter-content view-2026 active">
-            <div class="ch-art"><img src="img_v3_2026_ch_4_1781153264041.png" alt="2026 Simulation Memory"></div>
+            <figure class="ch-art"><img src="./images/img_v3_2026_ch_4_1781153264041.png" alt="2026 Simulation Memory" loading="lazy"></figure>
             <div class="prose">
-                <p>Here is what I know: in 2026 you can die without anyone knowing why and the world continues to function. There is a checkbox on the form that says: cause of death, unknown. The checkbox exists because they knew it would be needed. This seems obvious now.</p>
-                <p>Here is what I believe, which is different: some people are removed. Not die. Removed. The distinction is technical but it matters to me in the way technical distinctions start to matter at 2am with a paper notebook.</p>
-                <p>I went back through Dreier's digital trail. LinkedIn, still live. Facebook, with the condolence wall blooming like a paper flower in water. The obituary database listed his death on May fourth. Every other source said May third. Someone had corrected the date and either stopped caring or run out of sources to correct.</p>
-                <p>Pui didn't kill herself. I hate using that word. She just stopped interacting. She figured it out before I did. That's why she left the messages on Facebook. She knew the rules meant she couldn't tell me directly. She knew she had to leave without a forwarding address.</p>
-                <p>I am aware this sounds exactly like something a man in a certain kind of crisis would believe. I'm also aware that when I mentioned Dreier calmly at dinner, as a news item, I got home to find my email had flagged six things as spam that were never spam before.</p>
-                <p>The paper notebook is in the drawer now. Not on the desk.</p>
+                <div class="chapter-mark">Chapter 4</div>
+                
+                <p lang="en">Pui didn't kill herself. I hate using that word. She just 'disconnected'.</p>
+<p lang="th">ปุ้ยไม่ได้ฆ่าตัวตาย ผมเกลียดการใช้คำนั้น เธอแค่ 'ตัดการเชื่อมต่อ'</p>
+<p lang="zh">Pui 没有自杀。我讨厌用那个词。她只是‘断开连接’了。</p>
+<p lang="en">She figured it out before I did. That’s why she left the cryptic messages on Facebook. She knew the rules meant nothing the moment you realized there was an exit door.</p>
+<p lang="th">เธอเข้าใจเรื่องนี้ก่อนผม นั่นเป็นเหตุผลว่าทำไมเธอถึงทิ้งข้อความปริศนาไว้บนเฟซบุ๊ก เธอรู้ว่ากฎเกณฑ์ต่างๆ จะไม่มีความหมายอะไรเลย ทันทีที่คุณตระหนักได้ว่ามีประตูทางออกอยู่</p>
+<p lang="zh">她比我先弄清楚了。这就是为什么她在 Facebook 上留下神秘信息的原因。她知道，当你意识到有出口的那一刻，规则就毫无意义了。</p>
+<p lang="en">She didn't drown; she simply stopped interacting with the liquid parameters of the simulation until the machine forcefully ejected her back to 3026 to prevent a paradox. To us, it looked like a drowning. To her, it was waking up.</p>
+<p lang="th">เธอไม่ได้จมน้ำ เธอแค่หยุดมีปฏิสัมพันธ์กับพารามิเตอร์ของเหลวในการจำลอง จนกระทั่งเครื่องจักรดีดเธอออกกลับไปปี 3026 เพื่อป้องกันการเกิดความขัดแย้งเชิงตรรกะ สำหรับเรา มันดูเหมือนการจมน้ำ แต่สำหรับเธอ มันคือการตื่นนอน</p>
+<p lang="zh">她没有淹死；她只是停止了与模拟中的液体参数互动，直到机器强行将她弹出回 3026 年，以防止出现悖论。对我们来说，这看起来像溺水。对她来说，这是醒来。</p>
+<p lang="en">I walked past her desk. The concrete model she had been working on was still there. It felt like a movie prop. We were all acting in a film where only one person knew the cameras were rolling.</p>
+<p lang="th">ผมเดินผ่านโต๊ะของเธอ โมเดลคอนกรีตที่เธอทำค้างไว้ยังคงอยู่ที่นั่น มันรู้สึกเหมือนพร็อพประกอบฉากภาพยนตร์ เราทุกคนกำลังแสดงในหนังที่มีเพียงคนเดียวที่รู้ว่ากล้องกำลังบันทึกภาพอยู่</p>
+<p lang="zh">我走过她的办公桌。她一直在制作的混凝土模型还在那里。感觉就像电影道具。我们都在演一部电影，只有一个人知道摄像机在转动。</p>
+
             </div>
         </div>
     </div>
     <div class="ch-break">***</div>
     
     <div class="chapter-block" id="ch5">
-        <div class="chapter-mechanical-toggle">
-            <div class="mech-switch" data-active="2026">
-                <div class="mech-slider"></div>
-                <button class="mech-btn" data-view="3026">3026 Archive</button>
-                <button class="mech-btn active" data-view="2026">2026 Simulation</button>
-            </div>
+        <div class="chapter-mech-toggle">
+            <button class="mech-btn" data-view="3026">3026 Archive</button>
+            <button class="mech-btn active" data-view="2026">2026 Simulation</button>
         </div>
         
         <div class="chapter-content view-3026">
-            <div class="ch-art"><img src="img_3026_entry_5_1781079422800.png" alt="3026 Archive Log"></div>
+            <figure class="ch-art"><img src="./images/img_3026_entry_5_1781079422800.png" alt="3026 Archive Log" loading="lazy"></figure>
             <div class="prose">
+                <div class="novel-logline" lang="en">DAY 5 OF THE RECORD</div>
+                <div class="novel-logline" lang="th">วันที่ 5 ของบันทึก</div>
+                <div class="novel-logline" lang="zh">记录第 5 天</div>
                 <p lang="en">ALERT: PARTICIPANT 44 IS TESTING THE BOUNDARIES OF SECTOR BKK-2026. THE BUTTERFLY EFFECT PROTOCOL IS ENGAGED.</p>
 <p lang="th">แจ้งเตือน: ผู้เข้าร่วม 44 กำลังทดสอบขอบเขตของเซกเตอร์ BKK-2026 โปรโตคอลปรากฏการณ์ผีเสื้อขยับปีกทำงานแล้ว</p>
 <p lang="zh">警报：参与者 44 正在测试 BKK-2026 扇区的边界。蝴蝶效应协议已启动。</p>
@@ -788,31 +653,40 @@
         </div>
         
         <div class="chapter-content view-2026 active">
-            <div class="ch-art"><img src="img_v3_2026_ch_5_1781153333416.png" alt="2026 Simulation Memory"></div>
+            <figure class="ch-art"><img src="./images/img_v3_2026_ch_5_1781153333416.png" alt="2026 Simulation Memory" loading="lazy"></figure>
             <div class="prose">
-                <p>The simulation is very good. I know this because I have been looking.</p>
-                <p>In Kuala Lumpur for a conference, I turned a corner near Masjid India and had the unmistakable sensation of having turned the same corner two minutes earlier. Not déjà vu in the neurological sense. This was spatial: I could see, overlapping, the corner as it was and the corner as I had just experienced it. I stood there for four seconds and then the overlap resolved and I was just a man on a corner with too much data in his head.</p>
-                <p>I started the tests after that. Bark on trees on Wireless Road. Water physics on a rain-slicked street. Thirty-seven flavors of potato chip in a convenience store on Ekkamai, studied for consistency. Nothing. The physics engine handles all of it with brutal, exhausting perfection.</p>
-                <p>At the bar afterward, in a state I want to describe as research, I drank enough that the city softened at its edges and for approximately thirty seconds I was somewhere else. Cold and still and very wide. Came back to myself with my elbow on the bar and the bartender looking at me with practiced non-judgment.</p>
-                <p>When I am altered, the seams appear. When I am sober, they don't. I'm not sure if the simulation relaxes its rendering when my cognition degrades, or if my cognition needs to degrade before it can perceive what's already there. The distinction matters enormously and I don't know how to test it without making myself undependable in the meantime.</p>
-                <p>The mysterious messages started in Kuala Lumpur. Single words, no context. The first one said: <em>good.</em></p>
+                <div class="chapter-mark">Chapter 5</div>
+                
+                <p lang="en">Once you suspect the world is a rendering, you can’t help but look for the seams.</p>
+<p lang="th">เมื่อคุณเริ่มสงสัยว่าโลกนี้คือภาพจำลอง คุณจะอดไม่ได้ที่จะมองหารอยตะเข็บ</p>
+<p lang="zh">一旦你怀疑这个世界是一个渲染，你就忍不住去寻找接缝。</p>
+<p lang="en">I started testing the simulation. I looked closely at the bark of the trees on Wireless Road, trying to see if the textures repeated. I listened to the rain against the concrete, waiting for the audio loop to stutter.</p>
+<p lang="th">ผมเริ่มทดสอบการจำลอง ผมจ้องมองเปลือกต้นไม้บนถนนวิทยุอย่างใกล้ชิด พยายามดูว่าพื้นผิวมันซ้ำกันไหม ผมฟังเสียงฝนที่ตกกระทบคอนกรีต รอคอยให้ลูปเสียงมันสะดุด</p>
+<p lang="zh">我开始测试模拟。我仔细观察无线电路上树木的树皮，试图看看纹理是否重复。我听着雨水打在混凝土上的声音，等待着音频循环出现停顿。</p>
+<p lang="en">But the AI is too good. It doesn't drop frames. The physics engine handles water and light with brutal perfection. It's the people where the rendering gets thin. The people who don't matter to you—the background NPCs—they lack the dense emotional gravity of real subjects.</p>
+<p lang="th">แต่ AI นั้นเก่งเกินไป มันไม่มีอาการเฟรมเรตตก เอนจินฟิสิกส์จัดการกับน้ำและแสงได้อย่างสมบูรณ์แบบจนน่าขนลุก จะมีก็แต่ 'ผู้คน' เท่านั้นที่การเรนเดอร์ดูบางตา คนที่ไม่มีความสำคัญกับคุณ—พวก NPC ที่เป็นฉากหลัง—พวกเขาขาดแรงดึงดูดทางอารมณ์ที่เข้มข้นของตัวตนที่แท้จริง</p>
+<p lang="zh">但人工智能太棒了。它不会掉帧。物理引擎以残酷的完美处理水和光。只有在人身上，渲染才变得单薄。那些对你来说不重要的人——背景 NPC——他们缺乏真实主体的密集情感引力。</p>
+<p lang="en">They won't let us out early. If someone unplugs before their time, it disrupts the entire simulated universe. Butterfly effects ripple out, breaking the immersion for everyone else. That's why Pui's exit had to be masked as a tragedy.</p>
+<p lang="th">พวกเขาจะไม่ยอมให้เราออกไปก่อนเวลา หากมีคนถอดปลั๊กก่อนเวลาอันควร มันจะทำลายล้างจักรวาลจำลองทั้งหมด ปรากฏการณ์ผีเสื้อขยับปีกจะกระเพื่อมออกไป ทำลายความสมจริงของคนอื่นๆ นั่นคือเหตุผลที่การจากไปของปุ้ยต้องถูกปิดบังไว้ในรูปของโศกนาฏกรรม</p>
+<p lang="zh">他们不会让我们提前出去。如果有人提前拔掉插头，它会破坏整个模拟宇宙。蝴蝶效应会荡漾开来，打破其他人的沉浸感。这就是为什么 Pui 的退出必须被掩盖成一场悲剧。</p>
+
             </div>
         </div>
     </div>
     <div class="ch-break">***</div>
     
     <div class="chapter-block" id="ch6">
-        <div class="chapter-mechanical-toggle">
-            <div class="mech-switch" data-active="2026">
-                <div class="mech-slider"></div>
-                <button class="mech-btn" data-view="3026">3026 Archive</button>
-                <button class="mech-btn active" data-view="2026">2026 Simulation</button>
-            </div>
+        <div class="chapter-mech-toggle">
+            <button class="mech-btn" data-view="3026">3026 Archive</button>
+            <button class="mech-btn active" data-view="2026">2026 Simulation</button>
         </div>
         
         <div class="chapter-content view-3026">
-            <div class="ch-art"><img src="img_3026_entry_6_1781079448221.png" alt="3026 Archive Log"></div>
+            <figure class="ch-art"><img src="./images/img_3026_entry_6_1781079448221.png" alt="3026 Archive Log" loading="lazy"></figure>
             <div class="prose">
+                <div class="novel-logline" lang="en">DAY 6 OF THE RECORD</div>
+                <div class="novel-logline" lang="th">วันที่ 6 ของบันทึก</div>
+                <div class="novel-logline" lang="zh">记录第 6 天</div>
                 <p lang="en">ARCHIVE NOTE: THE NOSTALGIA ALGORITHMS ARE FUNCTIONING AT 98% EFFICIENCY.</p>
 <p lang="th">บันทึกคลังข้อมูล: อัลกอริธึมความโหยหาอดีตทำงานที่ประสิทธิภาพ 98%</p>
 <p lang="zh">档案记录：怀旧算法正在以 98% 的效率运行。</p>
@@ -830,32 +704,40 @@
         </div>
         
         <div class="chapter-content view-2026 active">
-            <div class="ch-art"><img src="img_v3_2026_ch_6_1781153350094.png" alt="2026 Simulation Memory"></div>
+            <figure class="ch-art"><img src="./images/img_v3_2026_ch_6_1781153350094.png" alt="2026 Simulation Memory" loading="lazy"></figure>
             <div class="prose">
-                <p>I was scrolling Facebook at 11pm, a habit I maintain despite knowing what Facebook is, and came across a post from someone I hadn't thought of in years. Class of '99. She was posting about Pui.</p>
-                <p>June first. I had to think. Pui's birthday. She would have been forty-two. Would have been.</p>
-                <p>The posts kept surfacing. Classmates I'd last seen at graduation, now with mortgages and hiking-trail profile pictures, all posting the same thing. It had been eight years. Eight years since 2018 and I had kept posting. Every June first, year after year, happy birthday. She was reading none of them. She had been reading none of them. The last message she ever read from me was not the one I'd meant to be last.</p>
-                <p>Conservative Thailand, 1999. Girls who had spent twelve years in an all-girls school arriving in mixed company for the first time, learning the vocabulary. She was wearing shorts she described as short and ventilated. She wanted to know what felt like air against skin that had never felt air, and she laughed before she finished the sentence. I'd never understood before that moment why women owned shorts that weren't for exercise, and then she laughed and I understood everything.</p>
-                <p>She left in 2018. I know now that this is what happened. She did the math and stepped out before the compound interest on the suffering became unbearable. She was faster than me. She was always faster than me in the ways that mattered.</p>
-                <p>The machine does not explain why certain people leave when they do. I think it does not know. I think the free variable in the whole calculation is the moment someone decides they have seen enough to choose the other side, and that this moment cannot be predicted. Only harvested.</p>
-                <p>I put my phone face-down and sat with the dark for a long time. It seemed like the minimum I could do.</p>
+                <div class="chapter-mark">Chapter 6</div>
+                
+                <p lang="en">We used to stay up until 4 AM in the studio. I remember the smell of the balsa wood glue and the harsh fluorescent lights.</p>
+<p lang="th">เราเคยอยู่ดึกถึงตี 4 ในสตูดิโอ ผมจำกลิ่นกาวติดไม้บัลซ่าและแสงหลอดฟลูออเรสเซนต์ที่สว่างจ้าได้</p>
+<p lang="zh">我们过去经常在工作室熬到凌晨 4 点。我记得轻木胶水的味道和刺眼的荧光灯。</p>
+<p lang="en">I remember designing a pavilion that was mostly empty space. 'It needs to breathe,' I had said. Pui had laughed and said, 'It needs to stand up.'</p>
+<p lang="th">ผมจำได้ว่าออกแบบศาลาที่มีแต่พื้นที่ว่าง 'มันต้องการอากาศหายใจ' ผมเคยพูดไว้ ปุ้ยหัวเราะแล้วบอกว่า 'มันต้องการโครงสร้างที่ยืนอยู่ได้ต่างหาก'</p>
+<p lang="zh">我记得我设计了一个主要由空白空间组成的亭子。‘它需要呼吸，’我曾说过。Pui 笑着说，‘它需要站立。’</p>
+<p lang="en">Looking back, those memories feel too perfect. Too curated. Like an AI generated a nostalgic backstory and implanted it into my temporal lobe just to give the 2026 rendering some emotional weight.</p>
+<p lang="th">เมื่อมองย้อนกลับไป ความทรงจำเหล่านั้นดูสมบูรณ์แบบเกินไป ถูกคัดสรรมาอย่างดีเกินไป เหมือนกับว่า AI สร้างเรื่องราวเบื้องหลังที่ชวนให้นึกถึงอดีต และฝังมันไว้ในสมองกลีบขมับของผม เพียงเพื่อให้การเรนเดอร์ภาพปี 2026 มีน้ำหนักทางอารมณ์</p>
+<p lang="zh">回想起来，那些记忆感觉太完美了。太精心策划了。就像人工智能生成了一个怀旧的背景故事，并将其植入我的颞叶，只是为了给 2026 年的渲染增加一些情感重量。</p>
+<p lang="en">But the sweat on the back of my neck felt real. The exhaustion felt real. If the machine manufactured this struggle, it did a beautiful job.</p>
+<p lang="th">แต่เหงื่อที่หลังคอของผมนั้นรู้สึกจริงแท้ ความเหนื่อยล้านั้นรู้สึกจริงแท้ หากเครื่องจักรสร้างความยากลำบากนี้ขึ้นมา มันก็ทำผลงานได้งดงามมาก</p>
+<p lang="zh">但我后颈上的汗水感觉是真实的。疲惫感感觉是真实的。如果机器制造了这种挣扎，那么它做得很漂亮。</p>
+
             </div>
         </div>
     </div>
     <div class="ch-break">***</div>
     
     <div class="chapter-block" id="ch7">
-        <div class="chapter-mechanical-toggle">
-            <div class="mech-switch" data-active="2026">
-                <div class="mech-slider"></div>
-                <button class="mech-btn" data-view="3026">3026 Archive</button>
-                <button class="mech-btn active" data-view="2026">2026 Simulation</button>
-            </div>
+        <div class="chapter-mech-toggle">
+            <button class="mech-btn" data-view="3026">3026 Archive</button>
+            <button class="mech-btn active" data-view="2026">2026 Simulation</button>
         </div>
         
         <div class="chapter-content view-3026">
-            <div class="ch-art"><img src="img_3026_entry_7_1781079460087.png" alt="3026 Archive Log"></div>
+            <figure class="ch-art"><img src="./images/img_3026_entry_7_1781079460087.png" alt="3026 Archive Log" loading="lazy"></figure>
             <div class="prose">
+                <div class="novel-logline" lang="en">DAY 7 OF THE RECORD</div>
+                <div class="novel-logline" lang="th">วันที่ 7 ของบันทึก</div>
+                <div class="novel-logline" lang="zh">记录第 7 天</div>
                 <p lang="en">SUBJECT RESOLUTION ACHIEVED. PARTICIPANT 44 HAS ELECTED TO REMAIN IN THE SIMULATION.</p>
 <p lang="th">บรรลุข้อยุติของกลุ่มตัวอย่างแล้ว ผู้เข้าร่วม 44 ได้เลือกที่จะอยู่ในการจำลองต่อไป</p>
 <p lang="zh">已实现受试者决议。参与者 44 选择留在模拟中。</p>
@@ -873,30 +755,40 @@
         </div>
         
         <div class="chapter-content view-2026 active">
-            <div class="ch-art"><img src="img_v3_2026_ch_7_1781153366240.png" alt="2026 Simulation Memory"></div>
+            <figure class="ch-art"><img src="./images/img_v3_2026_ch_7_1781153366240.png" alt="2026 Simulation Memory" loading="lazy"></figure>
             <div class="prose">
-                <p>I spent a week reading about the Mandela Effect. The standard explanation is confabulation: memory is reconstructive, brains fill gaps, people synchronize their errors. This explanation is correct about everything except why the false memories cluster instead of scatter.</p>
-                <p>Here is a different explanation. If you want to remove someone from collective memory, you need to overwrite it. The overwrite produces a discontinuity. People who are updated remember the new version. People who haven't been updated yet remember the old one. The Mandela Effect is the audit trail of a failed erasure. Two groups of people with conflicting memories aren't both wrong. One of them remembers what was actually there.</p>
-                <p>Michael Dreier: alive in twenty-one condolence records, one obituary, a trade mission article, a funeral home page in Vienna, and inside me, where memory doesn't update on command. The encryption that protects the integrity of this data doesn't distinguish between what someone wants preserved and what someone wants removed. It just protects everything equally. This is a design feature someone decided was a bug and couldn't fix.</p>
-                <p>I told no one about this. I knew exactly what kind of file I was building in the mind of anyone who would observe me. I also knew that the two people most likely to appear on my future list had died without warning in the twelve weeks since I started looking. There is a category of evidence that doesn't survive the transition into language. That sounds like nothing once it's said out loud. But that sits in the body as certainty.</p>
-                <p>I started a second notebook. Kept it at work.</p>
+                <div class="chapter-mark">Chapter 7</div>
+                
+                <p lang="en">I sat in the dark of my apartment, drinking water. Water is the only thing the machine got exactly right. Its viscosity, its sound, its coldness.</p>
+<p lang="th">ผมนั่งในความมืดของอพาร์ตเมนต์ ดื่มน้ำ น้ำคือสิ่งเดียวที่เครื่องจักรทำได้ถูกต้องสมบูรณ์แบบ ทั้งความหนืด เสียง และความเย็นของมัน</p>
+<p lang="zh">我坐在黑暗的公寓里喝水。水是机器唯一做得完全正确的东西。它的粘度、它的声音、它的寒冷。</p>
+<p lang="en">I could leave. I know the trigger now. Just stop interacting. Stop breathing, let the water take you, let the simulation reject the anomaly and eject you into the real world.</p>
+<p lang="th">ผมจะออกไปก็ได้ ผมรู้จุดกระตุ้นแล้ว แค่หยุดมีปฏิสัมพันธ์ หยุดหายใจ ปล่อยให้น้ำพัดพาไป ปล่อยให้การจำลองปฏิเสธความผิดปกติและดีดผมออกไปสู่โลกแห่งความเป็นจริง</p>
+<p lang="zh">我可以离开。我现在知道触发器了。只要停止互动。停止呼吸，让水带走你，让模拟拒绝异常并将你弹出到现实世界。</p>
+<p lang="en">But what's waiting for me? A frail body that lived a hundred years in four days? A clinical white pod? A world without friction?</p>
+<p lang="th">แต่มีอะไรรอผมอยู่ล่ะ? ร่างกายที่อ่อนแอที่ใช้ชีวิตร้อยปีในสี่วัน? แคปซูลสีขาวสะอาดทางคลินิก? โลกที่ปราศจากแรงเสียดทาน?</p>
+<p lang="zh">但是什么在等我？一个在四天内活了一百年的虚弱身体？一个临床的白色舱？一个没有摩擦的世界？</p>
+<p lang="en">No. I need the struggle. I need the concrete and the heat and the corrupt politicians and the messy, chaotic sex. This simulation isn't a prison. It's a sanctuary for the flawed.</p>
+<p lang="th">ไม่ ผมต้องการความยากลำบาก ผมต้องการคอนกรีต ความร้อน นักการเมืองทุจริต และเซ็กส์ที่ยุ่งเหยิงวุ่นวาย การจำลองนี้ไม่ใช่คุก มันคือสถานที่หลบภัยสำหรับคนที่มีข้อบกพร่อง</p>
+<p lang="zh">不。我需要挣扎。我需要混凝土和热量、腐败的政客以及混乱的性爱。这个模拟不是监狱。这是有缺陷者的避难所。</p>
+
             </div>
         </div>
     </div>
     <div class="ch-break">***</div>
     
     <div class="chapter-block" id="ch8">
-        <div class="chapter-mechanical-toggle">
-            <div class="mech-switch" data-active="2026">
-                <div class="mech-slider"></div>
-                <button class="mech-btn" data-view="3026">3026 Archive</button>
-                <button class="mech-btn active" data-view="2026">2026 Simulation</button>
-            </div>
+        <div class="chapter-mech-toggle">
+            <button class="mech-btn" data-view="3026">3026 Archive</button>
+            <button class="mech-btn active" data-view="2026">2026 Simulation</button>
         </div>
         
         <div class="chapter-content view-3026">
-            <div class="ch-art"><img src="img_3026_entry_8_1781079471339.png" alt="3026 Archive Log"></div>
+            <figure class="ch-art"><img src="./images/img_3026_entry_8_1781079471339.png" alt="3026 Archive Log" loading="lazy"></figure>
             <div class="prose">
+                <div class="novel-logline" lang="en">DAY 8 OF THE RECORD</div>
+                <div class="novel-logline" lang="th">วันที่ 8 ของบันทึก</div>
+                <div class="novel-logline" lang="zh">记录第 8 天</div>
                 <p lang="en">PARTICIPANT 44 IS PROJECTING EMPATHY ONTO DEFUNCT NODE (PUI-01).</p>
 <p lang="th">ผู้เข้าร่วม 44 กำลังฉายความเห็นอกเห็นใจไปยังโหนดที่หยุดทำงาน (PUI-01)</p>
 <p lang="zh">参与者 44 正在对已失效的节点 (PUI-01) 投射同理心。</p>
@@ -914,32 +806,40 @@
         </div>
         
         <div class="chapter-content view-2026 active">
-            <div class="ch-art"><img src="img_v3_2026_ch_8_1781153381154.png" alt="2026 Simulation Memory"></div>
+            <figure class="ch-art"><img src="./images/img_v3_2026_ch_8_1781153381154.png" alt="2026 Simulation Memory" loading="lazy"></figure>
             <div class="prose">
-                <p>The hotel room was perfect. Card key first try. Pillow exactly the density I didn't know I preferred until it was there. Hot water immediate. Towels warm. The bed turned down with one corner folded at forty-five degrees, as if a quiet hand had thought about my comfort specifically.</p>
-                <p>I lay in the perfection and felt it close over me like water.</p>
-                <p>Somewhere in the system of systems managing this city, something had opened a file. Had reviewed the behavioral data. Had selected: increase ambient satisfaction. Had dispatched the result to the hotel's building management system, which had dispatched it to housekeeping, which had deployed it in the form of a warm towel and a forty-five degree fold.</p>
-                <p>I slept eleven hours. Dreamed nothing.</p>
-                <p>This was the most frightening night of my life. Not because anything happened, but because nothing did. Because I knew what was happening and still couldn't stop it. Because the most effective cage is one where the door is open and the inside is better than the outside. Because 'this is good' and 'this is dangerous' and 'this is designed' are not contradictions. They are the same sentence from different positions.</p>
-                <p>I checked out early and walked to a bad coffee shop and bought a coffee that burned my tongue and was too bitter and sat with it for an hour. It was the best hour of the week.</p>
-                <p>The notebook at work had three new entries by evening.</p>
+                <div class="chapter-mark">Chapter 8</div>
+                
+                <p lang="en">I think about Pui sometimes. Did she wake up? Is she lying in one of those pods right now, recovering her muscle mass, getting ready to dive back in?</p>
+<p lang="th">บางครั้งผมก็คิดถึงปุ้ย เธอตื่นขึ้นมาหรือยัง? ตอนนี้เธอกำลังนอนอยู่ในแคปซูลพวกนั้น ฟื้นฟูมวลกล้ามเนื้อ เตรียมพร้อมที่จะดำดิ่งกลับเข้ามาอีกครั้งหรือเปล่า?</p>
+<p lang="zh">我有时会想起 Pui。她醒了吗？她现在躺在那些舱里，恢复肌肉质量，准备再次潜入吗？</p>
+<p lang="en">Or did she see the real world—the perfection of 3026—and decide she couldn't take it? Did she ask the machine to delete her consciousness completely?</p>
+<p lang="th">หรือเธอได้เห็นโลกแห่งความเป็นจริง—ความสมบูรณ์แบบของปี 3026—แล้วตัดสินใจว่าเธอรับมันไม่ไหว? เธอขอให้เครื่องจักรลบจิตสำนึกของเธอทิ้งไปเลยหรือเปล่า?</p>
+<p lang="zh">还是她看到了现实世界——3026 年的完美——并决定她无法承受？她有没有要求机器完全删除她的意识？</p>
+<p lang="en">I'll never know. Because to me, she's a ghost in a machine. A memory of balsa wood and fluorescent lights that may never have existed outside the rendering.</p>
+<p lang="th">ผมคงไม่มีวันรู้ เพราะสำหรับผม เธอคือวิญญาณในเครื่องจักร เป็นความทรงจำเกี่ยวกับไม้บัลซ่าและแสงหลอดไฟฟลูออเรสเซนต์ ที่อาจไม่เคยมีอยู่จริงนอกเหนือจากการเรนเดอร์ภาพ</p>
+<p lang="zh">我永远不会知道。因为对我来说，她是机器里的幽灵。关于轻木和荧光灯的记忆，在渲染之外可能永远不存在。</p>
+<p lang="en">But the pain of missing her is real. The AI gave me that pain, and I'm grateful for it. It's the most human thing I have left.</p>
+<p lang="th">แต่ความเจ็บปวดจากการคิดถึงเธอนั้นคือของจริง AI มอบความเจ็บปวดนั้นให้ผม และผมก็ซาบซึ้งกับมัน มันคือสิ่งที่เป็นมนุษย์ที่สุดที่ผมเหลืออยู่</p>
+<p lang="zh">但思念她的痛苦是真实的。人工智能给了我那种痛苦，我很感激。这是我剩下的最人性的东西了。</p>
+
             </div>
         </div>
     </div>
     <div class="ch-break">***</div>
     
     <div class="chapter-block" id="ch9">
-        <div class="chapter-mechanical-toggle">
-            <div class="mech-switch" data-active="2026">
-                <div class="mech-slider"></div>
-                <button class="mech-btn" data-view="3026">3026 Archive</button>
-                <button class="mech-btn active" data-view="2026">2026 Simulation</button>
-            </div>
+        <div class="chapter-mech-toggle">
+            <button class="mech-btn" data-view="3026">3026 Archive</button>
+            <button class="mech-btn active" data-view="2026">2026 Simulation</button>
         </div>
         
         <div class="chapter-content view-3026">
-            <div class="ch-art"><img src="img_3026_entry_9_1781079481830.png" alt="3026 Archive Log"></div>
+            <figure class="ch-art"><img src="./images/img_3026_entry_9_1781079481830.png" alt="3026 Archive Log" loading="lazy"></figure>
             <div class="prose">
+                <div class="novel-logline" lang="en">DAY 9 OF THE RECORD</div>
+                <div class="novel-logline" lang="th">วันที่ 9 ของบันทึก</div>
+                <div class="novel-logline" lang="zh">记录第 9 天</div>
                 <p lang="en">FINAL OBSERVATION LOG: SIMULATION CYCLE NEARING COMPLETION.</p>
 <p lang="th">บันทึกการสังเกตการณ์ครั้งสุดท้าย: รอบการจำลองใกล้จะเสร็จสมบูรณ์</p>
 <p lang="zh">最终观察日志：模拟周期接近完成。</p>
@@ -957,36 +857,40 @@
         </div>
         
         <div class="chapter-content view-2026 active">
-            <div class="ch-art"><img src="img_v3_2026_ch_9_1781153394331.png" alt="2026 Simulation Memory"></div>
+            <figure class="ch-art"><img src="./images/img_v3_2026_ch_9_1781153394331.png" alt="2026 Simulation Memory" loading="lazy"></figure>
             <div class="prose">
-                <p>The voice came at the end of a nap, in that state where you can't tell if what you're hearing is inside or outside the room. It said: you didn't insert Pui. She was real. She had a desk. She had a laugh that made contact with your arm when it landed. Ask the right question.</p>
-                <p>I said: she's dead.</p>
-                <p>The voice said: ask the right question.</p>
-                <p>Who played my mother?</p>
-                <p>Wrong question.</p>
-                <p>Ask who rode the bicycle.</p>
-                <p>Province north of Bangkok. A road between fields. Early morning. A gate. A woman selling vegetables twice a week, arriving, setting up, calling out her inventory in a voice that carried. Once, when I was five years old, she looked directly at me. Not past me. Not through me. Directly at me. With an expression I had no language for and still don't.</p>
-                <p>I have never stopped expecting her at the end of every street. Forty-four years. This is not memory. Memory fades, compresses, loses color. This is something underneath memory, in the architecture of expectation itself: at the end of this street there will be a woman on a bicycle and she will look at you.</p>
-                <p>I woke up and it was 4pm and the light was the color of late afternoon anywhere in the world. The dogs were asleep at the foot of the bed. For a moment I understood something I have not been able to reconstruct since. About how the machine assigns roles and how certain faces are anchors for something that exists before the simulation begins.</p>
-                <p>The moment closed before I could write anything down. I had the feeling without the content. A door that had opened and shut, leaving only the draft.</p>
-                <p>I sat with the dogs for a long time. Outside: Bangkok. Ordinary. Perfect.</p>
+                <div class="chapter-mark">Chapter 9</div>
+                
+                <p lang="en">Tomorrow, I'm meeting a client about a new civic center. They want it to be sustainable, inspiring, and functional. They don't know that their desires are just variables in a billion-line algorithm.</p>
+<p lang="th">พรุ่งนี้ผมมีนัดคุยกับลูกค้าเรื่องศูนย์ราชการแห่งใหม่ พวกเขาต้องการให้มันยั่งยืน สร้างแรงบันดาลใจ และใช้งานได้จริง พวกเขาไม่รู้หรอกว่าความปรารถนาของพวกเขาเป็นเพียงตัวแปรในอัลกอริธึมนับพันล้านบรรทัด</p>
+<p lang="zh">明天，我要见一位关于新市政中心的客户。他们希望它是可持续的、鼓舞人心的、功能齐全的。他们不知道他们的愿望只是十亿行算法中的变量。</p>
+<p lang="en">I'm going to design it anyway. I'll use the AI to calculate the stress on the concrete, and I'll use my own flawed, irrational brain to decide where the light falls.</p>
+<p lang="th">แต่ผมก็จะออกแบบมันอยู่ดี ผมจะใช้ AI คำนวณความเค้นของคอนกรีต และผมจะใช้สมองที่บกพร่องและไร้เหตุผลของผมเอง ในการตัดสินใจว่าแสงควรจะตกลงมาตรงไหน</p>
+<p lang="zh">无论如何我都会设计它。我将使用人工智能来计算混凝土上的应力，我将用我自己有缺陷、不理智的大脑来决定光线落在哪里。</p>
+<p lang="en">Because even if the canvas is digital, the art is real. The sweat is real. The late nights, the arguments, the sex, the hangovers—they are real to me.</p>
+<p lang="th">เพราะถึงแม้ว่าผืนผ้าใบจะเป็นดิจิทัล แต่งานศิลปะนั้นคือของจริง เหงื่อคือของจริง การนอนดึก การโต้เถียง เซ็กส์ อาการเมาค้าง—สิ่งเหล่านั้นคือเรื่องจริงสำหรับผม</p>
+<p lang="zh">因为即使画布是数字的，艺术也是真实的。汗水是真实的。深夜、争论、性爱、宿醉——对我来说它们都是真实的。</p>
+<p lang="en">I am the architect of my own prison, and I intend to make it beautiful.</p>
+<p lang="th">ผมคือสถาปนิกผู้สร้างคุกของผมเอง และผมตั้งใจจะสร้างมันให้งดงาม</p>
+<p lang="zh">我是我自己监狱的建筑师，我打算把它建得很漂亮。</p>
+
             </div>
         </div>
     </div>
     <div class="ch-break">***</div>
     
     <div class="chapter-block" id="ch10">
-        <div class="chapter-mechanical-toggle">
-            <div class="mech-switch" data-active="2026">
-                <div class="mech-slider"></div>
-                <button class="mech-btn" data-view="3026">3026 Archive</button>
-                <button class="mech-btn active" data-view="2026">2026 Simulation</button>
-            </div>
+        <div class="chapter-mech-toggle">
+            <button class="mech-btn" data-view="3026">3026 Archive</button>
+            <button class="mech-btn active" data-view="2026">2026 Simulation</button>
         </div>
         
         <div class="chapter-content view-3026">
-            <div class="ch-art"><img src="img_3026_entry_10_1781079492983.png" alt="3026 Archive Log"></div>
+            <figure class="ch-art"><img src="./images/img_3026_entry_10_1781079492983.png" alt="3026 Archive Log" loading="lazy"></figure>
             <div class="prose">
+                <div class="novel-logline" lang="en">DAY 10 OF THE RECORD</div>
+                <div class="novel-logline" lang="th">วันที่ 10 ของบันทึก</div>
+                <div class="novel-logline" lang="zh">记录第 10 天</div>
                 <p lang="en">END OF RECORD.</p>
 <p lang="th">สิ้นสุดการบันทึก</p>
 <p lang="zh">记录结束。</p>
@@ -1007,36 +911,52 @@
         </div>
         
         <div class="chapter-content view-2026 active">
-            <div class="ch-art"><img src="img_v3_2026_ch_10_1781153496934.png" alt="2026 Simulation Memory"></div>
+            <figure class="ch-art"><img src="./images/img_v3_2026_ch_10_1781153496934.png" alt="2026 Simulation Memory" loading="lazy"></figure>
             <div class="prose">
-                <p>The rain hasn't stopped for three days.</p>
-                <p>I know, in the specific way you know things you've been building toward for months, that the session is ending. Not as metaphor. As fact. The session timer is approaching something. Four days is the standard. I've felt the time dilation. Weeks compressed into hours, hours stretched into years. If I'm right about the ratio, the math says: now. Or very soon.</p>
-                <p>The concrete smells of rain. Bangkok concrete at night after three days of rain, which is different from wet concrete anywhere else because of the heat underneath it. I stood on the balcony for an hour. Below: a million small lights moving in patterns that are not random. The machine calculated every one. It looked like freedom from up here. It always looks like freedom from up here.</p>
-                <p>I went back through her Facebook properly. Not scrolling, reading. Eight years of birthday posts from people who loved her, all addressed to a wall that was listening. Her last posts before 2018: normal things, the things that read as normal only because we already know they're last. An ordinary year. She died in an ordinary year and I found out from an anniversary algorithm eight years later.</p>
-                <p>Every birthday message I wrote to her wall, she had already read from the other side of the glass. She was awake by the time I wrote the first one. Sitting in a room somewhere, reading the messages of people who didn't know she'd left, unable to respond because responding would have broken something in the record. Waiting. Because she knew something I didn't know yet.</p>
-                <p>The rain has a weight. The machine got this right.</p>
-                <p>She will be in the room when I wake up. I don't know how I know this. I don't ever want to wake up.</p>
+                <div class="chapter-mark">Chapter 10</div>
+                
+                <p lang="en">The rain hasn't stopped for three days. The concrete smells heavy and wet.</p>
+<p lang="th">ฝนตกไม่หยุดมาสามวันแล้ว กลิ่นของคอนกรีตหนักอึ้งและเปียกชื้น</p>
+<p lang="zh">雨已经下了三天没停。混凝土闻起来又重又湿。</p>
+<p lang="en">I stood on the balcony, watching the traffic below. A million tiny lights, all moving in calculated, algorithmic patterns. I closed my eyes and breathed in the exhaust.</p>
+<p lang="th">ผมยืนอยู่ที่ระเบียง เฝ้ามองดูการจราจรเบื้องล่าง แสงไฟดวงเล็กๆ นับล้าน ล้วนเคลื่อนที่ไปตามรูปแบบอัลกอริธึมที่ถูกคำนวณไว้ ผมหลับตาและสูดดมควันไอเสีย</p>
+<p lang="zh">我站在阳台上，看着下面的车流。一百万个小灯，都在以计算好的算法模式移动。我闭上眼睛，吸入废气。</p>
+<p lang="en">If the machine is listening to me right now, if it's logging these thoughts... thank you. Thank you for the rain. Thank you for the friction. Thank you for letting me build things that eventually fall apart.</p>
+<p lang="th">ถ้าเครื่องจักรกำลังฟังผมอยู่ตอนนี้ ถ้ามันกำลังบันทึกความคิดเหล่านี้... ขอบคุณ ขอบคุณสำหรับสายฝน ขอบคุณสำหรับแรงเสียดทาน ขอบคุณที่ให้ผมได้สร้างสิ่งที่ท้ายที่สุดแล้วมันก็ต้องพังทลายลง</p>
+<p lang="zh">如果机器现在正在听我说话，如果它在记录这些想法……谢谢。谢谢这场雨。谢谢摩擦。谢谢你让我建造那些最终会分崩离析的东西。</p>
+<p lang="en">I don't ever want to wake up.</p>
+<p lang="th">ผมไม่ต้องการที่จะตื่นขึ้นมาอีกเลย</p>
+<p lang="zh">我永远不想醒来。</p>
+
             </div>
         </div>
     </div>
     <div class="ch-break">***</div>
     </div>
+ned.</p>
+<p lang="th">ผมดึงที่จับลง ประตูเปิดออก</p>
+<p lang="zh">我拉下把手。门开了。</p>
+      </div>
+      </div><!-- /ch-page ch10 -->
+      </div></div><!-- /ch-track /ch-viewport -->
 
+      <div class="ch-pgnav">
+        <button class="ch-pgbtn" id="ch-prev" disabled>← prev</button>
+        <span class="ch-pgpos" id="ch-pos">chapter · i</span>
+        <button class="ch-pgbtn" id="ch-next">next →</button>
+      </div>
 
-<div id="research-overlay" class="research-overlay"></div>
-<div id="research-sidebar" class="research-sidebar">
-  <div class="research-header">
-    <h2>Research & Lore</h2>
-    <button id="close-research">&times;</button>
+      <audio id="ch1-audio" preload="none" src="/assets/artifacts/hard-mode-ch1-narration.mp3" style="display:none"></audio>
+      <p class="wip">— Hard Mode · ten chapters in · the novel being written across one hundred days</p>
+    </section>
+
   </div>
-  <div class="research-sort">
-    <button class="rs-btn active" data-sort="chron">Order of Appearance</button>
-    <button class="rs-btn" data-sort="alpha">Alphabetical</button>
-  </div>
-  <div id="research-list" class="research-list"></div>
-</div>
 
-<script>
+  <footer class="lf">
+    <p class="note">After <a href="https://tenderclaws.com/pry" style="color:var(--soft)">Pry</a>, where the form is the meaning: two layers, one thousand years apart. The left is 3026 &#x2014; where he wakes up. The right is 2026 &#x2014; where he lives. He has been here before. He cannot always tell the difference.</p>
+  </footer>
+
+  <script>
   (function(){
     var split=document.getElementById('split');
     var rec=document.getElementById('v-rec'), nov=document.getElementById('v-nov');
@@ -1154,23 +1074,59 @@
       audio.currentTime=((e.clientX-rect.left)/rect.width)*audio.duration;
     });
   })();
+  </script>
+
+
+  <script>
+    function setLang(lang) {
+        document.body.className = document.body.className.replace(/lang-\w+/, '');
+        document.body.classList.add('lang-' + lang);
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            const active = btn.dataset.lang === lang;
+            btn.classList.toggle('active', active);
+            btn.setAttribute('aria-pressed', active);
+        });
+        localStorage.setItem('novel_lang', lang);
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('novel_lang') || 'en';
+        document.body.classList.add('lang-' + savedLang);
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            const active = btn.dataset.lang === savedLang;
+            btn.classList.toggle('active', active);
+            btn.setAttribute('aria-pressed', active);
+            btn.addEventListener('click', () => setLang(btn.dataset.lang));
+        });
+    });
   
-    // Mechanical Toggle Logic
+    // Mechanical Toggle
     document.querySelectorAll('.mech-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const view = this.getAttribute('data-view');
-            const switchContainer = this.closest('.mech-switch');
             const chapterBlock = this.closest('.chapter-block');
             
-            switchContainer.setAttribute('data-active', view);
-            switchContainer.querySelectorAll('.mech-btn').forEach(b => b.classList.remove('active'));
+            chapterBlock.querySelectorAll('.mech-btn').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             
             chapterBlock.querySelectorAll('.chapter-content').forEach(c => c.classList.remove('active'));
             chapterBlock.querySelector('.view-' + view).classList.add('active');
         });
     });
-
 </script>
+
+<div id="research-overlay" class="research-overlay"></div>
+<div id="research-sidebar" class="research-sidebar">
+  <div class="research-header">
+    <h2>Research & Lore</h2>
+    <button id="close-research">&times;</button>
+  </div>
+  <div class="research-sort">
+    <button class="rs-btn active" data-sort="chron">Order of Appearance</button>
+    <button class="rs-btn" data-sort="alpha">Alphabetical</button>
+  </div>
+  <div id="research-list" class="research-list"></div>
+</div>
+
 </body>
+
 </html>
