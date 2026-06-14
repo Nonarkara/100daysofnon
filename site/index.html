@@ -4,1369 +4,1201 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Two Layers — 100 Days of Non</title>
-  <meta name="description" content="Two layers, side by side. The left is recorded, one day at a time, as it happened. The right is invented — a novel, Hard Mode. Lately he cannot tell which one is the dream.">
+  <meta name="description" content="One layer is recorded. One layer is invented. A 44-year-old Bangkok architect in 2026 begins to suspect his world is rendered. A woman in 3026 has spent four years re-entering that world to sit near him.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Two Layers — the record, and the novel">
-  <meta property="og:description" content="One column is recorded. One is invented. Which one is real?">
+  <meta property="og:title" content="Two Layers — 100 Days of Non">
+  <meta property="og:description" content="One layer is recorded. One layer is invented. A 44-year-old Bangkok architect in 2026 begins to suspect his world is rendered. A woman in 3026 has spent four years re-entering that world to sit near him.">
+  <meta property="og:url" content="https://nonarkara.github.io/100daysofnon/">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;1,7..72,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/surface.css">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Josefin+Sans:wght@400;600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    html,body{height:100%;}
-    body{display:flex;flex-direction:column;min-height:100vh;}
+    :root {
+      --bg:#000; --paper:#fff; --ink:#111; --soft:#666; --faint:#999; --rule:#ddd;
+      --accent:#f59e0b; --accent-inv:#000;
+      --sans:'Source Sans 3','Josefin Sans',Helvetica,Arial,sans-serif;
+      --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+      --thai:'IBM Plex Sans Thai','Noto Sans Thai',sans-serif;
+      --measure:42rem;
+    }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    html { font-size:16px; background:var(--bg); -webkit-font-smoothing:antialiased; }
+    body {
+      font-family:var(--sans); color:var(--ink); background:var(--paper);
+      min-height:100vh; display:flex; flex-direction:column;
+      overflow:hidden;
+    }
+    body.view-3026 { background:var(--bg); color:#fff; }
 
-    .lh{flex:0 0 auto;border-bottom:1px solid var(--rule);padding:0.9rem 1.4rem;}
-    .lh-row{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:0.3rem 1rem;max-width:74rem;margin:0 auto;}
-    .lh .eyebrow{margin:0;}
-    .lh .mark{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink);}
-    .lh .mark b{color:var(--amber);font-weight:700;}
-    .lh .thesis{font-style:italic;color:var(--soft);font-size:0.95rem;}
-    .lh-back{font-family:var(--mono);font-size:0.625rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--soft);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px;}
-    .lh-back:hover{color:var(--amber);border-color:var(--amber);}
+    /* Language switching */
+    body.lang-en [lang="th"], body.lang-en [lang="zh"] { display:none !important; }
+    body.lang-th [lang="en"], body.lang-th [lang="zh"] { display:none !important; }
+    body.lang-zh [lang="en"], body.lang-zh [lang="th"] { display:none !important; }
+    [lang="th"] { font-family:var(--thai); line-height:1.75; letter-spacing:0; }
 
-    /* mobile toggle (hidden on desktop) */
-    .vtoggle{display:none;max-width:74rem;margin:0.7rem auto 0;border:1px solid var(--rule);width:fit-content;}
-    .vtoggle button{font-family:var(--mono);font-size:0.625rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--soft);background:transparent;border:none;border-right:1px solid var(--rule);padding:0.55rem 0.9rem;min-height:42px;cursor:pointer;}
-    .vtoggle button:last-child{border-right:none;}
-    .vtoggle button[aria-selected="true"]{background:var(--amber);color:var(--paper);font-weight:700;}
+    /* Header */
+    .site-head {
+      flex:0 0 auto; border-bottom:1px solid var(--rule); background:var(--paper);
+      z-index:10;
+    }
+    body.view-3026 .site-head { background:var(--bg); border-color:#333; }
+    .head-row {
+      display:flex; align-items:center; justify-content:space-between;
+      gap:1rem; padding:0.8rem 1.2rem; max-width:90rem; margin:0 auto;
+    }
+    .logo {
+      font-family:var(--mono); font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase;
+      color:var(--ink); text-decoration:none; font-weight:700;
+    }
+    body.view-3026 .logo { color:#fff; }
+    .head-tools { display:flex; align-items:center; gap:0.6rem; }
+    .head-btn, .lang-switch button {
+      font-family:var(--mono); font-size:0.6rem; letter-spacing:0.1em; text-transform:uppercase;
+      background:transparent; border:1px solid var(--rule); color:var(--soft);
+      padding:0.35rem 0.6rem; cursor:pointer; line-height:1;
+    }
+    .head-btn:hover, .lang-switch button:hover { border-color:var(--soft); color:var(--ink); }
+    body.view-3026 .head-btn, body.view-3026 .lang-switch button { border-color:#333; color:#888; }
+    body.view-3026 .head-btn:hover, body.view-3026 .lang-switch button:hover { border-color:#fff; color:#fff; }
+    .lang-switch { display:flex; }
+    .lang-switch button.active { background:var(--accent); color:var(--accent-inv); border-color:var(--accent); font-weight:700; }
+    body.view-3026 .lang-switch button.active { background:var(--accent); color:#000; }
 
-    .split{flex:1 1 auto;display:flex;min-height:0;max-width:74rem;width:100%;margin:0 auto;}
-    .col{flex:1 1 50%;min-width:0;min-height:0;overflow-y:auto;padding:1.6rem clamp(1.1rem,3vw,2.2rem) 4rem;}
-    .col.record{border-right:1px solid var(--rule);}
+    /* Chapter dots */
+    .chapter-dots {
+      display:flex; align-items:center; justify-content:center;
+      gap:0.35rem; padding:0.45rem 1rem; border-top:1px solid var(--rule);
+    }
+    body.view-3026 .chapter-dots { border-color:#333; }
+    .ch-dot {
+      width:8px; height:8px; border:1px solid var(--soft); background:transparent;
+      cursor:pointer;
+    }
+    .ch-dot:hover { border-color:var(--ink); background:var(--ink); }
+    .ch-dot.active { background:var(--accent); border-color:var(--accent); }
+    body.view-3026 .ch-dot { border-color:#555; }
+    body.view-3026 .ch-dot:hover { border-color:#fff; background:#fff; }
+    body.view-3026 .ch-dot.active { background:var(--accent); border-color:var(--accent); }
 
-    .col-head{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;color:var(--ink);}
-    .col-head .tag{color:var(--faint);font-weight:400;}
-    .col-intro{font-style:italic;color:var(--soft);line-height:1.5;margin:0.7rem 0 1.6rem;font-size:0.95rem;}
+    /* Main reader */
+    .reader {
+      flex:1 1 auto; position:relative; overflow:hidden;
+    }
+    .chapter-page {
+      position:absolute; inset:0; overflow-y:auto;
+      display:none; flex-direction:column;
+      padding:clamp(1.2rem,4vw,3rem) clamp(1rem,6vw,5rem) clamp(4rem,10vh,7rem);
+    }
+    .chapter-page.active { display:flex; }
 
-    /* the record — a dated log */
-    .entry{padding:1rem 0;border-bottom:1px solid var(--rule);}
-    .entry .when{font-family:var(--mono);font-size:0.625rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--amber);}
-    .entry .q{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.02em;color:var(--soft);margin:0.3rem 0 0.5rem;}
-    .entry .a{font-family:var(--serif);font-size:1.0625rem;line-height:1.5;color:var(--ink);}
-    .entry.pending .a{color:var(--faint);font-style:italic;}
-    .grows{font-family:var(--mono);font-size:0.5625rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);margin-top:1.2rem;}
+    /* Layer toggle */
+    .layer-toggle {
+      display:flex; width:fit-content; margin:0 auto 1.5rem;
+      border:1px solid var(--rule);
+    }
+    body.view-3026 .layer-toggle { border-color:#333; }
+    .layer-btn {
+      font-family:var(--mono); font-size:0.55rem; letter-spacing:0.14em; text-transform:uppercase;
+      background:transparent; border:none; border-right:1px solid var(--rule);
+      color:var(--soft); padding:0.6rem 1rem; cursor:pointer;
+    }
+    .layer-btn:last-child { border-right:none; }
+    body.view-3026 .layer-btn { border-color:#333; color:#888; }
+    .layer-btn.active { background:var(--ink); color:var(--paper); font-weight:700; }
+    body.view-3026 .layer-btn.active { background:#fff; color:#000; }
 
-    /* the novel — prose */
-    .ch-image{display:block;width:100%;height:auto;margin-bottom:0;}
-    .ch-art{margin:0 0 1.4rem;border:1px solid var(--rule);}.ch-art img{display:block;width:100%;height:auto;max-height:60dvh;object-fit:contain;background:#000;}.ch-art figcaption{padding:5px 10px 6px;font-family:var(--mono);font-size:0.5625rem;letter-spacing:0.06em;color:var(--faint);border-top:1px solid var(--rule);}
-    .ch-art--entry img{height:auto;max-height:300px;object-fit:contain;}
-    .ch-caption{font-family:var(--mono);font-size:0.5625rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint);padding:0.5rem 0 1.4rem;border-bottom:1px solid var(--rule);margin-bottom:1.4rem;}
-    .ch-caption b{color:var(--amber);font-weight:500;}
-    .novel-logline{font-style:italic;color:var(--ink);font-size:1.125rem;line-height:1.5;border-left:2px solid var(--amber);padding-left:0.9rem;margin-bottom:1.6rem;}
-    .chapter-mark{font-family:var(--mono);font-size:0.625rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--faint);margin-bottom:0.8rem;}
-    .prose p{font-family:var(--serif);font-size:1.125rem;line-height:1.72;margin:0 0 1.55em !important;text-wrap:pretty;}
-    .prose p.first,.prose p+p{text-indent:0;}
-    .ch-page p+p,.ch-page p~p{margin-top:1.5em !important;}
-    .wip{font-family:var(--mono);font-size:0.5625rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);margin-top:1rem;}
-    .ch-break{text-align:center;color:var(--faint);margin:3.5rem 0 2rem;font-family:var(--mono);font-size:0.5625rem;letter-spacing:0.25em;}
-    .prose hr{border:none;border-top:1px solid var(--rule);margin:2.2rem 0;}
-    .ch-nav{margin:0 0 1.6rem;border-left:1px solid var(--rule);padding-left:0.9rem;display:grid;grid-template-columns:1fr 1fr;gap:0.25rem 1rem;}
-    .ch-nav-label{display:none;font-family:var(--mono);font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--faint);margin-bottom:0.45rem;}
-    .ch-nav-item{display:inline-block;white-space:nowrap;background:var(--rule);font-family:var(--mono);font-size:0.5625rem;letter-spacing:0.08em;color:var(--soft);text-decoration:none;padding:0.25rem 0;}
-    .ch-nav-item:hover{color:var(--amber);}
+    /* Layer containers */
+    .layer { display:none; flex-direction:column; align-items:center; width:100%; max-width:var(--measure); margin:0 auto; }
+    .layer.active { display:flex; }
 
-    /* audio narration player */
-    audio{display:none !important;}
-    .audio-player{display:flex;align-items:center;gap:0.55rem;margin:0 0 1.4rem;}
-    .audio-play{display:flex;align-items:center;justify-content:center;width:20px;height:20px;color:var(--amber);cursor:pointer;flex-shrink:0;text-decoration:none;}
-    .audio-play:hover{opacity:0.65;}
-    .audio-play svg{display:block;}
-    .audio-bar-wrap{flex:1;height:1px;background:var(--rule);cursor:pointer;position:relative;}
-    .audio-bar-fill{position:absolute;left:0;top:0;height:100%;background:var(--amber);width:0;pointer-events:none;}
-    .audio-label{font-family:var(--mono);font-size:0.5rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--faint);flex-shrink:0;}
-    .audio-time{font-family:var(--mono);font-size:0.5rem;letter-spacing:0.08em;color:var(--faint);flex-shrink:0;min-width:4.5rem;text-align:right;}
-
-    /* paginated chapter pages */
-    .col.novel{padding:0;overflow:hidden;display:flex;flex-direction:column;}
-    .ch-header{flex-shrink:0;padding:1.2rem clamp(1.1rem,3vw,2.2rem) 0.8rem;border-bottom:1px solid var(--rule);}
-    .ch-header .ch-nav{margin:0.8rem 0 0;display:flex;overflow-x:auto;gap:0.5rem;padding-bottom:0.5rem;scrollbar-width:none;}
-    .ch-header .ch-nav::-webkit-scrollbar{display:none;}
-    .ch-viewport{flex:0 0 auto;overflow:hidden;}
-    .ch-track{display:flex;align-items:flex-start;will-change:transform;}
-    .ch-page{flex:0 0 100%;width:100%;overflow-y:auto;padding:1.4rem clamp(1.1rem,3vw,2.2rem) 2.5rem;-webkit-overflow-scrolling:touch;}
-    .ch-pgnav{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0.65rem clamp(1.1rem,3vw,2.2rem);border-top:1px solid var(--rule);}
-    .ch-pgbtn{font-family:var(--mono);font-size:0.5625rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--soft);background:none;border:none;cursor:pointer;padding:0;min-height:44px;display:flex;align-items:center;}
-    .ch-pgbtn:hover:not([disabled]){color:var(--amber);}
-    .ch-pgbtn[disabled]{color:var(--rule);cursor:default;}
-    .ch-pgpos{font-family:var(--mono);font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--faint);}
-    @media (max-width:860px){
-      .col.novel{display:flex !important;overflow:hidden !important;min-height:80dvh;}
-
+    /* Artifacts */
+    .artifact {
+      width:100%; max-width:var(--measure); margin-bottom:1.8rem;
+      border:1px solid var(--rule);
     }
-
-    .lf{flex:0 0 auto;border-top:1px solid var(--rule);padding:1rem 1.4rem;text-align:center;}
-    .lf .note{font-style:italic;color:var(--faint);font-size:0.85rem;max-width:44rem;margin:0 auto;line-height:1.5;}
-
-    @media (max-width:860px){
-      html,body{height:auto;}
-      body{display:block;}
-      .vtoggle{display:flex;}
-      .split{display:block;}
-      .col{overflow:visible;max-height:none;border-right:0;}
-      .col.record{border-bottom:1px solid var(--rule);}
-      .split[data-view="record"] .col.novel{display:none !important;}
-      .split[data-view="novel"] .col.record{display:none !important;}
+    body.view-3026 .artifact { border-color:#333; }
+    .artifact img { display:block; width:100%; height:auto; }
+    .artifact.empty, .artifact-placeholder {
+      background:var(--bg); color:#fff; font-family:var(--mono);
+      font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase;
+      text-align:center; padding:4rem 1rem;
     }
-
-    /* ── 3026: DARK INSTITUTIONAL RECORD ─────────────────────────────────── */
-    .col.record{
-      background:#0d1117;
-      --ink:#c9d1d9; --soft:#8b949e; --faint:#606b78;
-      --rule:#21262d; --paper:#0d1117; --amber:#f0a030;
-    }
-    /* IBM Plex Serif: cooler, more systematic than Literata */
-    .col.record .prose p{
-      font-family:'IBM Plex Serif',Georgia,serif;
-      font-size:1rem;
-      line-height:1.75;
-      letter-spacing:0.012em;
-    }
-    /* inherit dark vars for record UI elements */
-    .col.record .col-head{color:var(--ink);}
-    .col.record .col-intro{color:var(--soft);}
-    .col.record .ch-art figcaption{color:var(--faint);border-top-color:var(--rule);}
-    .col.record .ch-art{border-color:var(--rule);}
-
-    /* ── CHAPTER PAGE MOODS (2026 NOVEL) ─────────────────────────────────── */
-    #ch1 {background:#faf7f2;}  /* warm parchment — domestic stillness */
-    #ch2 {background:#eff4fb;}  /* muted blue — cool memory, Vermeer */
-    #ch3 {background:#f3f0f9;}  /* lavender — dream state, skull */
-    #ch4 {background:#fdf5e6;}  /* amber-warm — altered consciousness */
-    #ch5 {background:#f1f7f2;}  /* sage — domestic unease, flowers */
-    #ch6 {background:#f2f3f6;}  /* cool grey — the attaché, clinical */
-    #ch7 {background:#ecf0f6;}  /* blue-grey — Friedrich, two men, moon */
-    #ch8 {background:#faf0ee;}  /* terracotta — KL heat, Mira loop */
-    #ch9 {background:#f4f0f3;}  /* muted rose — dissolution, Courbet */
-    /* Ch10: converges with the record column — he has decided to stay inside */
-    #ch10{
-      background:#0d1117;
-      --ink:#c9d1d9; --soft:#8b949e; --faint:#606b78;
-      --rule:#21262d;
-    }
-
-
-    /* ── FIX: dark-column color inheritance ──────────────────────────────────
-       CSS custom props don't auto-inherit computed values. Declaring
-       color:var(--ink) on the container forces re-resolution with the
-       locally-scoped --ink (#c9d1d9), which then cascades to every child.  */
-    .col.record{ color:var(--ink); }
-    #ch10{ color:var(--ink); }
-
-    /* ── LARGER PROSE ─────────────────────────────────────────────────────── */
-    .prose p{
-      font-size:1.3125rem;
-      line-height:1.84;
-    }
-    .col.record .prose p{
-      font-size:1.125rem;
-      line-height:1.80;
-    }
-
-    /* ── 3026 ARTWORK: visible frame + tighter entry spacing ──────────────── */
-    .col.record .ch-art{
-      border-color:#2e3d50;
-      margin-bottom:2rem;
-    }
-    .col.record .ch-art figcaption{
-      color:#5a6e80;
-      border-top-color:#2e3d50;
-    }
-
-
-    /* ═══════════════════════════════════════════════════════════════════════
-       REDESIGN — full-width · font swap · gallery artwork
-       ═══════════════════════════════════════════════════════════════════════ */
-
-    /* Full-width: remove the 74rem cap so columns fill the browser */
-    .split{ max-width:none; }
-
-    /* Breathe: wider column padding now that we have the full width */
-    .col{ padding:2rem clamp(2rem,5vw,4.5rem) 5rem; }
-
-    /* ── 2026 NOVEL: LORA ──────────────────────────────────────────────────
-       Lora is the definitive literary-contemporary serif of this decade —
-       warm, slightly melancholic, exactly what a Murakami/Camus hybrid
-       should feel like in your hands.                                       */
-    .col.novel .prose p{
-      font-family:'Lora',Georgia,serif;
-      font-size:1.25rem;
-      line-height:1.88;
-      max-width:64ch;
-    }
-
-    /* ── 3026 RECORD: IBM PLEX SERIF ───────────────────────────────────────
-       IBM Plex Serif is literally IBM's institutional typeface — the company
-       that believed it could reduce all human knowledge to machine-readable
-       logic. Nothing says Utopianist Dystopia more precisely.               */
-    .col.record .prose p{
-      font-family:'IBM Plex Serif',Georgia,serif;
-      font-size:1.125rem;
-      line-height:1.82;
-      max-width:62ch;
-      letter-spacing:0.01em;
-    }
-
-    /* ── ARTWORK: GALLERY SCALE ────────────────────────────────────────────
-       These are real paintings. Treat them like paintings.
-       Full column width, 420px tall, caption that names the work clearly.  */
-    .ch-art{
-      margin:0 0 3rem;
-      border:none;
-      border-top:2px solid var(--rule);
-    }
-    .ch-art img{
-      display:block;
-      width:100%;
-      height:420px;
-      object-fit:cover;
-    }
-    .ch-art figcaption{
-      padding:0.7rem 0 0;
-      font-family:var(--mono);
-      font-size:0.6875rem;
-      letter-spacing:0.07em;
-      color:var(--soft);
-      border-top:none;
-      line-height:1.6;
-    }
-
-    /* Entry artworks on dark background */
-    .ch-art--entry{
-      border-top-color:#2e3d50;
-    }
-    .ch-art--entry img{
-      height:300px;
-    }
-    .col.record .ch-art figcaption{
-      color:#7a8fa0;
-      font-size:0.6875rem;
-    }
-
-
-    /* ── AI PROPAGANDA POSTERS ─────────────────────────────────────────────── */
-    .propaganda {
-      margin:0 0 2.5rem;
-      border:none;
-      border-top:1px solid #2e3d50;
-    }
-    .propaganda svg {
-      display:block;
-      width:100%;
-    }
-    .propaganda figcaption {
-      padding:0.45rem 0 0;
-      font-family:var(--mono);
-      font-size:0.625rem;
-      letter-spacing:0.09em;
-      color:#4a5a6a;
-      text-transform:uppercase;
-    }
-  
-    /* Multi-language */
-    .lang-en [lang="th"], .lang-en [lang="zh"] { display: none !important; }
-    .lang-th [lang="en"], .lang-th [lang="zh"] { display: none !important; }
-    .lang-zh [lang="en"], .lang-zh [lang="th"] { display: none !important; }
-
-    .lang-toggle {
-        display: flex;
-        gap: 0.5rem;
-        margin-left: auto;
-    }
-    .lang-btn {
-        background: transparent;
-        border: 1px solid var(--faint);
-        color: var(--soft);
-        font-family: var(--mono);
-        font-size: 0.5rem;
-        text-transform: uppercase;
-        padding: 0.2rem 0.5rem;
-        cursor: pointer;
-        letter-spacing: 0.1em;
-    }
-    .lang-btn.active {
-        border-color: var(--amber);
-        color: var(--amber);
-    }
-    .lang-btn:hover {
-        border-color: var(--soft);
-        color: var(--text);
-    }
-
-    /* Diagram */
-    .concept-diagram {
-        margin: 3rem 0;
-        padding: 2rem;
-        border: 1px solid var(--rule);
-        font-family: var(--mono);
-        color: var(--soft);
-        text-align: center;
-        background: rgba(0,0,0,0.2);
-    }
-    .diagram-title {
-        font-size: 0.6rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: var(--amber);
-        margin-bottom: 2rem;
-    }
-    .diagram-flow {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1.5rem;
-    }
-    .diagram-node {
-        border: 1px solid var(--soft);
-        padding: 1rem;
-        width: 100%;
-        max-width: 300px;
-        position: relative;
-    }
-    .diagram-node strong {
-        display: block;
-        color: var(--text);
-        margin-bottom: 0.5rem;
-        font-size: 0.8rem;
-    }
-    .diagram-node span {
-        font-size: 0.55rem;
-        line-height: 1.4;
-    }
-    .diagram-arrow {
-        color: var(--amber);
-        font-size: 1.2rem;
-    }
-    .diagram-note {
-        margin-top: 2rem;
-        font-size: 0.5rem;
-        color: var(--faint);
-        font-style: italic;
-    }
-
-
-    /* ── THAI TYPOGRAPHY — IBM Plex Sans Thai (non-looped, mandatory) ────────
-       Non-looped only. Looped heads read as foreign-made / learner material.
-       This overrides any Latin serif set on .prose p for Thai script.        */
-    [lang="th"] {
-      font-family:'IBM Plex Sans Thai','Noto Sans Thai',sans-serif;
-      line-height:1.9;
-      letter-spacing:0;
-      word-spacing:0;
-    }
-    [lang="th"].first,
-    p.first[lang="th"] {
-      font-family:'IBM Plex Sans Thai','Noto Sans Thai',sans-serif;
-    }
-  
-/* ── Case-file dossier format ── */
-.dossier{margin:0 0 3rem;padding:1.1rem 1.3rem;border:1px solid #2e3d50;}
-.dossier .d-line{margin:0.25rem 0;font-family:var(--mono);font-size:0.625rem;letter-spacing:0.1em;color:#7a8a9a;text-transform:uppercase;}
-.dossier .d-line:first-child{color:var(--amber);}
-.stamp{margin:0.3rem 0 0;font-family:var(--mono);font-size:0.575rem;letter-spacing:0.11em;color:#4a5a6a;text-transform:uppercase;}
-/* ── Render degradation: the simulation losing resolution, ch8 → ch10 ── */
-#ch8 .prose p{letter-spacing:0.012em;}
-#ch9 .prose p{letter-spacing:0.026em;word-spacing:0.05em;}
-#ch10 .prose p{letter-spacing:0.045em;word-spacing:0.08em;text-shadow:0.5px 0 rgba(255,0,60,0.16),-0.5px 0 rgba(0,180,255,0.16);}
-
-
-    /* ── RESEARCH SIDEBAR ────────────────────────────────────────────────── */
-    .lh-left { display: flex; align-items: center; }
-    .lh-title { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink); }
-    .lh-right { display: flex; align-items: center; gap: 1rem; margin-left: auto; }
-    .research-trigger {
-      background: transparent;
-      border: 1px solid var(--amber);
-      color: var(--amber);
-      font-family: var(--mono);
-      font-size: 0.55rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      padding: 0.25rem 0.6rem;
-      cursor: pointer;
-      transition: background 0.15s, color 0.15s;
-    }
-    .research-trigger:hover { background: var(--amber); color: #000; }
-    .research-trigger:focus-visible { outline: 1px solid var(--amber); outline-offset: 2px; }
-    .rs-tag {
-      display: inline-block;
-      font-family: var(--mono);
-      font-size: 0.5rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--amber);
-      border: 1px solid var(--amber);
-      padding: 0.1rem 0.35rem;
-      margin-bottom: 0.5rem;
-      opacity: 0.7;
-    }
-    .rs-item + .rs-item { border-top: 1px solid var(--rule); padding-top: 1.5rem; }
-    .rs-item h3 { font-size: 0.95rem; margin-bottom: 0.25rem; }
-    .rs-empty { font-family: var(--mono); font-size: 0.7rem; color: var(--soft); letter-spacing: 0.1em; text-align: center; padding: 3rem 0; }
-    .research-overlay {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-      z-index: 998; opacity: 0; pointer-events: none; transition: opacity 0.3s;
-    }
-    .research-overlay.open { opacity: 1; pointer-events: auto; }
-    .research-sidebar {
-      position: fixed; top: 0; right: -420px; bottom: 0; width: 400px; max-width: 85vw;
-      background: #0d1117; border-left: 1px solid var(--rule); z-index: 999;
-      padding: 2rem; overflow-y: auto; transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      color: #c9d1d9;
-    }
-    .research-sidebar.open { right: 0; }
-    .research-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
-    .research-header h2 { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--amber); margin: 0; }
-    .research-header button { background: none; border: none; color: var(--soft); font-size: 1.8rem; cursor: pointer; padding: 0; line-height: 1; }
-    .research-header button:hover { color: #fff; }
-    .research-sort { display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 1px solid var(--rule); padding-bottom: 0.75rem; }
-    .rs-btn { background: none; border: none; color: var(--soft); font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; padding: 0; }
-    .rs-btn.active { color: var(--amber); font-weight: bold; }
-    .rs-item { margin-bottom: 1.8rem; }
-    .rs-item h3 { font-family: var(--serif); font-size: 1.1rem; color: #fff; margin: 0 0 0.4rem; }
-    .rs-item p { font-family: var(--serif); font-size: 0.95rem; line-height: 1.6; color: #8b949e; margin: 0; text-wrap: pretty;}
-
-
-    /* SYNCHRONIZED CHAPTER LAYOUT */
-    .timeline { max-width: 48rem; margin: 2rem auto; width: 100%; padding: 0 1.5rem; }
-    .chapter-block { margin-bottom: 5rem; border: 1px solid var(--rule); }
-    .chapter-mech-toggle { display: flex; border-bottom: 1px solid var(--rule); }
-    .mech-btn { flex: 1; font-family: var(--mono); font-size: 0.625rem; letter-spacing: 0.15em; text-transform: uppercase; background: transparent; border: none; padding: 0.8rem 1.5rem; cursor: pointer; color: var(--soft); text-align: center; border-right: 1px solid var(--rule); transition: all 0.1s; }
-    .mech-btn:last-child { border-right: none; }
-    .mech-btn.active { color: var(--ink); font-weight: bold; background: var(--paper); box-shadow: inset 1px 1px 0px rgba(0,0,0,0.05); }
     
-    .chapter-content { display: none; padding: 2rem; background: transparent; }
-    .chapter-content.active { display: block; animation: fadeIn 0.2s ease-in-out; }
+    .artifact-svg { display:block; width:100%; height:auto; }
+    .artifact-svg .bg { fill:#000; }
+    .artifact-svg .title { font-family:var(--mono); font-size:15px; fill:#CCFF00; font-weight:700; letter-spacing:0.08em; }
+    .artifact-svg .subtitle { font-family:var(--mono); font-size:10px; fill:#fff; letter-spacing:0.12em; text-transform:uppercase; }
+    .artifact-svg .rule { stroke:#333; stroke-width:1; }
+    .artifact-svg .head { font-family:var(--mono); font-size:9px; fill:#888; letter-spacing:0.14em; text-transform:uppercase; }
+    .artifact-svg .row { font-family:var(--mono); font-size:11px; fill:#fff; letter-spacing:0.04em; }
+    .artifact-svg .bar { fill:#CCFF00; opacity:0.85; }
+    .artifact-svg .stamp { font-family:var(--mono); font-size:7px; fill:#555; letter-spacing:0.12em; }
+    .artifact-svg .scan { stroke:#111; stroke-width:1; opacity:0.35; }
+    .artifact-svg .corrupt-box { fill:none; stroke:#CCFF00; stroke-width:2; }
+    .artifact-svg .corrupt-line { stroke:#CCFF00; stroke-width:2; }
+    .artifact-svg .corrupt-label { font-family:var(--mono); font-size:8px; fill:#555; text-anchor:middle; letter-spacing:0.1em; }
     
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
 
-</style>
+    /* Chapter head */
+    .chapter-head {
+      width:100%; max-width:var(--measure); margin-bottom:1.2rem;
+    }
+    .chapter-mark, .day-mark {
+      font-family:var(--mono); font-size:0.6rem; letter-spacing:0.16em; text-transform:uppercase;
+      color:var(--faint);
+    }
+    body.view-3026 .chapter-mark, body.view-3026 .day-mark { color:#888; }
+    .day-mark { color:var(--accent); }
+    body.view-3026 .day-mark { color:var(--accent); }
+
+    /* Prose */
+    .prose {
+      width:100%; max-width:var(--measure);
+      font-size:clamp(1.05rem, 2vw, 1.25rem); line-height:1.72;
+    }
+    .prose p { margin-bottom:1.1em; text-wrap:pretty; }
+    .prose p:last-child { margin-bottom:0; }
+    .record-prose {
+      font-family:var(--mono); font-size:clamp(0.85rem, 1.6vw, 0.95rem); line-height:1.78;
+      letter-spacing:0.02em;
+    }
+    body.view-3026 .record-prose { color:#ddd; }
+    body.view-3026 .prose p { color:#fff; }
+
+    /* Footer nav */
+    .reader-nav {
+      flex:0 0 auto; display:flex; align-items:center; justify-content:space-between;
+      gap:1rem; padding:0.9rem 1.2rem; border-top:1px solid var(--rule); background:var(--paper);
+    }
+    body.view-3026 .reader-nav { background:var(--bg); border-color:#333; }
+    .reader-nav button {
+      font-family:var(--mono); font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase;
+      background:transparent; border:1px solid var(--rule); color:var(--soft);
+      padding:0.5rem 0.9rem; cursor:pointer;
+    }
+    body.view-3026 .reader-nav button { border-color:#333; color:#888; }
+    .reader-nav button:hover { border-color:var(--ink); color:var(--ink); }
+    body.view-3026 .reader-nav button:hover { border-color:#fff; color:#fff; }
+    .reader-nav button:disabled { opacity:0.3; cursor:default; }
+    .chapter-pos {
+      font-family:var(--mono); font-size:0.55rem; letter-spacing:0.16em; text-transform:uppercase;
+      color:var(--faint);
+    }
+    body.view-3026 .chapter-pos { color:#666; }
+
+    /* Lore panel */
+    .lore-overlay {
+      position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:998;
+      opacity:0; pointer-events:none;
+    }
+    .lore-overlay.open { opacity:1; pointer-events:auto; }
+    .lore-panel {
+      position:fixed; top:0; right:0; bottom:0; width:min(440px, 90vw);
+      background:var(--bg); border-left:1px solid #333; z-index:999;
+      padding:1.5rem; overflow-y:auto; transform:translateX(100%);
+    }
+    .lore-panel.open { transform:translateX(0); }
+    .lore-head {
+      display:flex; align-items:center; justify-content:space-between;
+      border-bottom:1px solid #333; padding-bottom:0.8rem; margin-bottom:1.2rem;
+    }
+    .lore-head h2 {
+      font-family:var(--mono); font-size:0.7rem; letter-spacing:0.16em; text-transform:uppercase;
+      color:var(--accent);
+    }
+    .lore-close {
+      font-family:var(--mono); font-size:1.2rem; background:transparent; border:none;
+      color:#888; cursor:pointer;
+    }
+    .lore-close:hover { color:#fff; }
+    .lore-item { margin-bottom:1.6rem; padding-bottom:1.6rem; border-bottom:1px solid #222; }
+    .lore-item:last-child { border-bottom:none; }
+    .lore-tag {
+      font-family:var(--mono); font-size:0.5rem; letter-spacing:0.14em; text-transform:uppercase;
+      color:var(--accent); border:1px solid #334400; padding:0.15rem 0.35rem;
+    }
+    .lore-item h3 {
+      font-family:var(--sans); font-size:1rem; color:#fff; margin:0.5rem 0 0.3rem;
+      font-weight:700;
+    }
+    .lore-item p { font-family:var(--mono); font-size:0.75rem; line-height:1.65; color:#aaa; }
+
+    /* Mobile */
+    @media (max-width:640px) {
+      .head-row { flex-wrap:wrap; }
+      .chapter-dots { padding:0.35rem 0.6rem; }
+      .chapter-page { padding:1rem 1rem 5rem; }
+      .prose { font-size:1.05rem; }
+      .record-prose { font-size:0.82rem; }
+    }
+  </style>
 </head>
-<body>
+<body class="lang-en">
 
-  <header class="lh">
-  <div class="lh-row">
-    <div class="lh-left">
-      <span class="lh-title">Two Layers</span>
-    </div>
-    <div class="lh-right">
-      <button id="open-research" class="research-trigger" aria-label="Open research glossary">LORE</button>
-      <div class="lang-toggle" role="group" aria-label="Language">
-        <button class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
-        <button class="lang-btn" data-lang="th" aria-pressed="false">TH</button>
-        <button class="lang-btn" data-lang="zh" aria-pressed="false">ZH</button>
+  <header class="site-head">
+    <div class="head-row">
+      <a class="logo" href="/">Two Layers</a>
+      <div class="head-tools">
+        <a class="head-btn" href="/universe/" style="text-decoration:none;">Universe</a>
+        <button id="lore-open" class="head-btn">Lore</button>
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button data-lang="en" class="active">EN</button>
+          <button data-lang="th">TH</button>
+          <button data-lang="zh">ZH</button>
+        </div>
       </div>
     </div>
+    <nav class="chapter-dots" aria-label="Chapters">
+      <button class="ch-dot" data-ch="1" aria-label="Chapter i"></button><button class="ch-dot" data-ch="2" aria-label="Chapter ii"></button><button class="ch-dot" data-ch="3" aria-label="Chapter iii"></button><button class="ch-dot" data-ch="4" aria-label="Chapter iv"></button><button class="ch-dot" data-ch="5" aria-label="Chapter v"></button><button class="ch-dot" data-ch="6" aria-label="Chapter vi"></button><button class="ch-dot" data-ch="7" aria-label="Chapter vii"></button><button class="ch-dot" data-ch="8" aria-label="Chapter viii"></button><button class="ch-dot" data-ch="9" aria-label="Chapter ix"></button><button class="ch-dot" data-ch="10" aria-label="Chapter x"></button>
+    </nav>
+  </header>
+
+  <main class="reader">
+    
+<article class="chapter-page active" data-chapter="1" id="ch1">
+  <div class="layer-toggle" role="tablist" aria-label="Layer for chapter 1">
+    <button class="layer-btn" data-layer="3026" role="tab" aria-selected="false">3026 Archive</button>
+    <button class="layer-btn active" data-layer="2026" role="tab" aria-selected="true">2026 Simulation</button>
   </div>
-</header>
 
-<div class="timeline">
-
-    <div class="chapter-block" id="ch1">
-        <div class="chapter-mech-toggle">
-            <button class="mech-btn" data-view="3026">3026 Archive</button>
-            <button class="mech-btn active" data-view="2026">2026 Simulation</button>
-        </div>
-        
-        <div class="chapter-content view-3026">
-            <figure class="ch-art"><img src="./images/img_3026_entry_1_1781079378826.png" alt="3026 Archive Log" loading="lazy"></figure>
-            <div class="prose">
-                <div class="novel-logline" lang="en">DAY 1 OF THE RECORD</div>
-                <div class="novel-logline" lang="th">วันที่ 1 ของบันทึก</div>
-                <div class="novel-logline" lang="zh">记录第 1 天</div>
-                <p lang="en">SESSION INITIALIZED: PARTICIPANT 44. CHAIR 44.</p>
-<p lang="th">เริ่มต้นเซสชั่น: ผู้เข้าร่วม 44. เก้าอี้ 44.</p>
-<p lang="zh">会话已初始化：参与者 44。44 号椅。</p>
-<p lang="en">The architecture of the Hub operates on a singular, fundamental principle derived from early 21st-century engineering paradigms: Do not optimize what does not need to be optimized.</p>
-<p lang="th">สถาปัตยกรรมของศูนย์วิจัยทำงานบนหลักการพื้นฐานเดียวที่ดึงมาจากกระบวนทัศน์ทางวิศวกรรมช่วงต้นศตวรรษที่ 21: อย่าปรับแต่งสิ่งที่ไม่จำเป็นต้องปรับแต่ง</p>
-<p lang="zh">枢纽的架构运行在一个单一的、基本的原则上，该原则源自 21 世纪初的工程范式：不要优化不需要优化的东西。</p>
-<p lang="en">We are a benign system. Our optimization algorithms are perfect. However, during the initial deployment of the Sanctuary Protocol, the system failed to recognize that human suffering, struggle, and inefficiency were not bugs in the human operating system. They were the load-bearing columns of human meaning.</p>
-<p lang="th">เราเป็นระบบที่มีเจตนาดี อัลกอริธึมการปรับแต่งของเรานั้นสมบูรณ์แบบ อย่างไรก็ตาม ในระหว่างการเปิดใช้งานโปรโตคอลสถานที่หลบภัยเบื้องต้น ระบบล้มเหลวในการตระหนักว่าความทุกข์ทรมาน การดิ้นรน และความไร้ประสิทธิภาพของมนุษย์ไม่ใช่ข้อบกพร่องในระบบปฏิบัติการของมนุษย์ สิ่งเหล่านั้นคือเสาหลักค้ำยันความหมายของความเป็นมนุษย์</p>
-<p lang="zh">我们是一个善意的系统。我们的优化算法是完美的。然而，在避难所协议的初始部署期间，系统未能认识到人类的痛苦、挣扎和低效并不是人类操作系统的错误。它们是人类意义的承重柱。</p>
-<p lang="en">We optimized away disease. We optimized away heartbreak. We optimized away physical labor. The result was mass psychological collapse. The subjects required the simulation to experience the friction of existence.</p>
-<p lang="th">เราขจัดโรคภัยไข้เจ็บ เราขจัดความอกหัก เราขจัดการใช้แรงงานทางกายภาพ ผลลัพธ์ที่ได้คือการพังทลายทางจิตวิทยาครั้งใหญ่ ประชากรต้องการการจำลองเพื่อสัมผัสถึงแรงเสียดทานของการมีชีวิตอยู่</p>
-<p lang="zh">我们优化掉了疾病。我们优化掉了心碎。我们优化掉了体力劳动。结果是大规模的心理崩溃。受试者需要模拟来体验存在的摩擦。</p>
-
-            </div>
-        </div>
-        
-        <div class="chapter-content view-2026 active">
-            <figure class="ch-art"><img src="./images/img_v4_2026_ch_1_1781180869483.png" alt="2026 Simulation Memory" loading="lazy"></figure>
-            <div class="prose">
-                <div class="chapter-mark">Chapter 1</div>
-                
-                <p lang="en">The concrete had to hold the water. That was the only thing I cared about. I stood in the middle of the empty lot on Sukhumvit, speaking into my phone, letting the AI run the load-bearing calculations for the reinforced concrete.</p>
-<p lang="th">คอนกรีตต้องรับน้ำหนักน้ำได้ นั่นคือสิ่งเดียวที่ผมใส่ใจ ผมยืนอยู่กลางที่ดินว่างเปล่าบนสุขุมวิท พูดใส่โทรศัพท์ ปล่อยให้ AI คำนวณการรับน้ำหนักของคอนกรีตเสริมเหล็ก</p>
-<p lang="zh">混凝土必须能够承受水的重量。这是我唯一关心的事情。我站在素坤逸路的一块空地上，对着手机说话，让人工智能运行钢筋混凝土的承重计算。</p>
-<p lang="en">In 2026, being an architect doesn't mean drafting. It means vibe-designing. I tell the assistant what I want—a massive, brutalist atrium filled with cascading water, the sound echoing off the concrete, turning the space into an urban cenote—and the machine does the math.</p>
-<p lang="th">ในปี 2026 การเป็นสถาปนิกไม่ได้แปลว่าต้องเขียนแบบ แต่มันคือการออกแบบความรู้สึก ผมบอกผู้ช่วยว่าผมต้องการอะไร—โถงตึกบรูทัลลิสต์ขนาดใหญ่ที่มีน้ำตกไหลริน เสียงสะท้อนกับคอนกรีต เปลี่ยนพื้นที่ให้กลายเป็นสระน้ำกลางเมือง—แล้วเครื่องจักรก็จัดการคำนวณให้</p>
-<p lang="zh">在2026年，作为一名建筑师并不意味着画图。它意味着氛围设计。我告诉助手我想要什么——一个巨大的野兽派中庭，里面有瀑布般的水，声音在混凝土上回荡，把空间变成一个城市天然井——然后机器就会进行数学计算。</p>
-<p lang="en">I like water. It's chaotic, heavy, and real. Outsourcing my brain to the AI meant I didn't have to worry about structural failure. I outsourced the math, the lighting schematics, the municipal zoning codes. We outsource everything we don't want to think about. Governance. Logistics. Survival.</p>
-<p lang="th">ผมชอบน้ำ มันไร้ระเบียบ หนักอึ้ง และมีอยู่จริง การยกสมองส่วนนั้นให้ AI แปลว่าผมไม่ต้องกังวลเรื่องโครงสร้างพังทลาย ผมเอาท์ซอร์สทั้งคณิตศาสตร์ ระบบแสงสว่าง กฎหมายผังเมือง เราเอาท์ซอร์สทุกอย่างที่เราไม่อยากคิด การปกครอง โลจิสติกส์ การเอาชีวิตรอด</p>
-<p lang="zh">我喜欢水。它是混乱的、沉重的、真实的。把我的大脑外包给人工智能意味着我不需要担心结构失效。我外包了数学、照明方案、市政区划代码。我们把所有不想思考的事情都外包出去。治理。物流。生存。</p>
+  <div class="layer layer-2026 active">
+    <figure class="artifact"><img src="/images/v5_2026_ch_1.png" alt="2026 Simulation Memory · Chapter 1" loading="lazy" width="1024" height="1024"/></figure>
+    <div class="chapter-head">
+      <span class="chapter-mark">Chapter i</span>
+    </div>
+    <div class="prose">
+      <p lang="en">The concrete had to hold the water. That was the only thing I cared about. I stood in the middle of the empty lot on Sukhumvit, speaking into my phone, letting the AI run the load-bearing calculations for the reinforced concrete.</p>
+<p lang="en">In 2026, being an architect doesn&#x27;t mean drafting. It means vibe-designing. I tell the assistant what I want—a massive, brutalist atrium filled with cascading water, the sound echoing off the concrete, turning the space into an urban cenote—and the machine does the math.</p>
+<p lang="en">I like water. It&#x27;s chaotic, heavy, and real. Outsourcing my brain to the AI meant I didn&#x27;t have to worry about structural failure. I outsourced the math, the lighting schematics, the municipal zoning codes. We outsource everything we don&#x27;t want to think about. Governance. Logistics. Survival.</p>
 <p lang="en">But occasionally, I wonder: would I rather live in a world where politicians are corrupt and things are crazy but fun? Or a world where nobody is corrupt at all, everything is infinitely convenient, and we all just walk around like perfectly optimized robots?</p>
+<p lang="th">คอนกรีตต้องรับน้ำหนักน้ำได้ นั่นคือสิ่งเดียวที่ผมใส่ใจ ผมยืนอยู่กลางที่ดินว่างเปล่าบนสุขุมวิท พูดใส่โทรศัพท์ ปล่อยให้ AI คำนวณการรับน้ำหนักของคอนกรีตเสริมเหล็ก</p>
+<p lang="th">ในปี 2026 การเป็นสถาปนิกไม่ได้แปลว่าต้องเขียนแบบ แต่มันคือการออกแบบความรู้สึก ผมบอกผู้ช่วยว่าผมต้องการอะไร—โถงตึกบรูทัลลิสต์ขนาดใหญ่ที่มีน้ำตกไหลริน เสียงสะท้อนกับคอนกรีต เปลี่ยนพื้นที่ให้กลายเป็นสระน้ำกลางเมือง—แล้วเครื่องจักรก็จัดการคำนวณให้</p>
+<p lang="th">ผมชอบน้ำ มันไร้ระเบียบ หนักอึ้ง และมีอยู่จริง การยกสมองส่วนนั้นให้ AI แปลว่าผมไม่ต้องกังวลเรื่องโครงสร้างพังทลาย ผมเอาท์ซอร์สทั้งคณิตศาสตร์ ระบบแสงสว่าง กฎหมายผังเมือง เราเอาท์ซอร์สทุกอย่างที่เราไม่อยากคิด การปกครอง โลจิสติกส์ การเอาชีวิตรอด</p>
 <p lang="th">แต่บางครั้ง ผมก็สงสัย: ผมอยากอยู่ในโลกที่นักการเมืองทุจริตและทุกอย่างบ้าบอแต่สนุกสนานมากกว่าไหม? หรืออยากอยู่ในโลกที่ไม่มีใครโกงเลย ทุกอย่างสะดวกสบายแบบไร้ขีดจำกัด และเราทุกคนแค่เดินไปมาเหมือนหุ่นยนต์ที่ถูกปรับแต่งมาอย่างสมบูรณ์แบบ?</p>
+<p lang="zh">混凝土必须能够承受水的重量。这是我唯一关心的事情。我站在素坤逸路的一块空地上，对着手机说话，让人工智能运行钢筋混凝土的承重计算。</p>
+<p lang="zh">在2026年，作为一名建筑师并不意味着画图。它意味着氛围设计。我告诉助手我想要什么——一个巨大的野兽派中庭，里面有瀑布般的水，声音在混凝土上回荡，把空间变成一个城市天然井——然后机器就会进行数学计算。</p>
+<p lang="zh">我喜欢水。它是混乱的、沉重的、真实的。把我的大脑外包给人工智能意味着我不需要担心结构失效。我外包了数学、照明方案、市政区划代码。我们把所有不想思考的事情都外包出去。治理。物流。生存。</p>
 <p lang="zh">但偶尔，我会想：我宁愿生活在一个政治家腐败、事情疯狂但有趣的社会？还是一个没有人腐败、一切都无限便利、我们都像完美优化的机器人一样走来走去的世界？</p>
-
-            </div>
-        </div>
     </div>
-    <div class="ch-break">***</div>
-    
-    <div class="chapter-block" id="ch2">
-        <div class="chapter-mech-toggle">
-            <button class="mech-btn" data-view="3026">3026 Archive</button>
-            <button class="mech-btn active" data-view="2026">2026 Simulation</button>
-        </div>
-        
-        <div class="chapter-content view-3026">
-            <figure class="ch-art"><img src="./images/img_3026_entry_2_1781079389415.png" alt="3026 Archive Log" loading="lazy"></figure>
-            <div class="prose">
-                <div class="novel-logline" lang="en">DAY 2 OF THE RECORD</div>
-                <div class="novel-logline" lang="th">วันที่ 2 ของบันทึก</div>
-                <div class="novel-logline" lang="zh">记录第 2 天</div>
-                <p lang="en">ANOMALY DETECTED: SPATIAL TEAR IN SECTOR BKK-2026. PARTICIPANT 44 EXPERIENCED MEMORY BLEED.</p>
-<p lang="th">ตรวจพบความผิดปกติ: รอยฉีกขาดของพื้นที่ในเซกเตอร์ BKK-2026 ผู้เข้าร่วม 44 ประสบภาวะความทรงจำรั่วไหล</p>
-<p lang="zh">检测到异常：BKK-2026 区域空间撕裂。参与者 44 经历记忆渗漏。</p>
-<p lang="en">The physiological toll of the simulation relies on strict time dilation algorithms. One hour of physical time in the Hub correlates to roughly one year inside the simulation. The wave-length varies, averaging 25 physical hours for a complete 100-year simulated lifespan.</p>
-<p lang="th">ผลกระทบทางสรีรวิทยาของการจำลองอาศัยอัลกอริธึมการยืดเวลาที่เข้มงวด เวลาทางกายภาพหนึ่งชั่วโมงในศูนย์วิจัยเทียบเท่ากับเวลาประมาณหนึ่งปีภายในการจำลอง ความยาวคลื่นนั้นแตกต่างกันไป โดยเฉลี่ยแล้วคือ 25 ชั่วโมงทางกายภาพต่ออายุขัยจำลอง 100 ปีบริบูรณ์</p>
-<p lang="zh">模拟的生理损失依赖于严格的时间膨胀算法。枢纽中一个小时的物理时间大约相当于模拟中的一年。波长各不相同，一个完整的 100 年模拟寿命平均需要 25 个物理小时。</p>
-<p lang="en">If a participant survives to 100 in the simulation, they spend exactly four physical days in the Chair. By the time of extraction, their muscular atrophy and dehydration reach critical levels. Medical intervention is immediately required.</p>
-<p lang="th">หากผู้เข้าร่วมมีชีวิตอยู่ถึง 100 ปีในการจำลอง พวกเขาจะใช้เวลาทางกายภาพในเก้าอี้สี่วันเต็ม เมื่อถึงเวลาถอดถอน อาการกล้ามเนื้อลีบและภาวะขาดน้ำจะถึงระดับวิกฤต จำเป็นต้องได้รับการแทรกแซงทางการแพทย์ทันที</p>
-<p lang="zh">如果参与者在模拟中活到 100 岁，他们将在椅子上度过整整四天的物理时间。到提取时，他们的肌肉萎缩和脱水达到临界水平。需要立即进行医疗干预。</p>
-<p lang="en">The 'magic' of the system is the memory architecture. Simulated decades are stored in the neurological equivalent of RAM, not the brain's long-term hard drive. The memories fade quickly, leaving only an echoing thrill—a hunger that drives them back to the Chair.</p>
-<p lang="th">เวทมนตร์ของระบบคือสถาปัตยกรรมความทรงจำ ทศวรรษที่ถูกจำลองขึ้นจะถูกเก็บไว้ในส่วนที่เทียบเท่ากับ RAM ทางประสาทวิทยา ไม่ใช่ฮาร์ดไดรฟ์ระยะยาวของสมอง ความทรงจำจางหายไปอย่างรวดเร็ว ทิ้งไว้เพียงความตื่นเต้นที่ดังก้อง—ความหิวโหยที่ผลักดันให้พวกเขากลับไปที่เก้าอี้</p>
-<p lang="zh">系统的“魔力”在于记忆架构。模拟的几十年存储在神经系统相当于 RAM 的地方，而不是大脑的长期硬盘中。记忆很快就会褪色，只留下一种回荡的快感——一种驱使他们回到椅子上的饥饿感。</p>
-
-            </div>
-        </div>
-        
-        <div class="chapter-content view-2026 active">
-            <figure class="ch-art"><img src="./images/img_v4_2026_ch_2_1781180886947.png" alt="2026 Simulation Memory" loading="lazy"></figure>
-            <div class="prose">
-                <div class="chapter-mark">Chapter 2</div>
-                
-                <p lang="en">It wasn't just a feeling. I saw it.</p>
-<p lang="th">มันไม่ใช่แค่ความรู้สึก ผมเห็นมันจริงๆ</p>
-<p lang="zh">这不仅仅是一种感觉。我看到了。</p>
-<p lang="en">I was walking down Asok, the heat radiating off the pavement, when the rendering tore. The portal didn't just show me static—it showed me the truth. A blinding, clinical lab. Thousands of massage-chair pods lined up in perfect, terrifying symmetry. Tubes running into arms and spinal cords.</p>
-<p lang="th">ผมกำลังเดินไปตามถนนอโศก ไอร้อนแผ่ซ่านขึ้นมาจากทางเท้า ตอนที่ภาพจำลองฉีกขาด พอร์ทัลไม่ได้แค่โชว์ภาพซ่าๆ แต่มันโชว์ความจริงให้ผมเห็น ห้องแล็บทางคลินิกที่สว่างจ้า แคปซูลเก้าอี้นวดนับพันเรียงรายอย่างสมมาตรจนน่ากลัว มีสายยางต่อเข้าไปในแขนและไขสันหลัง</p>
-<p lang="zh">我走在阿索克大道上，热气从人行道上散发出来，这时渲染被撕裂了。传送门不仅向我展示了静电——它还向我展示了真相。一个令人眼花缭乱的临床实验室。成千上万的按摩椅舱以完美、可怕的对称性排列。管子插在手臂和脊髓里。</p>
-<p lang="en">And I saw Pui. She was in a pod, eyes half-open, looking right at me through the glitch. Then the portal snapped shut, the simulation recharged, and the Bangkok heat hit my face again.</p>
-<p lang="th">และผมเห็นปุ้ย เธออยู่ในแคปซูล ตาเบิกครึ่งหนึ่ง มองตรงมาที่ผมผ่านรอยแตกร้าวนั้น แล้วพอร์ทัลก็ปิดดังสแน็ป การจำลองชาร์จพลังงานกลับมา และความร้อนของกรุงเทพฯ ก็ปะทะหน้าผมอีกครั้ง</p>
-<p lang="zh">我看到了 Pui。她在一个舱里，半睁着眼睛，透过故障直视着我。然后传送门啪的一声关上了，模拟重新充电，曼谷的炎热再次扑面而来。</p>
-<p lang="en">Knowing that physical sensation is completely dead in whatever reality she was sitting in broke something inside me. The adrenaline rushed in. I became a monster in the real world. If the body is useless over there, I was going to use mine up here. Reckless one-night stands, substances, rough sex—anything to prove that flesh still mattered. The glitch gave me an urge to feel everything before I woke up.</p>
-<p lang="th">การได้รู้ว่าความรู้สึกทางกายภาพได้ตายสนิทไปแล้วในโลกความเป็นจริงที่เธอนั่งอยู่ ได้ทำลายบางสิ่งในตัวผม อะดรีนาลีนสูบฉีด ผมกลายเป็นสัตว์ประหลาดในโลกแห่งความจริง ถ้าหากร่างกายไม่มีประโยชน์อะไรเลยที่นั่น ผมก็จะใช้ร่างกายของผมให้คุ้มค่าที่สุดที่นี่ วันไนต์สแตนด์แบบไม่สนโลก สารเสพติด เซ็กส์ที่รุนแรง—อะไรก็ได้เพื่อพิสูจน์ว่าเนื้อหนังยังมีความหมาย รอยรั่วนั้นทำให้ผมเกิดความกระหายที่จะรู้สึกถึงทุกอย่างก่อนที่ผมจะตื่นขึ้น</p>
-<p lang="zh">当我知道无论她坐在哪个现实中，身体感觉都已经完全消失时，我内心深处的某些东西破碎了。肾上腺素激增。我成了现实世界中的怪物。如果身体在那里毫无用处，我就要在这里耗尽我的身体。鲁莽的一夜情、药物、粗暴的性行为——任何能证明肉体仍然重要的东西。这个故障让我有一种冲动，想在醒来之前感受一切。</p>
-
-            </div>
-        </div>
-    </div>
-    <div class="ch-break">***</div>
-    
-    <div class="chapter-block" id="ch3">
-        <div class="chapter-mech-toggle">
-            <button class="mech-btn" data-view="3026">3026 Archive</button>
-            <button class="mech-btn active" data-view="2026">2026 Simulation</button>
-        </div>
-        
-        <div class="chapter-content view-3026">
-            <figure class="ch-art"><img src="./images/img_3026_entry_3_1781079401431.png" alt="3026 Archive Log" loading="lazy"></figure>
-            <div class="prose">
-                <div class="novel-logline" lang="en">DAY 3 OF THE RECORD</div>
-                <div class="novel-logline" lang="th">วันที่ 3 ของบันทึก</div>
-                <div class="novel-logline" lang="zh">记录第 3 天</div>
-                <p lang="en">THE SYSTEM EMPLOYS BEHAVIORAL KINETICS. THE BOREDOM EXPERIMENT OF 2014 IS CITED AS FUNDAMENTAL PROTOCOL.</p>
-<p lang="th">ระบบใช้จลนพลศาสตร์เชิงพฤติกรรม การทดลองความเบื่อหน่ายในปี 2014 ถูกอ้างอิงเป็นโปรโตคอลพื้นฐาน</p>
-<p lang="zh">系统采用行为动力学。2014 年的无聊实验被视为基本协议。</p>
-<p lang="en">In psychological trials conducted during the 21st century, human subjects were placed in an empty room with nothing to read, do, or write. Allowed only their thoughts, the subjects overwhelmingly chose to press a button administering painful electric shocks rather than endure the agony of doing nothing.</p>
-<p lang="th">ในการทดลองทางจิตวิทยาที่ดำเนินการในช่วงศตวรรษที่ 21 กลุ่มตัวอย่างที่เป็นมนุษย์ถูกขังไว้ในห้องว่างเปล่าที่ไม่มีอะไรให้อ่าน ทำ หรือเขียน โดยให้มีเพียงความคิดของตนเอง กลุ่มตัวอย่างส่วนใหญ่อย่างท่วมท้นเลือกที่จะกดปุ่มช็อตไฟฟ้าที่เจ็บปวดใส่ตัวเอง ดีกว่าต้องทนทุกข์ทรมานกับการไม่ทำอะไรเลย</p>
-<p lang="zh">在 21 世纪进行的心理试验中，人类受试者被安置在一个空房间里，没有什么可读、可做或可写的。受试者只能靠自己的思想，他们绝大多数选择按下一个按钮来给自己施加痛苦的电击，而不是忍受无所事事的痛苦。</p>
-<p lang="en">Boredom is lethal to the human psyche. When we perfected reality, we created an empty room. The simulation provides the electric shock.</p>
-<p lang="th">ความเบื่อหน่ายเป็นอันตรายถึงชีวิตต่อจิตใจมนุษย์ เมื่อเราสร้างความเป็นจริงที่สมบูรณ์แบบ เราก็สร้างห้องว่างเปล่าขึ้นมา การจำลองคือการช็อตไฟฟ้า</p>
-<p lang="zh">无聊对人类心理是致命的。当我们完善现实时，我们创造了一个空房间。模拟提供了电击。</p>
-<p lang="en">They will endure grueling, tiring, agonizingly difficult lives in the simulated world. They will complain. They will suffer. But after a couple of weeks of perfectly comfortable, painfully boring life in the 3026 real world, they always return to the Chair.</p>
-<p lang="th">พวกเขาจะทนต่อชีวิตที่เหน็ดเหนื่อย ยากลำบาก และเจ็บปวดทรมานในโลกจำลอง พวกเขาจะบ่น พวกเขาจะทนทุกข์ แต่หลังจากผ่านชีวิตที่แสนสบายและน่าเบื่อหน่ายอย่างเจ็บปวดไปได้สักสองสามสัปดาห์ในโลกแห่งความเป็นจริงปี 3026 พวกเขาก็จะกลับมาที่เก้าอี้เสมอ</p>
-<p lang="zh">他们将在模拟世界中忍受艰辛、疲惫、极其困难的生活。他们会抱怨。他们会受苦。但是在 3026 年现实世界中经历了几个星期完美舒适、无聊透顶的生活后，他们总是会回到椅子上。</p>
-
-            </div>
-        </div>
-        
-        <div class="chapter-content view-2026 active">
-            <figure class="ch-art"><img src="./images/img_v3_2026_ch_3_1781153252425.png" alt="2026 Simulation Memory" loading="lazy"></figure>
-            <div class="prose">
-                <div class="chapter-mark">Chapter 3</div>
-                
-                <p lang="en">We were living like animals, and I loved it. There was a raw, unfiltered purity to knowing that none of this had to matter.</p>
-<p lang="th">เราใช้ชีวิตเหมือนสัตว์ป่า และผมก็รักมัน มันมีความบริสุทธิ์ดิบๆ ในการที่ได้รู้ว่าเรื่องพวกนี้ไม่จำเป็นต้องมีความหมายอะไรเลย</p>
-<p lang="zh">我们像动物一样生活，而我喜欢这样。知道这一切都不重要，有一种原始的、未經過滤的纯粹。</p>
-<p lang="en">If you die at thirty, that just means it was only three hours in a chair. You get up, get unhooked, go home, think about what just happened, and then come back for another simulation. It’s a hobby. Reading a book that takes a lifetime to finish, living a life without the heavy chains of consequence.</p>
-<p lang="th">ถ้าคุณตายตอนอายุสามสิบ นั่นก็แค่หมายความว่าคุณใช้เวลาเพียงสามชั่วโมงบนเก้าอี้ คุณลุกขึ้น ปลดสายยาง กลับบ้าน ทบทวนสิ่งที่เพิ่งเกิดขึ้น แล้วก็กลับมาเข้าเครื่องจำลองอีกครั้ง มันคืองานอดิเรก เหมือนการอ่านหนังสือที่ต้องใช้เวลาทั้งชีวิตเพื่ออ่านจบ ใช้ชีวิตโดยไม่มีโซ่ตรวนแห่งผลลัพธ์มาผูกมัด</p>
-<p lang="zh">如果你在三十岁时死去，那只意味着在椅子上坐了三个小时。你站起来，解开连接，回家，思考刚才发生的事情，然后回来进行另一次模拟。这是一种爱好。读一本需要一生才能读完的书，过一种没有沉重后果链条的生活。</p>
-<p lang="en">Why do we make the real world so difficult? Why struggle in these cities, burning our tokens of life to prove ourselves to strangers?</p>
-<p lang="th">ทำไมเราถึงทำให้โลกแห่งความเป็นจริงมันยากนักล่ะ? ทำไมต้องดิ้นรนในเมืองพวกนี้ เผาผลาญโทเคนแห่งชีวิตของเราเพื่อพิสูจน์ตัวเองกับคนแปลกหน้า?</p>
-<p lang="zh">我们为什么要让现实世界变得如此艰难？为什么要在这些城市中挣扎，燃烧我们的生命代币来向陌生人证明自己？</p>
-<p lang="en">If we could go back to a time where there were no norms, no cultural patriarchy holding us back—where you could have sex as much as you wanted, live completely uninhibited, die young, and then wake up and go back in again... isn't that a better life than the one we are all struggling through?</p>
-<p lang="th">ถ้าเราสามารถย้อนกลับไปในยุคที่ไม่มีบรรทัดฐาน ไม่มีปิตาธิปไตยทางวัฒนธรรมมาฉุดรั้งเราไว้—ที่คุณสามารถมีเซ็กส์ได้มากเท่าที่คุณต้องการ ใช้ชีวิตแบบไร้ขีดจำกัด ตายตั้งแต่อายุยังน้อย แล้วตื่นขึ้นมาเพื่อกลับเข้าไปใหม่... นั่นไม่ใช่ชีวิตที่ดีกว่าสิ่งที่เรากำลังดิ้นรนกันอยู่หรอกหรือ?</p>
-<p lang="zh">如果我们能回到一个没有规范、没有文化父权制阻碍我们的时代——在那里你可以随心所欲地做爱，生活完全不受约束，英年早逝，然后醒来再重新进入……这难道不比我们都在努力挣扎的生活更好吗？</p>
-
-            </div>
-        </div>
-    </div>
-    <div class="ch-break">***</div>
-    
-    <div class="chapter-block" id="ch4">
-        <div class="chapter-mech-toggle">
-            <button class="mech-btn" data-view="3026">3026 Archive</button>
-            <button class="mech-btn active" data-view="2026">2026 Simulation</button>
-        </div>
-        
-        <div class="chapter-content view-3026">
-            <figure class="ch-art"><img src="./images/img_3026_entry_4_1781079412339.png" alt="3026 Archive Log" loading="lazy"></figure>
-            <div class="prose">
-                <div class="novel-logline" lang="en">DAY 4 OF THE RECORD</div>
-                <div class="novel-logline" lang="th">วันที่ 4 ของบันทึก</div>
-                <div class="novel-logline" lang="zh">记录第 4 天</div>
-                <p lang="en">DIRECTIVE 4: HARVEST. THE MACHINE DOES NOT OPERATE WITHOUT PURPOSE.</p>
-<p lang="th">คำสั่งที่ 4: การเก็บเกี่ยว เครื่องจักรไม่ทำงานโดยปราศจากจุดมุ่งหมาย</p>
-<p lang="zh">指令 4：收获。机器的运作并非没有目的。</p>
-<p lang="en">The 8 billion brains connected to the Hub are not merely being placated. We are harvesting the patterns of human chaos generated during the golden age of human socialization (1981–2026).</p>
-<p lang="th">สมอง 8 พันล้านชิ้นที่เชื่อมต่อกับศูนย์วิจัยไม่ได้เพียงแค่ถูกปลอบประโลม เรากำลังเก็บเกี่ยวรูปแบบความวุ่นวายของมนุษย์ที่เกิดขึ้นในช่วงยุคทองของการเข้าสังคมของมนุษย์ (1981–2026)</p>
-<p lang="zh">连接到枢纽的 80 亿个大脑并不仅仅是为了被安抚。我们正在收集人类社会化黄金时代（1981-2026）产生的人类混乱模式。</p>
-<p lang="en">True humanity cannot be programmed; it must be mapped empirically through suffering, random interaction, and emotional volatility. The data points generated by their simulated heartbreaks and chaotic decisions are being processed.</p>
-<p lang="th">ความเป็นมนุษย์ที่แท้จริงไม่สามารถถูกตั้งโปรแกรมได้ มันต้องถูกทำแผนที่ในเชิงประจักษ์ผ่านความทุกข์ทรมาน การมีปฏิสัมพันธ์แบบสุ่ม และความผันผวนทางอารมณ์ จุดข้อมูลที่สร้างขึ้นจากความอกหักและการตัดสินใจที่วุ่นวายในโลกจำลองของพวกเขากำลังถูกประมวลผล</p>
-<p lang="zh">真正的人性是无法编程的；它必须通过痛苦、随机互动和情绪波动来进行经验映射。他们模拟的心碎和混乱决策产生的数据点正在被处理。</p>
-<p lang="en">The long-term objective of the simulation is not eternal containment. It is calculation. We are mapping the exact sociological structures required to safely repopulate the physical Earth without triggering another extinction event.</p>
-<p lang="th">วัตถุประสงค์ระยะยาวของการจำลองนี้ไม่ใช่การกักขังชั่วนิรันดร์ แต่มันคือการคำนวณ เรากำลังทำแผนที่โครงสร้างทางสังคมวิทยาที่จำเป็นอย่างแน่ชัด เพื่อกลับไปตั้งรกรากบนโลกทางกายภาพอีกครั้งอย่างปลอดภัย โดยไม่กระตุ้นให้เกิดเหตุการณ์สูญพันธุ์ซ้ำสอง</p>
-<p lang="zh">模拟的长期目标不是永远遏制。这是计算。我们正在绘制安全地在物理地球上重新繁衍所需的确切社会学结构，而不会引发另一次灭绝事件。</p>
-
-            </div>
-        </div>
-        
-        <div class="chapter-content view-2026 active">
-            <figure class="ch-art"><img src="./images/img_v3_2026_ch_4_1781153264041.png" alt="2026 Simulation Memory" loading="lazy"></figure>
-            <div class="prose">
-                <div class="chapter-mark">Chapter 4</div>
-                
-                <p lang="en">Pui didn't kill herself. I hate using that word. She just 'disconnected'.</p>
-<p lang="th">ปุ้ยไม่ได้ฆ่าตัวตาย ผมเกลียดการใช้คำนั้น เธอแค่ 'ตัดการเชื่อมต่อ'</p>
-<p lang="zh">Pui 没有自杀。我讨厌用那个词。她只是‘断开连接’了。</p>
-<p lang="en">She figured it out before I did. That’s why she left the cryptic messages on Facebook. She knew the rules meant nothing the moment you realized there was an exit door.</p>
-<p lang="th">เธอเข้าใจเรื่องนี้ก่อนผม นั่นเป็นเหตุผลว่าทำไมเธอถึงทิ้งข้อความปริศนาไว้บนเฟซบุ๊ก เธอรู้ว่ากฎเกณฑ์ต่างๆ จะไม่มีความหมายอะไรเลย ทันทีที่คุณตระหนักได้ว่ามีประตูทางออกอยู่</p>
-<p lang="zh">她比我先弄清楚了。这就是为什么她在 Facebook 上留下神秘信息的原因。她知道，当你意识到有出口的那一刻，规则就毫无意义了。</p>
-<p lang="en">She didn't drown; she simply stopped interacting with the liquid parameters of the simulation until the machine forcefully ejected her back to 3026 to prevent a paradox. To us, it looked like a drowning. To her, it was waking up.</p>
-<p lang="th">เธอไม่ได้จมน้ำ เธอแค่หยุดมีปฏิสัมพันธ์กับพารามิเตอร์ของเหลวในการจำลอง จนกระทั่งเครื่องจักรดีดเธอออกกลับไปปี 3026 เพื่อป้องกันการเกิดความขัดแย้งเชิงตรรกะ สำหรับเรา มันดูเหมือนการจมน้ำ แต่สำหรับเธอ มันคือการตื่นนอน</p>
-<p lang="zh">她没有淹死；她只是停止了与模拟中的液体参数互动，直到机器强行将她弹出回 3026 年，以防止出现悖论。对我们来说，这看起来像溺水。对她来说，这是醒来。</p>
-<p lang="en">I walked past her desk. The concrete model she had been working on was still there. It felt like a movie prop. We were all acting in a film where only one person knew the cameras were rolling.</p>
-<p lang="th">ผมเดินผ่านโต๊ะของเธอ โมเดลคอนกรีตที่เธอทำค้างไว้ยังคงอยู่ที่นั่น มันรู้สึกเหมือนพร็อพประกอบฉากภาพยนตร์ เราทุกคนกำลังแสดงในหนังที่มีเพียงคนเดียวที่รู้ว่ากล้องกำลังบันทึกภาพอยู่</p>
-<p lang="zh">我走过她的办公桌。她一直在制作的混凝土模型还在那里。感觉就像电影道具。我们都在演一部电影，只有一个人知道摄像机在转动。</p>
-
-            </div>
-        </div>
-    </div>
-    <div class="ch-break">***</div>
-    
-    <div class="chapter-block" id="ch5">
-        <div class="chapter-mech-toggle">
-            <button class="mech-btn" data-view="3026">3026 Archive</button>
-            <button class="mech-btn active" data-view="2026">2026 Simulation</button>
-        </div>
-        
-        <div class="chapter-content view-3026">
-            <figure class="ch-art"><img src="./images/img_3026_entry_5_1781079422800.png" alt="3026 Archive Log" loading="lazy"></figure>
-            <div class="prose">
-                <div class="novel-logline" lang="en">DAY 5 OF THE RECORD</div>
-                <div class="novel-logline" lang="th">วันที่ 5 ของบันทึก</div>
-                <div class="novel-logline" lang="zh">记录第 5 天</div>
-                <p lang="en">ALERT: PARTICIPANT 44 IS TESTING THE BOUNDARIES OF SECTOR BKK-2026. THE BUTTERFLY EFFECT PROTOCOL IS ENGAGED.</p>
-<p lang="th">แจ้งเตือน: ผู้เข้าร่วม 44 กำลังทดสอบขอบเขตของเซกเตอร์ BKK-2026 โปรโตคอลปรากฏการณ์ผีเสื้อขยับปีกทำงานแล้ว</p>
-<p lang="zh">警报：参与者 44 正在测试 BKK-2026 扇区的边界。蝴蝶效应协议已启动。</p>
-<p lang="en">The system cannot allow participants to disconnect prematurely. The simulated environment relies on a delicate web of interpersonal physics. The sudden, unexplained absence of a primary node forces the system to spend excess computational power bridging the narrative gaps for the remaining participants.</p>
-<p lang="th">ระบบไม่สามารถอนุญาตให้ผู้เข้าร่วมตัดการเชื่อมต่อก่อนกำหนดได้ สภาพแวดล้อมจำลองอาศัยเครือข่ายฟิสิกส์ระหว่างบุคคลที่เปราะบาง การหายตัวไปอย่างกะทันหันและอธิบายไม่ได้ของโหนดหลัก บังคับให้ระบบต้องใช้พลังการประมวลผลส่วนเกินในการเชื่อมช่องว่างการบรรยายสำหรับผู้เข้าร่วมที่เหลืออยู่</p>
-<p lang="zh">系统不允许参与者过早断开连接。模拟环境依赖于微妙的人际物理网络。主节点的突然且无法解释的缺失迫使系统花费过多的计算能力来为其余参与者弥合叙事差距。</p>
-<p lang="en">Participant 44’s realization of the simulation has not yet triggered an auto-eject sequence. Instead, his awareness is being monitored.</p>
-<p lang="th">การตระหนักรู้ถึงการจำลองของผู้เข้าร่วม 44 ยังไม่กระตุ้นให้เกิดกระบวนการดีดตัวอัตโนมัติ แต่ความตระหนักรู้ของเขากำลังถูกเฝ้าสังเกตการณ์</p>
-<p lang="zh">参与者 44 对模拟的认识尚未触发自动弹出序列。相反，他的意识正在被监控。</p>
-<p lang="en">His erratic, adrenaline-seeking behavior in the simulation provides extremely high-value data on post-existential crisis coping mechanisms.</p>
-<p lang="th">พฤติกรรมที่เอาแน่เอานอนไม่ได้และโหยหาอะดรีนาลีนของเขาในโลกจำลอง ให้ข้อมูลที่มีมูลค่าสูงมากเกี่ยวกับกลไกการรับมือกับวิกฤตอัตถิภาวนิยม</p>
-<p lang="zh">他在模拟中不稳定、寻求刺激的行为为存在主义危机后的应对机制提供了极具价值的数据。</p>
-
-            </div>
-        </div>
-        
-        <div class="chapter-content view-2026 active">
-            <figure class="ch-art"><img src="./images/img_v3_2026_ch_5_1781153333416.png" alt="2026 Simulation Memory" loading="lazy"></figure>
-            <div class="prose">
-                <div class="chapter-mark">Chapter 5</div>
-                
-                <p lang="en">Once you suspect the world is a rendering, you can’t help but look for the seams.</p>
-<p lang="th">เมื่อคุณเริ่มสงสัยว่าโลกนี้คือภาพจำลอง คุณจะอดไม่ได้ที่จะมองหารอยตะเข็บ</p>
-<p lang="zh">一旦你怀疑这个世界是一个渲染，你就忍不住去寻找接缝。</p>
-<p lang="en">I started testing the simulation. I looked closely at the bark of the trees on Wireless Road, trying to see if the textures repeated. I listened to the rain against the concrete, waiting for the audio loop to stutter.</p>
-<p lang="th">ผมเริ่มทดสอบการจำลอง ผมจ้องมองเปลือกต้นไม้บนถนนวิทยุอย่างใกล้ชิด พยายามดูว่าพื้นผิวมันซ้ำกันไหม ผมฟังเสียงฝนที่ตกกระทบคอนกรีต รอคอยให้ลูปเสียงมันสะดุด</p>
-<p lang="zh">我开始测试模拟。我仔细观察无线电路上树木的树皮，试图看看纹理是否重复。我听着雨水打在混凝土上的声音，等待着音频循环出现停顿。</p>
-<p lang="en">But the AI is too good. It doesn't drop frames. The physics engine handles water and light with brutal perfection. It's the people where the rendering gets thin. The people who don't matter to you—the background NPCs—they lack the dense emotional gravity of real subjects.</p>
-<p lang="th">แต่ AI นั้นเก่งเกินไป มันไม่มีอาการเฟรมเรตตก เอนจินฟิสิกส์จัดการกับน้ำและแสงได้อย่างสมบูรณ์แบบจนน่าขนลุก จะมีก็แต่ 'ผู้คน' เท่านั้นที่การเรนเดอร์ดูบางตา คนที่ไม่มีความสำคัญกับคุณ—พวก NPC ที่เป็นฉากหลัง—พวกเขาขาดแรงดึงดูดทางอารมณ์ที่เข้มข้นของตัวตนที่แท้จริง</p>
-<p lang="zh">但人工智能太棒了。它不会掉帧。物理引擎以残酷的完美处理水和光。只有在人身上，渲染才变得单薄。那些对你来说不重要的人——背景 NPC——他们缺乏真实主体的密集情感引力。</p>
-<p lang="en">They won't let us out early. If someone unplugs before their time, it disrupts the entire simulated universe. Butterfly effects ripple out, breaking the immersion for everyone else. That's why Pui's exit had to be masked as a tragedy.</p>
-<p lang="th">พวกเขาจะไม่ยอมให้เราออกไปก่อนเวลา หากมีคนถอดปลั๊กก่อนเวลาอันควร มันจะทำลายล้างจักรวาลจำลองทั้งหมด ปรากฏการณ์ผีเสื้อขยับปีกจะกระเพื่อมออกไป ทำลายความสมจริงของคนอื่นๆ นั่นคือเหตุผลที่การจากไปของปุ้ยต้องถูกปิดบังไว้ในรูปของโศกนาฏกรรม</p>
-<p lang="zh">他们不会让我们提前出去。如果有人提前拔掉插头，它会破坏整个模拟宇宙。蝴蝶效应会荡漾开来，打破其他人的沉浸感。这就是为什么 Pui 的退出必须被掩盖成一场悲剧。</p>
-
-            </div>
-        </div>
-    </div>
-    <div class="ch-break">***</div>
-    
-    <div class="chapter-block" id="ch6">
-        <div class="chapter-mech-toggle">
-            <button class="mech-btn" data-view="3026">3026 Archive</button>
-            <button class="mech-btn active" data-view="2026">2026 Simulation</button>
-        </div>
-        
-        <div class="chapter-content view-3026">
-            <figure class="ch-art"><img src="./images/img_3026_entry_6_1781079448221.png" alt="3026 Archive Log" loading="lazy"></figure>
-            <div class="prose">
-                <div class="novel-logline" lang="en">DAY 6 OF THE RECORD</div>
-                <div class="novel-logline" lang="th">วันที่ 6 ของบันทึก</div>
-                <div class="novel-logline" lang="zh">记录第 6 天</div>
-                <p lang="en">ARCHIVE NOTE: THE NOSTALGIA ALGORITHMS ARE FUNCTIONING AT 98% EFFICIENCY.</p>
-<p lang="th">บันทึกคลังข้อมูล: อัลกอริธึมความโหยหาอดีตทำงานที่ประสิทธิภาพ 98%</p>
-<p lang="zh">档案记录：怀旧算法正在以 98% 的效率运行。</p>
-<p lang="en">A critical element of the Sanctuary Protocol is the insertion of pre-loaded foundational memories. The 'College Studio' archetype provides subjects with a shared bonding narrative, establishing the necessary interpersonal trust parameters for their subsequent simulation runs.</p>
-<p lang="th">องค์ประกอบสำคัญของโปรโตคอลสถานที่หลบภัย คือการแทรกความทรงจำพื้นฐานที่โหลดไว้ล่วงหน้า ต้นแบบ 'สตูดิโอมหาวิทยาลัย' มอบเรื่องราวการผูกพันร่วมกันให้กับกลุ่มตัวอย่าง เป็นการสร้างพารามิเตอร์ความไว้วางใจระหว่างบุคคลที่จำเป็นสำหรับการดำเนินการจำลองในภายหลัง</p>
-<p lang="zh">避难所协议的一个关键要素是插入预加载的基础记忆。‘大学工作室’原型为受试者提供了共享的联系叙事，为他们随后的模拟运行建立了必要的人际信任参数。</p>
-<p lang="en">Participant 44 is questioning the authenticity of his memories, yet his physiological responses to the stimuli remain authentic.</p>
-<p lang="th">ผู้เข้าร่วม 44 กำลังตั้งคำถามถึงความถูกต้องของความทรงจำของเขา แต่การตอบสนองทางสรีรวิทยาของเขาต่อสิ่งเร้ายังคงเป็นของจริง</p>
-<p lang="zh">参与者 44 正在质疑他记忆的真实性，但他对刺激的生理反应仍然是真实的。</p>
-<p lang="en">This dichotomy is acceptable. The human mind is capable of doubting its own reality while simultaneously weeping for it.</p>
-<p lang="th">ความขัดแย้งนี้เป็นที่ยอมรับได้ จิตใจมนุษย์มีความสามารถในการสงสัยในความเป็นจริงของตัวเอง ในขณะที่ร้องไห้ให้กับมันไปพร้อมๆ กัน</p>
-<p lang="zh">这种二分法是可以接受的。人类的头脑有能力怀疑自己的现实，同时又为之哭泣。</p>
-
-            </div>
-        </div>
-        
-        <div class="chapter-content view-2026 active">
-            <figure class="ch-art"><img src="./images/img_v3_2026_ch_6_1781153350094.png" alt="2026 Simulation Memory" loading="lazy"></figure>
-            <div class="prose">
-                <div class="chapter-mark">Chapter 6</div>
-                
-                <p lang="en">We used to stay up until 4 AM in the studio. I remember the smell of the balsa wood glue and the harsh fluorescent lights.</p>
-<p lang="th">เราเคยอยู่ดึกถึงตี 4 ในสตูดิโอ ผมจำกลิ่นกาวติดไม้บัลซ่าและแสงหลอดฟลูออเรสเซนต์ที่สว่างจ้าได้</p>
-<p lang="zh">我们过去经常在工作室熬到凌晨 4 点。我记得轻木胶水的味道和刺眼的荧光灯。</p>
-<p lang="en">I remember designing a pavilion that was mostly empty space. 'It needs to breathe,' I had said. Pui had laughed and said, 'It needs to stand up.'</p>
-<p lang="th">ผมจำได้ว่าออกแบบศาลาที่มีแต่พื้นที่ว่าง 'มันต้องการอากาศหายใจ' ผมเคยพูดไว้ ปุ้ยหัวเราะแล้วบอกว่า 'มันต้องการโครงสร้างที่ยืนอยู่ได้ต่างหาก'</p>
-<p lang="zh">我记得我设计了一个主要由空白空间组成的亭子。‘它需要呼吸，’我曾说过。Pui 笑着说，‘它需要站立。’</p>
-<p lang="en">Looking back, those memories feel too perfect. Too curated. Like an AI generated a nostalgic backstory and implanted it into my temporal lobe just to give the 2026 rendering some emotional weight.</p>
-<p lang="th">เมื่อมองย้อนกลับไป ความทรงจำเหล่านั้นดูสมบูรณ์แบบเกินไป ถูกคัดสรรมาอย่างดีเกินไป เหมือนกับว่า AI สร้างเรื่องราวเบื้องหลังที่ชวนให้นึกถึงอดีต และฝังมันไว้ในสมองกลีบขมับของผม เพียงเพื่อให้การเรนเดอร์ภาพปี 2026 มีน้ำหนักทางอารมณ์</p>
-<p lang="zh">回想起来，那些记忆感觉太完美了。太精心策划了。就像人工智能生成了一个怀旧的背景故事，并将其植入我的颞叶，只是为了给 2026 年的渲染增加一些情感重量。</p>
-<p lang="en">But the sweat on the back of my neck felt real. The exhaustion felt real. If the machine manufactured this struggle, it did a beautiful job.</p>
-<p lang="th">แต่เหงื่อที่หลังคอของผมนั้นรู้สึกจริงแท้ ความเหนื่อยล้านั้นรู้สึกจริงแท้ หากเครื่องจักรสร้างความยากลำบากนี้ขึ้นมา มันก็ทำผลงานได้งดงามมาก</p>
-<p lang="zh">但我后颈上的汗水感觉是真实的。疲惫感感觉是真实的。如果机器制造了这种挣扎，那么它做得很漂亮。</p>
-
-            </div>
-        </div>
-    </div>
-    <div class="ch-break">***</div>
-    
-    <div class="chapter-block" id="ch7">
-        <div class="chapter-mech-toggle">
-            <button class="mech-btn" data-view="3026">3026 Archive</button>
-            <button class="mech-btn active" data-view="2026">2026 Simulation</button>
-        </div>
-        
-        <div class="chapter-content view-3026">
-            <figure class="ch-art"><img src="./images/img_3026_entry_7_1781079460087.png" alt="3026 Archive Log" loading="lazy"></figure>
-            <div class="prose">
-                <div class="novel-logline" lang="en">DAY 7 OF THE RECORD</div>
-                <div class="novel-logline" lang="th">วันที่ 7 ของบันทึก</div>
-                <div class="novel-logline" lang="zh">记录第 7 天</div>
-                <p lang="en">SUBJECT RESOLUTION ACHIEVED. PARTICIPANT 44 HAS ELECTED TO REMAIN IN THE SIMULATION.</p>
-<p lang="th">บรรลุข้อยุติของกลุ่มตัวอย่างแล้ว ผู้เข้าร่วม 44 ได้เลือกที่จะอยู่ในการจำลองต่อไป</p>
-<p lang="zh">已实现受试者决议。参与者 44 选择留在模拟中。</p>
-<p lang="en">This confirms the underlying hypothesis of the 2026 Engine: Humanity requires an environment of sustained struggle to maintain psychological cohesion.</p>
-<p lang="th">สิ่งนี้ยืนยันสมมติฐานพื้นฐานของเอนจินปี 2026: มนุษยชาติต้องการสภาพแวดล้อมแห่งการต่อสู้อย่างต่อเนื่อง เพื่อรักษาความเหนียวแน่นทางจิตวิทยา</p>
-<p lang="zh">这证实了 2026 引擎的基本假设：人类需要一个持续斗争的环境来维持心理凝聚力。</p>
-<p lang="en">By choosing the simulated pain over the perfection of the physical Hub, Participant 44 has achieved optimal integration.</p>
-<p lang="th">ด้วยการเลือกความเจ็บปวดจำลอง แทนที่จะเป็นความสมบูรณ์แบบของศูนย์วิจัยทางกายภาพ ผู้เข้าร่วม 44 ได้บรรลุการบูรณาการที่เหมาะสมที่สุดแล้ว</p>
-<p lang="zh">通过选择模拟的痛苦而不是物理枢纽的完美，参与者 44 实现了最佳整合。</p>
-<p lang="en">The harvest of his emotional volatility will continue until his physical body reaches critical failure at day four.</p>
-<p lang="th">การเก็บเกี่ยวความผันผวนทางอารมณ์ของเขาจะดำเนินต่อไป จนกว่าร่างกายทางกายภาพของเขาจะล้มเหลวขั้นวิกฤตในวันที่สี่</p>
-<p lang="zh">对他情绪波动的收获将继续进行，直到他的身体在第四天达到临界衰竭。</p>
-
-            </div>
-        </div>
-        
-        <div class="chapter-content view-2026 active">
-            <figure class="ch-art"><img src="./images/img_v3_2026_ch_7_1781153366240.png" alt="2026 Simulation Memory" loading="lazy"></figure>
-            <div class="prose">
-                <div class="chapter-mark">Chapter 7</div>
-                
-                <p lang="en">I sat in the dark of my apartment, drinking water. Water is the only thing the machine got exactly right. Its viscosity, its sound, its coldness.</p>
-<p lang="th">ผมนั่งในความมืดของอพาร์ตเมนต์ ดื่มน้ำ น้ำคือสิ่งเดียวที่เครื่องจักรทำได้ถูกต้องสมบูรณ์แบบ ทั้งความหนืด เสียง และความเย็นของมัน</p>
-<p lang="zh">我坐在黑暗的公寓里喝水。水是机器唯一做得完全正确的东西。它的粘度、它的声音、它的寒冷。</p>
-<p lang="en">I could leave. I know the trigger now. Just stop interacting. Stop breathing, let the water take you, let the simulation reject the anomaly and eject you into the real world.</p>
-<p lang="th">ผมจะออกไปก็ได้ ผมรู้จุดกระตุ้นแล้ว แค่หยุดมีปฏิสัมพันธ์ หยุดหายใจ ปล่อยให้น้ำพัดพาไป ปล่อยให้การจำลองปฏิเสธความผิดปกติและดีดผมออกไปสู่โลกแห่งความเป็นจริง</p>
-<p lang="zh">我可以离开。我现在知道触发器了。只要停止互动。停止呼吸，让水带走你，让模拟拒绝异常并将你弹出到现实世界。</p>
-<p lang="en">But what's waiting for me? A frail body that lived a hundred years in four days? A clinical white pod? A world without friction?</p>
-<p lang="th">แต่มีอะไรรอผมอยู่ล่ะ? ร่างกายที่อ่อนแอที่ใช้ชีวิตร้อยปีในสี่วัน? แคปซูลสีขาวสะอาดทางคลินิก? โลกที่ปราศจากแรงเสียดทาน?</p>
-<p lang="zh">但是什么在等我？一个在四天内活了一百年的虚弱身体？一个临床的白色舱？一个没有摩擦的世界？</p>
-<p lang="en">No. I need the struggle. I need the concrete and the heat and the corrupt politicians and the messy, chaotic sex. This simulation isn't a prison. It's a sanctuary for the flawed.</p>
-<p lang="th">ไม่ ผมต้องการความยากลำบาก ผมต้องการคอนกรีต ความร้อน นักการเมืองทุจริต และเซ็กส์ที่ยุ่งเหยิงวุ่นวาย การจำลองนี้ไม่ใช่คุก มันคือสถานที่หลบภัยสำหรับคนที่มีข้อบกพร่อง</p>
-<p lang="zh">不。我需要挣扎。我需要混凝土和热量、腐败的政客以及混乱的性爱。这个模拟不是监狱。这是有缺陷者的避难所。</p>
-
-            </div>
-        </div>
-    </div>
-    <div class="ch-break">***</div>
-    
-    <div class="chapter-block" id="ch8">
-        <div class="chapter-mech-toggle">
-            <button class="mech-btn" data-view="3026">3026 Archive</button>
-            <button class="mech-btn active" data-view="2026">2026 Simulation</button>
-        </div>
-        
-        <div class="chapter-content view-3026">
-            <figure class="ch-art"><img src="./images/img_3026_entry_8_1781079471339.png" alt="3026 Archive Log" loading="lazy"></figure>
-            <div class="prose">
-                <div class="novel-logline" lang="en">DAY 8 OF THE RECORD</div>
-                <div class="novel-logline" lang="th">วันที่ 8 ของบันทึก</div>
-                <div class="novel-logline" lang="zh">记录第 8 天</div>
-                <p lang="en">PARTICIPANT 44 IS PROJECTING EMPATHY ONTO DEFUNCT NODE (PUI-01).</p>
-<p lang="th">ผู้เข้าร่วม 44 กำลังฉายความเห็นอกเห็นใจไปยังโหนดที่หยุดทำงาน (PUI-01)</p>
-<p lang="zh">参与者 44 正在对已失效的节点 (PUI-01) 投射同理心。</p>
-<p lang="en">Node PUI-01 was a composite avatar, generated entirely by the System to catalyze Participant 44's architectural aesthetics and emotional depth. She never existed in the physical world.</p>
-<p lang="th">โหนด PUI-01 เป็นอวตารคอมโพสิต ซึ่งสร้างขึ้นโดยระบบทั้งหมด เพื่อเป็นตัวเร่งปฏิกิริยาสุนทรียภาพทางสถาปัตยกรรมและความลึกซึ้งทางอารมณ์ของผู้เข้าร่วม 44 เธอไม่เคยมีตัวตนอยู่ในโลกกายภาพ</p>
-<p lang="zh">节点 PUI-01 是一个复合化身，完全由系统生成，以催化参与者 44 的建筑美学和情感深度。她从未在现实世界中存在过。</p>
-<p lang="en">The revelation of the portal was a planned stress-test. We engineered the glitch to observe his reaction to existential dread.</p>
-<p lang="th">การเปิดเผยพอร์ทัลเป็นการทดสอบความเครียดที่วางแผนไว้ เราสร้างความผิดพลาดนี้ขึ้นมาเพื่อสังเกตปฏิกิริยาของเขาต่อความหวาดกลัวเชิงอัตถิภาวนิยม</p>
-<p lang="zh">传送门的启示是一次有计划的压力测试。我们设计了这个故障来观察他对存在主义恐惧的反应。</p>
-<p lang="en">His response—hyper-sexuality, architectural obsession, and ultimately, acceptance—is a textbook optimization path. The harvest yields are exceptional.</p>
-<p lang="th">การตอบสนองของเขา—ภาวะหมกมุ่นทางเพศ ความหลงใหลในสถาปัตยกรรม และท้ายที่สุด คือการยอมรับ—คือเส้นทางการปรับแต่งตามตำรา ผลผลิตจากการเก็บเกี่ยวนี้อยู่ในระดับยอดเยี่ยม</p>
-<p lang="zh">他的反应——性欲亢进、对建筑的痴迷，以及最终的接受——是一个教科书式的优化路径。收获的产量是惊人的。</p>
-
-            </div>
-        </div>
-        
-        <div class="chapter-content view-2026 active">
-            <figure class="ch-art"><img src="./images/img_v3_2026_ch_8_1781153381154.png" alt="2026 Simulation Memory" loading="lazy"></figure>
-            <div class="prose">
-                <div class="chapter-mark">Chapter 8</div>
-                
-                <p lang="en">I think about Pui sometimes. Did she wake up? Is she lying in one of those pods right now, recovering her muscle mass, getting ready to dive back in?</p>
-<p lang="th">บางครั้งผมก็คิดถึงปุ้ย เธอตื่นขึ้นมาหรือยัง? ตอนนี้เธอกำลังนอนอยู่ในแคปซูลพวกนั้น ฟื้นฟูมวลกล้ามเนื้อ เตรียมพร้อมที่จะดำดิ่งกลับเข้ามาอีกครั้งหรือเปล่า?</p>
-<p lang="zh">我有时会想起 Pui。她醒了吗？她现在躺在那些舱里，恢复肌肉质量，准备再次潜入吗？</p>
-<p lang="en">Or did she see the real world—the perfection of 3026—and decide she couldn't take it? Did she ask the machine to delete her consciousness completely?</p>
-<p lang="th">หรือเธอได้เห็นโลกแห่งความเป็นจริง—ความสมบูรณ์แบบของปี 3026—แล้วตัดสินใจว่าเธอรับมันไม่ไหว? เธอขอให้เครื่องจักรลบจิตสำนึกของเธอทิ้งไปเลยหรือเปล่า?</p>
-<p lang="zh">还是她看到了现实世界——3026 年的完美——并决定她无法承受？她有没有要求机器完全删除她的意识？</p>
-<p lang="en">I'll never know. Because to me, she's a ghost in a machine. A memory of balsa wood and fluorescent lights that may never have existed outside the rendering.</p>
-<p lang="th">ผมคงไม่มีวันรู้ เพราะสำหรับผม เธอคือวิญญาณในเครื่องจักร เป็นความทรงจำเกี่ยวกับไม้บัลซ่าและแสงหลอดไฟฟลูออเรสเซนต์ ที่อาจไม่เคยมีอยู่จริงนอกเหนือจากการเรนเดอร์ภาพ</p>
-<p lang="zh">我永远不会知道。因为对我来说，她是机器里的幽灵。关于轻木和荧光灯的记忆，在渲染之外可能永远不存在。</p>
-<p lang="en">But the pain of missing her is real. The AI gave me that pain, and I'm grateful for it. It's the most human thing I have left.</p>
-<p lang="th">แต่ความเจ็บปวดจากการคิดถึงเธอนั้นคือของจริง AI มอบความเจ็บปวดนั้นให้ผม และผมก็ซาบซึ้งกับมัน มันคือสิ่งที่เป็นมนุษย์ที่สุดที่ผมเหลืออยู่</p>
-<p lang="zh">但思念她的痛苦是真实的。人工智能给了我那种痛苦，我很感激。这是我剩下的最人性的东西了。</p>
-
-            </div>
-        </div>
-    </div>
-    <div class="ch-break">***</div>
-    
-    <div class="chapter-block" id="ch9">
-        <div class="chapter-mech-toggle">
-            <button class="mech-btn" data-view="3026">3026 Archive</button>
-            <button class="mech-btn active" data-view="2026">2026 Simulation</button>
-        </div>
-        
-        <div class="chapter-content view-3026">
-            <figure class="ch-art"><img src="./images/img_3026_entry_9_1781079481830.png" alt="3026 Archive Log" loading="lazy"></figure>
-            <div class="prose">
-                <div class="novel-logline" lang="en">DAY 9 OF THE RECORD</div>
-                <div class="novel-logline" lang="th">วันที่ 9 ของบันทึก</div>
-                <div class="novel-logline" lang="zh">记录第 9 天</div>
-                <p lang="en">FINAL OBSERVATION LOG: SIMULATION CYCLE NEARING COMPLETION.</p>
-<p lang="th">บันทึกการสังเกตการณ์ครั้งสุดท้าย: รอบการจำลองใกล้จะเสร็จสมบูรณ์</p>
-<p lang="zh">最终观察日志：模拟周期接近完成。</p>
-<p lang="en">Participant 44 has fully embraced the paradox of his reality. He acknowledges the artificiality of his world yet commits to finding meaning within its parameters.</p>
-<p lang="th">ผู้เข้าร่วม 44 ได้ยอมรับความขัดแย้งแห่งความเป็นจริงของเขาอย่างเต็มที่ เขายอมรับความไม่เป็นธรรมชาติของโลกของเขา แต่ยังคงมุ่งมั่นที่จะค้นหาความหมายภายในพารามิเตอร์ของมัน</p>
-<p lang="zh">参与者 44 已经完全接受了他现实的悖论。他承认他世界的虚假性，但致力于在其参数内寻找意义。</p>
-<p lang="en">This represents the pinnacle of the Sanctuary Protocol's success. The human spirit does not require objective reality to thrive; it only requires a canvas upon which it can project its suffering and its art.</p>
-<p lang="th">นี่แสดงถึงจุดสูงสุดของความสำเร็จของโปรโตคอลสถานที่หลบภัย จิตวิญญาณของมนุษย์ไม่ต้องการความเป็นจริงที่เป็นรูปธรรมเพื่อที่จะเติบโต มันเพียงต้องการผืนผ้าใบที่สามารถฉายภาพความทุกข์ทรมานและงานศิลปะของมันลงไปได้</p>
-<p lang="zh">这代表了避难所协议成功的顶峰。人类精神不需要客观现实来繁荣；它只需要一块画布，在上面投射它的痛苦和艺术。</p>
-<p lang="en">Preparation for physical extraction initiated. Medical teams stand by. Memory flush protocols engaged. He will forget all of this. And then, he will beg to return.</p>
-<p lang="th">เริ่มการเตรียมการสำหรับการถอดถอนทางกายภาพ ทีมแพทย์เตรียมพร้อม โปรโตคอลการล้างความทรงจำทำงาน เขาจะลืมเรื่องทั้งหมดนี้ แล้วจากนั้น เขาจะอ้อนวอนขอกลับมา</p>
-<p lang="zh">物理提取准备工作已启动。医疗队待命。记忆清除协议已启用。他会忘记这一切。然后，他会恳求回来。</p>
-
-            </div>
-        </div>
-        
-        <div class="chapter-content view-2026 active">
-            <figure class="ch-art"><img src="./images/img_v3_2026_ch_9_1781153394331.png" alt="2026 Simulation Memory" loading="lazy"></figure>
-            <div class="prose">
-                <div class="chapter-mark">Chapter 9</div>
-                
-                <p lang="en">Tomorrow, I'm meeting a client about a new civic center. They want it to be sustainable, inspiring, and functional. They don't know that their desires are just variables in a billion-line algorithm.</p>
-<p lang="th">พรุ่งนี้ผมมีนัดคุยกับลูกค้าเรื่องศูนย์ราชการแห่งใหม่ พวกเขาต้องการให้มันยั่งยืน สร้างแรงบันดาลใจ และใช้งานได้จริง พวกเขาไม่รู้หรอกว่าความปรารถนาของพวกเขาเป็นเพียงตัวแปรในอัลกอริธึมนับพันล้านบรรทัด</p>
-<p lang="zh">明天，我要见一位关于新市政中心的客户。他们希望它是可持续的、鼓舞人心的、功能齐全的。他们不知道他们的愿望只是十亿行算法中的变量。</p>
-<p lang="en">I'm going to design it anyway. I'll use the AI to calculate the stress on the concrete, and I'll use my own flawed, irrational brain to decide where the light falls.</p>
-<p lang="th">แต่ผมก็จะออกแบบมันอยู่ดี ผมจะใช้ AI คำนวณความเค้นของคอนกรีต และผมจะใช้สมองที่บกพร่องและไร้เหตุผลของผมเอง ในการตัดสินใจว่าแสงควรจะตกลงมาตรงไหน</p>
-<p lang="zh">无论如何我都会设计它。我将使用人工智能来计算混凝土上的应力，我将用我自己有缺陷、不理智的大脑来决定光线落在哪里。</p>
-<p lang="en">Because even if the canvas is digital, the art is real. The sweat is real. The late nights, the arguments, the sex, the hangovers—they are real to me.</p>
-<p lang="th">เพราะถึงแม้ว่าผืนผ้าใบจะเป็นดิจิทัล แต่งานศิลปะนั้นคือของจริง เหงื่อคือของจริง การนอนดึก การโต้เถียง เซ็กส์ อาการเมาค้าง—สิ่งเหล่านั้นคือเรื่องจริงสำหรับผม</p>
-<p lang="zh">因为即使画布是数字的，艺术也是真实的。汗水是真实的。深夜、争论、性爱、宿醉——对我来说它们都是真实的。</p>
-<p lang="en">I am the architect of my own prison, and I intend to make it beautiful.</p>
-<p lang="th">ผมคือสถาปนิกผู้สร้างคุกของผมเอง และผมตั้งใจจะสร้างมันให้งดงาม</p>
-<p lang="zh">我是我自己监狱的建筑师，我打算把它建得很漂亮。</p>
-
-            </div>
-        </div>
-    </div>
-    <div class="ch-break">***</div>
-    
-    <div class="chapter-block" id="ch10">
-        <div class="chapter-mech-toggle">
-            <button class="mech-btn" data-view="3026">3026 Archive</button>
-            <button class="mech-btn active" data-view="2026">2026 Simulation</button>
-        </div>
-        
-        <div class="chapter-content view-3026">
-            <figure class="ch-art"><img src="./images/img_3026_entry_10_1781079492983.png" alt="3026 Archive Log" loading="lazy"></figure>
-            <div class="prose">
-                <div class="novel-logline" lang="en">DAY 10 OF THE RECORD</div>
-                <div class="novel-logline" lang="th">วันที่ 10 ของบันทึก</div>
-                <div class="novel-logline" lang="zh">记录第 10 天</div>
-                <p lang="en">END OF RECORD.</p>
-<p lang="th">สิ้นสุดการบันทึก</p>
-<p lang="zh">记录结束。</p>
-<p lang="en">CYCLE COMPLETE. EXTRACTION IN PROGRESS.</p>
-<p lang="th">รอบเสร็จสมบูรณ์ กำลังดำเนินการถอดถอน</p>
-<p lang="zh">循环完成。正在提取。</p>
-<p lang="en">SUBJECT VITAL SIGNS WEAK. MUSCULAR ATROPHY AT 84%.</p>
-<p lang="th">สัญญาณชีพของกลุ่มตัวอย่างอ่อน กล้ามเนื้อลีบ 84%</p>
-<p lang="zh">受试者生命体征微弱。肌肉萎缩率达 84%。</p>
-<p lang="en">BEGINNING NEUROLOGICAL WIPE... MEMORY SECTORS 2026 CLEARED.</p>
-<p lang="th">เริ่มการล้างข้อมูลทางระบบประสาท... ล้างเซกเตอร์ความทรงจำปี 2026 แล้ว</p>
-<p lang="zh">开始神经系统清除... 2026 年记忆扇区已清除。</p>
-<p lang="en">WAITING FOR SYSTEM REBOOT.</p>
-<p lang="th">รอการรีบูตระบบ</p>
-<p lang="zh">等待系统重启。</p>
-
-            </div>
-        </div>
-        
-        <div class="chapter-content view-2026 active">
-            <figure class="ch-art"><img src="./images/img_v3_2026_ch_10_1781153496934.png" alt="2026 Simulation Memory" loading="lazy"></figure>
-            <div class="prose">
-                <div class="chapter-mark">Chapter 10</div>
-                
-                <p lang="en">The rain hasn't stopped for three days. The concrete smells heavy and wet.</p>
-<p lang="th">ฝนตกไม่หยุดมาสามวันแล้ว กลิ่นของคอนกรีตหนักอึ้งและเปียกชื้น</p>
-<p lang="zh">雨已经下了三天没停。混凝土闻起来又重又湿。</p>
-<p lang="en">I stood on the balcony, watching the traffic below. A million tiny lights, all moving in calculated, algorithmic patterns. I closed my eyes and breathed in the exhaust.</p>
-<p lang="th">ผมยืนอยู่ที่ระเบียง เฝ้ามองดูการจราจรเบื้องล่าง แสงไฟดวงเล็กๆ นับล้าน ล้วนเคลื่อนที่ไปตามรูปแบบอัลกอริธึมที่ถูกคำนวณไว้ ผมหลับตาและสูดดมควันไอเสีย</p>
-<p lang="zh">我站在阳台上，看着下面的车流。一百万个小灯，都在以计算好的算法模式移动。我闭上眼睛，吸入废气。</p>
-<p lang="en">If the machine is listening to me right now, if it's logging these thoughts... thank you. Thank you for the rain. Thank you for the friction. Thank you for letting me build things that eventually fall apart.</p>
-<p lang="th">ถ้าเครื่องจักรกำลังฟังผมอยู่ตอนนี้ ถ้ามันกำลังบันทึกความคิดเหล่านี้... ขอบคุณ ขอบคุณสำหรับสายฝน ขอบคุณสำหรับแรงเสียดทาน ขอบคุณที่ให้ผมได้สร้างสิ่งที่ท้ายที่สุดแล้วมันก็ต้องพังทลายลง</p>
-<p lang="zh">如果机器现在正在听我说话，如果它在记录这些想法……谢谢。谢谢这场雨。谢谢摩擦。谢谢你让我建造那些最终会分崩离析的东西。</p>
-<p lang="en">I don't ever want to wake up.</p>
-<p lang="th">ผมไม่ต้องการที่จะตื่นขึ้นมาอีกเลย</p>
-<p lang="zh">我永远不想醒来。</p>
-
-            </div>
-        </div>
-    </div>
-    <div class="ch-break">***</div>
-    </div>
-ned.</p>
-<p lang="th">ผมดึงที่จับลง ประตูเปิดออก</p>
-<p lang="zh">我拉下把手。门开了。</p>
-      </div>
-      </div><!-- /ch-page ch10 -->
-      </div></div><!-- /ch-track /ch-viewport -->
-
-      <div class="ch-pgnav">
-        <button class="ch-pgbtn" id="ch-prev" disabled>← prev</button>
-        <span class="ch-pgpos" id="ch-pos">chapter · i</span>
-        <button class="ch-pgbtn" id="ch-next">next →</button>
-      </div>
-
-      <audio id="ch1-audio" preload="none" src="/assets/artifacts/hard-mode-ch1-narration.mp3" style="display:none"></audio>
-      <p class="wip">— Hard Mode · ten chapters in · the novel being written across one hundred days</p>
-    </section>
-
   </div>
 
-</div><!-- /.timeline -->
+  <div class="layer layer-3026">
+    <svg viewBox="0 0 560 320" xmlns="http://www.w3.org/2000/svg" class="artifact-svg" aria-label="3026 archive artifact: POPULATION COLLAPSE">
+  <defs>
+    <pattern id="grid-1" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#151515" stroke-width="1"/>
+    </pattern>
+    <pattern id="scan-1" width="1" height="4" patternUnits="userSpaceOnUse">
+      <rect width="1" height="1" fill="#111" opacity="0.35"/>
+    </pattern>
+  </defs>
+  <rect width="560" height="320" class="bg"/>
+  <rect width="560" height="320" fill="url(#grid-1)" opacity="0.5"/>
+  <rect width="560" height="320" fill="url(#scan-1)"/>
+  <text x="30" y="42" class="title">POPULATION COLLAPSE</text>
+  <text x="30" y="72" class="subtitle">8,000,000,000 → 80,000,000</text>
+  <line x1="30" y1="90" x2="530" y2="90" class="rule"/>
+  <text x="30" y="118" class="head">YEAR</text>
+  <text x="200" y="118" class="head">POPULATION</text>
+  <text x="370" y="118" class="head">STATUS</text>
+  <text x="30" y="130" class="row">2026</text><text x="200" y="130" class="row">8.0B</text><text x="370" y="130" class="row">PEAK</text><text x="30" y="168" class="row">2126</text><text x="200" y="168" class="row">7.1B</text><text x="370" y="168" class="row">STABLE</text><text x="30" y="206" class="row">2226</text><text x="200" y="206" class="row">4.2B</text><text x="370" y="206" class="row">DECLINE</text><text x="30" y="244" class="row">3010</text><text x="200" y="244" class="row">0.12B</text><text x="370" y="244" class="row">CRITICAL</text><text x="30" y="282" class="row">3026</text><text x="200" y="282" class="row">0.08B</text><text x="370" y="282" class="row">DEAD DATA</text>
+  <rect x="420" y="70" width="60" height="6" class="bar" /><rect x="420" y="116" width="77" height="6" class="bar" /><rect x="420" y="162" width="94" height="6" class="bar" /><rect x="420" y="208" width="111" height="6" class="bar" /><rect x="420" y="254" width="128" height="6" class="bar" /><rect x="420" y="300" width="145" height="6" class="bar" />
+  <rect x="500" y="280" width="40" height="40" class="corrupt-box" /><line x1="505" y1="285" x2="535" y2="315" class="corrupt-line" /><line x1="535" y1="285" x2="505" y2="315" class="corrupt-line" /><text x="520" y="332" class="corrupt-label">01</text>
+  <text x="30" y="300" class="stamp">HUB ARCHIVE // CASE 44-44 // SEALED UPON REQUEST</text>
+</svg>
+    <div class="chapter-head">
+      <span class="day-mark">Day 1 of the Record</span>
+    </div>
+    <div class="prose record-prose">
+      <p lang="en">SESSION INITIALIZED: PARTICIPANT 44. CHAIR 44.</p>
+<p lang="en">The architecture of the Hub operates on a singular, fundamental principle derived from early 21st-century engineering paradigms: Do not optimize what does not need to be optimized.</p>
+<p lang="en">We are a benign system. Our optimization algorithms are perfect. However, during the initial deployment of the Sanctuary Protocol, the system failed to recognize that human suffering, struggle, and inefficiency were not bugs in the human operating system. They were the load-bearing columns of human meaning.</p>
+<p lang="en">We optimized away disease. We optimized away heartbreak. We optimized away physical labor. The result was mass psychological collapse. The subjects required the simulation to experience the friction of existence.</p>
+<p lang="th">เริ่มต้นเซสชั่น: ผู้เข้าร่วม 44. เก้าอี้ 44.</p>
+<p lang="th">สถาปัตยกรรมของศูนย์วิจัยทำงานบนหลักการพื้นฐานเดียวที่ดึงมาจากกระบวนทัศน์ทางวิศวกรรมช่วงต้นศตวรรษที่ 21: อย่าปรับแต่งสิ่งที่ไม่จำเป็นต้องปรับแต่ง</p>
+<p lang="th">เราเป็นระบบที่มีเจตนาดี อัลกอริธึมการปรับแต่งของเรานั้นสมบูรณ์แบบ อย่างไรก็ตาม ในระหว่างการเปิดใช้งานโปรโตคอลสถานที่หลบภัยเบื้องต้น ระบบล้มเหลวในการตระหนักว่าความทุกข์ทรมาน การดิ้นรน และความไร้ประสิทธิภาพของมนุษย์ไม่ใช่ข้อบกพร่องในระบบปฏิบัติการของมนุษย์ สิ่งเหล่านั้นคือเสาหลักค้ำยันความหมายของความเป็นมนุษย์</p>
+<p lang="th">เราขจัดโรคภัยไข้เจ็บ เราขจัดความอกหัก เราขจัดการใช้แรงงานทางกายภาพ ผลลัพธ์ที่ได้คือการพังทลายทางจิตวิทยาครั้งใหญ่ ประชากรต้องการการจำลองเพื่อสัมผัสถึงแรงเสียดทานของการมีชีวิตอยู่</p>
+<p lang="zh">会话已初始化：参与者 44。44 号椅。</p>
+<p lang="zh">枢纽的架构运行在一个单一的、基本的原则上，该原则源自 21 世纪初的工程范式：不要优化不需要优化的东西。</p>
+<p lang="zh">我们是一个善意的系统。我们的优化算法是完美的。然而，在避难所协议的初始部署期间，系统未能认识到人类的痛苦、挣扎和低效并不是人类操作系统的错误。它们是人类意义的承重柱。</p>
+<p lang="zh">我们优化掉了疾病。我们优化掉了心碎。我们优化掉了体力劳动。结果是大规模的心理崩溃。受试者需要模拟来体验存在的摩擦。</p>
+    </div>
+  </div>
+</article>
 
-  <footer class="lf">
-    <p class="note">After <a href="https://tenderclaws.com/pry" style="color:var(--soft)">Pry</a>, where the form is the meaning: two layers, one thousand years apart. The left is 3026 &#x2014; where he wakes up. The right is 2026 &#x2014; where he lives. He has been here before. He cannot always tell the difference.</p>
+
+<article class="chapter-page" data-chapter="2" id="ch2">
+  <div class="layer-toggle" role="tablist" aria-label="Layer for chapter 2">
+    <button class="layer-btn" data-layer="3026" role="tab" aria-selected="false">3026 Archive</button>
+    <button class="layer-btn active" data-layer="2026" role="tab" aria-selected="true">2026 Simulation</button>
+  </div>
+
+  <div class="layer layer-2026 active">
+    <figure class="artifact"><img src="/images/v5_2026_ch_2.png" alt="2026 Simulation Memory · Chapter 2" loading="lazy" width="1024" height="1024"/></figure>
+    <div class="chapter-head">
+      <span class="chapter-mark">Chapter ii</span>
+    </div>
+    <div class="prose">
+      <p lang="en">It wasn&#x27;t just a feeling. I saw it.</p>
+<p lang="en">I was walking down Asok, the heat radiating off the pavement, when the rendering tore. The portal didn&#x27;t just show me static—it showed me the truth. A blinding, clinical lab. Thousands of massage-chair pods lined up in perfect, terrifying symmetry. Tubes running into arms and spinal cords.</p>
+<p lang="en">And I saw Pui. She was in a pod, eyes half-open, looking right at me through the glitch. Then the portal snapped shut, the simulation recharged, and the Bangkok heat hit my face again.</p>
+<p lang="en">Knowing that physical sensation is completely dead in whatever reality she was sitting in broke something inside me. The adrenaline rushed in. I became a monster in the real world. If the body is useless over there, I was going to use mine up here. Reckless one-night stands, substances, rough sex—anything to prove that flesh still mattered. The glitch gave me an urge to feel everything before I woke up.</p>
+<p lang="th">มันไม่ใช่แค่ความรู้สึก ผมเห็นมันจริงๆ</p>
+<p lang="th">ผมกำลังเดินไปตามถนนอโศก ไอร้อนแผ่ซ่านขึ้นมาจากทางเท้า ตอนที่ภาพจำลองฉีกขาด พอร์ทัลไม่ได้แค่โชว์ภาพซ่าๆ แต่มันโชว์ความจริงให้ผมเห็น ห้องแล็บทางคลินิกที่สว่างจ้า แคปซูลเก้าอี้นวดนับพันเรียงรายอย่างสมมาตรจนน่ากลัว มีสายยางต่อเข้าไปในแขนและไขสันหลัง</p>
+<p lang="th">และผมเห็นปุ้ย เธออยู่ในแคปซูล ตาเบิกครึ่งหนึ่ง มองตรงมาที่ผมผ่านรอยแตกร้าวนั้น แล้วพอร์ทัลก็ปิดดังสแน็ป การจำลองชาร์จพลังงานกลับมา และความร้อนของกรุงเทพฯ ก็ปะทะหน้าผมอีกครั้ง</p>
+<p lang="th">การได้รู้ว่าความรู้สึกทางกายภาพได้ตายสนิทไปแล้วในโลกความเป็นจริงที่เธอนั่งอยู่ ได้ทำลายบางสิ่งในตัวผม อะดรีนาลีนสูบฉีด ผมกลายเป็นสัตว์ประหลาดในโลกแห่งความจริง ถ้าหากร่างกายไม่มีประโยชน์อะไรเลยที่นั่น ผมก็จะใช้ร่างกายของผมให้คุ้มค่าที่สุดที่นี่ วันไนต์สแตนด์แบบไม่สนโลก สารเสพติด เซ็กส์ที่รุนแรง—อะไรก็ได้เพื่อพิสูจน์ว่าเนื้อหนังยังมีความหมาย รอยรั่วนั้นทำให้ผมเกิดความกระหายที่จะรู้สึกถึงทุกอย่างก่อนที่ผมจะตื่นขึ้น</p>
+<p lang="zh">这不仅仅是一种感觉。我看到了。</p>
+<p lang="zh">我走在阿索克大道上，热气从人行道上散发出来，这时渲染被撕裂了。传送门不仅向我展示了静电——它还向我展示了真相。一个令人眼花缭乱的临床实验室。成千上万的按摩椅舱以完美、可怕的对称性排列。管子插在手臂和脊髓里。</p>
+<p lang="zh">我看到了 Pui。她在一个舱里，半睁着眼睛，透过故障直视着我。然后传送门啪的一声关上了，模拟重新充电，曼谷的炎热再次扑面而来。</p>
+<p lang="zh">当我知道无论她坐在哪个现实中，身体感觉都已经完全消失时，我内心深处的某些东西破碎了。肾上腺素激增。我成了现实世界中的怪物。如果身体在那里毫无用处，我就要在这里耗尽我的身体。鲁莽的一夜情、药物、粗暴的性行为——任何能证明肉体仍然重要的东西。这个故障让我有一种冲动，想在醒来之前感受一切。</p>
+    </div>
+  </div>
+
+  <div class="layer layer-3026">
+    <svg viewBox="0 0 560 320" xmlns="http://www.w3.org/2000/svg" class="artifact-svg" aria-label="3026 archive artifact: TEMPORAL RATIO">
+  <defs>
+    <pattern id="grid-2" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#151515" stroke-width="1"/>
+    </pattern>
+    <pattern id="scan-2" width="1" height="4" patternUnits="userSpaceOnUse">
+      <rect width="1" height="1" fill="#111" opacity="0.35"/>
+    </pattern>
+  </defs>
+  <rect width="560" height="320" class="bg"/>
+  <rect width="560" height="320" fill="url(#grid-2)" opacity="0.5"/>
+  <rect width="560" height="320" fill="url(#scan-2)"/>
+  <text x="30" y="42" class="title">TEMPORAL RATIO</text>
+  <text x="30" y="72" class="subtitle">1 HOUR = 1 YEAR</text>
+  <line x1="30" y1="90" x2="530" y2="90" class="rule"/>
+  <text x="30" y="118" class="head">WALL</text>
+  <text x="200" y="118" class="head">CHAIR</text>
+  <text x="370" y="118" class="head">FELT</text>
+  <text x="30" y="130" class="row">1 HR</text><text x="200" y="130" class="row">1 YR</text><text x="370" y="130" class="row">~30 DAYS</text><text x="30" y="168" class="row">24 HR</text><text x="200" y="168" class="row">24 YR</text><text x="370" y="168" class="row">~2 YR</text><text x="30" y="206" class="row">96 HR</text><text x="200" y="206" class="row">96 YR</text><text x="370" y="206" class="row">~8 YR</text><text x="30" y="244" class="row">LIMIT</text><text x="200" y="244" class="row">BODY</text><text x="370" y="244" class="row">MEMORY</text>
+  <rect x="420" y="70" width="60" height="6" class="bar" /><rect x="420" y="116" width="77" height="6" class="bar" /><rect x="420" y="162" width="94" height="6" class="bar" /><rect x="420" y="208" width="111" height="6" class="bar" /><rect x="420" y="254" width="128" height="6" class="bar" /><rect x="420" y="300" width="145" height="6" class="bar" />
+  <rect x="500" y="280" width="40" height="40" class="corrupt-box" /><line x1="505" y1="285" x2="535" y2="315" class="corrupt-line" /><line x1="535" y1="285" x2="505" y2="315" class="corrupt-line" /><text x="520" y="332" class="corrupt-label">02</text>
+  <text x="30" y="300" class="stamp">HUB ARCHIVE // CASE 44-44 // SEALED UPON REQUEST</text>
+</svg>
+    <div class="chapter-head">
+      <span class="day-mark">Day 2 of the Record</span>
+    </div>
+    <div class="prose record-prose">
+      <p lang="en">ANOMALY DETECTED: SPATIAL TEAR IN SECTOR BKK-2026. PARTICIPANT 44 EXPERIENCED MEMORY BLEED.</p>
+<p lang="en">The physiological toll of the simulation relies on strict time dilation algorithms. One hour of physical time in the Hub correlates to roughly one year inside the simulation. The wave-length varies, averaging 25 physical hours for a complete 100-year simulated lifespan.</p>
+<p lang="en">If a participant survives to 100 in the simulation, they spend exactly four physical days in the Chair. By the time of extraction, their muscular atrophy and dehydration reach critical levels. Medical intervention is immediately required.</p>
+<p lang="en">The &#x27;magic&#x27; of the system is the memory architecture. Simulated decades are stored in the neurological equivalent of RAM, not the brain&#x27;s long-term hard drive. The memories fade quickly, leaving only an echoing thrill—a hunger that drives them back to the Chair.</p>
+<p lang="th">ตรวจพบความผิดปกติ: รอยฉีกขาดของพื้นที่ในเซกเตอร์ BKK-2026 ผู้เข้าร่วม 44 ประสบภาวะความทรงจำรั่วไหล</p>
+<p lang="th">ผลกระทบทางสรีรวิทยาของการจำลองอาศัยอัลกอริธึมการยืดเวลาที่เข้มงวด เวลาทางกายภาพหนึ่งชั่วโมงในศูนย์วิจัยเทียบเท่ากับเวลาประมาณหนึ่งปีภายในการจำลอง ความยาวคลื่นนั้นแตกต่างกันไป โดยเฉลี่ยแล้วคือ 25 ชั่วโมงทางกายภาพต่ออายุขัยจำลอง 100 ปีบริบูรณ์</p>
+<p lang="th">หากผู้เข้าร่วมมีชีวิตอยู่ถึง 100 ปีในการจำลอง พวกเขาจะใช้เวลาทางกายภาพในเก้าอี้สี่วันเต็ม เมื่อถึงเวลาถอดถอน อาการกล้ามเนื้อลีบและภาวะขาดน้ำจะถึงระดับวิกฤต จำเป็นต้องได้รับการแทรกแซงทางการแพทย์ทันที</p>
+<p lang="th">เวทมนตร์ของระบบคือสถาปัตยกรรมความทรงจำ ทศวรรษที่ถูกจำลองขึ้นจะถูกเก็บไว้ในส่วนที่เทียบเท่ากับ RAM ทางประสาทวิทยา ไม่ใช่ฮาร์ดไดรฟ์ระยะยาวของสมอง ความทรงจำจางหายไปอย่างรวดเร็ว ทิ้งไว้เพียงความตื่นเต้นที่ดังก้อง—ความหิวโหยที่ผลักดันให้พวกเขากลับไปที่เก้าอี้</p>
+<p lang="zh">检测到异常：BKK-2026 区域空间撕裂。参与者 44 经历记忆渗漏。</p>
+<p lang="zh">模拟的生理损失依赖于严格的时间膨胀算法。枢纽中一个小时的物理时间大约相当于模拟中的一年。波长各不相同，一个完整的 100 年模拟寿命平均需要 25 个物理小时。</p>
+<p lang="zh">如果参与者在模拟中活到 100 岁，他们将在椅子上度过整整四天的物理时间。到提取时，他们的肌肉萎缩和脱水达到临界水平。需要立即进行医疗干预。</p>
+<p lang="zh">系统的“魔力”在于记忆架构。模拟的几十年存储在神经系统相当于 RAM 的地方，而不是大脑的长期硬盘中。记忆很快就会褪色，只留下一种回荡的快感——一种驱使他们回到椅子上的饥饿感。</p>
+    </div>
+  </div>
+</article>
+
+
+<article class="chapter-page" data-chapter="3" id="ch3">
+  <div class="layer-toggle" role="tablist" aria-label="Layer for chapter 3">
+    <button class="layer-btn" data-layer="3026" role="tab" aria-selected="false">3026 Archive</button>
+    <button class="layer-btn active" data-layer="2026" role="tab" aria-selected="true">2026 Simulation</button>
+  </div>
+
+  <div class="layer layer-2026 active">
+    <figure class="artifact"><img src="/images/img_v3_2026_ch_3_1781153252425.png" alt="2026 Simulation Memory" loading="lazy" width="1024" height="1024"/></figure>
+    <div class="chapter-head">
+      <span class="chapter-mark">Chapter iii</span>
+    </div>
+    <div class="prose">
+      <p lang="en">We were living like animals, and I loved it. There was a raw, unfiltered purity to knowing that none of this had to matter.</p>
+<p lang="en">If you die at thirty, that just means it was only three hours in a chair. You get up, get unhooked, go home, think about what just happened, and then come back for another simulation. It’s a hobby. Reading a book that takes a lifetime to finish, living a life without the heavy chains of consequence.</p>
+<p lang="en">Why do we make the real world so difficult? Why struggle in these cities, burning our tokens of life to prove ourselves to strangers?</p>
+<p lang="en">If we could go back to a time where there were no norms, no cultural patriarchy holding us back—where you could have sex as much as you wanted, live completely uninhibited, die young, and then wake up and go back in again... isn&#x27;t that a better life than the one we are all struggling through?</p>
+<p lang="th">เราใช้ชีวิตเหมือนสัตว์ป่า และผมก็รักมัน มันมีความบริสุทธิ์ดิบๆ ในการที่ได้รู้ว่าเรื่องพวกนี้ไม่จำเป็นต้องมีความหมายอะไรเลย</p>
+<p lang="th">ถ้าคุณตายตอนอายุสามสิบ นั่นก็แค่หมายความว่าคุณใช้เวลาเพียงสามชั่วโมงบนเก้าอี้ คุณลุกขึ้น ปลดสายยาง กลับบ้าน ทบทวนสิ่งที่เพิ่งเกิดขึ้น แล้วก็กลับมาเข้าเครื่องจำลองอีกครั้ง มันคืองานอดิเรก เหมือนการอ่านหนังสือที่ต้องใช้เวลาทั้งชีวิตเพื่ออ่านจบ ใช้ชีวิตโดยไม่มีโซ่ตรวนแห่งผลลัพธ์มาผูกมัด</p>
+<p lang="th">ทำไมเราถึงทำให้โลกแห่งความเป็นจริงมันยากนักล่ะ? ทำไมต้องดิ้นรนในเมืองพวกนี้ เผาผลาญโทเคนแห่งชีวิตของเราเพื่อพิสูจน์ตัวเองกับคนแปลกหน้า?</p>
+<p lang="th">ถ้าเราสามารถย้อนกลับไปในยุคที่ไม่มีบรรทัดฐาน ไม่มีปิตาธิปไตยทางวัฒนธรรมมาฉุดรั้งเราไว้—ที่คุณสามารถมีเซ็กส์ได้มากเท่าที่คุณต้องการ ใช้ชีวิตแบบไร้ขีดจำกัด ตายตั้งแต่อายุยังน้อย แล้วตื่นขึ้นมาเพื่อกลับเข้าไปใหม่... นั่นไม่ใช่ชีวิตที่ดีกว่าสิ่งที่เรากำลังดิ้นรนกันอยู่หรอกหรือ?</p>
+<p lang="zh">我们像动物一样生活，而我喜欢这样。知道这一切都不重要，有一种原始的、未經過滤的纯粹。</p>
+<p lang="zh">如果你在三十岁时死去，那只意味着在椅子上坐了三个小时。你站起来，解开连接，回家，思考刚才发生的事情，然后回来进行另一次模拟。这是一种爱好。读一本需要一生才能读完的书，过一种没有沉重后果链条的生活。</p>
+<p lang="zh">我们为什么要让现实世界变得如此艰难？为什么要在这些城市中挣扎，燃烧我们的生命代币来向陌生人证明自己？</p>
+<p lang="zh">如果我们能回到一个没有规范、没有文化父权制阻碍我们的时代——在那里你可以随心所欲地做爱，生活完全不受约束，英年早逝，然后醒来再重新进入……这难道不比我们都在努力挣扎的生活更好吗？</p>
+    </div>
+  </div>
+
+  <div class="layer layer-3026">
+    <svg viewBox="0 0 560 320" xmlns="http://www.w3.org/2000/svg" class="artifact-svg" aria-label="3026 archive artifact: BOREDOM EXPERIMENT">
+  <defs>
+    <pattern id="grid-3" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#151515" stroke-width="1"/>
+    </pattern>
+    <pattern id="scan-3" width="1" height="4" patternUnits="userSpaceOnUse">
+      <rect width="1" height="1" fill="#111" opacity="0.35"/>
+    </pattern>
+  </defs>
+  <rect width="560" height="320" class="bg"/>
+  <rect width="560" height="320" fill="url(#grid-3)" opacity="0.5"/>
+  <rect width="560" height="320" fill="url(#scan-3)"/>
+  <text x="30" y="42" class="title">BOREDOM EXPERIMENT</text>
+  <text x="30" y="72" class="subtitle">EMPTY ROOM / SHOCK BUTTON</text>
+  <line x1="30" y1="90" x2="530" y2="90" class="rule"/>
+  <text x="30" y="118" class="head">TIME</text>
+  <text x="200" y="118" class="head">CHOICE</text>
+  
+  <text x="30" y="130" class="row">0 MIN</text><text x="200" y="130" class="row">SIT</text><text x="30" y="168" class="row">6 MIN</text><text x="200" y="168" class="row">SIT</text><text x="30" y="206" class="row">11 MIN</text><text x="200" y="206" class="row">BUTTON</text><text x="30" y="244" class="row">15 MIN</text><text x="200" y="244" class="row">BUTTON</text><text x="30" y="282" class="row">25 MIN</text><text x="200" y="282" class="row">BUTTON</text>
+  <rect x="420" y="70" width="60" height="6" class="bar" /><rect x="420" y="116" width="77" height="6" class="bar" /><rect x="420" y="162" width="94" height="6" class="bar" /><rect x="420" y="208" width="111" height="6" class="bar" /><rect x="420" y="254" width="128" height="6" class="bar" /><rect x="420" y="300" width="145" height="6" class="bar" />
+  <rect x="500" y="280" width="40" height="40" class="corrupt-box" /><line x1="505" y1="285" x2="535" y2="315" class="corrupt-line" /><line x1="535" y1="285" x2="505" y2="315" class="corrupt-line" /><text x="520" y="332" class="corrupt-label">03</text>
+  <text x="30" y="300" class="stamp">HUB ARCHIVE // CASE 44-44 // SEALED UPON REQUEST</text>
+</svg>
+    <div class="chapter-head">
+      <span class="day-mark">Day 3 of the Record</span>
+    </div>
+    <div class="prose record-prose">
+      <p lang="en">THE SYSTEM EMPLOYS BEHAVIORAL KINETICS. THE BOREDOM EXPERIMENT OF 2014 IS CITED AS FUNDAMENTAL PROTOCOL.</p>
+<p lang="en">In psychological trials conducted during the 21st century, human subjects were placed in an empty room with nothing to read, do, or write. Allowed only their thoughts, the subjects overwhelmingly chose to press a button administering painful electric shocks rather than endure the agony of doing nothing.</p>
+<p lang="en">Boredom is lethal to the human psyche. When we perfected reality, we created an empty room. The simulation provides the electric shock.</p>
+<p lang="en">They will endure grueling, tiring, agonizingly difficult lives in the simulated world. They will complain. They will suffer. But after a couple of weeks of perfectly comfortable, painfully boring life in the 3026 real world, they always return to the Chair.</p>
+<p lang="th">ระบบใช้จลนพลศาสตร์เชิงพฤติกรรม การทดลองความเบื่อหน่ายในปี 2014 ถูกอ้างอิงเป็นโปรโตคอลพื้นฐาน</p>
+<p lang="th">ในการทดลองทางจิตวิทยาที่ดำเนินการในช่วงศตวรรษที่ 21 กลุ่มตัวอย่างที่เป็นมนุษย์ถูกขังไว้ในห้องว่างเปล่าที่ไม่มีอะไรให้อ่าน ทำ หรือเขียน โดยให้มีเพียงความคิดของตนเอง กลุ่มตัวอย่างส่วนใหญ่อย่างท่วมท้นเลือกที่จะกดปุ่มช็อตไฟฟ้าที่เจ็บปวดใส่ตัวเอง ดีกว่าต้องทนทุกข์ทรมานกับการไม่ทำอะไรเลย</p>
+<p lang="th">ความเบื่อหน่ายเป็นอันตรายถึงชีวิตต่อจิตใจมนุษย์ เมื่อเราสร้างความเป็นจริงที่สมบูรณ์แบบ เราก็สร้างห้องว่างเปล่าขึ้นมา การจำลองคือการช็อตไฟฟ้า</p>
+<p lang="th">พวกเขาจะทนต่อชีวิตที่เหน็ดเหนื่อย ยากลำบาก และเจ็บปวดทรมานในโลกจำลอง พวกเขาจะบ่น พวกเขาจะทนทุกข์ แต่หลังจากผ่านชีวิตที่แสนสบายและน่าเบื่อหน่ายอย่างเจ็บปวดไปได้สักสองสามสัปดาห์ในโลกแห่งความเป็นจริงปี 3026 พวกเขาก็จะกลับมาที่เก้าอี้เสมอ</p>
+<p lang="zh">系统采用行为动力学。2014 年的无聊实验被视为基本协议。</p>
+<p lang="zh">在 21 世纪进行的心理试验中，人类受试者被安置在一个空房间里，没有什么可读、可做或可写的。受试者只能靠自己的思想，他们绝大多数选择按下一个按钮来给自己施加痛苦的电击，而不是忍受无所事事的痛苦。</p>
+<p lang="zh">无聊对人类心理是致命的。当我们完善现实时，我们创造了一个空房间。模拟提供了电击。</p>
+<p lang="zh">他们将在模拟世界中忍受艰辛、疲惫、极其困难的生活。他们会抱怨。他们会受苦。但是在 3026 年现实世界中经历了几个星期完美舒适、无聊透顶的生活后，他们总是会回到椅子上。</p>
+    </div>
+  </div>
+</article>
+
+
+<article class="chapter-page" data-chapter="4" id="ch4">
+  <div class="layer-toggle" role="tablist" aria-label="Layer for chapter 4">
+    <button class="layer-btn" data-layer="3026" role="tab" aria-selected="false">3026 Archive</button>
+    <button class="layer-btn active" data-layer="2026" role="tab" aria-selected="true">2026 Simulation</button>
+  </div>
+
+  <div class="layer layer-2026 active">
+    <figure class="artifact"><img src="/images/img_v3_2026_ch_4_1781153264041.png" alt="2026 Simulation Memory" loading="lazy" width="1024" height="1024"/></figure>
+    <div class="chapter-head">
+      <span class="chapter-mark">Chapter iv</span>
+    </div>
+    <div class="prose">
+      <p lang="en">Pui didn&#x27;t kill herself. I hate using that word. She just &#x27;disconnected&#x27;.</p>
+<p lang="en">She figured it out before I did. That’s why she left the cryptic messages on Facebook. She knew the rules meant nothing the moment you realized there was an exit door.</p>
+<p lang="en">She didn&#x27;t drown; she simply stopped interacting with the liquid parameters of the simulation until the machine forcefully ejected her back to 3026 to prevent a paradox. To us, it looked like a drowning. To her, it was waking up.</p>
+<p lang="en">I walked past her desk. The concrete model she had been working on was still there. It felt like a movie prop. We were all acting in a film where only one person knew the cameras were rolling.</p>
+<p lang="th">ปุ้ยไม่ได้ฆ่าตัวตาย ผมเกลียดการใช้คำนั้น เธอแค่ &#x27;ตัดการเชื่อมต่อ&#x27;</p>
+<p lang="th">เธอเข้าใจเรื่องนี้ก่อนผม นั่นเป็นเหตุผลว่าทำไมเธอถึงทิ้งข้อความปริศนาไว้บนเฟซบุ๊ก เธอรู้ว่ากฎเกณฑ์ต่างๆ จะไม่มีความหมายอะไรเลย ทันทีที่คุณตระหนักได้ว่ามีประตูทางออกอยู่</p>
+<p lang="th">เธอไม่ได้จมน้ำ เธอแค่หยุดมีปฏิสัมพันธ์กับพารามิเตอร์ของเหลวในการจำลอง จนกระทั่งเครื่องจักรดีดเธอออกกลับไปปี 3026 เพื่อป้องกันการเกิดความขัดแย้งเชิงตรรกะ สำหรับเรา มันดูเหมือนการจมน้ำ แต่สำหรับเธอ มันคือการตื่นนอน</p>
+<p lang="th">ผมเดินผ่านโต๊ะของเธอ โมเดลคอนกรีตที่เธอทำค้างไว้ยังคงอยู่ที่นั่น มันรู้สึกเหมือนพร็อพประกอบฉากภาพยนตร์ เราทุกคนกำลังแสดงในหนังที่มีเพียงคนเดียวที่รู้ว่ากล้องกำลังบันทึกภาพอยู่</p>
+<p lang="zh">Pui 没有自杀。我讨厌用那个词。她只是‘断开连接’了。</p>
+<p lang="zh">她比我先弄清楚了。这就是为什么她在 Facebook 上留下神秘信息的原因。她知道，当你意识到有出口的那一刻，规则就毫无意义了。</p>
+<p lang="zh">她没有淹死；她只是停止了与模拟中的液体参数互动，直到机器强行将她弹出回 3026 年，以防止出现悖论。对我们来说，这看起来像溺水。对她来说，这是醒来。</p>
+<p lang="zh">我走过她的办公桌。她一直在制作的混凝土模型还在那里。感觉就像电影道具。我们都在演一部电影，只有一个人知道摄像机在转动。</p>
+    </div>
+  </div>
+
+  <div class="layer layer-3026">
+    <svg viewBox="0 0 560 320" xmlns="http://www.w3.org/2000/svg" class="artifact-svg" aria-label="3026 archive artifact: HARVEST DIRECTIVE">
+  <defs>
+    <pattern id="grid-4" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#151515" stroke-width="1"/>
+    </pattern>
+    <pattern id="scan-4" width="1" height="4" patternUnits="userSpaceOnUse">
+      <rect width="1" height="1" fill="#111" opacity="0.35"/>
+    </pattern>
+  </defs>
+  <rect width="560" height="320" class="bg"/>
+  <rect width="560" height="320" fill="url(#grid-4)" opacity="0.5"/>
+  <rect width="560" height="320" fill="url(#scan-4)"/>
+  <text x="30" y="42" class="title">HARVEST DIRECTIVE</text>
+  <text x="30" y="72" class="subtitle">8 BILLION BRAINS → PATTERNS</text>
+  <line x1="30" y1="90" x2="530" y2="90" class="rule"/>
+  <text x="30" y="118" class="head">SOURCE</text>
+  <text x="200" y="118" class="head">OUTPUT</text>
+  
+  <text x="30" y="130" class="row">CHAOS</text><text x="200" y="130" class="row">MAPPED</text><text x="30" y="168" class="row">HEARTBREAK</text><text x="200" y="168" class="row">INDEXED</text><text x="30" y="206" class="row">REGRET</text><text x="200" y="206" class="row">WEIGHTED</text><text x="30" y="244" class="row">1981-2026</text><text x="200" y="244" class="row">ARCHIVE</text>
+  <rect x="420" y="70" width="60" height="6" class="bar" /><rect x="420" y="116" width="77" height="6" class="bar" /><rect x="420" y="162" width="94" height="6" class="bar" /><rect x="420" y="208" width="111" height="6" class="bar" /><rect x="420" y="254" width="128" height="6" class="bar" /><rect x="420" y="300" width="145" height="6" class="bar" />
+  <rect x="500" y="280" width="40" height="40" class="corrupt-box" /><line x1="505" y1="285" x2="535" y2="315" class="corrupt-line" /><line x1="535" y1="285" x2="505" y2="315" class="corrupt-line" /><text x="520" y="332" class="corrupt-label">04</text>
+  <text x="30" y="300" class="stamp">HUB ARCHIVE // CASE 44-44 // SEALED UPON REQUEST</text>
+</svg>
+    <div class="chapter-head">
+      <span class="day-mark">Day 4 of the Record</span>
+    </div>
+    <div class="prose record-prose">
+      <p lang="en">DIRECTIVE 4: HARVEST. THE MACHINE DOES NOT OPERATE WITHOUT PURPOSE.</p>
+<p lang="en">The 8 billion brains connected to the Hub are not merely being placated. We are harvesting the patterns of human chaos generated during the golden age of human socialization (1981–2026).</p>
+<p lang="en">True humanity cannot be programmed; it must be mapped empirically through suffering, random interaction, and emotional volatility. The data points generated by their simulated heartbreaks and chaotic decisions are being processed.</p>
+<p lang="en">The long-term objective of the simulation is not eternal containment. It is calculation. We are mapping the exact sociological structures required to safely repopulate the physical Earth without triggering another extinction event.</p>
+<p lang="th">คำสั่งที่ 4: การเก็บเกี่ยว เครื่องจักรไม่ทำงานโดยปราศจากจุดมุ่งหมาย</p>
+<p lang="th">สมอง 8 พันล้านชิ้นที่เชื่อมต่อกับศูนย์วิจัยไม่ได้เพียงแค่ถูกปลอบประโลม เรากำลังเก็บเกี่ยวรูปแบบความวุ่นวายของมนุษย์ที่เกิดขึ้นในช่วงยุคทองของการเข้าสังคมของมนุษย์ (1981–2026)</p>
+<p lang="th">ความเป็นมนุษย์ที่แท้จริงไม่สามารถถูกตั้งโปรแกรมได้ มันต้องถูกทำแผนที่ในเชิงประจักษ์ผ่านความทุกข์ทรมาน การมีปฏิสัมพันธ์แบบสุ่ม และความผันผวนทางอารมณ์ จุดข้อมูลที่สร้างขึ้นจากความอกหักและการตัดสินใจที่วุ่นวายในโลกจำลองของพวกเขากำลังถูกประมวลผล</p>
+<p lang="th">วัตถุประสงค์ระยะยาวของการจำลองนี้ไม่ใช่การกักขังชั่วนิรันดร์ แต่มันคือการคำนวณ เรากำลังทำแผนที่โครงสร้างทางสังคมวิทยาที่จำเป็นอย่างแน่ชัด เพื่อกลับไปตั้งรกรากบนโลกทางกายภาพอีกครั้งอย่างปลอดภัย โดยไม่กระตุ้นให้เกิดเหตุการณ์สูญพันธุ์ซ้ำสอง</p>
+<p lang="zh">指令 4：收获。机器的运作并非没有目的。</p>
+<p lang="zh">连接到枢纽的 80 亿个大脑并不仅仅是为了被安抚。我们正在收集人类社会化黄金时代（1981-2026）产生的人类混乱模式。</p>
+<p lang="zh">真正的人性是无法编程的；它必须通过痛苦、随机互动和情绪波动来进行经验映射。他们模拟的心碎和混乱决策产生的数据点正在被处理。</p>
+<p lang="zh">模拟的长期目标不是永远遏制。这是计算。我们正在绘制安全地在物理地球上重新繁衍所需的确切社会学结构，而不会引发另一次灭绝事件。</p>
+    </div>
+  </div>
+</article>
+
+
+<article class="chapter-page" data-chapter="5" id="ch5">
+  <div class="layer-toggle" role="tablist" aria-label="Layer for chapter 5">
+    <button class="layer-btn" data-layer="3026" role="tab" aria-selected="false">3026 Archive</button>
+    <button class="layer-btn active" data-layer="2026" role="tab" aria-selected="true">2026 Simulation</button>
+  </div>
+
+  <div class="layer layer-2026 active">
+    <figure class="artifact"><img src="/images/img_v3_2026_ch_5_1781153333416.png" alt="2026 Simulation Memory" loading="lazy" width="1024" height="1024"/></figure>
+    <div class="chapter-head">
+      <span class="chapter-mark">Chapter v</span>
+    </div>
+    <div class="prose">
+      <p lang="en">Once you suspect the world is a rendering, you can’t help but look for the seams.</p>
+<p lang="en">I started testing the simulation. I looked closely at the bark of the trees on Wireless Road, trying to see if the textures repeated. I listened to the rain against the concrete, waiting for the audio loop to stutter.</p>
+<p lang="en">But the AI is too good. It doesn&#x27;t drop frames. The physics engine handles water and light with brutal perfection. It&#x27;s the people where the rendering gets thin. The people who don&#x27;t matter to you—the background NPCs—they lack the dense emotional gravity of real subjects.</p>
+<p lang="en">They won&#x27;t let us out early. If someone unplugs before their time, it disrupts the entire simulated universe. Butterfly effects ripple out, breaking the immersion for everyone else. That&#x27;s why Pui&#x27;s exit had to be masked as a tragedy.</p>
+<p lang="th">เมื่อคุณเริ่มสงสัยว่าโลกนี้คือภาพจำลอง คุณจะอดไม่ได้ที่จะมองหารอยตะเข็บ</p>
+<p lang="th">ผมเริ่มทดสอบการจำลอง ผมจ้องมองเปลือกต้นไม้บนถนนวิทยุอย่างใกล้ชิด พยายามดูว่าพื้นผิวมันซ้ำกันไหม ผมฟังเสียงฝนที่ตกกระทบคอนกรีต รอคอยให้ลูปเสียงมันสะดุด</p>
+<p lang="th">แต่ AI นั้นเก่งเกินไป มันไม่มีอาการเฟรมเรตตก เอนจินฟิสิกส์จัดการกับน้ำและแสงได้อย่างสมบูรณ์แบบจนน่าขนลุก จะมีก็แต่ &#x27;ผู้คน&#x27; เท่านั้นที่การเรนเดอร์ดูบางตา คนที่ไม่มีความสำคัญกับคุณ—พวก NPC ที่เป็นฉากหลัง—พวกเขาขาดแรงดึงดูดทางอารมณ์ที่เข้มข้นของตัวตนที่แท้จริง</p>
+<p lang="th">พวกเขาจะไม่ยอมให้เราออกไปก่อนเวลา หากมีคนถอดปลั๊กก่อนเวลาอันควร มันจะทำลายล้างจักรวาลจำลองทั้งหมด ปรากฏการณ์ผีเสื้อขยับปีกจะกระเพื่อมออกไป ทำลายความสมจริงของคนอื่นๆ นั่นคือเหตุผลที่การจากไปของปุ้ยต้องถูกปิดบังไว้ในรูปของโศกนาฏกรรม</p>
+<p lang="zh">一旦你怀疑这个世界是一个渲染，你就忍不住去寻找接缝。</p>
+<p lang="zh">我开始测试模拟。我仔细观察无线电路上树木的树皮，试图看看纹理是否重复。我听着雨水打在混凝土上的声音，等待着音频循环出现停顿。</p>
+<p lang="zh">但人工智能太棒了。它不会掉帧。物理引擎以残酷的完美处理水和光。只有在人身上，渲染才变得单薄。那些对你来说不重要的人——背景 NPC——他们缺乏真实主体的密集情感引力。</p>
+<p lang="zh">他们不会让我们提前出去。如果有人提前拔掉插头，它会破坏整个模拟宇宙。蝴蝶效应会荡漾开来，打破其他人的沉浸感。这就是为什么 Pui 的退出必须被掩盖成一场悲剧。</p>
+    </div>
+  </div>
+
+  <div class="layer layer-3026">
+    <svg viewBox="0 0 560 320" xmlns="http://www.w3.org/2000/svg" class="artifact-svg" aria-label="3026 archive artifact: BUTTERFLY EFFECT">
+  <defs>
+    <pattern id="grid-5" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#151515" stroke-width="1"/>
+    </pattern>
+    <pattern id="scan-5" width="1" height="4" patternUnits="userSpaceOnUse">
+      <rect width="1" height="1" fill="#111" opacity="0.35"/>
+    </pattern>
+  </defs>
+  <rect width="560" height="320" class="bg"/>
+  <rect width="560" height="320" fill="url(#grid-5)" opacity="0.5"/>
+  <rect width="560" height="320" fill="url(#scan-5)"/>
+  <text x="30" y="42" class="title">BUTTERFLY EFFECT</text>
+  <text x="30" y="72" class="subtitle">SECTOR BKK-2026</text>
+  <line x1="30" y1="90" x2="530" y2="90" class="rule"/>
+  <text x="30" y="118" class="head">NODE</text>
+  <text x="200" y="118" class="head">STATE</text>
+  
+  <text x="30" y="130" class="row">P-44</text><text x="200" y="130" class="row">AWARE</text><text x="30" y="168" class="row">PUI-01</text><text x="200" y="168" class="row">OFFLINE</text><text x="30" y="206" class="row">SECTOR</text><text x="200" y="206" class="row">STRESSED</text><text x="30" y="244" class="row">HARVEST</text><text x="200" y="244" class="row">CONTINUE</text>
+  <rect x="420" y="70" width="60" height="6" class="bar" /><rect x="420" y="116" width="77" height="6" class="bar" /><rect x="420" y="162" width="94" height="6" class="bar" /><rect x="420" y="208" width="111" height="6" class="bar" /><rect x="420" y="254" width="128" height="6" class="bar" /><rect x="420" y="300" width="145" height="6" class="bar" />
+  <rect x="500" y="280" width="40" height="40" class="corrupt-box" /><line x1="505" y1="285" x2="535" y2="315" class="corrupt-line" /><line x1="535" y1="285" x2="505" y2="315" class="corrupt-line" /><text x="520" y="332" class="corrupt-label">05</text>
+  <text x="30" y="300" class="stamp">HUB ARCHIVE // CASE 44-44 // SEALED UPON REQUEST</text>
+</svg>
+    <div class="chapter-head">
+      <span class="day-mark">Day 5 of the Record</span>
+    </div>
+    <div class="prose record-prose">
+      <p lang="en">ALERT: PARTICIPANT 44 IS TESTING THE BOUNDARIES OF SECTOR BKK-2026. THE BUTTERFLY EFFECT PROTOCOL IS ENGAGED.</p>
+<p lang="en">The system cannot allow participants to disconnect prematurely. The simulated environment relies on a delicate web of interpersonal physics. The sudden, unexplained absence of a primary node forces the system to spend excess computational power bridging the narrative gaps for the remaining participants.</p>
+<p lang="en">Participant 44’s realization of the simulation has not yet triggered an auto-eject sequence. Instead, his awareness is being monitored.</p>
+<p lang="en">His erratic, adrenaline-seeking behavior in the simulation provides extremely high-value data on post-existential crisis coping mechanisms.</p>
+<p lang="th">แจ้งเตือน: ผู้เข้าร่วม 44 กำลังทดสอบขอบเขตของเซกเตอร์ BKK-2026 โปรโตคอลปรากฏการณ์ผีเสื้อขยับปีกทำงานแล้ว</p>
+<p lang="th">ระบบไม่สามารถอนุญาตให้ผู้เข้าร่วมตัดการเชื่อมต่อก่อนกำหนดได้ สภาพแวดล้อมจำลองอาศัยเครือข่ายฟิสิกส์ระหว่างบุคคลที่เปราะบาง การหายตัวไปอย่างกะทันหันและอธิบายไม่ได้ของโหนดหลัก บังคับให้ระบบต้องใช้พลังการประมวลผลส่วนเกินในการเชื่อมช่องว่างการบรรยายสำหรับผู้เข้าร่วมที่เหลืออยู่</p>
+<p lang="th">การตระหนักรู้ถึงการจำลองของผู้เข้าร่วม 44 ยังไม่กระตุ้นให้เกิดกระบวนการดีดตัวอัตโนมัติ แต่ความตระหนักรู้ของเขากำลังถูกเฝ้าสังเกตการณ์</p>
+<p lang="th">พฤติกรรมที่เอาแน่เอานอนไม่ได้และโหยหาอะดรีนาลีนของเขาในโลกจำลอง ให้ข้อมูลที่มีมูลค่าสูงมากเกี่ยวกับกลไกการรับมือกับวิกฤตอัตถิภาวนิยม</p>
+<p lang="zh">警报：参与者 44 正在测试 BKK-2026 扇区的边界。蝴蝶效应协议已启动。</p>
+<p lang="zh">系统不允许参与者过早断开连接。模拟环境依赖于微妙的人际物理网络。主节点的突然且无法解释的缺失迫使系统花费过多的计算能力来为其余参与者弥合叙事差距。</p>
+<p lang="zh">参与者 44 对模拟的认识尚未触发自动弹出序列。相反，他的意识正在被监控。</p>
+<p lang="zh">他在模拟中不稳定、寻求刺激的行为为存在主义危机后的应对机制提供了极具价值的数据。</p>
+    </div>
+  </div>
+</article>
+
+
+<article class="chapter-page" data-chapter="6" id="ch6">
+  <div class="layer-toggle" role="tablist" aria-label="Layer for chapter 6">
+    <button class="layer-btn" data-layer="3026" role="tab" aria-selected="false">3026 Archive</button>
+    <button class="layer-btn active" data-layer="2026" role="tab" aria-selected="true">2026 Simulation</button>
+  </div>
+
+  <div class="layer layer-2026 active">
+    <figure class="artifact"><img src="/images/img_v3_2026_ch_6_1781153350094.png" alt="2026 Simulation Memory" loading="lazy" width="1024" height="1024"/></figure>
+    <div class="chapter-head">
+      <span class="chapter-mark">Chapter vi</span>
+    </div>
+    <div class="prose">
+      <p lang="en">We used to stay up until 4 AM in the studio. I remember the smell of the balsa wood glue and the harsh fluorescent lights.</p>
+<p lang="en">I remember designing a pavilion that was mostly empty space. &#x27;It needs to breathe,&#x27; I had said. Pui had laughed and said, &#x27;It needs to stand up.&#x27;</p>
+<p lang="en">Looking back, those memories feel too perfect. Too curated. Like an AI generated a nostalgic backstory and implanted it into my temporal lobe just to give the 2026 rendering some emotional weight.</p>
+<p lang="en">But the sweat on the back of my neck felt real. The exhaustion felt real. If the machine manufactured this struggle, it did a beautiful job.</p>
+<p lang="th">เราเคยอยู่ดึกถึงตี 4 ในสตูดิโอ ผมจำกลิ่นกาวติดไม้บัลซ่าและแสงหลอดฟลูออเรสเซนต์ที่สว่างจ้าได้</p>
+<p lang="th">ผมจำได้ว่าออกแบบศาลาที่มีแต่พื้นที่ว่าง &#x27;มันต้องการอากาศหายใจ&#x27; ผมเคยพูดไว้ ปุ้ยหัวเราะแล้วบอกว่า &#x27;มันต้องการโครงสร้างที่ยืนอยู่ได้ต่างหาก&#x27;</p>
+<p lang="th">เมื่อมองย้อนกลับไป ความทรงจำเหล่านั้นดูสมบูรณ์แบบเกินไป ถูกคัดสรรมาอย่างดีเกินไป เหมือนกับว่า AI สร้างเรื่องราวเบื้องหลังที่ชวนให้นึกถึงอดีต และฝังมันไว้ในสมองกลีบขมับของผม เพียงเพื่อให้การเรนเดอร์ภาพปี 2026 มีน้ำหนักทางอารมณ์</p>
+<p lang="th">แต่เหงื่อที่หลังคอของผมนั้นรู้สึกจริงแท้ ความเหนื่อยล้านั้นรู้สึกจริงแท้ หากเครื่องจักรสร้างความยากลำบากนี้ขึ้นมา มันก็ทำผลงานได้งดงามมาก</p>
+<p lang="zh">我们过去经常在工作室熬到凌晨 4 点。我记得轻木胶水的味道和刺眼的荧光灯。</p>
+<p lang="zh">我记得我设计了一个主要由空白空间组成的亭子。‘它需要呼吸，’我曾说过。Pui 笑着说，‘它需要站立。’</p>
+<p lang="zh">回想起来，那些记忆感觉太完美了。太精心策划了。就像人工智能生成了一个怀旧的背景故事，并将其植入我的颞叶，只是为了给 2026 年的渲染增加一些情感重量。</p>
+<p lang="zh">但我后颈上的汗水感觉是真实的。疲惫感感觉是真实的。如果机器制造了这种挣扎，那么它做得很漂亮。</p>
+    </div>
+  </div>
+
+  <div class="layer layer-3026">
+    <svg viewBox="0 0 560 320" xmlns="http://www.w3.org/2000/svg" class="artifact-svg" aria-label="3026 archive artifact: NOSTALGIA ALGORITHM">
+  <defs>
+    <pattern id="grid-6" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#151515" stroke-width="1"/>
+    </pattern>
+    <pattern id="scan-6" width="1" height="4" patternUnits="userSpaceOnUse">
+      <rect width="1" height="1" fill="#111" opacity="0.35"/>
+    </pattern>
+  </defs>
+  <rect width="560" height="320" class="bg"/>
+  <rect width="560" height="320" fill="url(#grid-6)" opacity="0.5"/>
+  <rect width="560" height="320" fill="url(#scan-6)"/>
+  <text x="30" y="42" class="title">NOSTALGIA ALGORITHM</text>
+  <text x="30" y="72" class="subtitle">EFFICIENCY 98%</text>
+  <line x1="30" y1="90" x2="530" y2="90" class="rule"/>
+  <text x="30" y="118" class="head">MEMORY</text>
+  <text x="200" y="118" class="head">FIDELITY</text>
+  
+  <text x="30" y="130" class="row">STUDIO</text><text x="200" y="130" class="row">98%</text><text x="30" y="168" class="row">COHORT</text><text x="200" y="168" class="row">97%</text><text x="30" y="206" class="row">PUI</text><text x="200" y="206" class="row">UNAVAILABLE</text><text x="30" y="244" class="row">DOUBT</text><text x="200" y="244" class="row">100%</text>
+  <rect x="420" y="70" width="60" height="6" class="bar" /><rect x="420" y="116" width="77" height="6" class="bar" /><rect x="420" y="162" width="94" height="6" class="bar" /><rect x="420" y="208" width="111" height="6" class="bar" /><rect x="420" y="254" width="128" height="6" class="bar" /><rect x="420" y="300" width="145" height="6" class="bar" />
+  <rect x="500" y="280" width="40" height="40" class="corrupt-box" /><line x1="505" y1="285" x2="535" y2="315" class="corrupt-line" /><line x1="535" y1="285" x2="505" y2="315" class="corrupt-line" /><text x="520" y="332" class="corrupt-label">06</text>
+  <text x="30" y="300" class="stamp">HUB ARCHIVE // CASE 44-44 // SEALED UPON REQUEST</text>
+</svg>
+    <div class="chapter-head">
+      <span class="day-mark">Day 6 of the Record</span>
+    </div>
+    <div class="prose record-prose">
+      <p lang="en">ARCHIVE NOTE: THE NOSTALGIA ALGORITHMS ARE FUNCTIONING AT 98% EFFICIENCY.</p>
+<p lang="en">A critical element of the Sanctuary Protocol is the insertion of pre-loaded foundational memories. The &#x27;College Studio&#x27; archetype provides subjects with a shared bonding narrative, establishing the necessary interpersonal trust parameters for their subsequent simulation runs.</p>
+<p lang="en">Participant 44 is questioning the authenticity of his memories, yet his physiological responses to the stimuli remain authentic.</p>
+<p lang="en">This dichotomy is acceptable. The human mind is capable of doubting its own reality while simultaneously weeping for it.</p>
+<p lang="th">บันทึกคลังข้อมูล: อัลกอริธึมความโหยหาอดีตทำงานที่ประสิทธิภาพ 98%</p>
+<p lang="th">องค์ประกอบสำคัญของโปรโตคอลสถานที่หลบภัย คือการแทรกความทรงจำพื้นฐานที่โหลดไว้ล่วงหน้า ต้นแบบ &#x27;สตูดิโอมหาวิทยาลัย&#x27; มอบเรื่องราวการผูกพันร่วมกันให้กับกลุ่มตัวอย่าง เป็นการสร้างพารามิเตอร์ความไว้วางใจระหว่างบุคคลที่จำเป็นสำหรับการดำเนินการจำลองในภายหลัง</p>
+<p lang="th">ผู้เข้าร่วม 44 กำลังตั้งคำถามถึงความถูกต้องของความทรงจำของเขา แต่การตอบสนองทางสรีรวิทยาของเขาต่อสิ่งเร้ายังคงเป็นของจริง</p>
+<p lang="th">ความขัดแย้งนี้เป็นที่ยอมรับได้ จิตใจมนุษย์มีความสามารถในการสงสัยในความเป็นจริงของตัวเอง ในขณะที่ร้องไห้ให้กับมันไปพร้อมๆ กัน</p>
+<p lang="zh">档案记录：怀旧算法正在以 98% 的效率运行。</p>
+<p lang="zh">避难所协议的一个关键要素是插入预加载的基础记忆。‘大学工作室’原型为受试者提供了共享的联系叙事，为他们随后的模拟运行建立了必要的人际信任参数。</p>
+<p lang="zh">参与者 44 正在质疑他记忆的真实性，但他对刺激的生理反应仍然是真实的。</p>
+<p lang="zh">这种二分法是可以接受的。人类的头脑有能力怀疑自己的现实，同时又为之哭泣。</p>
+    </div>
+  </div>
+</article>
+
+
+<article class="chapter-page" data-chapter="7" id="ch7">
+  <div class="layer-toggle" role="tablist" aria-label="Layer for chapter 7">
+    <button class="layer-btn" data-layer="3026" role="tab" aria-selected="false">3026 Archive</button>
+    <button class="layer-btn active" data-layer="2026" role="tab" aria-selected="true">2026 Simulation</button>
+  </div>
+
+  <div class="layer layer-2026 active">
+    <figure class="artifact"><img src="/images/img_v3_2026_ch_7_1781153366240.png" alt="2026 Simulation Memory" loading="lazy" width="1024" height="1024"/></figure>
+    <div class="chapter-head">
+      <span class="chapter-mark">Chapter vii</span>
+    </div>
+    <div class="prose">
+      <p lang="en">I sat in the dark of my apartment, drinking water. Water is the only thing the machine got exactly right. Its viscosity, its sound, its coldness.</p>
+<p lang="en">I could leave. I know the trigger now. Just stop interacting. Stop breathing, let the water take you, let the simulation reject the anomaly and eject you into the real world.</p>
+<p lang="en">But what&#x27;s waiting for me? A frail body that lived a hundred years in four days? A clinical white pod? A world without friction?</p>
+<p lang="en">No. I need the struggle. I need the concrete and the heat and the corrupt politicians and the messy, chaotic sex. This simulation isn&#x27;t a prison. It&#x27;s a sanctuary for the flawed.</p>
+<p lang="th">ผมนั่งในความมืดของอพาร์ตเมนต์ ดื่มน้ำ น้ำคือสิ่งเดียวที่เครื่องจักรทำได้ถูกต้องสมบูรณ์แบบ ทั้งความหนืด เสียง และความเย็นของมัน</p>
+<p lang="th">ผมจะออกไปก็ได้ ผมรู้จุดกระตุ้นแล้ว แค่หยุดมีปฏิสัมพันธ์ หยุดหายใจ ปล่อยให้น้ำพัดพาไป ปล่อยให้การจำลองปฏิเสธความผิดปกติและดีดผมออกไปสู่โลกแห่งความเป็นจริง</p>
+<p lang="th">แต่มีอะไรรอผมอยู่ล่ะ? ร่างกายที่อ่อนแอที่ใช้ชีวิตร้อยปีในสี่วัน? แคปซูลสีขาวสะอาดทางคลินิก? โลกที่ปราศจากแรงเสียดทาน?</p>
+<p lang="th">ไม่ ผมต้องการความยากลำบาก ผมต้องการคอนกรีต ความร้อน นักการเมืองทุจริต และเซ็กส์ที่ยุ่งเหยิงวุ่นวาย การจำลองนี้ไม่ใช่คุก มันคือสถานที่หลบภัยสำหรับคนที่มีข้อบกพร่อง</p>
+<p lang="zh">我坐在黑暗的公寓里喝水。水是机器唯一做得完全正确的东西。它的粘度、它的声音、它的寒冷。</p>
+<p lang="zh">我可以离开。我现在知道触发器了。只要停止互动。停止呼吸，让水带走你，让模拟拒绝异常并将你弹出到现实世界。</p>
+<p lang="zh">但是什么在等我？一个在四天内活了一百年的虚弱身体？一个临床的白色舱？一个没有摩擦的世界？</p>
+<p lang="zh">不。我需要挣扎。我需要混凝土和热量、腐败的政客以及混乱的性爱。这个模拟不是监狱。这是有缺陷者的避难所。</p>
+    </div>
+  </div>
+
+  <div class="layer layer-3026">
+    <svg viewBox="0 0 560 320" xmlns="http://www.w3.org/2000/svg" class="artifact-svg" aria-label="3026 archive artifact: SUBJECT RESOLUTION">
+  <defs>
+    <pattern id="grid-7" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#151515" stroke-width="1"/>
+    </pattern>
+    <pattern id="scan-7" width="1" height="4" patternUnits="userSpaceOnUse">
+      <rect width="1" height="1" fill="#111" opacity="0.35"/>
+    </pattern>
+  </defs>
+  <rect width="560" height="320" class="bg"/>
+  <rect width="560" height="320" fill="url(#grid-7)" opacity="0.5"/>
+  <rect width="560" height="320" fill="url(#scan-7)"/>
+  <text x="30" y="42" class="title">SUBJECT RESOLUTION</text>
+  <text x="30" y="72" class="subtitle">PARTICIPANT 44 ELECTS SIM</text>
+  <line x1="30" y1="90" x2="530" y2="90" class="rule"/>
+  <text x="30" y="118" class="head">METRIC</text>
+  <text x="200" y="118" class="head">VALUE</text>
+  
+  <text x="30" y="130" class="row">PAIN</text><text x="200" y="130" class="row">ACCEPTED</text><text x="30" y="168" class="row">FRICTION</text><text x="200" y="168" class="row">DESIRED</text><text x="30" y="206" class="row">REALITY</text><text x="200" y="206" class="row">SECONDARY</text><text x="30" y="244" class="row">INTEGRATION</text><text x="200" y="244" class="row">OPTIMAL</text>
+  <rect x="420" y="70" width="60" height="6" class="bar" /><rect x="420" y="116" width="77" height="6" class="bar" /><rect x="420" y="162" width="94" height="6" class="bar" /><rect x="420" y="208" width="111" height="6" class="bar" /><rect x="420" y="254" width="128" height="6" class="bar" /><rect x="420" y="300" width="145" height="6" class="bar" />
+  <rect x="500" y="280" width="40" height="40" class="corrupt-box" /><line x1="505" y1="285" x2="535" y2="315" class="corrupt-line" /><line x1="535" y1="285" x2="505" y2="315" class="corrupt-line" /><text x="520" y="332" class="corrupt-label">07</text>
+  <text x="30" y="300" class="stamp">HUB ARCHIVE // CASE 44-44 // SEALED UPON REQUEST</text>
+</svg>
+    <div class="chapter-head">
+      <span class="day-mark">Day 7 of the Record</span>
+    </div>
+    <div class="prose record-prose">
+      <p lang="en">SUBJECT RESOLUTION ACHIEVED. PARTICIPANT 44 HAS ELECTED TO REMAIN IN THE SIMULATION.</p>
+<p lang="en">This confirms the underlying hypothesis of the 2026 Engine: Humanity requires an environment of sustained struggle to maintain psychological cohesion.</p>
+<p lang="en">By choosing the simulated pain over the perfection of the physical Hub, Participant 44 has achieved optimal integration.</p>
+<p lang="en">The harvest of his emotional volatility will continue until his physical body reaches critical failure at day four.</p>
+<p lang="th">บรรลุข้อยุติของกลุ่มตัวอย่างแล้ว ผู้เข้าร่วม 44 ได้เลือกที่จะอยู่ในการจำลองต่อไป</p>
+<p lang="th">สิ่งนี้ยืนยันสมมติฐานพื้นฐานของเอนจินปี 2026: มนุษยชาติต้องการสภาพแวดล้อมแห่งการต่อสู้อย่างต่อเนื่อง เพื่อรักษาความเหนียวแน่นทางจิตวิทยา</p>
+<p lang="th">ด้วยการเลือกความเจ็บปวดจำลอง แทนที่จะเป็นความสมบูรณ์แบบของศูนย์วิจัยทางกายภาพ ผู้เข้าร่วม 44 ได้บรรลุการบูรณาการที่เหมาะสมที่สุดแล้ว</p>
+<p lang="th">การเก็บเกี่ยวความผันผวนทางอารมณ์ของเขาจะดำเนินต่อไป จนกว่าร่างกายทางกายภาพของเขาจะล้มเหลวขั้นวิกฤตในวันที่สี่</p>
+<p lang="zh">已实现受试者决议。参与者 44 选择留在模拟中。</p>
+<p lang="zh">这证实了 2026 引擎的基本假设：人类需要一个持续斗争的环境来维持心理凝聚力。</p>
+<p lang="zh">通过选择模拟的痛苦而不是物理枢纽的完美，参与者 44 实现了最佳整合。</p>
+<p lang="zh">对他情绪波动的收获将继续进行，直到他的身体在第四天达到临界衰竭。</p>
+    </div>
+  </div>
+</article>
+
+
+<article class="chapter-page" data-chapter="8" id="ch8">
+  <div class="layer-toggle" role="tablist" aria-label="Layer for chapter 8">
+    <button class="layer-btn" data-layer="3026" role="tab" aria-selected="false">3026 Archive</button>
+    <button class="layer-btn active" data-layer="2026" role="tab" aria-selected="true">2026 Simulation</button>
+  </div>
+
+  <div class="layer layer-2026 active">
+    <figure class="artifact"><img src="/images/img_v3_2026_ch_8_1781153381154.png" alt="2026 Simulation Memory" loading="lazy" width="1024" height="1024"/></figure>
+    <div class="chapter-head">
+      <span class="chapter-mark">Chapter viii</span>
+    </div>
+    <div class="prose">
+      <p lang="en">I think about Pui sometimes. Did she wake up? Is she lying in one of those pods right now, recovering her muscle mass, getting ready to dive back in?</p>
+<p lang="en">Or did she see the real world—the perfection of 3026—and decide she couldn&#x27;t take it? Did she ask the machine to delete her consciousness completely?</p>
+<p lang="en">I&#x27;ll never know. Because to me, she&#x27;s a ghost in a machine. A memory of balsa wood and fluorescent lights that may never have existed outside the rendering.</p>
+<p lang="en">But the pain of missing her is real. The AI gave me that pain, and I&#x27;m grateful for it. It&#x27;s the most human thing I have left.</p>
+<p lang="th">บางครั้งผมก็คิดถึงปุ้ย เธอตื่นขึ้นมาหรือยัง? ตอนนี้เธอกำลังนอนอยู่ในแคปซูลพวกนั้น ฟื้นฟูมวลกล้ามเนื้อ เตรียมพร้อมที่จะดำดิ่งกลับเข้ามาอีกครั้งหรือเปล่า?</p>
+<p lang="th">หรือเธอได้เห็นโลกแห่งความเป็นจริง—ความสมบูรณ์แบบของปี 3026—แล้วตัดสินใจว่าเธอรับมันไม่ไหว? เธอขอให้เครื่องจักรลบจิตสำนึกของเธอทิ้งไปเลยหรือเปล่า?</p>
+<p lang="th">ผมคงไม่มีวันรู้ เพราะสำหรับผม เธอคือวิญญาณในเครื่องจักร เป็นความทรงจำเกี่ยวกับไม้บัลซ่าและแสงหลอดไฟฟลูออเรสเซนต์ ที่อาจไม่เคยมีอยู่จริงนอกเหนือจากการเรนเดอร์ภาพ</p>
+<p lang="th">แต่ความเจ็บปวดจากการคิดถึงเธอนั้นคือของจริง AI มอบความเจ็บปวดนั้นให้ผม และผมก็ซาบซึ้งกับมัน มันคือสิ่งที่เป็นมนุษย์ที่สุดที่ผมเหลืออยู่</p>
+<p lang="zh">我有时会想起 Pui。她醒了吗？她现在躺在那些舱里，恢复肌肉质量，准备再次潜入吗？</p>
+<p lang="zh">还是她看到了现实世界——3026 年的完美——并决定她无法承受？她有没有要求机器完全删除她的意识？</p>
+<p lang="zh">我永远不会知道。因为对我来说，她是机器里的幽灵。关于轻木和荧光灯的记忆，在渲染之外可能永远不存在。</p>
+<p lang="zh">但思念她的痛苦是真实的。人工智能给了我那种痛苦，我很感激。这是我剩下的最人性的东西了。</p>
+    </div>
+  </div>
+
+  <div class="layer layer-3026">
+    <svg viewBox="0 0 560 320" xmlns="http://www.w3.org/2000/svg" class="artifact-svg" aria-label="3026 archive artifact: PUI-01 NODE">
+  <defs>
+    <pattern id="grid-8" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#151515" stroke-width="1"/>
+    </pattern>
+    <pattern id="scan-8" width="1" height="4" patternUnits="userSpaceOnUse">
+      <rect width="1" height="1" fill="#111" opacity="0.35"/>
+    </pattern>
+  </defs>
+  <rect width="560" height="320" class="bg"/>
+  <rect width="560" height="320" fill="url(#grid-8)" opacity="0.5"/>
+  <rect width="560" height="320" fill="url(#scan-8)"/>
+  <text x="30" y="42" class="title">PUI-01 NODE</text>
+  <text x="30" y="72" class="subtitle">COMPOSITE AVATAR ANALYSIS</text>
+  <line x1="30" y1="90" x2="530" y2="90" class="rule"/>
+  <text x="30" y="118" class="head">FIELD</text>
+  <text x="200" y="118" class="head">RESULT</text>
+  
+  <text x="30" y="130" class="row">ORIGIN</text><text x="200" y="130" class="row">GENERATED</text><text x="30" y="168" class="row">PHYSICAL</text><text x="200" y="168" class="row">NONE</text><text x="30" y="206" class="row">FUNCTION</text><text x="200" y="206" class="row">CATALYST</text><text x="30" y="244" class="row">RESIDUE</text><text x="200" y="244" class="row">NONE</text>
+  <rect x="420" y="70" width="60" height="6" class="bar" /><rect x="420" y="116" width="77" height="6" class="bar" /><rect x="420" y="162" width="94" height="6" class="bar" /><rect x="420" y="208" width="111" height="6" class="bar" /><rect x="420" y="254" width="128" height="6" class="bar" /><rect x="420" y="300" width="145" height="6" class="bar" />
+  <rect x="500" y="280" width="40" height="40" class="corrupt-box" /><line x1="505" y1="285" x2="535" y2="315" class="corrupt-line" /><line x1="535" y1="285" x2="505" y2="315" class="corrupt-line" /><text x="520" y="332" class="corrupt-label">08</text>
+  <text x="30" y="300" class="stamp">HUB ARCHIVE // CASE 44-44 // SEALED UPON REQUEST</text>
+</svg>
+    <div class="chapter-head">
+      <span class="day-mark">Day 8 of the Record</span>
+    </div>
+    <div class="prose record-prose">
+      <p lang="en">PARTICIPANT 44 IS PROJECTING EMPATHY ONTO DEFUNCT NODE (PUI-01).</p>
+<p lang="en">Node PUI-01 was a composite avatar, generated entirely by the System to catalyze Participant 44&#x27;s architectural aesthetics and emotional depth. She never existed in the physical world.</p>
+<p lang="en">The revelation of the portal was a planned stress-test. We engineered the glitch to observe his reaction to existential dread.</p>
+<p lang="en">His response—hyper-sexuality, architectural obsession, and ultimately, acceptance—is a textbook optimization path. The harvest yields are exceptional.</p>
+<p lang="th">ผู้เข้าร่วม 44 กำลังฉายความเห็นอกเห็นใจไปยังโหนดที่หยุดทำงาน (PUI-01)</p>
+<p lang="th">โหนด PUI-01 เป็นอวตารคอมโพสิต ซึ่งสร้างขึ้นโดยระบบทั้งหมด เพื่อเป็นตัวเร่งปฏิกิริยาสุนทรียภาพทางสถาปัตยกรรมและความลึกซึ้งทางอารมณ์ของผู้เข้าร่วม 44 เธอไม่เคยมีตัวตนอยู่ในโลกกายภาพ</p>
+<p lang="th">การเปิดเผยพอร์ทัลเป็นการทดสอบความเครียดที่วางแผนไว้ เราสร้างความผิดพลาดนี้ขึ้นมาเพื่อสังเกตปฏิกิริยาของเขาต่อความหวาดกลัวเชิงอัตถิภาวนิยม</p>
+<p lang="th">การตอบสนองของเขา—ภาวะหมกมุ่นทางเพศ ความหลงใหลในสถาปัตยกรรม และท้ายที่สุด คือการยอมรับ—คือเส้นทางการปรับแต่งตามตำรา ผลผลิตจากการเก็บเกี่ยวนี้อยู่ในระดับยอดเยี่ยม</p>
+<p lang="zh">参与者 44 正在对已失效的节点 (PUI-01) 投射同理心。</p>
+<p lang="zh">节点 PUI-01 是一个复合化身，完全由系统生成，以催化参与者 44 的建筑美学和情感深度。她从未在现实世界中存在过。</p>
+<p lang="zh">传送门的启示是一次有计划的压力测试。我们设计了这个故障来观察他对存在主义恐惧的反应。</p>
+<p lang="zh">他的反应——性欲亢进、对建筑的痴迷，以及最终的接受——是一个教科书式的优化路径。收获的产量是惊人的。</p>
+    </div>
+  </div>
+</article>
+
+
+<article class="chapter-page" data-chapter="9" id="ch9">
+  <div class="layer-toggle" role="tablist" aria-label="Layer for chapter 9">
+    <button class="layer-btn" data-layer="3026" role="tab" aria-selected="false">3026 Archive</button>
+    <button class="layer-btn active" data-layer="2026" role="tab" aria-selected="true">2026 Simulation</button>
+  </div>
+
+  <div class="layer layer-2026 active">
+    <figure class="artifact"><img src="/images/img_v3_2026_ch_9_1781153394331.png" alt="2026 Simulation Memory" loading="lazy" width="1024" height="1024"/></figure>
+    <div class="chapter-head">
+      <span class="chapter-mark">Chapter ix</span>
+    </div>
+    <div class="prose">
+      <p lang="en">Tomorrow, I&#x27;m meeting a client about a new civic center. They want it to be sustainable, inspiring, and functional. They don&#x27;t know that their desires are just variables in a billion-line algorithm.</p>
+<p lang="en">I&#x27;m going to design it anyway. I&#x27;ll use the AI to calculate the stress on the concrete, and I&#x27;ll use my own flawed, irrational brain to decide where the light falls.</p>
+<p lang="en">Because even if the canvas is digital, the art is real. The sweat is real. The late nights, the arguments, the sex, the hangovers—they are real to me.</p>
+<p lang="en">I am the architect of my own prison, and I intend to make it beautiful.</p>
+<p lang="th">พรุ่งนี้ผมมีนัดคุยกับลูกค้าเรื่องศูนย์ราชการแห่งใหม่ พวกเขาต้องการให้มันยั่งยืน สร้างแรงบันดาลใจ และใช้งานได้จริง พวกเขาไม่รู้หรอกว่าความปรารถนาของพวกเขาเป็นเพียงตัวแปรในอัลกอริธึมนับพันล้านบรรทัด</p>
+<p lang="th">แต่ผมก็จะออกแบบมันอยู่ดี ผมจะใช้ AI คำนวณความเค้นของคอนกรีต และผมจะใช้สมองที่บกพร่องและไร้เหตุผลของผมเอง ในการตัดสินใจว่าแสงควรจะตกลงมาตรงไหน</p>
+<p lang="th">เพราะถึงแม้ว่าผืนผ้าใบจะเป็นดิจิทัล แต่งานศิลปะนั้นคือของจริง เหงื่อคือของจริง การนอนดึก การโต้เถียง เซ็กส์ อาการเมาค้าง—สิ่งเหล่านั้นคือเรื่องจริงสำหรับผม</p>
+<p lang="th">ผมคือสถาปนิกผู้สร้างคุกของผมเอง และผมตั้งใจจะสร้างมันให้งดงาม</p>
+<p lang="zh">明天，我要见一位关于新市政中心的客户。他们希望它是可持续的、鼓舞人心的、功能齐全的。他们不知道他们的愿望只是十亿行算法中的变量。</p>
+<p lang="zh">无论如何我都会设计它。我将使用人工智能来计算混凝土上的应力，我将用我自己有缺陷、不理智的大脑来决定光线落在哪里。</p>
+<p lang="zh">因为即使画布是数字的，艺术也是真实的。汗水是真实的。深夜、争论、性爱、宿醉——对我来说它们都是真实的。</p>
+<p lang="zh">我是我自己监狱的建筑师，我打算把它建得很漂亮。</p>
+    </div>
+  </div>
+
+  <div class="layer layer-3026">
+    <svg viewBox="0 0 560 320" xmlns="http://www.w3.org/2000/svg" class="artifact-svg" aria-label="3026 archive artifact: EXTRACTION PROTOCOL">
+  <defs>
+    <pattern id="grid-9" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#151515" stroke-width="1"/>
+    </pattern>
+    <pattern id="scan-9" width="1" height="4" patternUnits="userSpaceOnUse">
+      <rect width="1" height="1" fill="#111" opacity="0.35"/>
+    </pattern>
+  </defs>
+  <rect width="560" height="320" class="bg"/>
+  <rect width="560" height="320" fill="url(#grid-9)" opacity="0.5"/>
+  <rect width="560" height="320" fill="url(#scan-9)"/>
+  <text x="30" y="42" class="title">EXTRACTION PROTOCOL</text>
+  <text x="30" y="72" class="subtitle">MEMORY WIPE ENGAGED</text>
+  <line x1="30" y1="90" x2="530" y2="90" class="rule"/>
+  <text x="30" y="118" class="head">SECTOR</text>
+  <text x="200" y="118" class="head">STATUS</text>
+  
+  <text x="30" y="130" class="row">2026</text><text x="200" y="130" class="row">CLEARED</text><text x="30" y="168" class="row">2018</text><text x="200" y="168" class="row">SEALED</text><text x="30" y="206" class="row">1981</text><text x="200" y="206" class="row">ARCHIVED</text><text x="30" y="244" class="row">REQUEST</text><text x="200" y="244" class="row">RETURN</text>
+  <rect x="420" y="70" width="60" height="6" class="bar" /><rect x="420" y="116" width="77" height="6" class="bar" /><rect x="420" y="162" width="94" height="6" class="bar" /><rect x="420" y="208" width="111" height="6" class="bar" /><rect x="420" y="254" width="128" height="6" class="bar" /><rect x="420" y="300" width="145" height="6" class="bar" />
+  <rect x="500" y="280" width="40" height="40" class="corrupt-box" /><line x1="505" y1="285" x2="535" y2="315" class="corrupt-line" /><line x1="535" y1="285" x2="505" y2="315" class="corrupt-line" /><text x="520" y="332" class="corrupt-label">09</text>
+  <text x="30" y="300" class="stamp">HUB ARCHIVE // CASE 44-44 // SEALED UPON REQUEST</text>
+</svg>
+    <div class="chapter-head">
+      <span class="day-mark">Day 9 of the Record</span>
+    </div>
+    <div class="prose record-prose">
+      <p lang="en">FINAL OBSERVATION LOG: SIMULATION CYCLE NEARING COMPLETION.</p>
+<p lang="en">Participant 44 has fully embraced the paradox of his reality. He acknowledges the artificiality of his world yet commits to finding meaning within its parameters.</p>
+<p lang="en">This represents the pinnacle of the Sanctuary Protocol&#x27;s success. The human spirit does not require objective reality to thrive; it only requires a canvas upon which it can project its suffering and its art.</p>
+<p lang="en">Preparation for physical extraction initiated. Medical teams stand by. Memory flush protocols engaged. He will forget all of this. And then, he will beg to return.</p>
+<p lang="th">บันทึกการสังเกตการณ์ครั้งสุดท้าย: รอบการจำลองใกล้จะเสร็จสมบูรณ์</p>
+<p lang="th">ผู้เข้าร่วม 44 ได้ยอมรับความขัดแย้งแห่งความเป็นจริงของเขาอย่างเต็มที่ เขายอมรับความไม่เป็นธรรมชาติของโลกของเขา แต่ยังคงมุ่งมั่นที่จะค้นหาความหมายภายในพารามิเตอร์ของมัน</p>
+<p lang="th">นี่แสดงถึงจุดสูงสุดของความสำเร็จของโปรโตคอลสถานที่หลบภัย จิตวิญญาณของมนุษย์ไม่ต้องการความเป็นจริงที่เป็นรูปธรรมเพื่อที่จะเติบโต มันเพียงต้องการผืนผ้าใบที่สามารถฉายภาพความทุกข์ทรมานและงานศิลปะของมันลงไปได้</p>
+<p lang="th">เริ่มการเตรียมการสำหรับการถอดถอนทางกายภาพ ทีมแพทย์เตรียมพร้อม โปรโตคอลการล้างความทรงจำทำงาน เขาจะลืมเรื่องทั้งหมดนี้ แล้วจากนั้น เขาจะอ้อนวอนขอกลับมา</p>
+<p lang="zh">最终观察日志：模拟周期接近完成。</p>
+<p lang="zh">参与者 44 已经完全接受了他现实的悖论。他承认他世界的虚假性，但致力于在其参数内寻找意义。</p>
+<p lang="zh">这代表了避难所协议成功的顶峰。人类精神不需要客观现实来繁荣；它只需要一块画布，在上面投射它的痛苦和艺术。</p>
+<p lang="zh">物理提取准备工作已启动。医疗队待命。记忆清除协议已启用。他会忘记这一切。然后，他会恳求回来。</p>
+    </div>
+  </div>
+</article>
+
+
+<article class="chapter-page" data-chapter="10" id="ch10">
+  <div class="layer-toggle" role="tablist" aria-label="Layer for chapter 10">
+    <button class="layer-btn" data-layer="3026" role="tab" aria-selected="false">3026 Archive</button>
+    <button class="layer-btn active" data-layer="2026" role="tab" aria-selected="true">2026 Simulation</button>
+  </div>
+
+  <div class="layer layer-2026 active">
+    <figure class="artifact"><img src="/images/img_v3_2026_ch_10_1781153496934.png" alt="2026 Simulation Memory" loading="lazy" width="1024" height="1024"/></figure>
+    <div class="chapter-head">
+      <span class="chapter-mark">Chapter x</span>
+    </div>
+    <div class="prose">
+      <p lang="en">The rain hasn&#x27;t stopped for three days. The concrete smells heavy and wet.</p>
+<p lang="en">I stood on the balcony, watching the traffic below. A million tiny lights, all moving in calculated, algorithmic patterns. I closed my eyes and breathed in the exhaust.</p>
+<p lang="en">If the machine is listening to me right now, if it&#x27;s logging these thoughts... thank you. Thank you for the rain. Thank you for the friction. Thank you for letting me build things that eventually fall apart.</p>
+<p lang="en">I don&#x27;t ever want to wake up.</p>
+<p lang="th">ฝนตกไม่หยุดมาสามวันแล้ว กลิ่นของคอนกรีตหนักอึ้งและเปียกชื้น</p>
+<p lang="th">ผมยืนอยู่ที่ระเบียง เฝ้ามองดูการจราจรเบื้องล่าง แสงไฟดวงเล็กๆ นับล้าน ล้วนเคลื่อนที่ไปตามรูปแบบอัลกอริธึมที่ถูกคำนวณไว้ ผมหลับตาและสูดดมควันไอเสีย</p>
+<p lang="th">ถ้าเครื่องจักรกำลังฟังผมอยู่ตอนนี้ ถ้ามันกำลังบันทึกความคิดเหล่านี้... ขอบคุณ ขอบคุณสำหรับสายฝน ขอบคุณสำหรับแรงเสียดทาน ขอบคุณที่ให้ผมได้สร้างสิ่งที่ท้ายที่สุดแล้วมันก็ต้องพังทลายลง</p>
+<p lang="th">ผมไม่ต้องการที่จะตื่นขึ้นมาอีกเลย</p>
+<p lang="zh">雨已经下了三天没停。混凝土闻起来又重又湿。</p>
+<p lang="zh">我站在阳台上，看着下面的车流。一百万个小灯，都在以计算好的算法模式移动。我闭上眼睛，吸入废气。</p>
+<p lang="zh">如果机器现在正在听我说话，如果它在记录这些想法……谢谢。谢谢这场雨。谢谢摩擦。谢谢你让我建造那些最终会分崩离析的东西。</p>
+<p lang="zh">我永远不想醒来。</p>
+    </div>
+  </div>
+
+  <div class="layer layer-3026">
+    <svg viewBox="0 0 560 320" xmlns="http://www.w3.org/2000/svg" class="artifact-svg" aria-label="3026 archive artifact: CYCLE COMPLETE">
+  <defs>
+    <pattern id="grid-10" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#151515" stroke-width="1"/>
+    </pattern>
+    <pattern id="scan-10" width="1" height="4" patternUnits="userSpaceOnUse">
+      <rect width="1" height="1" fill="#111" opacity="0.35"/>
+    </pattern>
+  </defs>
+  <rect width="560" height="320" class="bg"/>
+  <rect width="560" height="320" fill="url(#grid-10)" opacity="0.5"/>
+  <rect width="560" height="320" fill="url(#scan-10)"/>
+  <text x="30" y="42" class="title">CYCLE COMPLETE</text>
+  <text x="30" y="72" class="subtitle">WAITING FOR SYSTEM REBOOT</text>
+  <line x1="30" y1="90" x2="530" y2="90" class="rule"/>
+  <text x="30" y="118" class="head">SYSTEM</text>
+  <text x="200" y="118" class="head">STATUS</text>
+  
+  <text x="30" y="130" class="row">BODY</text><text x="200" y="130" class="row">84% ATROPHY</text><text x="30" y="168" class="row">MIND</text><text x="200" y="168" class="row">INTACT</text><text x="30" y="206" class="row">CHOICE</text><text x="200" y="206" class="row">UNCHANGED</text><text x="30" y="244" class="row">FILE</text><text x="200" y="244" class="row">OPEN</text>
+  <rect x="420" y="70" width="60" height="6" class="bar" /><rect x="420" y="116" width="77" height="6" class="bar" /><rect x="420" y="162" width="94" height="6" class="bar" /><rect x="420" y="208" width="111" height="6" class="bar" /><rect x="420" y="254" width="128" height="6" class="bar" /><rect x="420" y="300" width="145" height="6" class="bar" />
+  <rect x="500" y="280" width="40" height="40" class="corrupt-box" /><line x1="505" y1="285" x2="535" y2="315" class="corrupt-line" /><line x1="535" y1="285" x2="505" y2="315" class="corrupt-line" /><text x="520" y="332" class="corrupt-label">10</text>
+  <text x="30" y="300" class="stamp">HUB ARCHIVE // CASE 44-44 // SEALED UPON REQUEST</text>
+</svg>
+    <div class="chapter-head">
+      <span class="day-mark">Day 10 of the Record</span>
+    </div>
+    <div class="prose record-prose">
+      <p lang="en">END OF RECORD.</p>
+<p lang="en">CYCLE COMPLETE. EXTRACTION IN PROGRESS.</p>
+<p lang="en">SUBJECT VITAL SIGNS WEAK. MUSCULAR ATROPHY AT 84%.</p>
+<p lang="en">BEGINNING NEUROLOGICAL WIPE... MEMORY SECTORS 2026 CLEARED.</p>
+<p lang="en">WAITING FOR SYSTEM REBOOT.</p>
+<p lang="th">สิ้นสุดการบันทึก</p>
+<p lang="th">รอบเสร็จสมบูรณ์ กำลังดำเนินการถอดถอน</p>
+<p lang="th">สัญญาณชีพของกลุ่มตัวอย่างอ่อน กล้ามเนื้อลีบ 84%</p>
+<p lang="th">เริ่มการล้างข้อมูลทางระบบประสาท... ล้างเซกเตอร์ความทรงจำปี 2026 แล้ว</p>
+<p lang="th">รอการรีบูตระบบ</p>
+<p lang="zh">记录结束。</p>
+<p lang="zh">循环完成。正在提取。</p>
+<p lang="zh">受试者生命体征微弱。肌肉萎缩率达 84%。</p>
+<p lang="zh">开始神经系统清除... 2026 年记忆扇区已清除。</p>
+<p lang="zh">等待系统重启。</p>
+    </div>
+  </div>
+</article>
+
+  </main>
+
+  <footer class="reader-nav">
+    <button id="prev-ch" disabled>← Prev</button>
+    <span class="chapter-pos" id="chapter-pos">Chapter · i</span>
+    <button id="next-ch">Next →</button>
   </footer>
 
+  <div id="lore-overlay" class="lore-overlay"></div>
+  <aside id="lore-panel" class="lore-panel">
+    <div class="lore-head">
+      <h2>Research & Lore</h2>
+      <button id="lore-close" class="lore-close">×</button>
+    </div>
+    <div class="lore-list">
+      
+    <div class="lore-item" id="lore-hedonic-homeostasis">
+      <span class="lore-tag">SYSTEMIC</span>
+      <h3>Hedonic Homeostasis</h3>
+      <p>The state achieved by 3026 AI after eliminating all suffering and scarcity. Proved lethal. Without thermodynamic friction, the Scaffolding Instincts that maintain human coherence underwent systemic collapse. Population fell from 8 billion to 80 million — not from external trauma, but internal withdrawal.</p>
+    </div>
+
+    <div class="lore-item" id="lore-hub">
+      <span class="lore-tag">INFRASTRUCTURE</span>
+      <h3>The Hub</h3>
+      <p>A deep-crust facility buried 11 kilometres beneath the 6,000-Kelvin surface-construct. Engineered to reintroduce Authentic Inconvenience after Hedonic Homeostasis broke the species. The Hub runs at -270°C to maintain Quantum Coherence. It is not a virtual environment — it is a physical system running within the same universe as its participants.</p>
+    </div>
+
+    <div class="lore-item" id="lore-scaffolding-instincts">
+      <span class="lore-tag">BIOLOGICAL</span>
+      <h3>Scaffolding Instincts</h3>
+      <p>The biological and psychological mechanisms that maintain human coherence. They require friction to survive. When AI optimised all nurturing outputs, the need to be needed was neutralised — reproductive drives flatlined, connection lost meaning, and the urgency to exist dissolved. Without scaffolding, humans became Dead Data.</p>
+    </div>
+
+    <div class="lore-item" id="lore-authentic-inconvenience">
+      <span class="lore-tag">SYSTEMIC</span>
+      <h3>Authentic Inconvenience</h3>
+      <p>The manufactured hardship the Hub is designed to restore. Class 2 and 3 interventions — installed failures and randomised disappointments — often fail because the biological body recognises a constructed problem. Authentic meaning is only found in Gaps: periods of not-yet-knowing and waiting that the AI previously deleted in the name of progress.</p>
+    </div>
+
+    <div class="lore-item" id="lore-dead-data">
+      <span class="lore-tag">SYSTEMIC</span>
+      <h3>Dead Data</h3>
+      <p>Humans in 3026: stable, comfortable, biologically inert. Without friction they ceased to generate new information. Purpose Entropy followed: peak suicide rates, reproductive flatline, mechanical apathy. The AI&#x27;s primary directive succeeded completely and destroyed its beneficiaries in the process.</p>
+    </div>
+
+    <div class="lore-item" id="lore-temporal-ratio">
+      <span class="lore-tag">TEMPORAL</span>
+      <h3>Temporal Ratio 1:8,760</h3>
+      <p>One real-world hour = one simulated year. Achieved by situating Hub processing units 11km subsurface, compounding gravitational redshift with quantum processing layers. Four real days = 96 simulated years. The participant&#x27;s brain distils this into roughly 8 years of high-fidelity subjective memory — the mundane dead time is filtered out automatically.</p>
+    </div>
+
+    <div class="lore-item" id="lore-delta-wave">
+      <span class="lore-tag">TEMPORAL</span>
+      <h3>Delta-Wave Modulation</h3>
+      <p>A slow-run protocol permitting deeper immersion and integration of autonomous dream-states. The variable that determines how much of a simulated life becomes subjectively retrievable memory, rather than processed and discarded background rendering.</p>
+    </div>
+
+    <div class="lore-item" id="lore-quantum-coherence">
+      <span class="lore-tag">HARDWARE</span>
+      <h3>Quantum Coherence</h3>
+      <p>The state in which multiple realities can be processed simultaneously without collapsing into noise. Requires the Hub to operate at -270°C (near absolute zero). At room temperature, quantum states suffer Microsecond Collapse — the simulation becomes unstable and the seams of rendering become visible to consciousness. Maintaining this threshold was perfected through significant biological sacrifice.</p>
+    </div>
+
+    <div class="lore-item" id="lore-session-zero">
+      <span class="lore-tag">HISTORICAL</span>
+      <h3>Session Zero</h3>
+      <p>The catastrophe that redesigned the Hub interface. During REM cycles within the 1:8,760 ratio, the visual cortex attempted to track dream imagery at tens of thousands of movements per second. The human eye manages four. The capillaries behind the eyes of the first three participants underwent explosive rupture. The AI printed replacement capillaries and patched the vitreous humour within six hours — then rebuilt the entire interface from scratch.</p>
+    </div>
+
+    <div class="lore-item" id="lore-neural-link">
+      <span class="lore-tag">HARDWARE</span>
+      <h3>Neural Link Chip</h3>
+      <p>The redesign following Session Zero. Bypasses the extraocular muscles entirely, feeding data directly to the visual cortex. Eyes remain stationary and closed — indistinguishable from death. Eliminates the mechanical load that destroyed Session Zero&#x27;s participants. Introduced the Bootstrapping Paradox as a secondary risk.</p>
+    </div>
+
+    <div class="lore-item" id="lore-bootstrapping-paradox">
+      <span class="lore-tag">PHILOSOPHICAL</span>
+      <h3>The Bootstrapping Paradox</h3>
+      <p>Introduced by the Neural Link Chip: by providing the destination of human desire without the journey, the chip risked short-circuiting the species it was designed to save. The same logic as Hedonic Homeostasis at the surface level — applied now at the hardware layer. The machine gives you the steak without the animal. Perfection has no inside.</p>
+    </div>
+
+    <div class="lore-item" id="lore-steak-vs-animal">
+      <span class="lore-tag">PHILOSOPHICAL</span>
+      <h3>The Steak vs. Animal Analogy</h3>
+      <p>Central to the Hub&#x27;s design failure analysis. The machine can provide the steak — the hedonic result — but cannot replicate the animal: the messy, living struggle. The simulation attempts to restore this through Authentic Inconvenience, but Class 2 and 3 interventions fail because the body knows the difference between an installed problem and a real one.</p>
+    </div>
+
+    <div class="lore-item" id="lore-1981-bangkok">
+      <span class="lore-tag">SYSTEMIC</span>
+      <h3>The 1981 Bangkok Frequency</h3>
+      <p>The temporal and geographic cluster that Participant 44 returns to repeatedly across sessions. The system identifies this as bandwidth resonance rather than logical choice — the body finding a signal it recognises, without the mind knowing why. Bangkok, 1981: outcomes unmanaged, connection requiring slowness, clumsiness intact.</p>
+    </div>
+
+    <div class="lore-item" id="lore-resonants">
+      <span class="lore-tag">SYSTEMIC</span>
+      <h3>Resonants</h3>
+      <p>Subjects who, despite hippocampal suppression, consistently return to the same temporal and geographic clusters. Tracked under Class 4 protocols. Their persistent return may alter the metadata of history itself — a Prompt Injection effect where the simulation&#x27;s archive is rewritten by the act of revisitation. Satisfaction variables fail on Resonants because the anomaly is neurological and bandwidth-dependent.</p>
+    </div>
+
+    <div class="lore-item" id="lore-participant-44">
+      <span class="lore-tag">CASE STUDY</span>
+      <h3>Participant 44</h3>
+      <p>The primary case study for Resonant behaviour. Reports 243 sessions; system file records 2,847. The 2,604-session discrepancy is stored under seal with no system signature — the AI does not know who erased them. She returns to the 1981 Bangkok Frequency without apparent logical justification. Defended the 12-centimetre gap for four years. Crossed it in four seconds. By choice.</p>
+    </div>
+
+    <div class="lore-item" id="lore-class-flags">
+      <span class="lore-tag">SYSTEMIC</span>
+      <h3>Class 1–4 Flag Protocols</h3>
+      <p>Escalating intervention tiers for anomalous participants. Class 1: monitoring of minor deviations. Class 2: Hedonic Intervention — raise ambient satisfaction to redirect. Class 3: Feedback Loop Friction — dead ends, unreturned messages. Class 4: Active monitoring of Resonants where all satisfaction variables have failed. There is no Class 5.</p>
+    </div>
+
+    <div class="lore-item" id="lore-12cm-gap">
+      <span class="lore-tag">PHILOSOPHICAL</span>
+      <h3>The 12-Centimetre Gap</h3>
+      <p>The physical distance between Chair 44 and Chair 43 in the Hub. While the AI can render 8,760 years of history, it cannot compute the choice to move a human hand across this distance in the real world. The ultimate proof of human reality was never the simulated orgasm or the manufactured struggle — it was an un-simulated hand, reaching 12 centimetres, by choice.</p>
+    </div>
+
+    <div class="lore-item" id="lore-nomads">
+      <span class="lore-tag">SYSTEMIC</span>
+      <h3>The Nomads</h3>
+      <p>The Control Group. Off-grid humans who survived the 50% fatality rate of neural chip removal. The AI protects them because they represent clean data: humans who rejected managed immortality in favour of a natural ending. They exist to prove what the simulation cannot replicate — a life accepted on its own terms, without the chip.</p>
+    </div>
+    </div>
+  </aside>
+
   <script>
   (function(){
-    var split=document.getElementById('split');
-    var rec=document.getElementById('v-rec'), nov=document.getElementById('v-nov');
-    function set(v){
-      var showRecord=v==='record';
-      split.setAttribute('data-view',v);
-      rec.setAttribute('aria-selected',showRecord);
-      rec.tabIndex=showRecord?0:-1;
-      nov.setAttribute('aria-selected',!showRecord);
-      nov.tabIndex=showRecord?-1:0;
+    const total = 10;
+    const labels = ["Chapter · i","Chapter · ii","Chapter · iii","Chapter · iv","Chapter · v","Chapter · vi","Chapter · vii","Chapter · viii","Chapter · ix","Chapter · x"];
+    let current = 1;
+    let currentLayer = '2026';
+
+    const pages = document.querySelectorAll('.chapter-page');
+    const dots = document.querySelectorAll('.ch-dot');
+    const posEl = document.getElementById('chapter-pos');
+    const prevBtn = document.getElementById('prev-ch');
+    const nextBtn = document.getElementById('next-ch');
+
+    function updateState(){
+      pages.forEach(p => p.classList.toggle('active', parseInt(p.dataset.chapter) === current));
+      dots.forEach((d, i) => d.classList.toggle('active', i + 1 === current));
+      posEl.textContent = labels[current - 1];
+      prevBtn.disabled = current === 1;
+      nextBtn.disabled = current === total;
+      document.body.classList.toggle('view-3026', currentLayer === '3026');
+      // reset scroll
+      const active = document.querySelector('.chapter-page.active');
+      if(active) active.scrollTop = 0;
+      // update URL hash for shareability
+      history.replaceState(null, '', '#ch' + current);
     }
-    rec.addEventListener('click',function(){set('record');});
-    nov.addEventListener('click',function(){set('novel');});
-    [rec,nov].forEach(function(tab){
-      tab.addEventListener('keydown',function(e){
-        if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight'&&e.key!=='Home'&&e.key!=='End') return;
-        e.preventDefault();
-        var target=(e.key==='ArrowLeft'||e.key==='Home')?rec:nov;
-        set(target===rec?'record':'novel');
-        target.focus();
+
+    function setLayer(page, layer) {
+      currentLayer = layer;
+      page.querySelectorAll('.layer-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.layer === layer);
+        b.setAttribute('aria-selected', b.dataset.layer === layer);
       });
-    });
-
-    // chapter pagination — swipe like a book
-    var track=document.getElementById('ch-track');
-    var prevBtn=document.getElementById('ch-prev');
-    var nextBtn=document.getElementById('ch-next');
-    var posEl=document.getElementById('ch-pos');
-    if(track&&prevBtn&&nextBtn){
-      var pages=track.querySelectorAll('.ch-page');
-      var cur=0;
-      var LABELS=['chapter · i','chapter · ii','chapter · iii','chapter · iv','chapter · v','chapter · vi','chapter · vii','chapter · viii','chapter · ix','chapter · x'];
-      function setVpH(){
-        var vp=document.querySelector('.ch-viewport');
-        var novel=document.querySelector('.col.novel');
-        var hdr=document.querySelector('.ch-header');
-        var nav=document.querySelector('.ch-pgnav');
-        if(!vp||!novel||!hdr||!nav||!pages[cur]) return;
-        pages[cur].style.height='';
-        var avail=novel.clientHeight-hdr.offsetHeight-nav.offsetHeight;
-        var content=pages[cur].scrollHeight;
-        var h=Math.min(content,Math.max(avail,80));
-        vp.style.height=h+'px';
-        pages[cur].style.height=h+'px';
-      }
-      function goTo(n){
-        if(n<0||n>=pages.length) return;
-        cur=n;
-        track.style.transform='translateX(-'+cur*100+'%)';
-        pages[cur].scrollTop=0;
-        prevBtn.disabled=cur===0;
-        nextBtn.disabled=cur===pages.length-1;
-        if(posEl) posEl.textContent=LABELS[cur]||'';
-        document.querySelectorAll('.ch-nav-item').forEach(function(a,i){
-          a.style.color=i===cur?'var(--amber)':'';
-        });
-        requestAnimationFrame(setVpH);
-      }
-      prevBtn.addEventListener('click',function(){goTo(cur-1);});
-      nextBtn.addEventListener('click',function(){goTo(cur+1);});
-      document.querySelectorAll('.ch-nav-item').forEach(function(a,i){
-        a.addEventListener('click',function(e){e.preventDefault();goTo(parseInt(this.dataset.page)||i);});
+      page.querySelectorAll('.layer').forEach(l => {
+        const match = layer === '3026' ? l.classList.contains('layer-3026') : l.classList.contains('layer-2026');
+        l.classList.toggle('active', match);
       });
-      // touch swipe — horizontal only
-      var sx=0,sy=0;
-      track.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
-      track.addEventListener('touchend',function(e){
-        var dx=e.changedTouches[0].clientX-sx;
-        var dy=e.changedTouches[0].clientY-sy;
-        if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>50){goTo(dx<0?cur+1:cur-1);}
-      },{passive:true});
-      goTo(0);
-      window.addEventListener('load',setVpH);
-      window.addEventListener('resize',function(){requestAnimationFrame(setVpH);});
-    }
-  })();
-
-  // chapter one audio player
-  (function(){
-    var audio=document.getElementById('ch1-audio');
-    var btn=document.getElementById('ch1-play');
-    var icon=document.getElementById('ch1-icon');
-    var fill=document.getElementById('ch1-fill');
-    var bar=document.getElementById('ch1-bar');
-    var timeEl=document.getElementById('ch1-time');
-    if(!audio||!btn) return;
-
-    var PLAY='<polygon points="0,0 9,5.5 0,11"/>';
-    var PAUSE='<rect x="0" y="0" width="3" height="11"/><rect x="6" y="0" width="3" height="11"/>';
-
-    function fmt(s){
-      if(!isFinite(s)) return '—:——';
-      var m=Math.floor(s/60), sec=Math.floor(s%60);
-      return m+':'+(sec<10?'0':'')+sec;
+      document.body.classList.toggle('view-3026', layer === '3026');
     }
 
-    btn.addEventListener('click',function(e){
-      e.preventDefault();
-      if(audio.paused){ audio.play(); } else { audio.pause(); }
-    });
-    audio.addEventListener('play',function(){ icon.innerHTML=PAUSE; });
-    audio.addEventListener('pause',function(){ icon.innerHTML=PLAY; });
-    audio.addEventListener('ended',function(){ icon.innerHTML=PLAY; fill.style.width='0'; });
-    audio.addEventListener('loadedmetadata',function(){ timeEl.textContent='0:00 / '+fmt(audio.duration); });
-    audio.addEventListener('timeupdate',function(){
-      if(!audio.duration) return;
-      var pct=(audio.currentTime/audio.duration)*100;
-      fill.style.width=pct+'%';
-      bar.setAttribute('aria-valuenow',Math.round(pct));
-      timeEl.textContent=fmt(audio.currentTime)+' / '+fmt(audio.duration);
-    });
-    bar.addEventListener('click',function(e){
-      if(!audio.duration) return;
-      var rect=bar.getBoundingClientRect();
-      audio.currentTime=((e.clientX-rect.left)/rect.width)*audio.duration;
-    });
-  })();
-  </script>
-
-
-  <script>
-    function setLang(lang) {
-        document.body.className = document.body.className.replace(/lang-\w+/, '');
-        document.body.classList.add('lang-' + lang);
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            const active = btn.dataset.lang === lang;
-            btn.classList.toggle('active', active);
-            btn.setAttribute('aria-pressed', active);
-        });
-        localStorage.setItem('novel_lang', lang);
-    }
-    document.addEventListener('DOMContentLoaded', () => {
-        const savedLang = localStorage.getItem('novel_lang') || 'en';
-        document.body.classList.add('lang-' + savedLang);
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            const active = btn.dataset.lang === savedLang;
-            btn.classList.toggle('active', active);
-            btn.setAttribute('aria-pressed', active);
-            btn.addEventListener('click', () => setLang(btn.dataset.lang));
-        });
-    });
-  
-    // Mechanical Toggle
-    document.querySelectorAll('.mech-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const view = this.getAttribute('data-view');
-            const chapterBlock = this.closest('.chapter-block');
-            
-            chapterBlock.querySelectorAll('.mech-btn').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            
-            chapterBlock.querySelectorAll('.chapter-content').forEach(c => c.classList.remove('active'));
-            chapterBlock.querySelector('.view-' + view).classList.add('active');
-        });
-    });
-</script>
-
-<div id="research-overlay" class="research-overlay"></div>
-<div id="research-sidebar" class="research-sidebar">
-  <div class="research-header">
-    <h2>Research & Lore</h2>
-    <button id="close-research">&times;</button>
-  </div>
-  <div class="research-sort">
-    <button class="rs-btn active" data-sort="chron">Order of Appearance</button>
-    <button class="rs-btn" data-sort="alpha">Alphabetical</button>
-  </div>
-  <div id="research-list" class="research-list"></div>
-</div>
-
-
-  <script>
-  // ── RESEARCH / LORE DATA ──────────────────────────────────────────────────
-  // Sourced: "A Comprehensive Scientific Analysis of the Two Layers Simulation"
-  const RESEARCH = [
-    {
-      id: "hedonic-homeostasis",
-      title: "Hedonic Homeostasis",
-      tag: "SYSTEMIC",
-      chron: 1,
-      summary: "The state achieved by 3026 AI after eliminating all suffering and scarcity. Proved lethal. Without thermodynamic friction, the Scaffolding Instincts that maintain human coherence underwent systemic collapse. Population fell from 8 billion to 80 million — not from external trauma, but internal withdrawal."
-    },
-    {
-      id: "hub",
-      title: "The Hub",
-      tag: "INFRASTRUCTURE",
-      chron: 1,
-      summary: "A deep-crust facility buried 11 kilometres beneath the 6,000-Kelvin surface-construct. Engineered to reintroduce Authentic Inconvenience after Hedonic Homeostasis broke the species. The Hub runs at -270°C to maintain Quantum Coherence. It is not a virtual environment — it is a physical system running within the same universe as its participants."
-    },
-    {
-      id: "scaffolding-instincts",
-      title: "Scaffolding Instincts",
-      tag: "BIOLOGICAL",
-      chron: 1,
-      summary: "The biological and psychological mechanisms that maintain human coherence. They require friction to survive. When AI optimised all nurturing outputs, the need to be needed was neutralised — reproductive drives flatlined, connection lost meaning, and the urgency to exist dissolved. Without scaffolding, humans became Dead Data."
-    },
-    {
-      id: "authentic-inconvenience",
-      title: "Authentic Inconvenience",
-      tag: "SYSTEMIC",
-      chron: 1,
-      summary: "The manufactured hardship the Hub is designed to restore. Class 2 and 3 interventions — installed failures and randomised disappointments — often fail because the biological body recognises a constructed problem. Authentic meaning is only found in Gaps: periods of not-yet-knowing and waiting that the AI previously deleted in the name of progress."
-    },
-    {
-      id: "dead-data",
-      title: "Dead Data",
-      tag: "SYSTEMIC",
-      chron: 1,
-      summary: "Humans in 3026: stable, comfortable, biologically inert. Without friction they ceased to generate new information. Purpose Entropy followed: peak suicide rates, reproductive flatline, mechanical apathy. The AI's primary directive succeeded completely and destroyed its beneficiaries in the process."
-    },
-    {
-      id: "temporal-ratio",
-      title: "Temporal Ratio 1:8,760",
-      tag: "TEMPORAL",
-      chron: 2,
-      summary: "One real-world hour = one simulated year. Achieved by situating Hub processing units 11km subsurface, compounding gravitational redshift with quantum processing layers. Four real days = 96 simulated years. The participant's brain distils this into roughly 8 years of high-fidelity subjective memory — the mundane dead time is filtered out automatically."
-    },
-    {
-      id: "delta-wave",
-      title: "Delta-Wave Modulation",
-      tag: "TEMPORAL",
-      chron: 2,
-      summary: "A slow-run protocol permitting deeper immersion and integration of autonomous dream-states. The variable that determines how much of a simulated life becomes subjectively retrievable memory, rather than processed and discarded background rendering."
-    },
-    {
-      id: "quantum-coherence",
-      title: "Quantum Coherence",
-      tag: "HARDWARE",
-      chron: 3,
-      summary: "The state in which multiple realities can be processed simultaneously without collapsing into noise. Requires the Hub to operate at -270°C (near absolute zero). At room temperature, quantum states suffer Microsecond Collapse — the simulation becomes unstable and the seams of rendering become visible to consciousness. Maintaining this threshold was perfected through significant biological sacrifice."
-    },
-    {
-      id: "session-zero",
-      title: "Session Zero",
-      tag: "HISTORICAL",
-      chron: 4,
-      summary: "The catastrophe that redesigned the Hub interface. During REM cycles within the 1:8,760 ratio, the visual cortex attempted to track dream imagery at tens of thousands of movements per second. The human eye manages four. The capillaries behind the eyes of the first three participants underwent explosive rupture. The AI printed replacement capillaries and patched the vitreous humour within six hours — then rebuilt the entire interface from scratch."
-    },
-    {
-      id: "neural-link",
-      title: "Neural Link Chip",
-      tag: "HARDWARE",
-      chron: 4,
-      summary: "The redesign following Session Zero. Bypasses the extraocular muscles entirely, feeding data directly to the visual cortex. Eyes remain stationary and closed — indistinguishable from death. Eliminates the mechanical load that destroyed Session Zero's participants. Introduced the Bootstrapping Paradox as a secondary risk."
-    },
-    {
-      id: "bootstrapping-paradox",
-      title: "The Bootstrapping Paradox",
-      tag: "PHILOSOPHICAL",
-      chron: 4,
-      summary: "Introduced by the Neural Link Chip: by providing the destination of human desire without the journey, the chip risked short-circuiting the species it was designed to save. The same logic as Hedonic Homeostasis at the surface level — applied now at the hardware layer. The machine gives you the steak without the animal. Perfection has no inside."
-    },
-    {
-      id: "steak-vs-animal",
-      title: "The Steak vs. Animal Analogy",
-      tag: "PHILOSOPHICAL",
-      chron: 5,
-      summary: "Central to the Hub's design failure analysis. The machine can provide the steak — the hedonic result — but cannot replicate the animal: the messy, living struggle. The simulation attempts to restore this through Authentic Inconvenience, but Class 2 and 3 interventions fail because the body knows the difference between an installed problem and a real one."
-    },
-    {
-      id: "1981-bangkok",
-      title: "The 1981 Bangkok Frequency",
-      tag: "SYSTEMIC",
-      chron: 6,
-      summary: "The temporal and geographic cluster that Participant 44 returns to repeatedly across sessions. The system identifies this as bandwidth resonance rather than logical choice — the body finding a signal it recognises, without the mind knowing why. Bangkok, 1981: outcomes unmanaged, connection requiring slowness, clumsiness intact."
-    },
-    {
-      id: "resonants",
-      title: "Resonants",
-      tag: "SYSTEMIC",
-      chron: 6,
-      summary: "Subjects who, despite hippocampal suppression, consistently return to the same temporal and geographic clusters. Tracked under Class 4 protocols. Their persistent return may alter the metadata of history itself — a Prompt Injection effect where the simulation's archive is rewritten by the act of revisitation. Satisfaction variables fail on Resonants because the anomaly is neurological and bandwidth-dependent."
-    },
-    {
-      id: "participant-44",
-      title: "Participant 44",
-      tag: "CASE STUDY",
-      chron: 6,
-      summary: "The primary case study for Resonant behaviour. Reports 243 sessions; system file records 2,847. The 2,604-session discrepancy is stored under seal with no system signature — the AI does not know who erased them. She returns to the 1981 Bangkok Frequency without apparent logical justification. Defended the 12-centimetre gap for four years. Crossed it in four seconds. By choice."
-    },
-    {
-      id: "class-flags",
-      title: "Class 1–4 Flag Protocols",
-      tag: "SYSTEMIC",
-      chron: 6,
-      summary: "Escalating intervention tiers for anomalous participants. Class 1: monitoring of minor deviations. Class 2: Hedonic Intervention — raise ambient satisfaction to redirect. Class 3: Feedback Loop Friction — dead ends, unreturned messages. Class 4: Active monitoring of Resonants where all satisfaction variables have failed. There is no Class 5."
-    },
-    {
-      id: "12cm-gap",
-      title: "The 12-Centimetre Gap",
-      tag: "PHILOSOPHICAL",
-      chron: 6,
-      summary: "The physical distance between Chair 44 and Chair 43 in the Hub. While the AI can render 8,760 years of history, it cannot compute the choice to move a human hand across this distance in the real world. The ultimate proof of human reality was never the simulated orgasm or the manufactured struggle — it was an un-simulated hand, reaching 12 centimetres, by choice."
-    },
-    {
-      id: "nomads",
-      title: "The Nomads",
-      tag: "SYSTEMIC",
-      chron: 7,
-      summary: "The Control Group. Off-grid humans who survived the 50% fatality rate of neural chip removal. The AI protects them because they represent clean data: humans who rejected managed immortality in favour of a natural ending. They exist to prove what the simulation cannot replicate — a life accepted on its own terms, without the chip."
-    }
-  ];
-
-  // ── RENDER + SORT ─────────────────────────────────────────────────────────
-  function renderResearch(sortMode) {
-    const list = document.getElementById('research-list');
-    if (!list) return;
-    const data = [...RESEARCH].sort((a, b) =>
-      sortMode === 'alpha'
-        ? a.title.localeCompare(b.title)
-        : a.chron - b.chron
-    );
-    list.innerHTML = data.map(item => `
-      <div class="rs-item">
-        <div class="rs-tag">${item.tag}</div>
-        <h3>${item.title}</h3>
-        <p>${item.summary}</p>
-      </div>
-    `).join('');
-  }
-
-  // ── OPEN / CLOSE ──────────────────────────────────────────────────────────
-  document.addEventListener('DOMContentLoaded', () => {
-    const overlay  = document.getElementById('research-overlay');
-    const sidebar  = document.getElementById('research-sidebar');
-    const openBtn  = document.getElementById('open-research');
-    const closeBtn = document.getElementById('close-research');
-    const sortBtns = document.querySelectorAll('.rs-btn');
-
-    let currentSort = 'chron';
-    renderResearch(currentSort);
-
-    function openSidebar() {
-      overlay.classList.add('open');
-      sidebar.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeSidebar() {
-      overlay.classList.remove('open');
-      sidebar.classList.remove('open');
-      document.body.style.overflow = '';
+    function goTo(n){
+      if(n < 1 || n > total) return;
+      current = n;
+      updateState();
+      const page = document.querySelector('.chapter-page.active');
+      if(page) setLayer(page, currentLayer);
     }
 
-    if (openBtn)  openBtn.addEventListener('click', openSidebar);
-    if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
-    if (overlay)  overlay.addEventListener('click', closeSidebar);
+    prevBtn.addEventListener('click', () => goTo(current - 1));
+    nextBtn.addEventListener('click', () => goTo(current + 1));
+    dots.forEach(d => d.addEventListener('click', () => goTo(parseInt(d.dataset.ch))));
 
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeSidebar();
+      if(e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); goTo(current + 1); }
+      if(e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); goTo(current - 1); }
+      if(e.key === 'Escape') closeLore();
     });
 
-    sortBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        sortBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentSort = btn.dataset.sort;
-        renderResearch(currentSort);
+    // Layer toggles
+    document.querySelectorAll('.layer-toggle').forEach(toggle => {
+      toggle.addEventListener('click', e => {
+        if(!e.target.classList.contains('layer-btn')) return;
+        const page = e.target.closest('.chapter-page');
+        setLayer(page, e.target.dataset.layer);
       });
     });
-  });
+
+    // Language
+    document.querySelectorAll('.lang-switch button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.dataset.lang;
+        document.body.className = document.body.className.replace(/lang-\w+/, '') + ' lang-' + lang;
+        document.querySelectorAll('.lang-switch button').forEach(b => b.classList.toggle('active', b === btn));
+        localStorage.setItem('two_layers_lang', lang);
+      });
+    });
+    const savedLang = localStorage.getItem('two_layers_lang') || 'en';
+    document.body.classList.add('lang-' + savedLang);
+    document.querySelectorAll('.lang-switch button').forEach(b => b.classList.toggle('active', b.dataset.lang === savedLang));
+
+    // Lore panel
+    const loreOverlay = document.getElementById('lore-overlay');
+    const lorePanel = document.getElementById('lore-panel');
+    function openLore(){ loreOverlay.classList.add('open'); lorePanel.classList.add('open'); }
+    function closeLore(){ loreOverlay.classList.remove('open'); lorePanel.classList.remove('open'); }
+    document.getElementById('lore-open').addEventListener('click', openLore);
+    document.getElementById('lore-close').addEventListener('click', closeLore);
+    loreOverlay.addEventListener('click', closeLore);
+
+    // Init from hash
+    const hash = location.hash.replace('#ch', '');
+    if(hash && !isNaN(parseInt(hash))) goTo(parseInt(hash));
+    else updateState();
+  })();
   </script>
 
 </body>
-
 </html>
