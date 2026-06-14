@@ -262,6 +262,18 @@ def render_chapter(ch, is_first=False):
     )
 
     cls = 'chapter-page active' if is_first else 'chapter-page'
+    audio_src = ch.get('audio', '')
+    if audio_src:
+        audio_bar = f'''<div class="ch-audio-bar" id="audio-bar-{ch_id}">
+    <audio id="ch-audio-{ch_id}" src="{audio_src}" preload="none"></audio>
+    <button class="audio-play-btn" data-audio="ch-audio-{ch_id}" aria-label="Play narration">&#9654; PLAY</button>
+    <div class="audio-progress" data-audio="ch-audio-{ch_id}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+      <div class="audio-progress-fill" id="fill-{ch_id}"></div>
+    </div>
+    <span class="audio-time" id="atime-{ch_id}">0:00</span>
+  </div>'''
+    else:
+        audio_bar = ''
     return f'''
 <article class="{cls}" data-chapter="{ch_id}" id="ch{ch_id}">
   <div class="layer-toggle" role="tablist" aria-label="Layer for chapter {ch_id}">
@@ -288,6 +300,7 @@ def render_chapter(ch, is_first=False):
       {archive_prose}
     </div>
   </div>
+  {audio_bar}
 </article>
 '''
 
@@ -436,6 +449,34 @@ def render_html(data):
       font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase;
       text-align:center; padding:4rem 1rem;
     }}
+
+    /* Audio player */
+    .ch-audio-bar {{
+      display:flex; align-items:center; gap:0.75rem;
+      padding:0.7rem 1.2rem; border-top:1px solid var(--rule);
+      background:var(--paper); flex:0 0 auto;
+    }}
+    body.view-3026 .ch-audio-bar {{ background:var(--bg); border-color:#333; }}
+    .audio-play-btn {{
+      font-family:var(--mono); font-size:0.6rem; letter-spacing:0.12em;
+      text-transform:uppercase; background:transparent;
+      border:1px solid var(--ink); color:var(--ink);
+      padding:0.3rem 0.7rem; cursor:pointer; flex:0 0 auto; line-height:1;
+    }}
+    body.view-3026 .audio-play-btn {{ border-color:#fff; color:#fff; }}
+    .audio-play-btn:hover {{ background:var(--accent); border-color:var(--accent); color:#000; }}
+    .audio-progress {{
+      flex:1; height:2px; background:var(--rule); cursor:pointer; position:relative;
+    }}
+    body.view-3026 .audio-progress {{ background:#333; }}
+    .audio-progress-fill {{
+      height:100%; background:var(--accent); width:0%; pointer-events:none;
+    }}
+    .audio-time {{
+      font-family:var(--mono); font-size:0.55rem; color:var(--soft);
+      letter-spacing:0.08em; white-space:nowrap; flex:0 0 auto;
+    }}
+    body.view-3026 .audio-time {{ color:#888; }}
     {artifact_css()}
 
     /* Chapter head */

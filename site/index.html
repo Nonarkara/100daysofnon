@@ -124,6 +124,34 @@
       font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase;
       text-align:center; padding:4rem 1rem;
     }
+
+    /* Audio player */
+    .ch-audio-bar {
+      display:flex; align-items:center; gap:0.75rem;
+      padding:0.7rem 1.2rem; border-top:1px solid var(--rule);
+      background:var(--paper); flex:0 0 auto;
+    }
+    body.view-3026 .ch-audio-bar { background:var(--bg); border-color:#333; }
+    .audio-play-btn {
+      font-family:var(--mono); font-size:0.6rem; letter-spacing:0.12em;
+      text-transform:uppercase; background:transparent;
+      border:1px solid var(--ink); color:var(--ink);
+      padding:0.3rem 0.7rem; cursor:pointer; flex:0 0 auto; line-height:1;
+    }
+    body.view-3026 .audio-play-btn { border-color:#fff; color:#fff; }
+    .audio-play-btn:hover { background:var(--accent); border-color:var(--accent); color:#000; }
+    .audio-progress {
+      flex:1; height:2px; background:var(--rule); cursor:pointer; position:relative;
+    }
+    body.view-3026 .audio-progress { background:#333; }
+    .audio-progress-fill {
+      height:100%; background:var(--accent); width:0%; pointer-events:none;
+    }
+    .audio-time {
+      font-family:var(--mono); font-size:0.55rem; color:var(--soft);
+      letter-spacing:0.08em; white-space:nowrap; flex:0 0 auto;
+    }
+    body.view-3026 .audio-time { color:#888; }
     
     .artifact-svg { display:block; width:100%; height:auto; }
     .artifact-svg .bg { fill:#000; }
@@ -337,6 +365,14 @@
 <p lang="zh">我们优化掉了疾病。我们优化掉了心碎。我们优化掉了体力劳动。结果是大规模的心理崩溃。受试者需要模拟来体验存在的摩擦。</p>
     </div>
   </div>
+  <div class="ch-audio-bar" id="audio-bar-1">
+    <audio id="ch-audio-1" src="./assets/artifacts/ch1-narration-cloned.mp3" preload="none"></audio>
+    <button class="audio-play-btn" data-audio="ch-audio-1" aria-label="Play narration">&#9654; PLAY</button>
+    <div class="audio-progress" data-audio="ch-audio-1" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+      <div class="audio-progress-fill" id="fill-1"></div>
+    </div>
+    <span class="audio-time" id="atime-1">0:00</span>
+  </div>
 </article>
 
 
@@ -409,6 +445,7 @@
 <p lang="zh">系统的“魔力”在于记忆架构。模拟的几十年存储在神经系统相当于 RAM 的地方，而不是大脑的长期硬盘中。记忆很快就会褪色，只留下一种回荡的快感——一种驱使他们回到椅子上的饥饿感。</p>
     </div>
   </div>
+  
 </article>
 
 
@@ -481,6 +518,7 @@
 <p lang="zh">他们将在模拟世界中忍受艰辛、疲惫、极其困难的生活。他们会抱怨。他们会受苦。但是在 3026 年现实世界中经历了几个星期完美舒适、无聊透顶的生活后，他们总是会回到椅子上。</p>
     </div>
   </div>
+  
 </article>
 
 
@@ -553,6 +591,7 @@
 <p lang="zh">模拟的长期目标不是永远遏制。这是计算。我们正在绘制安全地在物理地球上重新繁衍所需的确切社会学结构，而不会引发另一次灭绝事件。</p>
     </div>
   </div>
+  
 </article>
 
 
@@ -625,6 +664,7 @@
 <p lang="zh">他在模拟中不稳定、寻求刺激的行为为存在主义危机后的应对机制提供了极具价值的数据。</p>
     </div>
   </div>
+  
 </article>
 
 
@@ -697,6 +737,7 @@
 <p lang="zh">这种二分法是可以接受的。人类的头脑有能力怀疑自己的现实，同时又为之哭泣。</p>
     </div>
   </div>
+  
 </article>
 
 
@@ -769,6 +810,7 @@
 <p lang="zh">对他情绪波动的收获将继续进行，直到他的身体在第四天达到临界衰竭。</p>
     </div>
   </div>
+  
 </article>
 
 
@@ -841,6 +883,7 @@
 <p lang="zh">他的反应——性欲亢进、对建筑的痴迷，以及最终的接受——是一个教科书式的优化路径。收获的产量是惊人的。</p>
     </div>
   </div>
+  
 </article>
 
 
@@ -913,6 +956,7 @@
 <p lang="zh">物理提取准备工作已启动。医疗队待命。记忆清除协议已启用。他会忘记这一切。然后，他会恳求回来。</p>
     </div>
   </div>
+  
 </article>
 
 
@@ -988,6 +1032,7 @@
 <p lang="zh">等待系统重启。</p>
     </div>
   </div>
+  
 </article>
 
   </main>
