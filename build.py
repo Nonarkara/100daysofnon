@@ -934,6 +934,45 @@ def render_html(data):
     const hash = location.hash.replace('#ch', '');
     if(hash && !isNaN(parseInt(hash))) goTo(parseInt(hash));
     else updateState();
+
+    // ── AUDIO PLAYER ────────────────────────────────────────────────────────
+    (function() {{
+      function fmt(s) {{
+        s = Math.floor(s || 0);
+        return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+      }}
+      document.querySelectorAll('.audio-play-btn').forEach(function(btn) {{
+        var id   = btn.getAttribute('data-audio');
+        var aud  = document.getElementById(id);
+        var bar  = document.querySelector('.audio-progress[data-audio="' + id + '"]');
+        var fill = bar ? bar.querySelector('.audio-progress-fill') : null;
+        var timeEl = btn.closest('.ch-audio-bar').querySelector('.audio-time');
+        if (!aud) return;
+        btn.addEventListener('click', function() {{
+          if (aud.paused) {{ aud.play(); btn.innerHTML = '&#9646;&#9646; PAUSE'; }}
+          else             {{ aud.pause(); btn.innerHTML = '&#9654; PLAY';  }}
+        }});
+        aud.addEventListener('ended', function() {{
+          btn.innerHTML = '&#9654; PLAY';
+          if (fill) fill.style.width = '0%';
+        }});
+        aud.addEventListener('timeupdate', function() {{
+          if (!aud.duration) return;
+          var pct = (aud.currentTime / aud.duration) * 100;
+          if (fill) fill.style.width = pct + '%';
+          if (bar)  bar.setAttribute('aria-valuenow', Math.round(pct));
+          if (timeEl) timeEl.textContent = fmt(aud.currentTime) + ' / ' + fmt(aud.duration);
+        }});
+        if (bar) {{
+          bar.addEventListener('click', function(e) {{
+            if (!aud.duration) return;
+            var rect = bar.getBoundingClientRect();
+            aud.currentTime = ((e.clientX - rect.left) / rect.width) * aud.duration;
+          }});
+        }}
+      }});
+    }})();
+
   }})();
   </script>
 
