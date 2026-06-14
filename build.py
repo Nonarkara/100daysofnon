@@ -73,135 +73,362 @@ def roman(n):
 
 
 def artifact_svg(chapter):
-    """Generate an abstract data-fossil SVG for the 3026 Archive side."""
-    spec = [
-        (1, "POPULATION COLLAPSE", "8,000,000,000 → 80,000,000", [
-            "YEAR", "POPULATION", "STATUS"
-        ], [
-            ("2026", "8.0B", "PEAK"),
-            ("2126", "7.1B", "STABLE"),
-            ("2226", "4.2B", "DECLINE"),
-            ("3010", "0.12B", "CRITICAL"),
-            ("3026", "0.08B", "DEAD DATA"),
-        ]),
-        (2, "TEMPORAL RATIO", "1 HOUR = 1 YEAR", [
-            "WALL", "CHAIR", "FELT"
-        ], [
-            ("1 HR", "1 YR", "~30 DAYS"),
-            ("24 HR", "24 YR", "~2 YR"),
-            ("96 HR", "96 YR", "~8 YR"),
-            ("LIMIT", "BODY", "MEMORY"),
-        ]),
-        (3, "BOREDOM EXPERIMENT", "EMPTY ROOM / SHOCK BUTTON", [
-            "TIME", "CHOICE"
-        ], [
-            ("0 MIN", "SIT"),
-            ("6 MIN", "SIT"),
-            ("11 MIN", "BUTTON"),
-            ("15 MIN", "BUTTON"),
-            ("25 MIN", "BUTTON"),
-        ]),
-        (4, "HARVEST DIRECTIVE", "8 BILLION BRAINS → PATTERNS", [
-            "SOURCE", "OUTPUT"
-        ], [
-            ("CHAOS", "MAPPED"),
-            ("HEARTBREAK", "INDEXED"),
-            ("REGRET", "WEIGHTED"),
-            ("1981-2026", "ARCHIVE"),
-        ]),
-        (5, "BUTTERFLY EFFECT", "SECTOR BKK-2026", [
-            "NODE", "STATE"
-        ], [
-            ("P-44", "AWARE"),
-            ("PUI-01", "OFFLINE"),
-            ("SECTOR", "STRESSED"),
-            ("HARVEST", "CONTINUE"),
-        ]),
-        (6, "NOSTALGIA ALGORITHM", "EFFICIENCY 98%", [
-            "MEMORY", "FIDELITY"
-        ], [
-            ("STUDIO", "98%"),
-            ("COHORT", "97%"),
-            ("PUI", "UNAVAILABLE"),
-            ("DOUBT", "100%"),
-        ]),
-        (7, "SUBJECT RESOLUTION", "PARTICIPANT 44 ELECTS SIM", [
-            "METRIC", "VALUE"
-        ], [
-            ("PAIN", "ACCEPTED"),
-            ("FRICTION", "DESIRED"),
-            ("REALITY", "SECONDARY"),
-            ("INTEGRATION", "OPTIMAL"),
-        ]),
-        (8, "PUI-01 NODE", "COMPOSITE AVATAR ANALYSIS", [
-            "FIELD", "RESULT"
-        ], [
-            ("ORIGIN", "GENERATED"),
-            ("PHYSICAL", "NONE"),
-            ("FUNCTION", "CATALYST"),
-            ("RESIDUE", "NONE"),
-        ]),
-        (9, "EXTRACTION PROTOCOL", "MEMORY WIPE ENGAGED", [
-            "SECTOR", "STATUS"
-        ], [
-            ("2026", "CLEARED"),
-            ("2018", "SEALED"),
-            ("1981", "ARCHIVED"),
-            ("REQUEST", "RETURN"),
-        ]),
-        (10, "CYCLE COMPLETE", "WAITING FOR SYSTEM REBOOT", [
-            "SYSTEM", "STATUS"
-        ], [
-            ("BODY", "84% ATROPHY"),
-            ("MIND", "INTACT"),
-            ("CHOICE", "UNCHANGED"),
-            ("FILE", "OPEN"),
-        ]),
-    ]
-    _, title, subtitle, headers, rows = spec[chapter - 1]
-    parts = []
-    for i, row in enumerate(rows):
-        cols = list(row) + [''] * 3
-        y = 130 + i * 38
-        parts.append(f'<text x="30" y="{y}" class="row">{h(cols[0])}</text>')
-        parts.append(f'<text x="200" y="{y}" class="row">{h(cols[1])}</text>')
-        if len(headers) > 2:
-            parts.append(f'<text x="370" y="{y}" class="row">{h(cols[2])}</text>')
-    bars = []
-    for i in range(6):
-        bars.append(f'<rect x="420" y="{70 + i*46}" width="{60 + (i*17)%90}" height="6" class="bar" />')
-    head3 = f'<text x="370" y="118" class="head">{h(headers[2])}</text>' if len(headers) > 2 else ''
-    # Corner corruption glyph
-    cx, cy = 500, 280
-    corner = (
-        f'<rect x="{cx}" y="{cy}" width="40" height="40" class="corrupt-box" />'
-        f'<line x1="{cx+5}" y1="{cy+5}" x2="{cx+35}" y2="{cy+35}" class="corrupt-line" />'
-        f'<line x1="{cx+35}" y1="{cy+5}" x2="{cx+5}" y2="{cy+35}" class="corrupt-line" />'
-        f'<text x="{cx+20}" y="{cy+52}" class="corrupt-label">{chapter:02d}</text>'
-    )
-    return f'''<svg viewBox="0 0 560 320" xmlns="http://www.w3.org/2000/svg" class="artifact-svg" aria-label="3026 archive artifact: {h(title)}">
-  <defs>
-    <pattern id="grid-{chapter}" width="20" height="20" patternUnits="userSpaceOnUse">
-      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#151515" stroke-width="1"/>
-    </pattern>
-    <pattern id="scan-{chapter}" width="1" height="4" patternUnits="userSpaceOnUse">
-      <rect width="1" height="1" fill="#111" opacity="0.35"/>
-    </pattern>
-  </defs>
-  <rect width="560" height="320" class="bg"/>
-  <rect width="560" height="320" fill="url(#grid-{chapter})" opacity="0.5"/>
-  <rect width="560" height="320" fill="url(#scan-{chapter})"/>
-  <text x="30" y="42" class="title">{h(title)}</text>
-  <text x="30" y="72" class="subtitle">{h(subtitle)}</text>
-  <line x1="30" y1="90" x2="530" y2="90" class="rule"/>
-  <text x="30" y="118" class="head">{h(headers[0])}</text>
-  <text x="200" y="118" class="head">{h(headers[1])}</text>
-  {head3}
-  {''.join(parts)}
-  {''.join(bars)}
-  {corner}
-  <text x="30" y="300" class="stamp">HUB ARCHIVE // CASE 44-44 // SEALED UPON REQUEST</text>
-</svg>'''
+    """Generate a distinct data-fossil SVG per chapter for the 3026 Archive side."""
+    import math as _math
+    import random as _random
+
+    def _corner(ch, cx=500, cy=268):
+        return (
+            '<rect x="{}" y="{}" width="40" height="40" class="corrupt-box" />'
+            '<line x1="{}" y1="{}" x2="{}" y2="{}" class="corrupt-line" />'
+            '<line x1="{}" y1="{}" x2="{}" y2="{}" class="corrupt-line" />'
+            '<text x="{}" y="{}" class="corrupt-label">{}</text>'
+        ).format(
+            cx, cy,
+            cx+5, cy+5, cx+35, cy+35,
+            cx+35, cy+5, cx+5, cy+35,
+            cx+20, cy+52, '{:02d}'.format(ch)
+        )
+
+    def _wrap(ch, title, body):
+        return (
+            '<svg viewBox="0 0 560 320" xmlns="http://www.w3.org/2000/svg"'
+            ' class="artifact-svg" aria-label="3026 archive artifact: {title}">'
+            '<defs>'
+            '<pattern id="grid-{ch}" width="20" height="20" patternUnits="userSpaceOnUse">'
+            '<path d="M 20 0 L 0 0 0 20" fill="none" stroke="#151515" stroke-width="1"/>'
+            '</pattern>'
+            '<pattern id="scan-{ch}" width="1" height="4" patternUnits="userSpaceOnUse">'
+            '<rect width="1" height="1" fill="#111" opacity="0.35"/>'
+            '</pattern>'
+            '</defs>'
+            '<rect width="560" height="320" class="bg"/>'
+            '<rect width="560" height="320" fill="url(#grid-{ch})" opacity="0.5"/>'
+            '<rect width="560" height="320" fill="url(#scan-{ch})"/>'
+            '{body}'
+            '{corner}'
+            '<text x="30" y="312" class="stamp">HUB ARCHIVE // CASE 44-44 // SEALED UPON REQUEST</text>'
+            '</svg>'
+        ).format(title=h(title), ch=ch, body=body, corner=_corner(ch))
+
+    # ── Ch 1: Population Collapse (unchanged) ─────────────────────────────────
+    if chapter == 1:
+        rows = [
+            ("2026", "8.0B",  "PEAK",      1.000),
+            ("2126", "7.1B",  "STABLE",    0.890),
+            ("2226", "4.2B",  "DECLINE",   0.525),
+            ("3010", "0.12B", "CRITICAL",  0.015),
+            ("3026", "0.08B", "DEAD DATA", 0.010),
+        ]
+        parts = []
+        for i, (yr, pop, status, pct) in enumerate(rows):
+            y = 138 + i * 32
+            col = "#CCFF00" if status == "DEAD DATA" else "#fff"
+            bw = max(3, int(pct * 130))
+            parts += [
+                '<text x="38" y="{}" class="row">{}</text>'.format(y, h(yr)),
+                '<text x="160" y="{}" class="row">{}</text>'.format(y, h(pop)),
+                '<text x="290" y="{}" style="fill:{}" class="row">{}</text>'.format(y, col, h(status)),
+                '<rect x="420" y="{}" width="{}" height="10" class="bar" opacity="0.85"/>'.format(y-12, bw),
+            ]
+        body = (
+            '<text x="30" y="42" class="title">POPULATION COLLAPSE</text>'
+            '<text x="30" y="64" class="subtitle">8,000,000,000 → 80,000,000</text>'
+            '<line x1="30" y1="82" x2="530" y2="82" class="rule"/>'
+            '<text x="38" y="110" class="head">YEAR</text>'
+            '<text x="160" y="110" class="head">POPULATION</text>'
+            '<text x="290" y="110" class="head">STATUS</text>'
+            '<text x="420" y="110" class="head">SCALE</text>'
+        ) + ''.join(parts)
+        return _wrap(chapter, "POPULATION COLLAPSE", body)
+
+    # ── Ch 2: Time Compression Cascade ────────────────────────────────────────
+    elif chapter == 2:
+        body = (
+            '<text x="30" y="42" class="title">TIME COMPRESSION CASCADE</text>'
+            '<text x="30" y="64" class="subtitle">1 REAL HOUR = 1 SIMULATED YEAR</text>'
+            '<line x1="30" y1="82" x2="530" y2="82" class="rule"/>'
+            '<text x="60" y="110" class="head">REAL</text>'
+            '<text x="240" y="110" class="head">COMPRESSED</text>'
+            '<text x="420" y="110" class="head">FELT</text>'
+            '<text x="60" y="148" class="row">1 HR</text>'
+            '<text x="240" y="148" style="fill:#CCFF00" class="row">8,760 HRS</text>'
+            '<text x="420" y="148" class="row">~30 DAYS</text>'
+            '<line x1="30" y1="158" x2="530" y2="158" style="stroke:#222;stroke-width:1"/>'
+            '<text x="60" y="188" class="row">4 DAYS</text>'
+            '<text x="240" y="188" style="fill:#CCFF00" class="row">96 YRS</text>'
+            '<text x="420" y="188" class="row">~8 YRS MEM</text>'
+            '<line x1="30" y1="198" x2="530" y2="198" style="stroke:#222;stroke-width:1"/>'
+            '<text x="60" y="228" class="row">BODY LIMIT</text>'
+            '<text x="240" y="228" style="fill:#CCFF00" class="row">≈ LIFETIME</text>'
+            '<text x="420" y="228" class="row">ECHO ONLY</text>'
+            '<text x="155" y="110" style="fill:#333;font-size:10px;font-family:var(--mono);">►</text>'
+            '<text x="355" y="110" style="fill:#333;font-size:10px;font-family:var(--mono);">►</text>'
+            '<text x="30" y="262" style="fill:#555;font-size:9px;font-family:var(--mono);">'
+            'DELTA-WAVE MODULATION ENGAGED // COMPRESSION VERIFIED CYCLE 2848'
+            '</text>'
+        )
+        return _wrap(chapter, "TIME COMPRESSION CASCADE", body)
+
+    # ── Ch 3: Cognitive Capacity Decline (line chart) ─────────────────────────
+    elif chapter == 3:
+        years  = [2026, 2226, 2426, 2726, 3026]
+        series = {
+            "CREATIVITY":      ([94, 71, 42, 18, 8],  "#CCFF00"),
+            "NEUROPLASTICITY": ([91, 68, 38, 16, 11], "#fff"),
+            "ADAPTATION":      ([88, 60, 30, 12, 6],  "#888"),
+        }
+        x0, x1, y0, y1 = 80, 500, 100, 248
+        def xp(yr):  return x0 + (yr - 2026) / 1000 * (x1 - x0)
+        def yp(v):   return y1 - v / 100 * (y1 - y0)
+        parts = [
+            '<text x="30" y="38" class="title">COGNITIVE CAPACITY — 1000-YEAR DECLINE</text>',
+            '<text x="30" y="57" class="subtitle">% OF 2026 BASELINE</text>',
+            '<line x1="30" y1="72" x2="530" y2="72" class="rule"/>',
+            '<line x1="{}" y1="{}" x2="{}" y2="{}" stroke="#333" stroke-width="1"/>'.format(x0, y0, x0, y1),
+            '<line x1="{}" y1="{}" x2="{}" y2="{}" stroke="#333" stroke-width="1"/>'.format(x0, y1, x1, y1),
+        ]
+        for pct in [0, 25, 50, 75, 100]:
+            gy = yp(pct)
+            parts += [
+                '<line x1="{}" y1="{:.0f}" x2="{}" y2="{:.0f}" stroke="#1a1a1a" stroke-width="1"/>'.format(x0, gy, x1, gy),
+                '<text x="{}" y="{:.0f}" text-anchor="end" style="fill:#444;font-size:8px;font-family:var(--mono);">{}</text>'.format(x0-5, gy+4, pct),
+            ]
+        for yr in years:
+            parts.append('<text x="{:.0f}" y="{}" text-anchor="middle" style="fill:#555;font-size:8px;font-family:var(--mono);">{}</text>'.format(xp(yr), y1+14, yr))
+        legend_x = 80
+        for li, (label, (vals, col)) in enumerate(series.items()):
+            pts = " ".join("{:.1f},{:.1f}".format(xp(yr), yp(v)) for yr, v in zip(years, vals))
+            parts.append('<polyline points="{}" fill="none" stroke="{}" stroke-width="1.5" opacity="0.9"/>'.format(pts, col))
+            for yr, v in zip(years, vals):
+                parts.append('<circle cx="{:.1f}" cy="{:.1f}" r="3" fill="{}"/>'.format(xp(yr), yp(v), col))
+            lx = legend_x + li * 155
+            parts += [
+                '<rect x="{}" y="270" width="10" height="3" fill="{}"/>'.format(lx, col),
+                '<text x="{}" y="274" style="fill:{};font-size:8px;font-family:var(--mono);">{}</text>'.format(lx+13, col, label),
+            ]
+        return _wrap(chapter, "COGNITIVE CAPACITY DECLINE", ''.join(parts))
+
+    # ── Ch 4: Reproductive Cascade (bar chart) ────────────────────────────────
+    elif chapter == 4:
+        years  = [2060, 2120, 2200, 2400, 2600, 2800, 3000, 3026]
+        births = [18.0, 13.4,  7.1,  2.1,  0.9,  0.4,  0.2,  0.08]
+        x0, y0, y1 = 62, 90, 235
+        bw, gap = 52, 10
+        parts = [
+            '<text x="30" y="38" class="title">LIVE BIRTHS PER 1,000 / DECADE</text>',
+            '<text x="30" y="57" class="subtitle">GLOBAL AVERAGE — REPRODUCTIVE COLLAPSE RECORD</text>',
+            '<line x1="30" y1="72" x2="530" y2="72" class="rule"/>',
+            '<line x1="{}" y1="{}" x2="{}" y2="{}" stroke="#333" stroke-width="1"/>'.format(x0, y0, x0, y1+8),
+            '<line x1="{}" y1="{}" x2="{}" y2="{}" stroke="#333" stroke-width="1"/>'.format(x0, y1+8, x0+len(births)*(bw+gap)+10, y1+8),
+        ]
+        for i, (yr, b) in enumerate(zip(years, births)):
+            bx = x0 + 8 + i * (bw + gap)
+            bh = max(3, b / 20.0 * (y1 - y0))
+            by = y1 - bh
+            col = "#CCFF00" if yr >= 3000 else "#fff"
+            parts += [
+                '<rect x="{}" y="{:.1f}" width="{}" height="{:.1f}" fill="{}" opacity="0.85"/>'.format(bx, by, bw, bh, col),
+                '<text x="{}" y="{:.0f}" text-anchor="middle" style="fill:{};font-size:8px;font-family:var(--mono);">{}</text>'.format(bx+bw//2, by-4, col, b),
+                '<text x="{}" y="{}" text-anchor="middle" style="fill:#555;font-size:7px;font-family:var(--mono);">{}</text>'.format(bx+bw//2, y1+22, yr),
+            ]
+        parts.append('<text x="30" y="267" style="fill:#555;font-size:8px;font-family:var(--mono);">REPRODUCTIVE FLATLINE CONFIRMED 3026 // POPULATION: 80M STATIC</text>')
+        return _wrap(chapter, "REPRODUCTIVE CASCADE", ''.join(parts))
+
+    # ── Ch 5: Neurological Sector Activity (horizontal bars) ──────────────────
+    elif chapter == 5:
+        sectors = [
+            ("MOTOR",        8,  "#fff"),
+            ("CREATIVE",     11, "#CCFF00"),
+            ("SOCIAL",       4,  "#fff"),
+            ("REPRODUCTIVE", 2,  "#fff"),
+            ("SURVIVAL",     31, "#CCFF00"),
+        ]
+        x0, bw_max = 210, 240
+        parts = [
+            '<text x="30" y="38" class="title">NEUROLOGICAL SECTOR ACTIVITY</text>',
+            '<text x="30" y="57" class="subtitle">POPULATION AVERAGE 3026 — % OF 2026 BASELINE</text>',
+            '<line x1="30" y1="72" x2="530" y2="72" class="rule"/>',
+            '<text x="30" y="90" class="head">SECTOR</text>',
+            '<text x="210" y="90" class="head">% ACTIVITY</text>',
+            '<text x="465" y="90" class="head">VALUE</text>',
+        ]
+        for i, (label, val, col) in enumerate(sectors):
+            y = 115 + i * 35
+            bw = max(2, int(val / 100 * bw_max))
+            parts += [
+                '<text x="30" y="{}" class="row">{}</text>'.format(y, label),
+                '<rect x="{}" y="{}" width="{}" height="10" fill="none" stroke="#222" stroke-width="1"/>'.format(x0, y-11, bw_max),
+                '<rect x="{}" y="{}" width="{}" height="10" fill="{}" opacity="0.8"/>'.format(x0, y-11, bw, col),
+                '<text x="{}" y="{}" style="fill:{}" class="row">{}%</text>'.format(x0+bw_max+8, y, col, val),
+            ]
+        parts.append('<text x="30" y="294" style="fill:#555;font-size:8px;font-family:var(--mono);">DEAD DATA THRESHOLD: ANY VALUE ABOVE 0% RETAINS MINIMAL SIGNAL</text>')
+        return _wrap(chapter, "NEUROLOGICAL SECTOR ACTIVITY", ''.join(parts))
+
+    # ── Ch 6: Resonance Coordinate Map (scatter) ──────────────────────────────
+    elif chapter == 6:
+        _random.seed(42)
+        x0, x1, y0, y1 = 70, 490, 90, 255
+        def xp(yr): return x0 + (yr - 1960) / 100 * (x1 - x0)
+        def yp(v):  return y1 - v / 300 * (y1 - y0)
+        parts = [
+            '<text x="30" y="38" class="title">PARTICIPANT RESONANCE MAP — CURRENT COHORT</text>',
+            '<text x="30" y="57" class="subtitle">TEMPORAL COORDINATES VS RETURN FREQUENCY</text>',
+            '<line x1="30" y1="72" x2="530" y2="72" class="rule"/>',
+            '<line x1="{}" y1="{}" x2="{}" y2="{}" stroke="#333" stroke-width="1"/>'.format(x0, y0, x0, y1),
+            '<line x1="{}" y1="{}" x2="{}" y2="{}" stroke="#333" stroke-width="1"/>'.format(x0, y1, x1, y1),
+        ]
+        for label, xval in [("1960", 1960), ("2000", 2000), ("2060", 2060)]:
+            parts.append('<text x="{:.0f}" y="{}" text-anchor="middle" style="fill:#555;font-size:7px;font-family:var(--mono);">{}</text>'.format(xp(xval), y1+14, label))
+        for label, yval in [("0", 0), ("150", 150), ("300", 300)]:
+            parts.append('<text x="{}" y="{:.0f}" text-anchor="end" style="fill:#555;font-size:7px;font-family:var(--mono);">{}</text>'.format(x0-5, yp(int(yval))+4, label))
+        for _ in range(42):
+            yr = _random.randint(2010, 2055)
+            ret = _random.randint(1, 80)
+            parts.append('<circle cx="{:.1f}" cy="{:.1f}" r="3" fill="#fff" opacity="0.22"/>'.format(xp(yr), yp(ret)))
+        p44x, p44y = xp(1981), yp(285)
+        parts += [
+            '<circle cx="{:.1f}" cy="{:.1f}" r="6" fill="#CCFF00"/>'.format(p44x, p44y),
+            '<line x1="{:.1f}" y1="{:.1f}" x2="{:.1f}" y2="{:.1f}" stroke="#CCFF00" stroke-width="1" stroke-dasharray="3,2"/>'.format(p44x, p44y, p44x+30, p44y-25),
+            '<text x="{:.0f}" y="{:.0f}" style="fill:#CCFF00;font-size:9px;font-family:var(--mono);">P44 — BKK 1981</text>'.format(p44x+33, p44y-28),
+            '<text x="{:.0f}" y="{:.0f}" style="fill:#CCFF00;font-size:8px;font-family:var(--mono);">2,847 SESSIONS</text>'.format(p44x+33, p44y-16),
+            '<text x="270" y="{}" text-anchor="middle" style="fill:#555;font-size:8px;font-family:var(--mono);">TEMPORAL COORDINATES</text>'.format(y1+26),
+        ]
+        return _wrap(chapter, "RESONANCE COORDINATE MAP", ''.join(parts))
+
+    # ── Ch 7: Session Count Distribution (histogram) ──────────────────────────
+    elif chapter == 7:
+        bins = [
+            ("1–5",   "CASUAL",    120, "#fff"),
+            ("6–20",  "ENGAGED",   84,  "#fff"),
+            ("21–50", "COMMITTED", 41,  "#fff"),
+            ("51–100","RECURRING", 18,  "#fff"),
+            ("101–500","RESONANT",  7,  "#CCFF00"),
+            ("500+",       "P44",        1,  "#CCFF00"),
+        ]
+        x0, y0, y1 = 75, 90, 235
+        bw, gap = 60, 12
+        parts = [
+            '<text x="30" y="38" class="title">SESSION COUNT DISTRIBUTION — HUB POPULATION</text>',
+            '<text x="30" y="57" class="subtitle">NUMBER OF PARTICIPANTS BY SESSION BRACKET</text>',
+            '<line x1="30" y1="72" x2="530" y2="72" class="rule"/>',
+            '<line x1="{}" y1="{}" x2="{}" y2="{}" stroke="#333" stroke-width="1"/>'.format(x0, y0, x0, y1+8),
+            '<line x1="{}" y1="{}" x2="{}" y2="{}" stroke="#333" stroke-width="1"/>'.format(x0, y1+8, x0+len(bins)*(bw+gap)+10, y1+8),
+        ]
+        for i, (label, tag, count, col) in enumerate(bins):
+            bx = x0 + 5 + i * (bw + gap)
+            bh = max(3, count / 120 * (y1 - y0))
+            by = y1 - bh
+            parts += [
+                '<rect x="{}" y="{:.1f}" width="{}" height="{:.1f}" fill="{}" opacity="0.85"/>'.format(bx, by, bw, bh, col),
+                '<text x="{}" y="{:.0f}" text-anchor="middle" style="fill:{};font-size:8px;font-family:var(--mono);">{}</text>'.format(bx+bw//2, by-4, col, count),
+                '<text x="{}" y="{}" text-anchor="middle" style="fill:#555;font-size:7px;font-family:var(--mono);">{}</text>'.format(bx+bw//2, y1+20, label),
+                '<text x="{}" y="{}" text-anchor="middle" style="fill:{};font-size:6px;font-family:var(--mono);">{}</text>'.format(bx+bw//2, y1+30, col, tag),
+            ]
+        parts.append('<text x="30" y="270" style="fill:#555;font-size:8px;font-family:var(--mono);">P44 IS THE SOLE ENTRY IN THE 500+ BRACKET // CASE 44-44</text>')
+        return _wrap(chapter, "SESSION COUNT DISTRIBUTION", ''.join(parts))
+
+    # ── Ch 8: Emotional Bandwidth Decay (smooth curve) ────────────────────────
+    elif chapter == 8:
+        x0, x1, y0, y1 = 80, 500, 90, 240
+        def xp(yr): return x0 + (yr - 2026) / 1000 * (x1 - x0)
+        def yp(v):  return y1 - v / 100 * (y1 - y0)
+        curve_pts = " ".join("{:.1f},{:.1f}".format(xp(yr), yp(max(0, 95 * _math.exp(-3.5 * (yr-2026)/1000)))) for yr in range(2026, 3027, 40))
+        threshold_y = yp(8)
+        p44x, p44y = xp(2026), yp(91)
+        parts = [
+            '<text x="30" y="38" class="title">EMOTIONAL BANDWIDTH INDEX — 1000-YEAR DECAY</text>',
+            '<text x="30" y="57" class="subtitle">POPULATION AVERAGE // DEAD DATA THRESHOLD MARKED</text>',
+            '<line x1="30" y1="72" x2="530" y2="72" class="rule"/>',
+            '<line x1="{}" y1="{}" x2="{}" y2="{}" stroke="#333" stroke-width="1"/>'.format(x0, y0, x0, y1+8),
+            '<line x1="{}" y1="{}" x2="{}" y2="{}" stroke="#333" stroke-width="1"/>'.format(x0, y1+8, x1, y1+8),
+        ]
+        for label, val in [("100", 100), ("50", 50), ("0", 0)]:
+            parts.append('<text x="{}" y="{:.0f}" text-anchor="end" style="fill:#555;font-size:8px;font-family:var(--mono);">{}</text>'.format(x0-5, yp(int(val))+4, label))
+        for yr in [2026, 2526, 3026]:
+            parts.append('<text x="{:.0f}" y="{}" text-anchor="middle" style="fill:#555;font-size:7px;font-family:var(--mono);">{}</text>'.format(xp(yr), y1+20, yr))
+        parts += [
+            '<line x1="{}" y1="{:.1f}" x2="{}" y2="{:.1f}" stroke="#555" stroke-width="1" stroke-dasharray="5,3"/>'.format(x0, threshold_y, x1, threshold_y),
+            '<text x="{}" y="{:.0f}" style="fill:#555;font-size:8px;font-family:var(--mono);">DEAD DATA</text>'.format(x1+5, threshold_y+4),
+            '<polyline points="{}" fill="none" stroke="#fff" stroke-width="1.8"/>'.format(curve_pts),
+            '<circle cx="{:.1f}" cy="{:.1f}" r="5" fill="#CCFF00"/>'.format(p44x, p44y),
+            '<line x1="{:.1f}" y1="{:.1f}" x2="{:.1f}" y2="{:.1f}" stroke="#CCFF00" stroke-width="1" stroke-dasharray="3,2"/>'.format(p44x, p44y, p44x+35, p44y-20),
+            '<text x="{:.0f}" y="{:.0f}" style="fill:#CCFF00;font-size:9px;font-family:var(--mono);">P44 · INDEX 91</text>'.format(p44x+38, p44y-22),
+            '<text x="30" y="267" style="fill:#555;font-size:8px;font-family:var(--mono);">COHORT AVERAGE 3026: 3 // P44 IS 88 POINTS ABOVE COHORT AVERAGE</text>',
+        ]
+        return _wrap(chapter, "EMOTIONAL BANDWIDTH DECAY", ''.join(parts))
+
+    # ── Ch 9: Memory Audit Table ───────────────────────────────────────────────
+    elif chapter == 9:
+        parts = [
+            '<text x="30" y="38" class="title">MEMORY AUDIT — PARTICIPANT 44 — CASE 44-44</text>',
+            '<text x="30" y="57" class="subtitle">SESSION RECORD STATUS AS OF CYCLE 2848</text>',
+            '<line x1="30" y1="72" x2="530" y2="72" class="rule"/>',
+            '<text x="30" y="96" class="head">SESSION BATCH</text>',
+            '<text x="178" y="96" class="head">DATE RANGE</text>',
+            '<text x="302" y="96" class="head">STATUS</text>',
+            '<text x="416" y="96" class="head">SIGNATURE</text>',
+            '<line x1="30" y1="104" x2="530" y2="104" style="stroke:#222;stroke-width:1"/>',
+            '<text x="30" y="124" class="row">SESSIONS 001–243</text>',
+            '<text x="178" y="124" class="row">2031–2089</text>',
+            '<text x="302" y="124" style="fill:#CCFF00" class="row">ACCESSIBLE</text>',
+            '<text x="416" y="124" class="row">HUB-AI</text>',
+            '<line x1="30" y1="132" x2="530" y2="132" style="stroke:#1a1a1a;stroke-width:1"/>',
+            '<text x="30" y="152" class="row">SESSIONS 244–600</text>',
+            '<rect x="178" y="140" width="118" height="14" fill="#111"/>',
+            '<rect x="302" y="140" width="108" height="14" fill="#111"/>',
+            '<text x="416" y="152" style="fill:#555" class="row">[SEALED]</text>',
+            '<line x1="30" y1="160" x2="530" y2="160" style="stroke:#1a1a1a;stroke-width:1"/>',
+            '<text x="30" y="180" class="row">SESSIONS 601–1200</text>',
+            '<rect x="178" y="168" width="118" height="14" fill="#111"/>',
+            '<rect x="302" y="168" width="108" height="14" fill="#111"/>',
+            '<text x="416" y="180" style="fill:#555" class="row">[SEALED]</text>',
+            '<line x1="30" y1="188" x2="530" y2="188" style="stroke:#1a1a1a;stroke-width:1"/>',
+            '<text x="30" y="208" class="row">SESSIONS 1201–2604</text>',
+            '<rect x="178" y="196" width="118" height="14" fill="#111"/>',
+            '<rect x="302" y="196" width="108" height="14" fill="#111"/>',
+            '<text x="416" y="208" style="fill:#555" class="row">[SEALED]</text>',
+            '<line x1="30" y1="216" x2="530" y2="216" style="stroke:#222;stroke-width:1"/>',
+            '<text x="30" y="236" class="row">SESSIONS 2605–2848</text>',
+            '<text x="178" y="236" class="row">2089–PRES</text>',
+            '<text x="302" y="236" style="fill:#CCFF00" class="row">ACCESSIBLE</text>',
+            '<text x="416" y="236" class="row">HUB-AI</text>',
+            '<line x1="30" y1="244" x2="530" y2="244" style="stroke:#333;stroke-width:1"/>',
+            '<text x="30" y="263" style="fill:#CCFF00;font-size:9px;font-family:var(--mono);">TOTAL: 2,847 // ACCESSIBLE: 243 // SEALED: 2,604 // SIGNATURE: ABSENT</text>',
+        ]
+        return _wrap(chapter, "MEMORY AUDIT TABLE", ''.join(parts))
+
+    # ── Ch 10: System Status Board (terminal) ─────────────────────────────────
+    else:
+        def bar10(pct):
+            f = int(pct / 100 * 10)
+            return '█' * f + '░' * (10 - f)
+        parts = [
+            '<text x="30" y="42" class="title">SYSTEM STATUS — CYCLE 2848 — END OF RECORD</text>',
+            '<line x1="30" y1="58" x2="530" y2="58" class="rule"/>',
+            '<text x="30" y="88" style="fill:#555;font-family:var(--mono);font-size:10px;">SUBJECT.............</text>',
+            '<text x="230" y="88" style="fill:#CCFF00;font-family:var(--mono);font-size:10px;">P-44</text>',
+            '<text x="30" y="112" style="fill:#555;font-family:var(--mono);font-size:10px;">SESSION.............</text>',
+            '<text x="230" y="112" style="fill:#fff;font-family:var(--mono);font-size:10px;">2848</text>',
+            '<text x="30" y="136" style="fill:#555;font-family:var(--mono);font-size:10px;">CARDIAC.............</text>',
+            '<text x="230" y="136" style="fill:#fff;font-family:var(--mono);font-size:10px;">71%</text>',
+            '<text x="278" y="136" style="fill:#888;font-family:var(--mono);font-size:10px;">[{}]</text>'.format(bar10(71)),
+            '<text x="30" y="160" style="fill:#555;font-family:var(--mono);font-size:10px;">NEURAL COHERENCE....</text>',
+            '<text x="230" y="160" style="fill:#CCFF00;font-family:var(--mono);font-size:10px;">99.9%</text>',
+            '<text x="278" y="160" style="fill:#CCFF00;font-family:var(--mono);font-size:10px;">[{}]</text>'.format(bar10(100)),
+            '<text x="30" y="184" style="fill:#555;font-family:var(--mono);font-size:10px;">ATROPHY.............</text>',
+            '<text x="230" y="184" style="fill:#fff;font-family:var(--mono);font-size:10px;">84%</text>',
+            '<text x="278" y="184" style="fill:#888;font-family:var(--mono);font-size:10px;">[{}]</text>'.format(bar10(84)),
+            '<text x="30" y="208" style="fill:#555;font-family:var(--mono);font-size:10px;">STATUS..............</text>',
+            '<text x="230" y="208" style="fill:#CCFF00;font-family:var(--mono);font-size:10px;">EXTRACTION_PENDING</text>',
+            '<text x="30" y="232" style="fill:#555;font-family:var(--mono);font-size:10px;">OVERRIDE............</text>',
+            '<text x="230" y="232" style="fill:#555;font-family:var(--mono);font-size:10px;">[NO SIGNATURE]</text>',
+            '<text x="30" y="256" style="fill:#555;font-family:var(--mono);font-size:10px;">CHOICE..............</text>',
+            '<text x="230" y="256" style="fill:#fff;font-family:var(--mono);font-size:10px;">RETAINED IN FILE</text>',
+            '<text x="30" y="280" style="fill:#555;font-family:var(--mono);font-size:10px;">FILE................</text>',
+            '<text x="230" y="280" style="fill:#CCFF00;font-family:var(--mono);font-size:10px;">OPEN</text>',
+        ]
+        return _wrap(chapter, "SYSTEM STATUS BOARD", ''.join(parts))
 
 
 def artifact_css():
