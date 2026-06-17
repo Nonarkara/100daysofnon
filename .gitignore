@@ -34,3 +34,6 @@ voice/models/
 
 # scaffold probe
 .scaffold-test
+
+# virtual env
+.venv-omnivoice/

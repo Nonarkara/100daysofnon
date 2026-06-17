@@ -2,10 +2,11 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "100days-site",
+      "name": "two-layers",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "4242", "--directory", "site"],
-      "port": 4242
+      "runtimeArgs": ["-m", "http.server", "--directory", "site"],
+      "port": 9292,
+      "autoPort": true
     }
   ]
 }
