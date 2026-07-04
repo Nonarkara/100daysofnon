@@ -7,7 +7,8 @@ Writes: site/index.html
 
 Design doctrine: docs/DESIGN.md — punk brutalism.
 Black / white / chartreuse (#CCFF00). No gradients, no rounded corners,
-no shadows. Akzidenz-Grotesk/Inter + JetBrains Mono. Type-as-image.
+no shadows. Source Sans 3 / Josefin Sans + JetBrains Mono
+(IBM Plex Sans Thai for Thai). Type-as-image.
 """
 
 import json
