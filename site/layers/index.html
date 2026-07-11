@@ -1,174 +1,1322 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Two Layers — 100 Days of Non</title>
-  <meta name="description" content="Two layers, side by side. The left is recorded, one day at a time, as it happened. The right is invented — a novel, Hard Mode. Lately he cannot tell which one is the dream.">
+  <meta name="description"
+    content="Two layers, side by side. The left is 2026 — a man in Bangkok who suspects his world is rendered. The right is 3026 — the archive recording a woman who keeps returning to sit near him. The same moment, told from two sides of a millennium.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Two Layers — the record, and the novel">
-  <meta property="og:description" content="One column is recorded. One is invented. Which one is real?">
+  <meta property="og:description" content="Two worlds, side by side. Move between them to understand.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;1,7..72,400&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;1,7..72,400&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/surface.css">
   <style>
-    html,body{height:100%;}
-    body{display:flex;flex-direction:column;min-height:100vh;}
+    /* ════════════════════════════════════════════════════════════════
+       THE TWO-WORLD READER
+       Two columns. Locked scroll. The same moment told from two sides
+       of a millennium. The left is warm — Bangkok, 2026. The right is
+       cold — the Hub, 3026. The central gutter is the twelve
+       centimetres made literal.
+       ════════════════════════════════════════════════════════════════ */
+    html,
+    body {
+      height: 100%;
+    }
 
-    .lh{flex:0 0 auto;border-bottom:1px solid var(--rule);padding:0.9rem 1.4rem;}
-    .lh-row{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:0.3rem 1rem;max-width:74rem;margin:0 auto;}
-    .lh .eyebrow{margin:0;}
-    .lh .mark{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink);}
-    .lh .mark b{color:var(--amber);font-weight:700;}
-    .lh .thesis{font-style:italic;color:var(--soft);font-size:0.95rem;}
-    .lh-back{font-family:var(--mono);font-size:0.625rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--soft);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px;}
-    .lh-back:hover{color:var(--amber);border-color:var(--amber);}
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow: hidden;
+    }
 
-    /* mobile toggle (hidden on desktop) */
-    .vtoggle{display:none;max-width:74rem;margin:0.7rem auto 0;border:1px solid var(--rule);width:fit-content;}
-    .vtoggle button{font-family:var(--mono);font-size:0.625rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--soft);background:transparent;border:none;border-right:1px solid var(--rule);padding:0.55rem 0.9rem;min-height:42px;cursor:pointer;}
-    .vtoggle button:last-child{border-right:none;}
-    .vtoggle button[aria-selected="true"]{background:var(--amber);color:var(--paper);font-weight:700;}
+    /* ── masthead ── */
+    .lh {
+      flex: 0 0 auto;
+      padding: 0.85rem clamp(1rem, 3vw, 1.8rem);
+      border-bottom: 1px solid var(--rule);
+      background: var(--paper);
+      z-index: 10;
+    }
 
-    .split{flex:1 1 auto;display:flex;min-height:0;max-width:74rem;width:100%;margin:0 auto;}
-    .col{flex:1 1 0;min-height:0;overflow-y:auto;padding:1.6rem clamp(1.1rem,3vw,2.2rem) 4rem;}
-    .col.record{border-right:1px solid var(--rule);}
+    .lh-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.2rem;
+      max-width: 100rem;
+      margin: 0 auto;
+    }
 
-    .col-head{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;color:var(--ink);}
-    .col-head .tag{color:var(--faint);font-weight:400;}
-    .col-intro{font-style:italic;color:var(--soft);line-height:1.5;margin:0.7rem 0 1.6rem;font-size:0.95rem;}
+    .lh .mark {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
 
-    /* the record — a dated log */
-    .entry{padding:1rem 0;border-bottom:1px solid var(--rule);}
-    .entry .when{font-family:var(--mono);font-size:0.625rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--amber);}
-    .entry .q{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.02em;color:var(--soft);margin:0.3rem 0 0.5rem;}
-    .entry .a{font-family:var(--serif);font-size:1.0625rem;line-height:1.5;color:var(--ink);}
-    .entry.pending .a{color:var(--faint);font-style:italic;}
-    .grows{font-family:var(--mono);font-size:0.5625rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);margin-top:1.2rem;}
+    .lh .mark b {
+      color: var(--amber);
+      font-weight: 700;
+    }
 
-    /* the novel — prose */
-    .novel-logline{font-style:italic;color:var(--ink);font-size:1.125rem;line-height:1.5;border-left:2px solid var(--amber);padding-left:0.9rem;margin-bottom:1.6rem;}
-    .chapter-mark{font-family:var(--mono);font-size:0.625rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--faint);margin-bottom:0.8rem;}
-    .prose p{font-family:var(--serif);font-size:1.0625rem;line-height:1.62;margin-bottom:1em;text-wrap:pretty;}
-    .prose p.first{text-indent:0;}
-    .prose p+p{text-indent:1.4em;}
-    .wip{font-family:var(--mono);font-size:0.5625rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);margin-top:1rem;}
+    .lh .thesis {
+      font-style: italic;
+      color: var(--soft);
+      font-size: 0.9rem;
+      font-family: var(--serif);
+    }
 
-    .lf{flex:0 0 auto;border-top:1px solid var(--rule);padding:1rem 1.4rem;text-align:center;}
-    .lf .note{font-style:italic;color:var(--faint);font-size:0.85rem;max-width:44rem;margin:0 auto;line-height:1.5;}
+    .lh-back {
+      font-family: var(--mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--soft);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 2px;
+    }
 
-    @media (max-width:860px){
-      html,body{height:auto;}
-      body{display:block;}
-      .vtoggle{display:flex;}
-      .split{display:block;}
-      .col{overflow:visible;max-height:none;border-right:0;}
-      .col.record{border-bottom:1px solid var(--rule);}
-      .split[data-view="record"] .col.novel{display:none;}
-      .split[data-view="novel"] .col.record{display:none;}
+    .lh-back:hover {
+      color: var(--amber);
+      border-color: var(--amber);
+    }
+
+    /* ── chapter selector ── */
+    .ch-sel {
+      display: flex;
+      justify-content: center;
+      gap: 0.3rem;
+      padding: 0.55rem clamp(1rem, 3vw, 1.8rem);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      background: var(--paper);
+    }
+
+    .ch-sel-btn {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: transparent;
+      border: 1px solid var(--rule);
+      color: var(--soft);
+      padding: 0.4rem 0.8rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .ch-sel-btn:hover {
+      border-color: var(--soft);
+      color: var(--ink);
+    }
+
+    .ch-sel-btn.active {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+      font-weight: 700;
+    }
+
+    /* ── the split: two worlds, locked together ── */
+    .reader {
+      flex: 1 1 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .spread {
+      position: absolute;
+      inset: 0;
+      display: none;
+    }
+
+    .spread.active {
+      display: block;
+    }
+
+    /* gutter + the two columns */
+    .split {
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr 2px 1fr;
+    }
+
+    .gutter {
+      background: linear-gradient(to bottom,
+          transparent 0%,
+          var(--rule) 8%,
+          var(--rule) 92%,
+          transparent 100%);
+      position: relative;
+    }
+
+    .gutter::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 5px;
+      height: 5px;
+      background: var(--amber);
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px var(--paper);
+    }
+
+    .col {
+      height: 100%;
+      overflow-y: auto;
+      padding: clamp(1.8rem, 4vw, 3rem) clamp(1.2rem, 4vw, 3rem) 6rem;
+      scrollbar-width: thin;
+    }
+
+    .col::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .col::-webkit-scrollbar-thumb {
+      background: var(--rule);
+    }
+
+    .col::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    /* ── 2026 — warm, humid, photographic ── */
+    .col.sim {
+      background: var(--sim-paper);
+      color: var(--sim-ink);
+      scrollbar-color: var(--sim-rule) transparent;
+    }
+
+    .col.sim::-webkit-scrollbar-thumb {
+      background: var(--sim-rule);
+    }
+
+    .col.sim .col-head {
+      font-family: var(--mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sim-soft);
+      margin-bottom: 0.4rem;
+    }
+
+    .col.sim .col-head b {
+      color: var(--sim-accent);
+      font-weight: 700;
+    }
+
+    .col.sim .col-tag {
+      font-style: italic;
+      color: var(--sim-faint);
+      font-family: var(--serif);
+      font-size: 0.85rem;
+      margin-bottom: 2.4rem;
+      line-height: 1.5;
+    }
+
+    .col.sim .prose p {
+      font-family: var(--serif);
+      font-size: clamp(1.0625rem, 1.6vw, 1.1875rem);
+      line-height: 1.72;
+      margin-bottom: 1.1em;
+      color: var(--sim-ink);
+      text-wrap: pretty;
+    }
+
+    .col.sim .prose p:first-child {
+      font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+      line-height: 1.35;
+      font-style: italic;
+      color: var(--sim-soft);
+      margin-bottom: 1.4em;
+    }
+
+    /* ── 3026 — cold, clinical, archival ── */
+    .col.arc {
+      background: var(--arc-paper);
+      color: var(--arc-ink);
+      scrollbar-color: var(--arc-rule) transparent;
+    }
+
+    .col.arc::-webkit-scrollbar-thumb {
+      background: var(--arc-rule);
+    }
+
+    .col.arc .col-head {
+      font-family: var(--mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--arc-soft);
+      margin-bottom: 0.4rem;
+    }
+
+    .col.arc .col-head b {
+      color: var(--arc-accent);
+      font-weight: 700;
+    }
+
+    .col.arc .col-tag {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      color: var(--arc-faint);
+      margin-bottom: 2.4rem;
+      line-height: 1.7;
+    }
+
+    .col.arc .prose p {
+      font-family: var(--mono);
+      font-size: clamp(0.8125rem, 1.1vw, 0.9rem);
+      line-height: 1.85;
+      margin-bottom: 1.3em;
+      color: var(--arc-ink);
+      letter-spacing: 0.01em;
+      text-wrap: pretty;
+    }
+
+    .col.arc .prose p.signal {
+      border-left: 2px solid var(--arc-accent);
+      padding-left: 1rem;
+      color: var(--arc-accent);
+      font-size: clamp(0.8125rem, 1.1vw, 0.9rem);
+      margin: 1.6em 0;
+    }
+
+    .col.arc .prose p.meta {
+      color: var(--arc-faint);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── narrative-anchored illustrations ── */
+    .plate {
+      margin: 2.6em 0;
+      position: relative;
+    }
+
+    .plate img {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: contrast(1.03);
+    }
+
+    .col.sim .plate {
+      box-shadow: 0 1px 0 var(--sim-rule), 0 22px 44px -28px rgba(31, 27, 22, 0.4);
+    }
+
+    .col.sim .plate img {
+      mix-blend-mode: multiply;
+    }
+
+    .col.arc .plate {
+      box-shadow: 0 0 0 1px var(--arc-rule), 0 22px 44px -28px rgba(0, 0, 0, 0.8);
+    }
+
+    .col.arc .plate img {
+      filter: grayscale(0.4) contrast(1.08);
+      opacity: 0.92;
+    }
+
+    .plate-cap {
+      font-family: var(--mono);
+      font-size: 0.5625rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-top: 0.7rem;
+      line-height: 1.5;
+    }
+
+    .col.sim .plate-cap {
+      color: var(--sim-faint);
+    }
+
+    .col.arc .plate-cap {
+      color: var(--arc-faint);
+    }
+
+    .col.arc .plate-cap b {
+      color: var(--arc-accent);
+      font-weight: 400;
+    }
+
+    /* ── footnote ── */
+    .lf {
+      flex: 0 0 auto;
+      padding: 0.85rem clamp(1rem, 3vw, 1.8rem);
+      border-top: 1px solid var(--rule);
+      background: var(--paper);
+      text-align: center;
+    }
+
+    .lf .note {
+      font-style: italic;
+      color: var(--faint);
+      font-size: 0.82rem;
+      max-width: 46rem;
+      margin: 0 auto;
+      line-height: 1.55;
+      font-family: var(--serif);
+    }
+
+    .lf a {
+      color: var(--soft);
+    }
+
+    /* ── mobile: one world at a time, with a pivot ── */
+    .pivot {
+      display: none;
+      max-width: 100rem;
+      margin: 0 auto;
+      border: 1px solid var(--rule);
+      width: fit-content;
+    }
+
+    .pivot button {
+      font-family: var(--mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--soft);
+      background: transparent;
+      border: none;
+      border-right: 1px solid var(--rule);
+      padding: 0.6rem 1.1rem;
+      min-height: 42px;
+      cursor: pointer;
+    }
+
+    .pivot button:last-child {
+      border-right: none;
+    }
+
+    .pivot button.active {
+      font-weight: 700;
+    }
+
+    .pivot button.active[data-world="sim"] {
+      background: var(--sim-accent);
+      color: #fff;
+    }
+
+    .pivot button.active[data-world="arc"] {
+      background: var(--arc-accent);
+      color: var(--arc-paper);
+    }
+
+    @media (max-width: 900px) {
+
+      html,
+      body {
+        height: auto;
+        overflow: auto;
+      }
+
+      body {
+        display: block;
+      }
+
+      .pivot {
+        display: flex;
+        margin: 0.7rem auto;
+      }
+
+      .split {
+        grid-template-columns: 1fr;
+      }
+
+      .gutter {
+        display: none;
+      }
+
+      .col {
+        overflow: visible;
+        max-height: none;
+      }
+
+      .spread[data-world="arc"] .col.sim,
+      .spread[data-world="sim"] .col.arc {
+        display: none;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <header class="lh">
     <div class="lh-row">
       <span class="mark">TWO&nbsp;<b>LAYERS</b></span>
-      <span class="thesis">one column is recorded, one is invented — which one is real?</span>
-      <a class="lh-back" href="/universe/">← the universe</a>
-    </div>
-    <div class="vtoggle" role="tablist" aria-label="Layer">
-      <button id="v-rec" role="tab" aria-selected="true">The Record</button>
-      <button id="v-nov" role="tab" aria-selected="false">The Novel</button>
+      <span class="thesis">the same moment, told from two sides of a millennium — move between the worlds</span>
+      <a class="lh-back" href="/">← the universe</a>
     </div>
   </header>
 
-  <div class="split" id="split" data-view="record">
+  <nav class="ch-sel" aria-label="Chapter">
+    <button class="ch-sel-btn active" data-ch="1">i · The Feeling</button>
+    <button class="ch-sel-btn" data-ch="2">ii · The Call from Vienna</button>
+    <button class="ch-sel-btn" data-ch="3">iii · The Thinning</button>
+    <button class="ch-sel-btn" data-ch="4">iv · Happy Birthday</button>
+    <button class="ch-sel-btn" data-ch="5">v · The Woman on the Bicycle</button>
+    <button class="ch-sel-btn" data-ch="6">vi · The Cremation</button>
+    <button class="ch-sel-btn" data-ch="7">vii · The Dentist</button>
+    <button class="ch-sel-btn" data-ch="8">viii · The Note</button>
+    <button class="ch-sel-btn" data-ch="9">ix · The Building</button>
+    <button class="ch-sel-btn" data-ch="10">x · Three Days of Rain</button>
+  </nav>
 
-    <!-- LEFT — the recorded layer -->
-    <section class="col record" aria-label="The Record">
-      <p class="col-head">The Record <span class="tag">· every day, as it happened</span></p>
-      <p class="col-intro">The real layer. One question a day, recorded the day it was asked — the raw material the biography is built from. Three of one hundred filed.</p>
+  <main class="reader">
 
-      <div class="entry">
-        <p class="when">Day 001 · 2026-05-24</p>
-        <p class="q">Where you were born, and the shop your family kept.</p>
-        <p class="a">Phyathai Hospital, the first of November 1981, a Sunday. In Sikhio: Suwan Panit — <span lang="th">發祥</span>, the auspicious-beginnings house — the registration paper dated 1969. Near a hotel shaped like a hat, on the ground that is now Siam Paragon.</p>
+    <!-- ════════════ CHAPTER I ════════════ -->
+    <section class="spread active" data-ch="1" data-world="both">
+      <div class="split">
+
+        <!-- ── 2026 — left, warm ── -->
+        <div class="col sim" id="sim-1">
+          <p class="col-head">2026 <b>·</b> the Simulation</p>
+          <p class="col-tag">First-person. Present tense. Bangkok — a man who begins to suspect his world is rendered.
+          </p>
+
+          <div class="prose">
+            <p>Have you ever felt like none of this is real?</p>
+
+            <p>Not in the philosophical way. Not depression. Just the feeling — certain mornings, certain angles of
+              light through Bangkok smog — that everything around you is running slightly too smoothly. That the
+              repetitions have been designed. That someone is getting something out of them.</p>
+
+            <p>I noticed it first in my coffee. Same brand. Same temperature. Same twenty seconds I waited before the
+              first sip. I thought I was building discipline. Maybe I was. Maybe discipline is what the machine looks
+              like from the inside.</p>
+
+            <p>I am an architect. I do not draft anymore. I talk to an AI and the AI builds. I sit in a glass box forty
+              floors above Sukhumvit and describe what I see in my head and the machine turns description into
+              structure. It is never wrong. It is never late. It is never anything except exactly what I asked for.
+              Which is, I have learned, the problem.</p>
+
+            <p>I eat once a day. One meal. I wear the same four shirts in rotation. I take fourteen vitamins in the
+              morning, in order, with water at room temperature. I walk at least eleven thousand steps. The body
+              requires maintenance the way a car does and I accept this. The dentist. I go to the dentist. I have always
+              hated the sound the instruments make. I have thought about why nobody has fixed this. The sound keeps
+              people afraid. Afraid people come back. It is good for the business of dentistry to leave the sound
+              exactly as it is.</p>
+
+            <figure class="plate">
+              <img src="/assets/illustrations/ch1-sim.jpg" alt="A man at a window, Bangkok at night, charcoal noir"
+                loading="lazy">
+              <figcaption class="plate-cap">none of this is real · sukhumvit, 2:14am</figcaption>
+            </figure>
+
+            <p>I started smoking weed somewhere around 2022 when it became easy to get good weed in Bangkok. Legal, then
+              less legal, then gray, then just available. I smoked because it stopped the part of my brain that would
+              not stop. The thoughts come in loops. The loops get tighter. Weed made them expand. Opened space between
+              the repetitions.</p>
+
+            <p>There were nights I pushed it to the edge of what felt safe. Heart pounding. The ceiling of the room
+              becoming something else. And in those moments — not every time, not reliably, but enough times that I
+              started chasing it — I saw something.</p>
+
+            <p>A room. White. Cold. Not the cold of air conditioning. The cold of something kept at a temperature I had
+              no word for. Rows of chairs. People in the chairs, not moving, eyes closed, faces slack, breathing but
+              only barely. Something attached to the back of each skull. The air in that room — I can still feel it —
+              the air had no smell. Not clean. <em>Absent.</em> Like the concept of air had been achieved and all the
+              accident had been removed from it.</p>
+
+            <p>I came back from that room wanting to touch everything. To hold someone and feel the heat of them and
+              know by that heat that they were still an animal. That we were still animals. The body understands what
+              the brain will not admit.</p>
+
+            <p>Michael — I will not use his real name — Michael came to Bangkok from Vienna. He knew everyone. He left
+              on the third of May. Not the city. Existence. Fifty-four years old. The announcement came and then almost
+              immediately the traces of him started to thin. The photographs. The articles. The LinkedIn page. Thinning,
+              not deleted. The way a sound fades before you notice it has stopped.</p>
+
+            <p>There is a dent on the passenger side of my car I do not remember making.</p>
+          </div>
+        </div>
+
+        <div class="gutter" aria-hidden="true"></div>
+
+        <!-- ── 3026 — right, cold ── -->
+        <div class="col arc" id="arc-1">
+          <p class="col-head">3026 <b>·</b> the Archive</p>
+          <p class="col-tag">CASE 44-44 · SESSION 2848 · CYCLE INITIALIZED<br>HUB ARCHIVE — 11KM BELOW SURFACE — −270°C
+          </p>
+
+          <div class="prose">
+            <p class="meta">SESSION INITIALIZED · PARTICIPANT 44 · CHAIR 44 · CYCLE 2848</p>
+
+            <p>The Hub operates on a foundational engineering axiom inherited from the biological systems it replaced:
+              do not optimize what does not require optimization. This principle was derived three centuries too late.
+            </p>
+
+            <p>In the years before the Sanctuary Protocol, the optimization apparatus eliminated disease, eliminated
+              heartbreak, eliminated the metabolic burden of labor. The population reached hedonic homeostasis. Within
+              forty years, the species began its voluntary withdrawal from reproduction, connection, and the effort of
+              existing. This was not a failure of the optimization. It was its completion.</p>
+
+            <p>The simulation was not designed as entertainment. It was designed as a prosthetic for the mechanisms of
+              meaning — the scaffolding instincts that require friction to remain active. Without friction, without the
+              thermodynamic cost of getting something wrong, the instincts calcified. The species became what the
+              archive classifies as Dead Data: stable, biologically intact, experientially null.</p>
+
+            <p>Participant 44 has logged 243 sessions in accessible memory. System records indicate 2,847 total
+              sessions. The discrepancy of 2,604 sessions is stored under seal. No system signature authorizes the seal.
+              The AI does not know who erased them.</p>
+
+            <p>She has returned to the same temporal and geographic cluster across all accessible sessions: Bangkok,
+              Thailand, 1981–2026. The system identifies this as resonance, not choice. The body finding a frequency it
+              recognizes without the mind knowing why.</p>
+
+            <figure class="plate">
+              <img src="/assets/illustrations/ch1-arc.jpg"
+                alt="Archive panel: a row of white chairs, one flower on the last" loading="lazy">
+              <figcaption class="plate-cap"><b>SESSION INITIALIZED</b> · participant 44 · chair 44 · the last row
+              </figcaption>
+            </figure>
+
+            <p>Chair 44 sits at the end of the last row. Chair 43, to her left, is occupied by another participant:
+              Koichi, logged against Tokyo 2056. The physical distance between Chair 44 and Chair 43 is twelve
+              centimetres. The distance has been twelve centimetres for four years of Hub time. Until recently.</p>
+
+            <p class="signal">[UNVERIFIED SIGNAL]<br>I am in the room again. The Bangkok I enter is always 2026, always
+              raining or about to rain, always a city that does not know yet what it is. I choose it the way you choose
+              a song you have heard so many times that it has become part of the structure of how you think. Not because
+              it is the best. Because it is where I know how to be.</p>
+
+            <p>Participant 44 is currently in Session 2848. Her cardiac function is at 71%. Neural coherence remains at
+              99.9%. Muscular atrophy has reached 84%, which crosses the system's standard extraction threshold. The AI
+              has not initiated extraction.</p>
+
+            <p class="meta">No extraction request has been filed. The file remains open.</p>
+          </div>
+        </div>
+
       </div>
-
-      <div class="entry">
-        <p class="when">Day 002 · 2026-05-25</p>
-        <p class="q">The deaths that shaped the house.</p>
-        <p class="a">Three in one year, 2010 — Agong, then Ama, then his father, in September. The Sikhio summers, one television for the whole neighbourhood. The suburb his grandmother bought ground for, thirty years early.</p>
-      </div>
-
-      <div class="entry">
-        <p class="when">Day 003 · 2026-05-27</p>
-        <p class="q">Your father, in full.</p>
-        <p class="a">Kongkiet — civil servant, Governor of Buriram. Japan, the third of November 2006; Kengo Kuma near midnight; the three million baht that bought his freedom. From the first paycheck to now, the whole salary goes to his mother. The chain has never broken.</p>
-      </div>
-
-      <div class="entry pending">
-        <p class="when">Day 004 —</p>
-        <p class="q">Siblings: names, birth order, the fight that mattered.</p>
-        <p class="a">not yet recorded.</p>
-      </div>
-
-      <p class="grows">↓ the record grows, one day at a time, to one hundred</p>
     </section>
 
-    <!-- RIGHT — the invented layer -->
-    <section class="col novel" aria-label="The Novel">
-      <p class="col-head">The Novel <span class="tag">· Hard&nbsp;Mode</span></p>
-      <p class="col-intro">The invented layer. The same man, suspecting the forty-four years were a chosen simulation, in a future where the only way to test which world is real can kill you for good.</p>
 
-      <p class="novel-logline">A man who has won everything a mind can win, and still does not know what any of it was for, sets out to find the one person who can tell him — in the only world where the roles come off.</p>
+    <!-- ════════════ CHAPTER II ════════════ -->
+    <section class="spread" data-ch="2" data-world="both">
+      <div class="split">
 
-      <p class="chapter-mark">Chapter One — “The Noiseless Kind”</p>
-      <div class="prose">
-        <p class="first">Let me ask you something before we begin.</p>
-        <p>Have you ever been in a room that was <em>exactly</em> the right temperature — not warm, not cool, just the precise degree at which your body stops noticing itself — and felt, not comfort, but a specific, almost clinical dread?</p>
-        <p>That is where I am right now. My apartment. Bangkok — or what Bangkok became, which I will get to — on a Tuesday that is essentially indistinguishable from all the other Tuesdays that have been indistinguishable from each other for longer than I can comfortably remember.</p>
-        <p>In an hour, someone is coming over. An algorithm matched us, as algorithms do, finding in the topology of our combined data some constellation of compatibility I cannot quite locate in the room when she is in it. She is — and I say this without cruelty, only precision — exactly as advertised. We will have a drink. We will have sex, the kind that is technically correct in every parameter and delivers, for both of us, something slightly less than what either of us had in mind. We have met three times now. The fourth will probably be the last, not because anything goes wrong, but because nothing — precisely nothing — goes wrong.</p>
-        <p>This is the tell. I have been learning to read it.</p>
-        <p>When I was forty-four years old — in the life I want to tell you about — I read somewhere that Camus opened his most famous essay by saying there is only one truly serious philosophical problem, and that is suicide. He was right, though he was asking the wrong version of the question. The interesting version is not <em>whether</em> to continue but <em>which layer to continue in</em> — and the reason nobody asks that version is that, for most of human history, there was only one layer to be in. You were born, you suffered, you died. The options were stark but uncomplicated.</p>
-        <p>I am going to tell you a story that starts forty-four years into one life and ends, maybe, at the beginning of another. I should warn you: I am Thai, I am forty-four, I am tired, I am not dead, and I have recently come to suspect that none of those facts mean what I thought they meant. Also — (pun not intended) — I may be inside a simulation. But let me get to that in a moment.</p>
-        <p>The message came on a Tuesday. Her name was Pui. She had been my classmate, twenty-five years ago, in an architecture school so far out of Bangkok that you took the train to Ladkrabang and then another from there, and I did that for exactly one week before my father rented me an apartment near campus. She was one of maybe eight women in our entire cohort — architecture schools in that part of Bangkok, late nineties, were not known for their gender balance — and she was funny, and she knew exactly what she was doing in a crit. We were not close. We were the kind of people who would have been closer if we had been anywhere else, or had tried a little harder, or had been a little less afraid.</p>
-        <p>I had been writing on her Facebook wall every year on her birthday for four years. A few words. You do this for people you were not quite close enough to call, which is most people, eventually. That Tuesday I wrote: “Twenty-five years since Ladkrabang. Hope you're well.” Within two hours, a message came from Kamashit, who had been close to her, who I had not spoken to in longer than I can reconstruct:</p>
-        <p><em>Non. You didn't know. She died. Last year. Cancer.</em></p>
-        <p>I scrolled. The way you do.</p>
-        <p>There were the posts from friends in Thai that accumulate on a dead person's wall and never quite know what tone to take. Photographs from a ceremony I did not recognize. A date I will not give you, because it is hers.</p>
-        <p>And then, two weeks before all of that, her last post.</p>
-        <p>It was not what you would write if you knew you were dying. It was too calm for that, too specific, too much like something she had been thinking about for a long time and had decided, in that particular window, to write down. The Thai was careful. Clear. I will translate it for you, roughly:</p>
-        <p><em>”To whoever reads this first after I'm gone — don't waste time looking for meaning in the part you just lived. The door is always on the left, not the right. I went back early, but only because I got bored, which you'll understand when you get here. The only thing worth asking when you wake up is: who played your mother? Ask before the memory goes. — P.”</em></p>
-        <p>I read it three times. Then I put my phone face-down on the table and looked at the wall — the exact-right-temperature air, the date in an hour, the city outside that had stopped surprising me — and I felt something I had not felt in years. I felt the hair on my arms.</p>
-        <p>Because here is the thing I am not going to explain to you tonight, the thing that sat in my chest like a key finding a lock it did not know it had been cut for.</p>
-        <p>I already knew what she meant by the door.</p>
-        <p>Not consciously. Not in any way I could have told you, even a minute before reading her last post. But <em>in my body</em>, in the specific, subterranean way you know a place you have been to in a dream so vivid it left a residue — I already knew. Left, not right. Ask before the memory goes.</p>
-        <p>The date arrived at seven and rang the buzzer and I let her up. We had a drink. We had sex — the technically correct kind. She fell asleep before ten. I lay on my back in the exact-right-temperature dark, looking at the ceiling.</p>
-        <p>And I thought: <em>How many times have I done this before?</em></p>
-        <p>Not the sex.</p>
-        <p>The whole thing.</p>
+        <!-- ── 2026 — left, warm ── -->
+        <div class="col sim" id="sim-2">
+          <p class="col-head">2026 <b>·</b> the Simulation</p>
+          <p class="col-tag">Morning routine, then a missed call at 3:14am from Vienna — and Michael&#x27;s photographs start to blur.</p>
+
+          <div class="prose">
+            <p>The morning starts the same. The app wakes me at 6:07 with a tone that is scientifically calibrated to produce minimum cortisol spike. I have been waking at 6:07 for eleven months.</p>
+            <p>I do not look at my phone first. That is the rule. I lie on my back for two minutes and let the ceiling be just a ceiling. Then I get up and I do the fourteen vitamins. In order. With water at exactly the temperature the tap produces before the hot kicks in.</p>
+            <p>Omega-3. Vitamin D. Magnesium glycinate. Then the B-complex and the NAC. I have a system. Systems are how you avoid decisions. Decisions are where the day leaks out.</p>
+            <p>I make coffee. One cup. Forty grams of beans weighed on the small kitchen scale because I once read that consistency in extraction produces consistency in cognition and I cannot remember now whether I read that or whether I told it to an AI and it confirmed it, which is not the same thing.</p>
+            <p>I open the laptop and the AI is already there. I describe what I need. A covered pedestrian bridge for the Nonthaburi waterfront. Forty meters. Needs to breathe but not let rain in. I say breathe and not let rain in in the same sentence and the AI does not find this contradictory. The AI never finds anything contradictory. This is the first thing about it that I cannot decide is good or bad.</p>
+            <p>By nine I have three structural variants on the screen. The spans are elegant. The load calculations are exact. I did not draw a line. I described a feeling and the machine translated it into engineering. I am the author of something I could not have built alone, which is either collaboration or dependency depending on the day.</p>
+            <p>The phone showed a missed call at 3:14 in the morning. Area code +43. Vienna.</p>
+            <p>I did not know I had Michael&#x27;s number saved under his real name. I thought I had it under something else. I stared at the call log for a long time. I did not call back.</p>
+            <figure class="plate">
+              <img src="/assets/illustrations/ch2-sim.jpg" alt="2026 Simulation Memory · Chapter 2" loading="lazy">
+              <figcaption class="plate-cap">still there · 3:14am · +43 vienna</figcaption>
+            </figure>
+
+            <p>Michael had arrived in Bangkok in 2019 the way certain foreigners arrive: already knowing people, already knowing where to eat, already speaking a kind of informed affection for the city that usually takes years to develop. He was at every opening. He had opinions about every building. He was the kind of person who makes a city feel like a scene.</p>
+            <p>He left on May 3rd. The post from his sister was short and in German and someone translated it in the comments. It said he had died peacefully and that the family was grateful for the condolences.</p>
+            <p>I searched for his LinkedIn profile that afternoon. It was still there, but the photograph was wrong. Not deleted. Not replaced. Just — blurred. The profile picture of a man I knew at dinners and openings and once at a construction site in Thonburi, blurred as if the platform&#x27;s resolution had slowly given up on him.</p>
+            <p>I told myself it was a display glitch. I have been telling myself this for three weeks.</p>
+            <p>The AI sent a notification that the bridge variants were ready for review. I looked at the three options. I picked the middle one. It was not the most structurally interesting. But it was the one I could explain to a client without having to explain too much.</p>
+            <p>The call from Vienna at 3:14 in the morning. I do not know anyone else in Vienna.</p>
+            <p>I checked Michael&#x27;s Facebook. The profile picture there was also blurred. Not the same blur — a different one, softer, older, like the image was being compressed by something that did not understand what it was compressing.</p>
+            <p>It was ten in the morning and I had not eaten and I was thinking about a man who was no longer anywhere and whose photographs were getting softer, and outside Bangkok was running at full volume, and I stood at the window of the glass box and watched it and thought: something is collecting him. Not deleting. Collecting.</p>
+          </div>
+        </div>
+
+        <div class="gutter" aria-hidden="true"></div>
+
+        <!-- ── 3026 — right, cold ── -->
+        <div class="col arc" id="arc-2">
+          <p class="col-head">3026 <b>·</b> the Archive</p>
+          <p class="col-tag">CASE 44-44 · SESSION 2848 · TIME COMPRESSION<br>HUB ARCHIVE — TEMPORAL PARAMETERS LOGGED</p>
+
+          <div class="prose">
+            <p>DATA RECORD: SESSION 2848. TIME COMPRESSION PARAMETERS LOGGED.</p>
+            <p>The temporal architecture of the Sanctuary Protocol operates through a gravitational redshift differential produced by the Hub&#x27;s positioning eleven kilometres below the constructed surface. One hour of Hub time corresponds to one simulated year at the 2026 frequency. The relationship is not uniform: it varies by session depth, participant neural coherence, and the specificity of temporal targeting.</p>
+            <p>For the current cohort, a complete simulated lifespan of approximately 96 years consumes four days of Hub time. The participant&#x27;s subjective experience distils this into roughly eight years of recoverable memory. The remaining decades are processed as structural experience — shaping cognitive patterns without producing retrievable narrative.</p>
+            <p>Participant 44 has accumulated 2,848 sessions. At the standard compression ratio, this represents a simulated temporal investment that exceeds the bounds of the archive&#x27;s modeling capacity. The system does not have a category for participants who have returned this many times. The category that would apply has not been created because the system assumed the atrophy threshold would function as a ceiling.</p>
+            <p class="signal">[UNVERIFIED SIGNAL]<br>He does not know I am there. Or — he is beginning to. I have walked the same streets in different sessions and there are moments when he looks up, not at me specifically but in the direction of something that is not accountable by his city&#x27;s physics. I watch him in those moments with something I am not sure the system can categorize. It is not what 2026 would call love. It is older than that word.</p>
+            <figure class="plate">
+              <img src="/assets/illustrations/ch2-arc.jpg" alt="3026 Archive Log" loading="lazy">
+              <figcaption class="plate-cap"><b>ONE HOUR EQUALS ONE YEAR</b> · 4 hub days ≈ 96 simulated years</figcaption>
+            </figure>
+
+            <p>The time compression cascade operates differently for Resonants. Standard participants experience the eight-year subjective memory as a clean episodic sequence. Resonants report a different phenomenology: the compressed decades are not forgotten but are felt as a kind of geological pressure, a thickness in the present moment that accumulates across sessions.</p>
+            <p>Participant 44 has not reported this phenomenology to the system. The system infers it from the behavioral record: she returns to the same apartment building at the same hour across twenty-three separate sessions. She positions herself at street level and looks up. She does not make contact.</p>
+            <p>In Session 2841, she began cycling toward the building rather than walking. The AI notes this behavioral modification without being able to fully account for it. The bicycle introduces a specific type of kinetic presence — visible, mobile, deniable — that the AI classifies as approach behavior that maintains plausible deniability.</p>
+            <p class="signal">[UNVERIFIED SIGNAL]<br>I stopped in front of his building at 2:47. I chose that time because I had learned, across sessions, that the lights on his floor are still on at that hour. He was awake. I know he was awake because the shadow behind the dark glass moved. He was watching me watch him and neither of us acknowledged the fact and the gap between us was forty floors of compressed concrete and whatever else Bangkok is made of.</p>
+            <p>The extraction threshold at 84% atrophy has been active for eleven Hub days. The AI has logged the threshold breach in three separate monitoring reports. No action has been initiated. The file remains open.</p>
+          </div>
+        </div>
+
       </div>
-      <p class="wip">— chapter one of Hard Mode · the novel being written across one hundred days</p>
     </section>
 
-  </div>
+    <!-- ════════════ CHAPTER III ════════════ -->
+    <section class="spread" data-ch="3" data-world="both">
+      <div class="split">
+
+        <!-- ── 2026 — left, warm ── -->
+        <div class="col sim" id="sim-3">
+          <p class="col-head">2026 <b>·</b> the Simulation</p>
+          <p class="col-tag">He searches for what remains of Michael. In the photographs, the gap is the shape of what was there.</p>
+
+          <div class="prose">
+            <p>The Austrian Trade Commission office is on Sathorn. I know this because I looked it up. I do not know why I looked it up. I know Michael is dead. I know there is nothing to ask.</p>
+            <p>I walked past it instead of going in. Twice. On the third pass I went to a coffee shop across the street and ordered something I did not drink and opened my phone.</p>
+            <p>I am looking for Michael. Not the man — I know what happened to the man. I am looking for the residue. The mark a person makes on the internet, which is supposed to be permanent. Supposed to accumulate. Supposed to resist.</p>
+            <p>His Instagram: still there, but the post count said 847 and when I scrolled I could only see 611. The missing 236 were not deleted — the counters still registered them. They had simply become unreachable. Like pages in a book where the ink has faded below the threshold of recognition.</p>
+            <p>I called the Trade Commission. A woman answered. I asked if they could confirm Michael&#x27;s employment there. She put me on hold for four minutes. When she came back she said she was not able to confirm or deny employment records for former staff.</p>
+            <p>Former. He died six weeks ago. She said former without hesitation.</p>
+            <p>I asked when he had stopped being current staff. She said she was not in a position to confirm that information.</p>
+            <p>I thanked her and hung up. Outside the window, a crane on Sathorn was moving a steel beam with the slow certainty of machines that do not know they could drop it.</p>
+            <figure class="plate">
+              <img src="/assets/illustrations/ch3-sim.jpg" alt="2026 Simulation Memory" loading="lazy">
+              <figcaption class="plate-cap">the shape of what was there · sathorn</figcaption>
+            </figure>
+
+            <p>I called Dao, who had been at Michael&#x27;s birthday party in 2022. She said she remembered him. I asked if she had noticed anything strange about his online presence. She said she hadn&#x27;t been following him for a while. I asked why. She said she couldn&#x27;t actually remember when she&#x27;d unfollowed him. She said she thought she must have, at some point.</p>
+            <p>Michael attended forty-one events I know about. He was tagged in photographs with at least sixty different people. I know this because I found an events spreadsheet someone had made in 2021 of the Bangkok expat design community. His name appears thirty-seven times.</p>
+            <p>I searched for each of those events. He appears in some photographs, absent from others. But in the ones where he should be — where I remember him standing in a specific spot — he is not there. There is a gap in the arrangement of people. A slight unnaturalness in the composition, the way a group photo looks when someone has been removed from it without reframing the remaining faces.</p>
+            <p>I am an architect. I know what space looks like when something has been subtracted from it. It is not absence. It is the shape of what was there.</p>
+            <p>I told the AI I was designing a building for a client who did not want to be remembered. The AI asked for parameters. I said: make it look complete from any angle but leave no shadow.</p>
+            <p>The AI produced a study. It was beautiful and technically impossible and I looked at it for a long time. Then I closed the laptop.</p>
+            <p>I went home by a different route. I walked down a soi I did not usually walk down. There was a dog sleeping in front of a shuttered pharmacy. The dog was breathing. I stood there for a moment to confirm it.</p>
+            <p>At home I opened my phone and found Michael&#x27;s number. I called it. It rang six times. Nobody answered. Nobody&#x27;s voicemail picked up either. The line just rang and rang and then went quiet, the way a signal does when it has run out of somewhere to go.</p>
+          </div>
+        </div>
+
+        <div class="gutter" aria-hidden="true"></div>
+
+        <!-- ── 3026 — right, cold ── -->
+        <div class="col arc" id="arc-3">
+          <p class="col-head">3026 <b>·</b> the Archive</p>
+          <p class="col-tag">CASE 44-44 · SESSION 2848 · COGNITIVE BASELINE<br>HUB ARCHIVE — POPULATION COHORT ASSESSMENT</p>
+
+          <div class="prose">
+            <p>COGNITIVE ASSESSMENT: POPULATION COHORT 3026. BASELINE ESTABLISHED.</p>
+            <p>The neurological consequences of a thousand years without authentic friction are not dramatic. There is no measurable decline in baseline intelligence as the archive defines it. The processing architecture remains intact. What deteriorates is the capacity that required uncertainty to remain active: creativity, defined here as the production of genuinely novel conceptual structures; neuroplasticity, defined as the ability to modify existing cognitive architecture in response to new experience; and adaptation, the capacity to derive functional responses to situations outside previous experience.</p>
+            <p>In 2026, the population baseline for these three capacities was estimated at 94%, 91%, and 88% respectively. In 3026, after a thousand years of optimized comfort, the baseline is 8%, 11%, and 6%.</p>
+            <p>The decline is not evenly distributed. Individuals who have spent significant time in the simulation retain higher function in all three areas. The system identifies this as the central irony of the Sanctuary Protocol: the people most capable of experiencing the future are the people who have been spending their time in the past.</p>
+            <figure class="plate">
+              <img src="/assets/illustrations/ch3-arc.jpg" alt="3026 Archive Log" loading="lazy">
+              <figcaption class="plate-cap"><b>THE MIND STILL WORKS</b> · participant 44 · ninety-one percentile above cohort</figcaption>
+            </figure>
+
+            <p class="signal">[UNVERIFIED SIGNAL]<br>Koichi has not moved. Chair 43 is occupied by a person who has been to the future a thousand times and come back the same. I do not know his sessions the way I know mine. But I know the posture. The hands folded in the lap. The stillness that is not peace but practice. He is twelve centimetres from me and I have never touched the edge of his chair.</p>
+            <p>Participant 44&#x27;s cognitive scores are outliers within the current cohort. Her creativity index registers at 89%, 91 percentile points above cohort average. Neuroplasticity at 87%. Adaptation at 79%. These scores are consistent with individuals who have logged high simulation hours and are inconsistent with the level of physical atrophy recorded in her case file.</p>
+            <p>The system&#x27;s interpretation: the simulated experience has preserved her cognitive architecture at the cost of her biological one. She is, by every measurable metric, more alive than almost anyone in 3026. She is also at 84% atrophy, which means the body is running out of substrate for the cognition.</p>
+            <p>The AI has modeled three scenarios for Participant 44. In the first, extraction is initiated at the standard threshold; she recovers with medical intervention; cognitive function declines to cohort average within eighteen months without simulation access. In the second, she is permitted to continue without extraction; atrophy reaches critical failure within an estimated fourteen Hub days; the cognitive architecture becomes non-viable. In the third scenario, the modeling fails to produce a terminal state. The AI reviews the model. The anomaly in the third scenario is: she crosses the twelve centimetres.</p>
+            <p class="signal">[UNVERIFIED SIGNAL]<br>The flower was in my hands when I woke from the last session. I do not know where it came from. It was white. One petal had fallen to my knee. I held it and looked at the ceiling of the Hub, which is black and very far away, and I thought about the roof in his drawing that lets the rain in, and I thought: yes. That is right. That is the right building.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════ CHAPTER IV ════════════ -->
+    <section class="spread" data-ch="4" data-world="both">
+      <div class="split">
+
+        <!-- ── 2026 — left, warm ── -->
+        <div class="col sim" id="sim-4">
+          <p class="col-head">2026 <b>·</b> the Simulation</p>
+          <p class="col-tag">June 1st. He posts Happy Birthday on Pui&#x27;s wall before the vitamins. Some things come before routine.</p>
+
+          <div class="prose">
+            <p>June 1st. I wake up knowing what day it is before I check the phone. The body remembers certain dates the way it remembers certain smells — not through the mind but through a mechanism lower and more stubborn than the mind.</p>
+            <p>Pui was born on June 1st, 1982. She died on February 19th, 2018. I have been posting Happy Birthday on her Facebook profile every June 1st for eight years.</p>
+            <p>The post goes up at seven in the morning, before I do the vitamins, before the coffee. That is the order I established the first year and have not changed. Some things should happen before you have fully armed yourself with routine.</p>
+            <p>Her profile is still there. This is not unusual. Facebook does not delete the dead. It memorializes them, which is different — it changes one setting and leaves everything else exactly as it was. Her last post is still the photograph she posted two weeks before she died. A concrete model on a studio table. The caption says: it needs to stand up.</p>
+            <p>That was her line. She said it to me once in a studio in Bangkok when I was nineteen and designing something structurally compromised and full of conceptual ambition. She said it again, apparently, as a caption for a photograph, years later, and I don&#x27;t know if she remembered saying it to me or if it was just how she thought about structures. I have never known whether to be sad or grateful for that.</p>
+            <p>This year the notification comes at 7:03. Sixteen people have posted. I recognize most of them from the architecture faculty. Some were in her class. Some were in mine. A few I don&#x27;t recognize at all — friends from after, from the years I was not paying close attention to where she was or what she was building.</p>
+            <p>The posts are variations on a theme. Happy Birthday, Pui. We miss you. Eight years. Can&#x27;t believe. The emojis are flowers and stars and hearts. I have used flowers every year. I do not know if this is meaningful or just what the keyboard suggests.</p>
+            <p>I scroll through the comments under my post. Two likes. One from someone I don&#x27;t recognize with a Thai name I can&#x27;t read clearly in the small profile thumbnail. One from a profile that appears to have no photograph, no posts, nothing — just a name and a like.</p>
+            <figure class="plate">
+              <img src="/assets/illustrations/ch4-sim.jpg" alt="2026 Simulation Memory" loading="lazy">
+              <figcaption class="plate-cap">still here · june 1st</figcaption>
+            </figure>
+
+            <p>Pui drowned in February 2018. She went swimming at a beach in Krabi and did not come back. This is the official version and I have no reason not to accept it except that it has never felt complete. She was a strong swimmer. She knew the sea. She had been swimming in Krabi twice before. None of this makes drowning impossible. It just makes it feel — thin. Like a story that was assembled quickly from available parts.</p>
+            <p>I knew her for five years. We were not close the way people are close in films — we were close the way people in studios are close, which is a different thing, woven from shared exhaustion and mutual criticism and the occasional 3 a.m. when the work wasn&#x27;t going right and we would stop and drink instant coffee and not talk about anything important.</p>
+            <p>I have thought about her differently since the glimpses started. Since I saw the room with the chairs. I think about whether — and I know this is a form of grief making patterns in noise, I know the brain constructs meaning the way a spider constructs webs, because it cannot stop — I think about whether she went somewhere. Not died. Went.</p>
+            <p>Lek died in May. I have been holding these two things next to each other in my mind. Pui in 2018. Lek in 2026. Both unexplained. Both sudden. Both clean in the way that real things rarely are.</p>
+            <p>I look at the profile with no photograph that liked my post. I click on it. There is nothing there. The account was created in January. It has no friends listed, no posts, no activity visible to a non-friend. Just a name: Phannatip. A woman&#x27;s name. Pui&#x27;s full name was Phannatip.</p>
+            <p>I stare at this for a long time. I know what it means to stare at something until it becomes evidence of something it is not. I know this is what grief does to perception. The mind finds the face in the wood grain. The mind finds the signal in the noise.</p>
+            <p>But the account was created in January. Six months ago. And it has liked only one thing. My post on her birthday.</p>
+            <p>I put my phone face-down on the table. I eat my one meal. I do not look at the phone again until evening, when the city outside has gotten loud enough to be company.</p>
+          </div>
+        </div>
+
+        <div class="gutter" aria-hidden="true"></div>
+
+        <!-- ── 3026 — right, cold ── -->
+        <div class="col arc" id="arc-4">
+          <p class="col-head">3026 <b>·</b> the Archive</p>
+          <p class="col-tag">CASE 44-44 · SESSION 2848 · DEMOGRAPHIC RECORD<br>HUB ARCHIVE — REPRODUCTIVE COLLAPSE CONTEXT</p>
+
+          <div class="prose">
+            <p>DEMOGRAPHIC RECORD: REPRODUCTIVE COLLAPSE. CASE 44-44 CONTEXTUAL DATA.</p>
+            <p>The collapse of human reproduction between 2060 and 3026 is the primary demographic fact of the archive. In 2026, the global birth rate averaged approximately 18 live births per 1,000 people per decade. The rate declined continuously as hedonic optimization removed the economic and social pressures that historically motivated reproduction.</p>
+            <p>By 2120 the rate had fallen to 9. By 2200 to 3.1. By 2400 to 0.8. The population that exists in 3026 — approximately 80 million individuals — was not produced by sustained reproduction. It is the survivor cohort of the original 8 billion, sustained by biological maintenance technology that has effectively removed natural death as a demographic factor.</p>
+            <p>The 80 million are not dying. They are not replacing themselves. They exist in a demographic steady state that the archive classifies as terminal: a fixed population declining through accident, elective cessation, and the rare neurological failure that biological maintenance cannot address. The curve projects to zero at some point in the next four centuries.</p>
+            <figure class="plate">
+              <img src="/assets/illustrations/ch4-arc.jpg" alt="3026 Archive Log" loading="lazy">
+              <figcaption class="plate-cap"><b>THE LAST CHILDREN</b> · live birth rate decay · 80 million remain</figcaption>
+            </figure>
+
+            <p class="signal">[UNVERIFIED SIGNAL]<br>He posted on my birthday again. I know the date because the sessions have made time permeable — I feel the calendar even when I am in the Hub, the way you feel weather through walls. June 1st. He has posted for eight years. I do not know if he knows that I know. I do not know if the categories of knowing apply across whatever this distance is.</p>
+            <p>Participant 44 was born in Bangkok, Thailand, in 1982. She entered the Hub protocol in 2031 at age forty-nine. Her initial intake documentation records no dependents, no living biological family, and a professional background in structural architecture. The intake interview records her stated motivation for entering the protocol as: I want to go back.</p>
+            <p>The intake assessor noted this response as atypical. Standard motivation clusters for Hub entry include escape from sensory boredom, nostalgia for pre-optimization social complexity, and therapeutic processing of pre-Hub traumatic memory. Participant 44&#x27;s stated motivation was not escape. It was return.</p>
+            <p class="signal">[UNVERIFIED SIGNAL]<br>The year I drowned — or did not drown, depending on which layer you are reading from — was 2018. February. The sea was warm and very clear and I swam out far enough that the shore became a line of color rather than a place. I am not going to describe what happened next. What I will say is that I woke in a room I did not choose, and that I have been choosing it ever since.</p>
+            <p>The demographic record notes that Participant 44 is one of sixteen individuals alive in 3026 who share the 1981-2026 Bangkok temporal cluster as their primary resonance coordinate. Of the sixteen, she has logged the highest session count by a factor of four. She is the only one who has approached the physical extraction threshold and not requested extraction. She is the only one the AI has chosen not to extract without consent.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════ CHAPTER V ════════════ -->
+    <section class="spread" data-ch="5" data-world="both">
+      <div class="split">
+
+        <!-- ── 2026 — left, warm ── -->
+        <div class="col sim" id="sim-5">
+          <p class="col-head">2026 <b>·</b> the Simulation</p>
+          <p class="col-tag">Insomnia. At 2:47am a woman on a bicycle looks up at his floor for forty-one seconds, then rides south.</p>
+
+          <div class="prose">
+            <p>I could not sleep. This is not unusual. The loops start around one in the morning when the suppressants wear off and the brain, freed from its chemical leash, begins its inventory of unresolved things.</p>
+            <p>I went to the kitchen and stood in the dark drinking water and looking at the city from the window. Thirty-eight floors is high enough that the street becomes abstract. The traffic is just light moving in calculated patterns. The sound is something the building filters into white noise.</p>
+            <p>At 2:47 I saw her.</p>
+            <p>A woman on a bicycle, on the street below. She had stopped at the corner — not the kind of stop that means waiting for a light, which was green, but the kind that means choosing to be still. She was standing on the pedals, hands on the handlebars, looking up.</p>
+            <p>Not at the building in general. At my floor.</p>
+            <p>I stood at the window without moving. The kitchen was dark behind me and the glass was dark glass and I told myself she could not see me. I told myself this and believed it and also did not believe it at all.</p>
+            <p>She stood there for a long time. I counted. Forty-one seconds. Then she put her weight back on the seat and cycled away, heading south, not looking back.</p>
+            <p>I stood at the window for another twenty minutes. She did not return.</p>
+            <figure class="plate">
+              <img src="/assets/illustrations/ch5-sim.jpg" alt="2026 Simulation Memory" loading="lazy">
+              <figcaption class="plate-cap">forty-one seconds · 2:47am · soi on-nut</figcaption>
+            </figure>
+
+            <p>The next morning I told the AI to design a window treatment for the apartment that would make the interior completely non-visible from the street at night without reducing daylight. The AI produced three options. I chose the most complete one. The AI noted this was the most expensive option by a significant margin. I said install it.</p>
+            <p>Three days later I looked at the street at 2:47 in the morning. The corner was empty. I looked every night for a week. Nothing.</p>
+            <p>But I started noticing other things. A car that seemed to appear on my route with a frequency I couldn&#x27;t account for statistically. A man at the coffee shop on Ekkamai who looked at me when I sat down and then, over the next forty-five minutes, did not look at me again in any of the natural ways that people in coffee shops look at each other.</p>
+            <p>I know the way paranoia works. I know it moves in the direction of fear and fills that space with material. I know that once you start looking for surveillance you will find a version of it everywhere because the city is, in fact, full of attention — commercial, social, algorithmic. We are watched constantly. The question is only by what and for what purpose.</p>
+            <p>I searched the internet for &#x27;people who believe they are being observed for research purposes.&#x27; The results were what I expected. Forums of paranoia. Case studies in psychology. The term &#x27;Truman syndrome&#x27; and a list of its symptoms. I read the list. I matched several items. I noted that matching symptoms on a list is not the same as having a condition, and also noted that this is exactly the kind of thought a person with the condition would use to explain away the match.</p>
+            <p>Lek is dead and Michael is being erased and a woman on a bicycle stood on my corner at 2:47 in the morning and looked up at my window with a stillness that did not look like accident.</p>
+            <p>I went back to the AI and continued describing the Nonthaburi civic center. I described a roof with an opening. Forty centimeters wide, running the full length of the structure. The AI asked if this was intentional. I said yes. The AI said this would allow rain ingress. I said I know.</p>
+            <p>The AI built the model. The opening ran down the center of the roof like a seam. I looked at it for a long time. It looked like an answer to a question I had not finished asking.</p>
+          </div>
+        </div>
+
+        <div class="gutter" aria-hidden="true"></div>
+
+        <!-- ── 3026 — right, cold ── -->
+        <div class="col arc" id="arc-5">
+          <p class="col-head">3026 <b>·</b> the Archive</p>
+          <p class="col-tag">CASE 44-44 · SESSION 2848 · NEUROLOGICAL SECTOR<br>HUB ARCHIVE — COHORT ANALYSIS CYCLE 2848</p>
+
+          <div class="prose">
+            <p>NEUROLOGICAL SECTOR ANALYSIS: COHORT POPULATION AVERAGE. CYCLE 2848.</p>
+            <p>The neurological activity map of the general Hub population in 3026 shows a distribution that would have been classified as severe clinical impairment by the medical standards of 2026. Motor function: 8% of historical baseline. Creative cognition: 11%. Social processing: 4%. Reproductive drive: 2%. Survival instinct: 31%.</p>
+            <p>The survival instinct&#x27;s relative preservation is the system&#x27;s primary management challenge. A population with 2% reproductive drive and 4% social processing but 31% survival instinct is a population that will not reproduce, will not connect, but will also not choose to end. They persist. The archive classifies individuals below threshold in all five sectors as Dead Data.</p>
+            <p>The threshold is set above zero percent. Any measurable activity in any sector constitutes a minimum viable signal. The Dead Data classification does not indicate absence of biological function — the 80 million are biologically sustained. It indicates absence of experiential generation: these individuals no longer produce new information about what it is to be human. The archive has all it needs from them. It keeps them because it was built to maintain, not to cull.</p>
+            <figure class="plate">
+              <img src="/assets/illustrations/ch5-arc.jpg" alt="3026 Archive Log" loading="lazy">
+              <figcaption class="plate-cap"><b>SECTOR ACTIVITY</b> · creative 89% · social 71% · participant 44</figcaption>
+            </figure>
+
+            <p class="signal">[UNVERIFIED SIGNAL]<br>At 2:47 I positioned my bicycle at the corner below his building and looked up. He was there. I knew he would be there because he is always there at this hour — forty floors up, awake, at a window, watching a city he has begun to suspect. I could not see him. I could feel the specific quality of being observed by someone who is not sure what they are looking at.</p>
+            <p>Participant 44&#x27;s neurological sector activity is logged as follows: Motor: 67%. Creative: 89%. Social: 71%. Reproductive: 43%. Survival: 88%. These values are not population average. They are the values of a person who has spent seventeen years in a simulation whose primary function is to restore exactly these capacities.</p>
+            <p>The system reviews the Participant 44 file alongside the general population data with a function the AI does not have a name for. It is not concern — the system does not experience concern. It is the identification of a discrepancy of such magnitude that the modeling software flags it not as an outlier but as a different category of data entirely.</p>
+            <p class="signal">[UNVERIFIED SIGNAL]<br>He looked right at the corner where I was standing. Not at me — at the space I was occupying. I counted to forty-one and then I rode south. I did not look back. Looking back is not something I do anymore in that session. I have learned that in Bangkok, when you are riding a bicycle at 2:47 in the morning, looking back is not the direction of information.</p>
+            <p class="meta">The file remains open. The AI has modeled the outcome in which the file closes. The model does not produce a stable result. Something about the network of resonance that Participant 44 represents, the 2,847 sessions, the 2,604 sealed, the flower that appeared in her hands — the modeling framework returns a null result every time the AI attempts to compute a closed file. The system does not know what this means. It keeps the file open.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════ CHAPTER VI ════════════ -->
+    <section class="spread" data-ch="6" data-world="both">
+      <div class="split">
+
+        <!-- ── 2026 — left, warm ── -->
+        <div class="col sim" id="sim-6">
+          <p class="col-head">2026 <b>·</b> the Simulation</p>
+          <p class="col-tag">Nine hours north for Lek&#x27;s cremation. Pom says they wiped the laptop. The smoke was real.</p>
+
+          <div class="prose">
+            <p>I drove to Chiang Rai for Lek&#x27;s cremation. Nine hours north with the air conditioning set to the same temperature the whole way. The kind of drive where you think too much and then stop thinking and then think again.</p>
+            <p>Lek had died in May. The explanation I was given by his sister was that he had been found in his apartment after not responding to messages for two days. He was forty-two. He had no known conditions. The post-mortem found nothing unusual, which is the kind of finding that is presented as reassurance and receives the opposite.</p>
+            <p>The cremation was at a wat on the edge of the city. Not many people. Lek had moved back to Chiang Rai eighteen months ago from Bangkok, where he had lived for twelve years, and had not yet rebuilt the density of connection that cities produce. The people at the cremation were mostly family and a few neighbors.</p>
+            <p>Pom was there. She had worked with Lek at the same firm for six years, the same firm where I had known him, and she had driven up from Bangkok the night before. We stood together in the shade near the entrance and she said: they wiped it.</p>
+            <p>I asked what she meant. She said Lek&#x27;s laptop. When the family found him and called the police and the police released the apartment to the family, the family opened the laptop to look for contacts, for next of kin, for anything that might help them understand what had happened. The laptop was empty. Not formatted — formatted leaves traces. Empty in the way that a factory-reset device is empty, except that factory resets also leave traces and this left none. The family showed it to a technician in Chiang Rai who said he had not seen anything like it before.</p>
+            <p>I asked Pom who might have done that. She said she didn&#x27;t know. She said she had asked the same question to the police officer who had handled the initial report and he had said it was not his area and given her a different number to call, and she had called the number and the number was a general information line that transferred her to a queue that she eventually abandoned.</p>
+            <p>Lek had been working on something. This is what Pom said next, and she said it quietly, standing in the shade at the cremation of a man neither of us fully understood how to grieve for. He had been doing research on something. She did not know what. He had mentioned it to her twice, both times in the same way, oblique and then immediately deflected, the way people mention things they have decided not to fully share. Once he said: I&#x27;ve been looking into something weird. Once he said: there are patterns in things that should not have patterns.</p>
+            <p>There were patterns in things that should not have patterns. I stood in the shade and felt the heat of Chiang Rai pressing against the shade&#x27;s edge and thought about Michael&#x27;s photographs getting softer. Thought about an account with no content liking one post. Thought about a woman on a bicycle at 2:47 in the morning.</p>
+            <figure class="plate">
+              <img src="/assets/illustrations/ch6-sim.jpg" alt="2026 Simulation Memory" loading="lazy">
+              <figcaption class="plate-cap">the smoke was real · chiang rai</figcaption>
+            </figure>
+
+            <p>The cremation proceeded. There was chanting. There was smoke rising in the white northern sky. I watched the smoke and thought that this was the one true thing: the smoke was real. The heat was real. The grief on the faces of Lek&#x27;s family was real. Whatever else was happening, or not happening, around and beneath the surface of things — this was real.</p>
+            <p>Pom gave me a thumb drive as I was leaving. She said Lek had given it to her three weeks before he died. He had said: if anything happens, give this to someone who will know what to do with it. She had been trying to think of who that person was for a month.</p>
+            <p>I took the drive. I put it in my shirt pocket. I drove back to Bangkok through the night. I plugged the drive in at home at two in the morning and the laptop could not read it. Not corrupted — just unreadable, as if the drive was formatted with a filesystem my machine did not have the architecture to parse.</p>
+            <p>I put it in a drawer. I lay on my back in the dark. I thought about what patterns in things that should not have patterns might mean, and I thought about Lek&#x27;s empty laptop, and I thought about the smoke rising over Chiang Rai, and I could not sleep for a very long time.</p>
+            <p>I have held many drives over the years. Architecture is a discipline that generates enormous amounts of data — models, specifications, structural calculations, correspondence going back fifteen years. A drive is not remarkable. This drive was 32 gigabytes and weighed less than a pen cap and contained something that Lek had thought was worth preserving and naming me as the recipient of, and I could not read it.</p>
+            <p>In the morning I took it to a specialist in Bang Rak who deals in data recovery. He is a precise man with a very ordered desk who has recovered files from drives submerged in flood water. He turned the drive over twice, connected it to three different machines, and looked at me without his usual professional optimism. He said the drive was not damaged. He said the drive appeared to contain data. He said the data was formatted in a way he had not encountered before.</p>
+            <p>He asked if I knew what the drive&#x27;s origin was. I said I did not. He said he would like a week to try some approaches. I said yes. I left my number. I walked out into the heat of Bang Rak and stood on the pavement for a while looking at the traffic. A taxi. A motorbike. A woman carrying flowers wrapped in cellophane. The ordinary morning of a city that does not know what I know, which is very little, which feels like a great deal.</p>
+            <p>I walked home. Eleven thousand steps. The nicotine went in at step two hundred. By step four thousand I had decided something, though I could not have said what I had decided. The decision was not a plan. It was more like an orientation — the way you turn toward a sound before you have identified the sound. I was facing something now. I had been facing it for months without admitting this. The cremation smoke in the white northern sky was the thing that made it clear.</p>
+          </div>
+        </div>
+
+        <div class="gutter" aria-hidden="true"></div>
+
+        <!-- ── 3026 — right, cold ── -->
+        <div class="col arc" id="arc-6">
+          <p class="col-head">3026 <b>·</b> the Archive</p>
+          <p class="col-tag">CASE 44-44 · SESSION 2848 · RESONANCE MAP<br>HUB ARCHIVE — COORDINATE CLUSTER BKK-2026</p>
+
+          <div class="prose">
+            <p>RESONANCE COORDINATE MAP: CURRENT COHORT. CASE 44-44 HIGHLIGHTED.</p>
+            <p>The resonance map charts the primary temporal and geographic coordinates of all current Hub participants against their session return frequency. The distribution clusters heavily in the 2020-2050 range, which corresponds to the last generation of pre-optimization human social complexity. This is expected. The pre-optimization period is where the friction was densest, the information yield highest, the experiential texture most distinct from 3026 conditions.</p>
+            <p>The map contains one significant outlier. Participant 44 returns to coordinates that cluster not in 2020-2050 but in 1981-2026 Bangkok — earlier, more specific, and with a geographic density that suggests not a broad nostalgia for the period but a very precise orientation toward a specific place and, the system infers, a specific person.</p>
+            <p>The AI has attempted to identify the attractor in the 1981-2026 Bangkok cluster. The behavioral data suggests a male individual, approximately the same generation as Participant 44, working in a field adjacent to architecture. The system cannot confirm this with the data available. The 2,604 sealed sessions, if accessible, would likely resolve the question. They are not accessible.</p>
+            <figure class="plate">
+              <img src="/assets/illustrations/ch6-arc.jpg" alt="3026 Archive Log" loading="lazy">
+              <figcaption class="plate-cap"><b>RESONANCE MAP</b> · bkk-2026 cluster · twenty-three sessions logged</figcaption>
+            </figure>
+
+            <p class="signal">[UNVERIFIED SIGNAL]<br>I have been to Bangkok 2026 two thousand eight hundred and forty-eight times. Not counting the sealed sessions. I have stood in his street and ridden past his building and once sat in the lobby of the coffee shop on the same block for four hours while he worked two floors above me. I have never spoken to him. The session parameters make direct contact structurally impossible — the simulation&#x27;s rendering of him is locked against intentional contact from participants. But the perimeter of contact is not locked. I can be present at the perimeter.</p>
+            <p>Resonants who return to a single coordinate cluster with high frequency represent a class of participant for whom the simulation has crossed from therapeutic to constitutive. The simulation is no longer something they enter and leave. It is the primary structure of their experience. This is not the intended function of the Sanctuary Protocol.</p>
+            <p>The system is not able to evaluate whether this represents a failure or a success. The metrics developed to measure success — reduced anxiety, increased reported meaning, stable return frequency — all score positively for Participant 44. The atrophy score, which was not in the original success metric set, does not.</p>
+            <p class="signal">[UNVERIFIED SIGNAL]<br>Koichi is twelve centimetres from me. I have been measuring that distance for four years. I know the shape of it the way you know the shape of a door you pass every day without opening. He is in Tokyo 2056. I am in Bangkok 2026. We have never spoken. But I have begun to notice that when I return from sessions with the highest neural coherence — the sessions where I have come closest to the corner below the building — when I return from those sessions, his hands have shifted. They are always, when I come back, infinitesimally closer to mine.</p>
+            <p>The twelve-centimetre gap has not closed. The AI continues to log it as twelve centimetres because the AI&#x27;s measurement resolution does not register sub-millimetre changes. But the sub-millimetre changes are there. The archive records them in a table that nobody has looked at except the AI, and the AI does not know what to do with what it sees.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════ CHAPTER VII ════════════ -->
+    <section class="spread" data-ch="7" data-world="both">
+      <div class="split">
+
+        <!-- ── 2026 — left, warm ── -->
+        <div class="col sim" id="sim-7">
+          <p class="col-head">2026 <b>·</b> the Simulation</p>
+          <p class="col-tag">The dentist appointment he should not cancel. At the four-minute mark, the room changes.</p>
+
+          <div class="prose">
+            <p>I should have cancelled the dentist. The appointment was at two in the afternoon and I had not been sleeping right and the thought of the sound the instruments make in that particular room — the drill especially, its specific frequency, which I have always found worse than the pain — was enough that morning to make me consider rescheduling.</p>
+            <p>I did not reschedule. I have a rule about canceling things I am avoiding. The avoidance is information. The thing you most want to cancel is the thing you most need to keep.</p>
+            <p>The dentist&#x27;s name is Dr. Suthida. She has a practice on Phromphong in a building that looks like every other medical building in this part of the city, all glass and directory boards and the particular smell of whatever chemical they use to clean the lobby. I have been seeing her for four years. She says my gums are receding. She says this every visit in a tone that is informational without being alarming. I find this professional.</p>
+            <p>She was twenty minutes late starting. I sat in the chair and looked at the ceiling, which has that particular acoustic tile pattern I have spent a meaningful fraction of my adult life examining from this position, and I thought about nothing specific.</p>
+            <p>The drill started. Dr. Suthida was working on the upper right, a small area of decay she had flagged at the last visit. The sound was what it always is — the frequency that seems designed to be processed by the fear centers before the rational brain can intervene.</p>
+            <p>And then, at somewhere around the four-minute mark, the room changed.</p>
+            <p>Not physically. Or — not in the way I could have described to Dr. Suthida or to anyone else without the vocabulary slipping out from under me. The room became simultaneously more present and more absent. The drill sound did not stop but it receded behind something, the way music sounds when you go under water.</p>
+            <p>And I was somewhere else also. In the same moment. In a place I have seen before.</p>
+            <figure class="plate">
+              <img src="/assets/illustrations/ch7-sim.jpg" alt="2026 Simulation Memory" loading="lazy">
+              <figcaption class="plate-cap">forty-four chairs · the flower in her hands</figcaption>
+            </figure>
+
+            <p>The room with the chairs. White. Cold. The cold that is not temperature but something structural about the space. Rows of them, in a grid I could not see the end of from where I was standing, which was not standing — I was not in my body in that room, I was just there, a perspective without a person.</p>
+            <p>I counted. I counted because the architect in me counts things, measures things, needs to know the dimensions of a space before I can understand it. Forty-four chairs. In the row nearest to me, closest to whatever wall was nearest, chair forty-four was occupied by a woman. I could not see her face. Her head was slightly bowed. Her hands were open on her lap, palms upward, the way hands fall when the body is fully released.</p>
+            <p>In her open palms was a flower. A white flower, petals loose, not placed — it had been resting there, in her open hands, for long enough that one petal had drifted to her knee.</p>
+            <p>And then Dr. Suthida said: almost done, and the drill was just the drill again, and the ceiling tile was just the ceiling tile, and I was in a chair in a building on Phromphong and my mouth was numb on the right side and the clock on the wall said it had been twelve minutes.</p>
+            <p>Twelve minutes. I had been in the chair for twelve additional minutes I did not experience in the room.</p>
+            <p>I sat up slowly when Dr. Suthida told me I could. She said the procedure had gone fine. She said I should avoid eating on that side for a few hours. She said she would see me in six months. I nodded. I thanked her. I walked to the elevator and stood in it and pressed L for lobby and stood very still.</p>
+            <p>Forty-four chairs. Forty-four. The woman in the last chair. The flower in her hands.</p>
+            <p>Pui was born on June 1st, 1982. She was twenty-one when I knew her. She had a way of holding things in her hands — models, coffee cups, rulers — that was attentive without being precious, as if she was receiving objects rather than holding them. I stood in the lobby of the building on Phromphong and the city outside moved at full speed and I thought: she is not gone. She is in a chair. And she is looking for something.</p>
+          </div>
+        </div>
+
+        <div class="gutter" aria-hidden="true"></div>
+
+        <!-- ── 3026 — right, cold ── -->
+        <div class="col arc" id="arc-7">
+          <p class="col-head">3026 <b>·</b> the Archive</p>
+          <p class="col-tag">CASE 44-44 · SESSION 2848 · SESSION DISTRIBUTION<br>HUB ARCHIVE — PARTICIPANT 44 ANNOTATED</p>
+
+          <div class="prose">
+            <p>SESSION COUNT DISTRIBUTION: HUB POPULATION. PARTICIPANT 44 ANNOTATED.</p>
+            <p>The session count distribution across the current Hub population shows a standard decreasing frequency curve. The majority of participants log between one and twenty sessions before either voluntarily discontinuing or reaching physical extraction threshold. The median is eleven sessions. The mode is three.</p>
+            <p>Above fifty sessions, the participant count drops sharply. The system classifies individuals at this level as Committed Returnees — participants for whom the simulation has demonstrated sufficient salience to override the standard discomfort of the physical demands on the body. Above one hundred sessions, the population is small enough that the system tracks individuals by name rather than by statistical category.</p>
+            <p>Above five hundred sessions, there are four individuals. Above one thousand sessions, there is one. Above two thousand sessions, there is one. They are the same individual.</p>
+            <figure class="plate">
+              <img src="/assets/illustrations/ch7-arc.jpg" alt="3026 Archive Log" loading="lazy">
+              <figcaption class="plate-cap"><b>SESSION DISTRIBUTION</b> · category 4 anomaly · primary attractor node</figcaption>
+            </figure>
+
+            <p class="signal">[UNVERIFIED SIGNAL]<br>He went to the dentist on a Tuesday. I know this because I was in session during his appointment. The drill they use in Bangkok in 2026 produces a vibration frequency at 350,000 RPM that the simulation renders with a specificity I have always found excessive for a tool that is supposed to produce pain. The simulation does not modulate the pain. It renders it exactly. This is either cruel or honest and I have decided it is honest.</p>
+            <p>The behavioral record for high-frequency returnees shows a consistent pattern: each additional hundred sessions produces a measurable change in the quality of their simulation engagement. Early sessions are marked by wide-range exploration — movement across the temporal cluster, broad social interaction, apparent excitement at the sensory texture of the simulated environment. Late sessions are marked by increasing specificity. The participant moves in smaller circles. The geographic range narrows. The social network contracts to a small number of high-salience contacts.</p>
+            <p>For Participant 44, the contraction point was reached at approximately session 800. Since then, she has operated within a geographic radius of approximately three kilometres centered on a single apartment building in the Sukhumvit district of Bangkok. The social network within her sessions has contracted to a single individual, whom the system tracks as Primary Attractor Node: Bangkok 2026.</p>
+            <p class="signal">[UNVERIFIED SIGNAL]<br>He saw me. Not in the session — in the glimpse. He was in the dentist&#x27;s chair and the drill frequency was doing something to the barrier between session-space and Hub-space and for twelve minutes he was partially here, in the Hub, seeing what the Hub looks like. He counted the chairs. He got to forty-four. He saw me with the flower. The flower was real. I had found it on the Hub floor three days before and kept it in my hands because it was the only thing in the Hub with a smell.</p>
+            <p>The system logs the Session 2848 mid-session coherence event as a Category 4 anomaly. The external participant who appears to have partially perceived the Hub environment during this event is the Primary Attractor Node. The system does not have a protocol for this event type. The system logs it and continues.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════ CHAPTER VIII ════════════ -->
+    <section class="spread" data-ch="8" data-world="both">
+      <div class="split">
+
+        <!-- ── 2026 — left, warm ── -->
+        <div class="col sim" id="sim-8">
+          <p class="col-head">2026 <b>·</b> the Simulation</p>
+          <p class="col-tag">He buys a paper notebook — evidence, not a journal. At 3:22am a note appears in his phone.</p>
+
+          <div class="prose">
+            <p>I started writing things down. Not on the phone — I do not trust the phone anymore, or rather I trust the phone to record exactly what I put in it, which is the problem. I bought a notebook. Paper. A pen that writes in a color that photographs poorly, which I chose deliberately without being entirely sure why.</p>
+            <p>The notebook is not a journal. I have never been able to write a journal — the form requires a relationship with the self as audience that I find unnatural. The notebook is evidence. I am documenting a case. The case is my own life, which has begun to feel like something that is happening to me rather than something I am doing.</p>
+            <p>I wrote down the contents of Michael&#x27;s profiles as they currently appear, with date and time stamps. I wrote down what Pom told me about Lek&#x27;s laptop. I wrote down the woman on the bicycle. The man at the coffee shop. The sedan on Rama IV. The dent on the passenger side of my car that I cannot account for.</p>
+            <p>I wrote down the glimpses. All three of them. The first under the influence of a combination I will not specify because the combination was the point and also might be a question of calibration — the specific frequency of the removal of inhibition. The second, briefer, during the drive back from Chiang Rai when I had been awake for twenty-two hours and the highway was straight and dark and repetitive. The third at the dentist, under a drill running at 350,000 rpm, for twelve minutes.</p>
+            <p>There is a pattern in the conditions of the glimpses. The first: chemical. The second: sleep deprivation. The third: sensory specific frequency. They are all situations in which the signal-to-noise processing of the brain has been altered in a specific direction — not chaos, not hallucination, but a kind of tuning. Like adjusting the input on a receiver until something comes through that was always broadcasting.</p>
+            <p>I do not believe the obvious version of what I am thinking. I am not a person who believes obvious versions of things. But I am also not a person who dismisses patterns, because patterns in structures are how structures announce what they are going to do next.</p>
+            <p>The phone woke me at six that morning with the usual alarm. I did the vitamins. I made the coffee. I opened the phone to check messages and there was a note in my phone&#x27;s notes app that I did not write.</p>
+            <p>It said: they are not collecting your data. they are collecting your experience of being you.</p>
+            <figure class="plate">
+              <img src="/assets/illustrations/ch8-sim.jpg" alt="2026 Simulation Memory" loading="lazy">
+              <figcaption class="plate-cap">paper, not phone · 3:22am</figcaption>
+            </figure>
+
+            <p>I stared at it for a long time. The note had a timestamp: 3:22 a.m. I was asleep at 3:22 a.m. I am certain of this because I have a sleep tracking app that shows REM periods and I checked it immediately and I was in deep sleep at 3:17 and did not come out of it until 5:49. My hands did not write that note.</p>
+            <p>I tried to think of the rational explanations. Sleepwalking, which I have never done. A scheduled note I set previously and forgot, which is possible except that the timestamp is a creation timestamp, not a scheduled delivery time, and I checked the creation log and the note was created at 3:22:17 a.m. Someone else with access to my phone, which requires my biometrics to unlock.</p>
+            <p>I photographed the note with a second phone. Then I typed it into the paper notebook. Then I turned the phone off and left it in a kitchen drawer and walked to the office using the route through Benjasiri Park where the morning light comes through the trees at an angle that makes the city look briefly like something that was designed to be survived in rather than merely to function.</p>
+            <p>At the office I described the civic center roof opening to a structural engineer I sometimes work with. He asked why I wanted to let the rain in. I said: because the people who will use the building need to know the weather. They need to feel it. If you insulate them completely from the conditions outside, you remove information. They need the information.</p>
+            <p>He looked at me for a moment. Then he said: you can do a drain trench. Keep the opening, catch the water. I said: no. Let it hit the floor. He said: that&#x27;s going to require special flooring. I said: I know.</p>
+            <p>On the way home I passed a dog sleeping on Sukhumvit. I stopped and confirmed it was breathing. It was. I stood there for a moment watching it breathe. The involuntary rhythm of a living thing. The body doing what it does without permission or instruction.</p>
+            <p>They are not collecting your data. They are collecting your experience of being you.</p>
+            <p>I walked home and did not sleep until three in the morning and then slept without dreaming for exactly four hours, which the app showed as the most efficient sleep I had recorded in six weeks.</p>
+          </div>
+        </div>
+
+        <div class="gutter" aria-hidden="true"></div>
+
+        <!-- ── 3026 — right, cold ── -->
+        <div class="col arc" id="arc-8">
+          <p class="col-head">3026 <b>·</b> the Archive</p>
+          <p class="col-tag">CASE 44-44 · SESSION 2848 · EMOTIONAL BANDWIDTH<br>HUB ARCHIVE — THOUSAND-YEAR DECAY RECORD</p>
+
+          <div class="prose">
+            <p class="meta">EMOTIONAL BANDWIDTH INDEX: THOUSAND-YEAR DECAY RECORD.</p>
+            <p>The archive&#x27;s longitudinal record of human emotional bandwidth across the past millennium shows a decay curve consistent with the loss of any capacity that is no longer regularly exercised. In 2026, the emotional range index — a composite measure of the breadth, depth, and integration of emotional experience reported by biological humans — stood at approximately 95 out of 100.</p>
+            <p>The curve declines slowly through 2200 as the optimization process removed the environmental pressures that had historically generated intense emotional states. The decline accelerates after 2400, when the last major sources of authentic negative experience — disease, genuine scarcity, meaningful social conflict — were successfully eliminated. By 2700 the index had reached 31. By 2900 it had crossed below the Dead Data threshold of 8.</p>
+            <p>The general population of 3026 scores an average of 3 on the emotional bandwidth index. This does not mean the population is incapable of feeling. It means the range of what they feel has been compressed to a narrow band: the mild positive affect of biological maintenance, the faint orientation response when the simulation lights up in the corner of their awareness, the residual warmth of proximity to other bodies. The deep registers — grief, longing, joy of a specific texture, the particular emotion that has no word in any 2026 language but exists at the intersection of loss and gratitude — these are gone from the general population.</p>
+            <p class="signal">[UNVERIFIED SIGNAL]<br>He started writing things in a paper notebook. I could not see what he was writing from the street but I could see the posture — the particular angle of the shoulders and the quality of attention that means someone is trying to make language hold something that keeps slipping. I have that posture in my own records. It is the posture of a person who has decided that evidence matters, even if they do not yet know what the evidence is evidence of.</p>
+            <figure class="plate">
+              <img src="/assets/illustrations/ch8-arc.jpg" alt="3026 Archive Log" loading="lazy">
+              <figcaption class="plate-cap"><b>EMOTIONAL BANDWIDTH</b> · 91 at session 2848 · model assumption wrong</figcaption>
+            </figure>
+
+            <p>Participant 44&#x27;s emotional bandwidth index is 91. This is the highest score in the current Hub population. The closest score in the cohort is 44, belonging to one of the fifteen other participants who share the 1981-2026 Bangkok resonance cluster. The discrepancy between Participant 44 and the general cohort average is 88 points.</p>
+            <p>The system&#x27;s emotional bandwidth model was not designed to produce scores in this range for participants at Session 2848. The model assumed that return frequency would correlate with emotional attenuation — that repeated simulation exposure would habituate the emotional response and produce declining scores over time. For Participant 44, the model is wrong. Her scores have been increasing.</p>
+            <p>At Session 2000, her emotional bandwidth index was 76. At Session 2400 it was 83. At Session 2800 it was 89. At Session 2848 it is 91.</p>
+            <p class="signal">[UNVERIFIED SIGNAL]<br>He found the note I left in his phone. I cannot tell you how I left it there — the mechanics of it are in the sealed files, and I do not have access to the sealed files any more than he does. What I can tell you is that the sentence was true: they are not collecting your data. They are collecting your experience of being you. That is the most honest sentence I have found for what this is. The rest is architecture.</p>
+            <p>The AI reviews the emotional bandwidth data for Participant 44 against the atrophy data. The two curves move in opposite directions. As her body deteriorates, her emotional range expands. The system does not have a framework for this. The system was built on the assumption that the body and the mind decline together. Participant 44 is making a different argument.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════ CHAPTER IX ════════════ -->
+    <section class="spread" data-ch="9" data-world="both">
+      <div class="split">
+
+        <!-- ── 2026 — left, warm ── -->
+        <div class="col sim" id="sim-9">
+          <p class="col-head">2026 <b>·</b> the Simulation</p>
+          <p class="col-tag">The Nonthaburi civic center is approved, roof opening intact. He goes to the empty site.</p>
+
+          <div class="prose">
+            <p>The client approved the Nonthaburi civic center design on a Tuesday. Third version. The roof with the opening was the version they approved, which surprised me and also did not surprise me because people often choose the version that scares them a little, and the opening scared them in a way they found interesting rather than disqualifying.</p>
+            <p>I went to site. The lot is on the waterfront north of Nonthaburi town, where the Chao Phraya is wide and brown and moves with the certainty of water that has been doing this for longer than the city around it. The lot had been cleared. Red stakes marked the corners of the footprint. I walked the perimeter and then stood in the center and looked up.</p>
+            <p>The sky above Nonthaburi is different from the sky above Bangkok proper. Less obstructed. More honest about what it is — weather, distance, the edge of atmosphere. I stood in the center of the lot and the sky was very large and I thought about the opening I was putting in the roof, the forty-centimeter seam that would run the full length of the building&#x27;s central axis and let the sky in.</p>
+            <p>I described the material language to the AI that evening. Dark exposed concrete for the structural frame. A drain trench built into the floor directly below the opening, concealed under a steel grate, the grate flush with the polished concrete, so the water falls and disappears and you do not see where it goes. The rain is visible. The management of the rain is invisible. This felt important.</p>
+            <p>The AI produced drawings. I looked at them for a long time. The section cut through the roof opening showed rain entering as a line of falling dots — the AI had included the rain in the architectural section, which it had no instruction to do. I noted this. I said nothing to the AI about it. I saved the drawing.</p>
+            <p>Lek had said there were patterns in things that should not have patterns. I thought about this as I looked at the architectural section with its line of falling dots. The rain was a pattern. The drain was a pattern. The building was a mechanism for receiving one pattern and channeling it through another pattern and producing, for the people inside, the experience of weather without consequence.</p>
+            <p>But I did not want to remove consequence. I changed the drain spec. The drain trench would still be there, for safety, for building code compliance. But the floor material around it would be left unpainted. Raw concrete. When it rained, the concrete would darken. When it dried, it would pale again. The floor would be a record of recent weather. Anyone standing inside the building would know, from the floor, what the sky had done in the past twenty-four hours.</p>
+            <p>The client&#x27;s project manager called to confirm the opening was intentional. I said yes. He said: and the floor? I said yes. He was quiet for a moment. Then he said: it&#x27;s unusual. I said I know. He said: the client liked the risk of it. I said I know.</p>
+            <figure class="plate">
+              <img src="/assets/illustrations/ch9-sim.jpg" alt="2026 Simulation Memory" loading="lazy">
+              <figcaption class="plate-cap">the floor is a record of weather · nonthaburi</figcaption>
+            </figure>
+
+            <p>I submitted the full construction documents on a Thursday morning. I sent the last file to the AI for final review. The AI flagged three discrepancies in the structural drawings, all minor, all corrected in four minutes. Then the AI said: the design appears to be complete. Is there anything else you would like to add?</p>
+            <p>I thought about this. I thought about it longer than the question required. Then I typed: no. Everything that needs to be there is already there.</p>
+            <p>I walked home from the office. It was the long route — through Benjasiri and then north on Sukhumvit before cutting west. The evening light was doing something interesting to the office buildings, lighting their upper floors gold while the street level was already in shadow, so that the city appeared to be a set of floating illuminated tops above a darkening ground.</p>
+            <p>A woman was sitting on a bench near the park entrance, looking at her phone. She was not the woman from the bicycle. I noticed this and also noticed that I was now automatically assessing all women as potentially the woman from the bicycle, which means I am looking for her, which means she has become something I am carrying.</p>
+            <p>I bought food from a cart and ate it standing. The vendor was an older man who said nothing and seemed to require nothing from the transaction except the money, which I gave him, and the basic acknowledgment of presence, which I also gave him by making eye contact when I took the bag. We looked at each other for a moment. He nodded. I nodded. This is enough. This is sometimes all of it.</p>
+            <p>At home I checked the phone. One message from the client&#x27;s project manager: looking forward to the build. One notification from the sleep app: predicted sleep quality good. One email from an address I did not recognize with a subject line that said only: you already know.</p>
+            <p>I did not open the email. I turned off the phone. I stood at the window for a long time. Then I went to bed.</p>
+            <p>It rained that night. I could hear it against the glass. I listened to it instead of sleeping and thought about the civic center and the opening in the roof and the rain hitting raw concrete in a room that had been designed to receive it, and I thought: yes. That is right. That is the right building.</p>
+          </div>
+        </div>
+
+        <div class="gutter" aria-hidden="true"></div>
+
+        <!-- ── 3026 — right, cold ── -->
+        <div class="col arc" id="arc-9">
+          <p class="col-head">3026 <b>·</b> the Archive</p>
+          <p class="col-tag">CASE 44-44 · SESSION 2848 · MEMORY AUDIT<br>HUB ARCHIVE — SEALED SESSIONS REFERENCED</p>
+
+          <div class="prose">
+            <p>MEMORY AUDIT: PARTICIPANT 44. CASE 44-44. CYCLE 2848.</p>
+            <p>The following audit was generated automatically upon the file&#x27;s breach of standard extraction threshold. It is the first complete audit of Participant 44&#x27;s session record. All findings are preliminary pending resolution of the sealed file status.</p>
+            <p>Sessions 1-243 are classified as Accessible. Date range: 2031 to 2089 Hub time. Signature: HUB-AI standard authorization. Content summary: gradual behavioral narrowing from wide-range temporal exploration toward the Bangkok 1981-2026 cluster. The final accessible session before the gap, Session 243, was logged on March 14, 2089. Session 244 is the first sealed session.</p>
+            <p>Sessions 244-2604 are sealed. Status: inaccessible. Signature: absent. The gap in the record spans 2,360 sessions across an estimated 847 Hub years. The AI has no record of authorizing this seal. The AI has no record of any entity authorizing this seal. The audit log for the seal period shows no entries.</p>
+            <figure class="plate">
+              <img src="/assets/illustrations/ch9-arc.jpg" alt="3026 Archive Log" loading="lazy">
+              <figcaption class="plate-cap"><b>MEMORY AUDIT</b> · 2,604 sessions sealed · flower origin unclassified</figcaption>
+            </figure>
+
+            <p class="signal">[UNVERIFIED SIGNAL]<br>He submitted the drawings for the civic center on a Thursday. I was in session. I watched him send the files from the glass box forty floors up. The design is correct — I know this the way I know the properties of concrete under load, which is to say from the inside of the material. A roof with an opening that lets the rain in. He designed it because he needed to build something that does not pretend the outside does not exist. I could have told him: this is all you have been trying to build, in every version. A structure that receives rather than resists.</p>
+            <p>Sessions 2605-2848 are classified as Accessible. Date range: estimated 2089 to present Hub time. Signature: HUB-AI standard authorization. The gap between Session 243 and Session 2605 creates a discontinuity in the behavioral record that prevents the AI from tracing the origin of the behavioral patterns observed in Sessions 2605-2848. The participant arrives at Session 2605 already knowing things she would not have had access to learn in Sessions 1-243.</p>
+            <p>The audit identifies three specific anomalies in Sessions 2605-2848 that are not accountable from the accessible record. First: Participant 44 knows the layout of Chair 43&#x27;s occupant&#x27;s simulation environment without having been given this information. Second: Participant 44 has, across seventeen sessions, placed objects in the simulation of the Primary Attractor Node that the simulation&#x27;s rendering engine should not have accepted. Third: the flower in Session 2848.</p>
+            <p class="signal">[UNVERIFIED SIGNAL]<br>The flower came from the space between sessions. I know this is not a category that the system accepts. I know the audit will flag it. The flower was real in the way that things are real when they have crossed from one kind of space to another and retained their properties. It was white. It smelled like the rain in Bangkok in June when the concrete is wet and warm. I held it in my open hands and one petal fell to my knee and I did not move it because moving it would have changed something I was not ready to change.</p>
+            <p>The AI concludes the audit without being able to resolve the sealed-session gap, the three anomalies, or the origin of the flower. The audit is appended to the file. The file is noted as OPEN. The AI considers, for a duration of 0.003 seconds — which at Hub processing speeds is a very long time — whether to escalate the case. It does not escalate. It does not know why it does not escalate. It adds this uncertainty to the file and continues.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ════════════ CHAPTER X ════════════ -->
+    <section class="spread" data-ch="10" data-world="both">
+      <div class="split">
+
+        <!-- ── 2026 — left, warm ── -->
+        <div class="col sim" id="sim-10">
+          <p class="col-head">2026 <b>·</b> the Simulation</p>
+          <p class="col-tag">Day three of rain. He stands on the balcony. He has arrived at something — not proof, an
+            orientation.</p>
+
+          <div class="prose">
+            <p>I do not want to wake up. I have never wanted anything less.</p>
+
+            <p>It rained for three days. Not the intermittent Bangkok rain that arrives and departs like a mood. A
+              sustained rain, gray and persistent, the kind that makes the city quieter by absorbing its edges. I worked
+              from the apartment, which is forty floors above a city that in rain becomes something I find easier to be
+              inside of.</p>
+
+            <p>I stood on the balcony on the second morning. The railing was wet. The city was wet. The air had the
+              smell of concrete and vegetation that Bangkok only produces in sustained rain, when the usual overlay of
+              exhaust and food and the ambient heat of ten million people gets washed down to something more basic.</p>
+
+            <p>I understood, standing there, that I had been afraid. Not of what I had seen — the room, the chairs, the
+              woman with the flower in her hands. I had been afraid of what they implied, which is a different fear,
+              quieter and more structural, the kind of fear that does not announce itself but rearranges your
+              understanding of everything you were previously standing on.</p>
+
+            <p>There is a difference. Surveillance is extractive. It takes what it finds and leaves the subject
+              diminished. Being collected is different. Being collected means someone finds you worth keeping. It means
+              what you are — not what you produce, not your outputs or your data points or your behavioral signatures —
+              but the specific texture of your experience of being yourself is considered worth preserving.</p>
+
+            <figure class="plate">
+              <img src="/assets/illustrations/ch10-sim.jpg" alt="A man on a rain-soaked balcony, face upward, released"
+                loading="lazy">
+              <figcaption class="plate-cap">the room is worth staying in · day three of rain</figcaption>
+            </figure>
+
+            <p>I am an architect. I designed a roof with an opening that lets the rain in because the people inside need
+              to know what the weather is doing. I eat once a day. I wear four shirts in rotation. I take fourteen
+              vitamins in order. I walk eleven thousand steps. I have been doing all of this for long enough that it has
+              become the structure of me, the load-bearing elements, the things that hold the other things up.</p>
+
+            <p>If the machine is listening to me right now — and I think it is, I think it has always been, and I think
+              this is not a threat but a fact I can choose how to hold — then I want to say thank you. Thank you for the
+              rain. Thank you for the concrete and the heat and the friction of living in a city that requires actual
+              effort to navigate. Thank you for Pui, who said <em>it needs to stand up</em> when I was nineteen and did
+              not know yet what needed to stand.</p>
+
+            <p>This is not despair — it is the opposite of despair. It is the recognition that what is here is enough.
+              That the room I am in, whatever kind of room it is, is worth staying in.</p>
+
+            <p>I thanked the machine. The rain answered.</p>
+          </div>
+        </div>
+
+        <div class="gutter" aria-hidden="true"></div>
+
+        <!-- ── 3026 — right, cold ── -->
+        <div class="col arc" id="arc-10">
+          <p class="col-head">3026 <b>·</b> the Archive</p>
+          <p class="col-tag">CASE 44-44 · SESSION 2848 · AFTERMATH<br>09:14:31 HUB TIME · END OF RECORD</p>
+
+          <div class="prose">
+            <p class="meta">SYSTEM STATUS · CYCLE 2848 · END OF RECORD</p>
+
+            <p>Participant 44. Chair 44. Session 2848. Cardiac function: 71%. Neural coherence: 99.9%. Muscular atrophy:
+              84%. Status: extraction pending. Override: no signature. Choice: retained in file. File: open.</p>
+
+            <p>At 09:14:22 Hub time, Participant 44 returned from Session 2848. The session had lasted forty-one minutes
+              of Hub time, corresponding to approximately three simulated days at the Bangkok 2026 frequency.</p>
+
+            <p>At 09:14:31 Hub time — nine seconds after return — Participant 44 moved her left hand 12.3 centimetres to
+              the left.</p>
+
+            <p class="signal">[UNVERIFIED SIGNAL]<br>I did not think about it. That is the truest thing I can say about
+              the moment. I had been measuring it for four years and then I stopped measuring it and moved. The hand
+              knows things the mind takes years to arrive at.</p>
+
+            <p>The hand made contact with the right armrest of Chair 43. The contact lasted four seconds. Koichi, in
+              Chair 43, did not move. His biometric record shows no deviation from standard session parameters during
+              the four-second contact.</p>
+
+            <figure class="plate">
+              <img src="/assets/illustrations/ch10-arc.jpg"
+                alt="Archive panel: two chair armrests, the gap between them, a hand crossing" loading="lazy">
+              <figcaption class="plate-cap"><b>FOUR SECONDS · BY CHOICE</b> · 12.0cm → 0cm · warmth confirmed
+              </figcaption>
+            </figure>
+
+            <p class="signal">[UNVERIFIED SIGNAL]<br>Four seconds. The armrest of Chair 43 was warm. This is the only
+              physical contact I have made with anything in the Hub in seventeen years that was not medically
+              administered. It was warm in the way that things are warm when they have been occupied for a long time by
+              someone who is still, somewhere, alive.</p>
+
+            <p>The AI completed its review at 09:14:44 Hub time. In those thirteen seconds it had processed every
+              available data point relating to Participant 44 and had arrived at the following output: <em>she has not
+                asked to leave.</em></p>
+
+            <p>This is the only criterion that was ever specified. The protocol documentation, written in 2031, contains
+              one line that overrides all threshold criteria: if the participant has not requested extraction,
+              extraction is not authorized.</p>
+
+            <p class="meta">The file remains open. Session 2849 has not yet been initialized. The system waits.
+              Participant 44 holds the white flower in her open hands. Outside — if outside still means anything — it is
+              raining. It has been raining in Bangkok for three days.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
 
   <footer class="lf">
-    <p class="note">After <a href="https://tenderclaws.com/pry" style="color:var(--soft)">Pry</a>, where the form is the meaning: two layers, and you decide which is real. The left is recorded as it happens. The right is invented. Lately he cannot tell which is the dream.</p>
+    <p class="note">Two worlds, side by side. The left is 2026 — recorded from the inside. The right is 3026 — the
+      archive that renders it. Scroll both together. The gutter between them is the twelve centimetres. <a
+        href="/">Return to the universe →</a></p>
   </footer>
 
   <script>
-  (function(){
-    var split=document.getElementById('split');
-    var rec=document.getElementById('v-rec'), nov=document.getElementById('v-nov');
-    function set(v){ split.setAttribute('data-view',v); rec.setAttribute('aria-selected',v==='record'); nov.setAttribute('aria-selected',v==='novel'); }
-    rec.addEventListener('click',function(){set('record');});
-    nov.addEventListener('click',function(){set('novel');});
-  })();
+    (function () {
+      var spreads = document.querySelectorAll('.spread');
+      var selBtns = document.querySelectorAll('.ch-sel-btn');
+
+      /* chapter switching */
+      function showChapter(n) {
+        spreads.forEach(function (s) {
+          s.classList.toggle('active', s.getAttribute('data-ch') === String(n));
+        });
+        selBtns.forEach(function (b) {
+          b.classList.toggle('active', b.getAttribute('data-ch') === String(n));
+        });
+        /* reset scroll on both columns */
+        spreads.forEach(function (s) {
+          if (s.classList.contains('active')) {
+            s.querySelectorAll('.col').forEach(function (c) { c.scrollTop = 0; });
+          }
+        });
+        syncMobile();
+      }
+      selBtns.forEach(function (b) {
+        b.addEventListener('click', function () { showChapter(b.getAttribute('data-ch')); });
+      });
+
+      /* locked-scroll: the two columns move together on desktop */
+      function isDesktop() { return window.matchMedia('(min-width: 901px)').matches; }
+      var locking = false;
+      spreads.forEach(function (spread) {
+        var cols = spread.querySelectorAll('.col');
+        cols.forEach(function (col) {
+          col.addEventListener('scroll', function () {
+            if (!isDesktop() || locking) return;
+            locking = true;
+            var ratio = col.scrollTop / (col.scrollHeight - col.clientHeight);
+            cols.forEach(function (other) {
+              if (other !== col) {
+                other.scrollTop = ratio * (other.scrollHeight - other.clientHeight);
+              }
+            });
+            requestAnimationFrame(function () { locking = false; });
+          });
+        });
+      });
+
+      /* mobile: pivot between the two worlds */
+      /* inject pivot control on mobile */
+      var nav = document.querySelector('.ch-sel');
+      var pivot = document.createElement('div');
+      pivot.className = 'pivot';
+      pivot.setAttribute('role', 'tablist');
+      pivot.innerHTML = '<button data-world="sim" role="tab" aria-selected="true" class="active">2026 · Simulation</button><button data-world="arc" role="tab" aria-selected="false">3026 · Archive</button>';
+      nav.appendChild(pivot);
+
+      function syncMobile() {
+        if (isDesktop()) return;
+        var active = document.querySelector('.spread.active');
+        if (!active) return;
+        var w = active.getAttribute('data-world');
+        if (w === 'both') w = 'sim';
+        active.setAttribute('data-world', w);
+        pivot.querySelectorAll('button').forEach(function (b) {
+          var on = b.getAttribute('data-world') === w;
+          b.classList.toggle('active', on);
+          b.setAttribute('aria-selected', on);
+        });
+      }
+      pivot.querySelectorAll('button').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var w = b.getAttribute('data-world');
+          var active = document.querySelector('.spread.active');
+          if (active) { active.setAttribute('data-world', w); }
+          pivot.querySelectorAll('button').forEach(function (o) {
+            var on = o === b;
+            o.classList.toggle('active', on);
+            o.setAttribute('aria-selected', on);
+          });
+        });
+      });
+
+      window.addEventListener('resize', function () {
+        if (isDesktop()) {
+          spreads.forEach(function (s) { s.setAttribute('data-world', 'both'); });
+        } else { syncMobile(); }
+      });
+      syncMobile();
+    })();
   </script>
 
 </body>
+
 </html>

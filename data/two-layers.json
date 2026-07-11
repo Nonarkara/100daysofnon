@@ -6,7 +6,7 @@
       "id": 1,
       "archive": {
         "image": {
-          "src": "/images/img_3026_entry_1_1781079378826.png",
+          "src": "/assets/illustrations/ch1-arc.jpg",
           "alt": "3026 Archive Log"
         },
         "paragraphs": {
@@ -38,7 +38,7 @@
       },
       "simulation": {
         "image": {
-          "src": "/images/v5_2026_ch_1.png",
+          "src": "/assets/illustrations/ch1-sim.jpg",
           "alt": "2026 Simulation Memory · Chapter 1"
         },
         "paragraphs": {
@@ -80,7 +80,7 @@
       "id": 2,
       "archive": {
         "image": {
-          "src": "/images/img_3026_entry_2_1781079389415.png",
+          "src": "/assets/illustrations/ch2-arc.jpg",
           "alt": "3026 Archive Log"
         },
         "paragraphs": {
@@ -112,7 +112,7 @@
       },
       "simulation": {
         "image": {
-          "src": "/images/v5_2026_ch_2.png",
+          "src": "/assets/illustrations/ch2-sim.jpg",
           "alt": "2026 Simulation Memory · Chapter 2"
         },
         "paragraphs": {
@@ -153,7 +153,7 @@
       "id": 3,
       "archive": {
         "image": {
-          "src": "/images/img_3026_entry_3_1781079401431.png",
+          "src": "/assets/illustrations/ch3-arc.jpg",
           "alt": "3026 Archive Log"
         },
         "paragraphs": {
@@ -184,7 +184,7 @@
       },
       "simulation": {
         "image": {
-          "src": "/images/img_v3_2026_ch_3_1781153252425.png",
+          "src": "/assets/illustrations/ch3-sim.jpg",
           "alt": "2026 Simulation Memory"
         },
         "paragraphs": {
@@ -225,7 +225,7 @@
       "id": 4,
       "archive": {
         "image": {
-          "src": "/images/img_3026_entry_4_1781079412339.png",
+          "src": "/assets/illustrations/ch4-arc.jpg",
           "alt": "3026 Archive Log"
         },
         "paragraphs": {
@@ -256,7 +256,7 @@
       },
       "simulation": {
         "image": {
-          "src": "/images/img_v3_2026_ch_4_1781153264041.png",
+          "src": "/assets/illustrations/ch4-sim.jpg",
           "alt": "2026 Simulation Memory"
         },
         "paragraphs": {
@@ -297,7 +297,7 @@
       "id": 5,
       "archive": {
         "image": {
-          "src": "/images/img_3026_entry_5_1781079422800.png",
+          "src": "/assets/illustrations/ch5-arc.jpg",
           "alt": "3026 Archive Log"
         },
         "paragraphs": {
@@ -328,7 +328,7 @@
       },
       "simulation": {
         "image": {
-          "src": "/images/img_v3_2026_ch_5_1781153333416.png",
+          "src": "/assets/illustrations/ch5-sim.jpg",
           "alt": "2026 Simulation Memory"
         },
         "paragraphs": {
@@ -369,7 +369,7 @@
       "id": 6,
       "archive": {
         "image": {
-          "src": "/images/img_3026_entry_6_1781079448221.png",
+          "src": "/assets/illustrations/ch6-arc.jpg",
           "alt": "3026 Archive Log"
         },
         "paragraphs": {
@@ -400,7 +400,7 @@
       },
       "simulation": {
         "image": {
-          "src": "/images/img_v3_2026_ch_6_1781153350094.png",
+          "src": "/assets/illustrations/ch6-sim.jpg",
           "alt": "2026 Simulation Memory"
         },
         "paragraphs": {
@@ -441,7 +441,7 @@
       "id": 7,
       "archive": {
         "image": {
-          "src": "/images/img_3026_entry_7_1781079460087.png",
+          "src": "/assets/illustrations/ch7-arc.jpg",
           "alt": "3026 Archive Log"
         },
         "paragraphs": {
@@ -472,7 +472,7 @@
       },
       "simulation": {
         "image": {
-          "src": "/images/img_v3_2026_ch_7_1781153366240.png",
+          "src": "/assets/illustrations/ch7-sim.jpg",
           "alt": "2026 Simulation Memory"
         },
         "paragraphs": {
@@ -513,7 +513,7 @@
       "id": 8,
       "archive": {
         "image": {
-          "src": "/images/img_3026_entry_8_1781079471339.png",
+          "src": "/assets/illustrations/ch8-arc.jpg",
           "alt": "3026 Archive Log"
         },
         "paragraphs": {
@@ -545,7 +545,7 @@
       },
       "simulation": {
         "image": {
-          "src": "/images/img_v3_2026_ch_8_1781153381154.png",
+          "src": "/assets/illustrations/ch8-sim.jpg",
           "alt": "2026 Simulation Memory"
         },
         "paragraphs": {
@@ -586,7 +586,7 @@
       "id": 9,
       "archive": {
         "image": {
-          "src": "/images/img_3026_entry_9_1781079481830.png",
+          "src": "/assets/illustrations/ch9-arc.jpg",
           "alt": "3026 Archive Log"
         },
         "paragraphs": {
@@ -617,7 +617,7 @@
       },
       "simulation": {
         "image": {
-          "src": "/images/img_v3_2026_ch_9_1781153394331.png",
+          "src": "/assets/illustrations/ch9-sim.jpg",
           "alt": "2026 Simulation Memory"
         },
         "paragraphs": {
@@ -658,7 +658,7 @@
       "id": 10,
       "archive": {
         "image": {
-          "src": "/images/img_3026_entry_10_1781079492983.png",
+          "src": "/assets/illustrations/ch10-arc.jpg",
           "alt": "3026 Archive Log"
         },
         "paragraphs": {
@@ -694,7 +694,7 @@
       },
       "simulation": {
         "image": {
-          "src": "/images/img_v3_2026_ch_10_1781153496934.png",
+          "src": "/assets/illustrations/ch10-sim.jpg",
           "alt": "2026 Simulation Memory"
         },
         "paragraphs": {
