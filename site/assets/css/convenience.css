@@ -1,0 +1,300 @@
+/* ═══════════════════════════════════════════════════════════════════
+   convenience.css — reader for THE CONVENIENCE.
+   Built on surface.css's tokens (:root, universe-nav, .eyebrow, h1).
+   His chapters run warm (--sim-*); Pui's interludes run cold (--arc-*) —
+   the same split Two Layers uses for 2026/3026, extended here to a
+   single-narrative novel with a two-voice structure.
+   Mobile-first throughout. Zero rounding, zero gradient, zero shadow.
+   Sidenotes use the checkbox hack: no JS, works with the page disabled.
+   ═══════════════════════════════════════════════════════════════════ */
+
+.eyebrow.small { font-size: 0.625rem; }
+
+/* ── cover ── */
+.cover-body main { padding-top: clamp(2.4rem, 8vw, 4.5rem); }
+.cover .sub {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--soft);
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  max-width: 34rem;
+  line-height: 1.5;
+  margin: 0.9rem 0 0.6rem;
+}
+.cover .meta {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--faint);
+  text-transform: uppercase;
+}
+.cover .also { margin-top: 1.6rem; }
+.cover .also a {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--amber);
+  text-decoration: none;
+  border-bottom: 1px solid var(--amber);
+  padding-bottom: 2px;
+  display: inline-block;
+  min-height: 44px;
+  line-height: 44px;
+}
+
+.epigraphs {
+  margin-top: clamp(2.6rem, 7vw, 4rem);
+  padding: 1.6rem 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  gap: 1.6rem;
+}
+.epigraphs blockquote { max-width: 30rem; }
+.epigraphs p { font-style: italic; line-height: 1.65; margin-bottom: 0.4rem; }
+.epigraphs .th p { font-family: var(--thai, var(--serif)); font-style: normal; }
+.epigraphs .tr { font-family: var(--serif); }
+.epigraphs cite {
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 0.7rem;
+  color: var(--faint);
+  letter-spacing: 0.03em;
+}
+
+.how-to-read {
+  margin-top: clamp(2rem, 6vw, 3rem);
+  max-width: 34rem;
+}
+.how-to-read p:not(.eyebrow) {
+  color: var(--soft);
+  line-height: 1.65;
+  font-size: 0.95rem;
+}
+.mn-mark-inline {
+  color: var(--amber);
+  font-weight: 600;
+}
+
+/* ── table of contents ── */
+.toc { margin-top: clamp(2.4rem, 7vw, 3.6rem); }
+.toc h2 {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 1rem;
+}
+.toc-list { list-style: none; }
+.toc-part {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin: 1.6rem 0 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+}
+.toc-list li:first-child .toc-part { border-top: none; padding-top: 0; margin-top: 0; }
+.toc-his a, .toc-int a {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  min-height: 44px;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+  color: var(--ink);
+}
+.toc-int a { color: var(--soft); font-style: italic; }
+.toc-his a:hover, .toc-int a:hover { color: var(--amber); }
+.toc-num {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--faint);
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+.toc-title { text-align: right; flex: 1; }
+
+/* ── chapter reader ── */
+.ch-main {
+  max-width: 38rem;
+  margin: 0 auto;
+  padding: clamp(1.6rem, 6vw, 3rem) 1.2rem 5rem;
+}
+body.reader.his { background: var(--sim-paper); color: var(--sim-ink); }
+body.reader.interlude { background: var(--arc-paper); color: var(--arc-ink); }
+
+.reader.his .eyebrow { color: var(--sim-faint); }
+.reader.his .eyebrow b { color: var(--sim-accent); }
+.reader.interlude .eyebrow { color: var(--arc-faint); }
+.reader.interlude .eyebrow b { color: var(--arc-accent); }
+
+.part-banner {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 2.4rem 0 1.6rem;
+  color: var(--faint);
+}
+.part-banner .pnum { display: block; color: var(--amber); margin-bottom: 0.5rem; }
+.part-banner .pname { font-size: 0.85rem; letter-spacing: 0.14em; }
+
+.ch-head { margin: 1.6rem 0 2.2rem; }
+.reader.his .ch-head h1,
+.reader.interlude .ch-head h1 { font-size: clamp(1.7rem, 6vw, 2.4rem); }
+.reader.interlude .ch-head h1 { font-style: italic; }
+.ch-progress {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--faint);
+  margin-top: 0.4rem;
+}
+
+.ch-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.ch-nav a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--soft);
+  text-decoration: none;
+  padding: 0 0.3rem;
+}
+.reader.interlude .ch-nav a { color: var(--arc-soft); }
+.ch-nav a:hover { color: var(--amber); }
+.reader.interlude .ch-nav a:hover { color: var(--arc-accent); }
+.ch-nav-spacer { flex: 0 0 1px; }
+.ch-nav-toc { color: var(--faint); }
+.ch-main > .ch-nav:last-of-type { margin-top: 3rem; padding-top: 1.6rem; border-top: 1px solid var(--rule); }
+.reader.interlude .ch-main > .ch-nav:last-of-type { border-color: var(--arc-rule); }
+
+/* prose */
+.prose { font-family: var(--serif); font-size: 1.0625rem; line-height: 1.7; }
+.reader.interlude .prose { line-height: 1.68; }
+.prose p {
+  margin-bottom: 1.15rem;
+  text-indent: 1.3em;
+}
+.prose p:first-of-type,
+.prose hr.scene-break + p { text-indent: 0; }
+.prose hr.scene-break {
+  border: none;
+  text-align: center;
+  margin: 1.8rem 0;
+  color: var(--faint);
+}
+.prose hr.scene-break::after { content: "·"; font-size: 1.1rem; }
+
+/* ── sidenotes (checkbox hack: no JS) ── */
+.mn-toggle {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+.mn-toggle-label {
+  position: relative;
+  display: inline-block;
+  color: var(--amber);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0 0.15em;
+  margin: 0 0.05em;
+}
+.reader.interlude .mn-toggle-label { color: var(--arc-accent); }
+.mn-toggle-label::before {
+  /* 44x44 tap target without disturbing inline text metrics */
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 44px; height: 44px;
+  transform: translate(-50%, -50%);
+}
+.mn-toggle:focus-visible + .mn-toggle-label,
+.mn-toggle-label:hover { text-decoration: underline; }
+
+.sidenote {
+  display: none;
+  font-family: var(--serif);
+}
+.mn-toggle:checked ~ .sidenote { display: block; }
+.sidenote {
+  margin: 0.9rem 0 1.3rem;
+  padding: 0.9rem 1rem 0.95rem;
+  border-left: 2px solid var(--amber);
+  background: var(--sim-paper-deep);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  text-indent: 0;
+}
+.reader.interlude .sidenote {
+  border-left-color: var(--arc-accent);
+  background: var(--arc-paper-deep);
+}
+.sidenote .mn-mark { display: none; }
+.sidenote .mn-title {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sim-accent);
+  margin-bottom: 0.5rem;
+}
+.reader.interlude .sidenote .mn-title { color: var(--arc-accent); }
+.sidenote .mn-body { display: block; color: var(--sim-ink); margin-bottom: 0.55rem; }
+.reader.interlude .sidenote .mn-body { color: var(--arc-ink); }
+.sidenote .mn-source {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  color: var(--sim-faint);
+  line-height: 1.5;
+}
+.reader.interlude .sidenote .mn-source { color: var(--arc-faint); }
+.sidenote .mn-source a { color: var(--amber); text-decoration: none; border-bottom: 1px solid var(--amber); }
+.reader.interlude .sidenote .mn-source a { color: var(--arc-accent); border-color: var(--arc-accent); }
+
+/* ── tablet / desktop: sidenotes float into the margin, always open ── */
+@media (min-width: 720px) {
+  .ch-main { max-width: 42rem; padding-left: 2rem; padding-right: 2rem; }
+  .prose { font-size: 1.09rem; }
+}
+
+@media (min-width: 1100px) {
+  .ch-main { max-width: 68rem; margin: 0 auto; padding-left: 2rem; padding-right: 2rem; }
+  .part-banner, .ch-head, .ch-nav, .universe-nav { max-width: 40rem; }
+  .prose { max-width: 40rem; }
+  .toc, .epigraphs, .how-to-read { max-width: 40rem; }
+
+  .mn-toggle-label { pointer-events: none; }
+  .sidenote {
+    display: block !important;
+    float: right;
+    clear: right;
+    width: 18.5rem;
+    margin: 0.1rem -22.5rem 1rem 0;
+    padding: 0.85rem 1rem;
+    font-size: 0.8rem;
+  }
+}

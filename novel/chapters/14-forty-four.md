@@ -1,0 +1,134 @@
+## CH10 — Forty-Four
+
+On the first of November I bought lottery tickets for the first time in my life. It took most of an hour, because in this country you do not choose a number. You find it. The tickets come pre-printed from the Government Lottery Office on Nonthaburi Road, and the vendors carry them clipped into flat wooden cases with elastic bands across the rows, and the buyer's work is to hunt through other people's cases for the number that has already been decided. I wanted a pair whose last two digits were 44. The first vendor, at the mouth of Sam Yan market, had 04, had 47, had a great quantity of 89, because a temple boy in Nonthaburi had fallen off a ladder that week without being hurt, and the ladder had nine rungs, and the boy was eight. The second vendor had nothing and sent me to the woman in front of the pharmacy. The woman in front of the pharmacy went through her case twice with a licked thumb and came up with one pair ending in 44, creased at the corner, the crease already soft from sitting too long in someone else's pocket before it sat in mine. A hundred baht. The official price is eighty. The twenty is for the finding.
+
+Twice a month, on the first and the sixteenth, this country conducts a formal reading of the world. I know of no other ritual that the entire class structure attends. The dream books are sold at bus stations, thin newsprint volumes that convert snakes and drowned relatives and lost teeth into two-digit numbers. When a chicken truck overturns on Mittraphap Road, forty people photograph the license plate before the police arrive, and nobody photographs the chickens. Wax is dripped down the bark of sacred trees and read for meaning, line by line, the drips numbered before the candle is cold. The age of an abbot at his death, the ward number, the time on the certificate — all of it is input. Foreigners call this superstition, which misses the engineering of it entirely. The lottery is an instrument. Twice a month, sixty-some million people check whether the world is trying to tell them something, and twice a month the world pays a small percentage of them for asking, which is precisely the reinforcement schedule that keeps a species checking forever. I had spent seventy-two days asking whether the world was trying to tell me something. The nation had been running my experiment since 1934, at scale, with a budget and a broadcast. I put the pair in my shirt pocket, where it kept its crease.
+
+It was a Sunday, my night off from the floor. The weeks since September had put themselves in order without consulting me. Eight weeks at Cognita: my agreement score had flattened out at 84, 85, 86, and Sombat had stopped opening my grading pane when he passed behind my chair. The red counter above the floor read 14,602 on Friday night. It had never read zero for anyone, and I had stopped expecting it to, which the counter probably registered as loyalty. Seat fourteen still woke at 2:47 on the nights I was there to see it — CAL-LEGACY, client code empty, the grey away-dot steady — and my phone stayed dark. Fifty-nine nights now with nothing from her account. I still woke at 2:44 perhaps half of them, lay in the photograph's exact position, and was informed of nothing.
+
+The leash held. Forty-nine mornings without a miss since the fourteenth of September. That Sunday was template two — กินข้าวยัง — and the eating cat came back at 7:52, which is the median, which I had stopped pretending not to know. The closet had been silent for six weeks; the kit stayed unplugged under its sheet of tinfoil; it took me the first four weeks to stop listening for the fan. The rider log's anomalous column had recorded nothing but absences since the fourth of September. Fifty-eight of them, one line each. I logged them anyway. A log you keep only when something happens is called a diary, and I was not keeping a diary.
+
+I had telephoned Direk on the Friday. He answered on the sixth ring, which I noted, because in August it had been nine. Either he had moved nearer the phone, or the phone had been moved nearer him. Before I finished my second sentence he said, "Come Sunday. Before four," and hung up. I understood the instruction. On Sundays at four, twice a month, the nation counts.
+
+Banthat Thong on a draw day has a particular idleness. The shuttered photo lab three doors from Direk's building had a man sitting in front of it who did not work there, holding a transistor radio that did. I bought a kilo of mandarins at Sam Yan for ฿120, the same price as August, which pleased me in a way I did not examine, and climbed the twenty-two steps and then the nineteen.
+
+The room had changed by one setting. The oxygen concentrator that had sighed every four seconds in August now sighed every three. Nobody adjusts that machine for comfort. Direk sat on the daybed with a blanket over his knees in thirty-two-degree heat, the clear tube looped over his ears and lying along both cheeks, and on the low table in front of him the Go board held its hundred and forty stones exactly as they had been held for eleven years, the face-down photograph beside it. The radio was already on, low. It was the color of weak tea and older than my degree, and at three in the afternoon the lottery broadcast is mostly drum rolls and schoolchildren.
+
+"Homework," he said. No greeting. His voice had moved back in his throat since August, quieter and further from the front of his mouth, rationed now along with the air.
+
+I gave my report standing, because the visitor's chair had a stack of journals on it and I understood I was not to move them. I told him about the farm first — the hire, the ฿580, the golden set spoken of on the floor as something close to doctrine, seat fourteen waking on its schedule with nobody assigning it. He listened with his eyes closed. Twice I decided he had fallen asleep, and both times he corrected a date without opening his eyes. When I told him what they paid me he said, "The twentieth century paid better," and moved one finger to tell me to go on.
+
+Then I laid out the candidates. The laundry receipt: authored — a printer exists, therefore a hand exists, found or not found. The receipt inside my own signed seals: authored, by the same argument, in a worse font. The workstation: authored — a schedule is an author with a salary. The wreath in August: authored — a florist, an error, one digit wide.
+
+"Everything I have has an author I can't name," I said. "That isn't the same as no author."
+
+"No," Direk said. "It is the opposite."
+
+There was one candidate I did not submit. It had a date, the thirteenth of September; a location, a room with a water stain on the ceiling; a duration, six minutes, timed on my own watch past a woman's shoulder; and no arithmetic in it anywhere. I kept it. On the stairs afterward I would give myself three reasons for keeping it, and I would not believe the third.
+
+While the radio played its drums I put the mandarins beside the board, and this time I asked about the photograph. I had wondered since August — eleven weeks that had passed at a speed eleven weeks are not supposed to pass at. Direk reached over and turned it face up without ceremony.
+
+Two men in their thirties stood in front of a tournament banner. Osaka, 1988, in white letters, in three languages. Direk's hair was black and his glasses were the same. The other man was taller and was laughing at something outside the frame, which is the only kind of laugh worth photographing.
+
+"His name was Anek," Direk said. "Logic. Two doors down the corridor for thirty years. Every Wednesday night we played, and he was better than me, and I have never said that aloud to anyone, so now you are carrying it."
+
+"The board is his game."
+
+"The board is our game. He placed the last stone on a Wednesday in March of 2015. A black stone. There." He pointed without touching. "On the Friday he died standing in the queue at the Kasikorn branch on Phayathai Road. Heart. They told me he was holding his queue slip when he went down. I have managed, for eleven years, never to ask what number was printed on it." He looked at me while he said that last part, to make sure I understood it was a discipline and not an oversight.
+
+"It's been your move for eleven years."
+
+"I found the move in 2015," he said. "It is a good move. I check it sometimes. It still works." He rearranged the blanket over his knees. "But while it is my turn, the game is unfinished. While the game is unfinished, he is a man waiting for his opponent to play. I am not playing against the position. I am keeping it."
+
+"And face down?"
+
+"A man should not be watched while he takes eleven years over one move," Direk said. "Anek was impatient. It was his only weakness as a player. I am protecting him from himself."
+
+At four o'clock the broadcast changed registers. The drums stopped and the reading voice came on, the one the Government Lottery Office has used since before I was born, a voice with no register for surprise in it, and the prizes ran in their fixed order while the man outside the photo lab turned his radio up so that the street and the room were four seconds out of phase with each other. The two-digit number came at 4:21. Forty-four. Direk did not move. That draw, he said without being asked, belongs to a different urn and a different column. The consolation prizes ran on. At 4:39 the voice read the first prize twice, the way it always reads it twice: eight, four, seven, two, four, four. The announcer observed that the tail matched the two-digit draw, and laughed the small laugh announcers keep for coincidence, which exists to fill four seconds of air.
+
+Direk already had the notebook open on his knees. Volume nine, two-thirds full, the horse on the cover faded to the color of the daybed. He drew the line himself with the steel ruler, and then he wrote, and his hand shook. It had not shaken in August. The pen approached each letter, overshot it slightly, and came back — a compass needle settling. He wrote the date in the first column and the event in the second, and the arithmetic under the event: eighth first-prize tail of 44 since 2015, expectation still under three. It took him four minutes. He steadied his right wrist with his left hand for the numerals. The third column — ผู้แต่ง — he left empty, and he gave the eighth its own line, which he had not always done, and I did not ask what had changed.
+
+"I bought the tail," I said, when he had finished, and laid the creased pair on the blanket.
+
+He looked at the tickets for a while. "Four thousand baht," he said. "You understand it doesn't count."
+
+"I understand."
+
+"The ledger records the draw. The draw has no author we can locate. Your tickets record a man leaning on the table to see whether the table moves." He handed them back with two fingers. "The table moved. It always moves when you lean on it. That is what makes leaning worthless as a test and popular as a hobby."
+
+He capped the pen. "How old are you now?"
+
+"Forty-four."
+
+He did not write that down. I watched him not write it down, and it cost him something, or I have decided it did.
+
+Then I told him about the two men in the elevator. September, the older hotel off Ratchadaphisek: the packaging creases still on one shirtfront, the stillness that furniture has, the exchange about the month conducted without either head turning, the walk out at a speed matching no errand. I had carried the description around for seven weeks without a noun to file it under.
+
+Direk was quiet long enough for the machine to sigh nine times.
+
+"Two Decembers ago a former student came to see me," he said. "He works in Singapore now, in the industry that pays your salary too. He drank most of a bottle of something forty years too good for him, and he told me about people he called — he used the English — downshifters." The word sat in the room with its packaging creases still on it. "The ones who come back down. Who elect one life with edges on it. He said the memory is softened first, the way a doctor softens a bone, so that the new weight can be set on it without cracking." Direk turned his hand over on the blanket. "I did not put him in the ledger. Testimony is authored twice — once by the world and once by the man drinking."
+
+"Did you believe him?"
+
+"I believe he described his customers accurately," Direk said. "Whether the customers exist is a separate examination, and your two men in the elevator do not settle it. Furniture can be imported." He let that stand for a moment. "But you asked me in August why someone would want you to look. If my student was not lying, then somewhere there is an industry whose entire inventory is people who have decided that scarcity is worth more than its absence. Consider what such an industry would pay for proof."
+
+"Proof of what?"
+
+"That the decision was correct," he said. "Nobody upstairs needs proof that it wasn't."
+
+The concentrator sighed. I looked at the tube where it crossed his cheek. "He offered me something before he left," Direk said, following my eyes without moving his own. "My student. An arrangement. He was embarrassed the whole time he was offering it, which is how I knew it was real. Air, effectively. Air with no end on it."
+
+"You said no."
+
+"I have a machine that tells me the price of the next breath three seconds before I pay it," he said. "It is the only instrument in this room I have never once doubted. A man in my line of work does not trade that for an open tab."
+
+The radio had moved on to traffic. Direk looked at the board for a while, at the black stone Anek had placed on a Wednesday in 2015.
+
+"In March of 2016 the machine made the move no human would make," he said. "We settled that. It has been settled for ten years, and every year since has settled it harder. The only symmetrical proof left is a human being making the move no system would make. Not a big move. Systems predict big — big is where the training data is thickest. Something small. Free. And paid for."
+
+"Free and paid for."
+
+"If you cannot yet hear how both are true at once, you are not ready to make it," he said. "Most people purchase one or the other their entire lives and die convinced they got the pair."
+
+Then he told me to take the notebook. Not lend — take. The other eight volumes stayed under the window; archive, he said, could wait for whoever cleared the room. This one was open. He held it out with both hands, which I understood was not weakness but form, and I received it with both hands for the same reason.
+
+"You'll know which page," he said.
+
+Then he took it back for a moment, opened it to the page after the new entry — blank, ruled into its three columns, waiting — and folded the corner down with his thumbnail, slowly, getting the crease straight on the first try because he would not have tolerated a second.
+
+"Yours," he said. "One event. No author. In your handwriting."
+
+I took it again. It weighed less than the mandarins. I flipped it once from the back, the way you flip any notebook you have just been given, and saw pencil on the last page — several lines of it, close together, what might have been an address in it — and Direk said, "Not yet."
+
+"What is it?"
+
+"That page has a condition on it," he said. "It will be met. Conditions like that are always met eventually. That is the objection to them." He nodded at the notebook until I closed it.
+
+I stood to go. He ate two segments of a mandarin while I found my shoes, which doubled his total for the year as far as my records went. At the door I gave him a wai, and he received it with a hand raised an inch off the blanket, which from him was a ceremony.
+
+"There is a proverb for beginners," he said. "Lose your first fifty games as quickly as possible. It is about Go." He waited out one sigh of the machine. "You have been losing one game for two years, very slowly. That is not the discipline the proverb had in mind. Go and lose it faster."
+
+I said I would come back in December, with mandarins.
+
+"The December ones are better," he said, and reached over, and turned the photograph face down again before I had reached the stairs. I heard the small click of its cardboard leg against the table, twenty-two steps and then nineteen above the street.
+
+Outside, the light was going the color that Banthat Thong goes at the end of a draw day, half the shophouses blue with televisions checking the smaller prizes. At the soi mouth opposite — the same soi mouth where I had logged sighting number seven on the thirty-first of August — a green jacket sat on a parked motorcycle. Engine off. Visor down. Not eating. Not on his phone. Plate 8กบ 2210, which was new, and which I memorized out of eight weeks of habit before I understood what I was going to do instead of memorizing things.
+
+Fifty-eight logged absences, and then attendance. I did not take the long way to the station. I waited for the gap in the traffic, crossed, and walked up and stood in front of the motorcycle at the distance you stand from a person, not from a machine.
+
+The visor gave me back myself, convex: a small dark figure holding a school notebook, the whole street curved into the space behind its head. I gave it a minute by my watch. Then I gave it another. Nothing about the jacket moved, and nothing about it was still the way a waiting man is still; it was still the way the soi was still, the way the parked cars were. Somewhere behind me the photo-lab man's radio was rereading the first prize for people who had missed it, eight four seven two four four, and I stood in front of the visor while the number went by and thought that of everyone on this street, the two of us were the only ones who had not needed to hear it twice.
+
+Then the right glove went into the delivery box behind the seat — an unhurried, ordinary motion, a man retrieving a customer's order — and came out with a slip of thermal paper, and extended it.
+
+I took it.
+
+บทเรียน 1 × 0.00
+รวม 0.00
+
+No header. No branch number, no POS, no serial, no time. A lesson, one unit, at no charge. Total: nothing.
+
+The paper was warm. Thermal paper is warm when it has just been printed, and there was no printer, and I had stopped raising that class of objection back in September. I stood at the mouth of the soi and held the slip until it was the temperature of the evening, which took about ninety seconds, and the visor held my reflection the whole time and gave back nothing else.
+
+"ขอบคุณครับ," I said to it.
+
+Then I walked toward the station with two papers in my shirt pocket, one worth four thousand baht and one free, and no confusion at all about which was which.

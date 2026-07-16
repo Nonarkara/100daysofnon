@@ -1,0 +1,141 @@
+## CH4 — The Man in the Green Jacket
+
+On Wednesday I took the garbage down at six in the morning, because I had been awake since her hour came and went with nothing in it, and because a man carrying a garbage bag has a reason to be standing anywhere. The wreath was already gone from 1708. Two small dents remained in the corridor carpet where the easel's feet had stood, a hand's width apart, and by Thursday the cleaner's vacuum would take those too, and then the only evidence that anyone had mourned outside the flight attendant's door would be a delivery slip in a juristic office file with a numeral that could be read two ways.
+
+The lobby smelled of the mop water they use before the residents are awake. I put the bag in the room behind the mailboxes and went out to the soi for no reason I prepared in advance, and that was when I saw him the first time — the first time I let myself count, which is a different thing.
+
+He was across the soi from the building's mouth, on a Honda Wave the color of every Honda Wave, in the green jacket, with the green cube box on the rack behind him. Side-stand down. Engine off. Visor down, at six in the morning, facing my building. I noted the time, 6:04, because noting times is what I have instead of instincts. And I noted the other thing, the thing that made the picture wrong in a way I couldn't name until I stood in the 7-Eleven's light later and named it: he was not on his phone.
+
+A rider at rest lives inside his phone. The phone is the job, the dispatcher, the map, the wife, the football, the debt. A rider without his phone out is a fisherman whose line is not in the water. You can wait, or you can fish, but a man doing neither is doing something else, and there is no third thing a rider does at the mouth of a soi at six in the morning with his engine cold and his visor sealed.
+
+I walked past him at a distance of four meters. The visor turned nothing toward me. The box on the rack carried no restaurant sticker, no order slip taped to the lid. I bought a Birdy from the 7-Eleven at the corner, ฿19, kept the receipt, and when I came out he was gone, and the place where he had been was just Bangkok again, which is the trouble with Bangkok. It reabsorbs. The city closes over evidence, and you stand there holding your receipt.
+
+---
+
+At the desk I opened the notebook to a new page and did what I should have done five days earlier: I stopped keeping a paranoia column and started keeping a log.
+
+Date. Time. Place. Plate. Phone — yes or no. Engine — on or off. Visor.
+
+Then I back-filled from memory, which is bad practice, and flagged the entries as back-filled, which is the best you can do about bad practice. Saturday the twenty-second, around eight in the evening, Sukhumvit 22, mouth of the sub-soi: three riders, visors up, eating from bags balanced on their mirrors, phones propped against their fuel caps. I wrote them in and marked them, after some thought, as the control group. That is what they were: ordinary rider behavior, logged so the other kind would have something to be measured against.
+
+Tuesday the twenty-fifth, 3:56 in the afternoon, the mouth of the clinic's soi: one rider, engine off, visor down. Phone — not observed. I wrote "not observed" and hated it. I had walked past a data point with my eyes open and collected nothing, because on Tuesday I was still a man on his way to a dental appointment, and the discipline of a man on his way to a dental appointment is aimed inward, at his own jaw.
+
+Wednesday the twenty-sixth, 6:04, my own soi: engine off, visor down, phone no. Plate: I had it, 2ขง 1957, because plates are numbers and numbers stay with me whether I invite them or not.
+
+Three entries, one of them a control. It was not a pattern. I want to be exact about that, because exactness is the only fence between me and the ledger in my other drawer: three sightings of green motorcycle jackets in five days, in a city that may contain two hundred thousand green motorcycle jackets, is not a pattern. It is weather. The question I wrote at the bottom of the page was the only honest question available: how do you distinguish one raindrop from rain?
+
+---
+
+I used to teach this, is the embarrassing part. In another decade, in another version of the man, I made third-year students stand on the Asok footbridge with clickers and count pedestrian flows for two hours, morning and evening, until they understood that a city is not a picture but a set of rates. If I sent those students out today and told them to count delivery riders, they would come back with nothing usable, and it would not be their fault. You cannot count the riders. They are not a population, they are a condition. You do not count rain. You read its rate.
+
+They came with the apps, and they came fast — within four or five years the city had a new layer, between the traffic and the pedestrians, occupying the mouths of sois the way water occupies the low ground. Every soi has its rank now. They wait at the 7-Eleven, at the shrine railing, on the footbridge stairs, and the waiting is legitimate, is the job itself, so no one asks a waiting rider what he is waiting for. The uniform does the rest. Green jacket, green box, helmet: the company bought their faces and issued them a color. A motorcycle taxi vest has a soi number and a queue and regulars who know the driver's knees are bad; a rider has a rating. He is, by design, whichever man is nearest. We built an entire class of person around the principle of interchangeability and then agreed, all of us, without anyone remembering signing anything, not to see them — to treat a man on a motorcycle as a unit of pending food.
+
+Which is why it took me five days. Not because the man in the green jacket was hidden. Because he was ambient. A uniform the whole city has already filed under weather is the only camouflage that has ever worked on me completely, and if I were a system that needed to stand a man on a corner in Bangkok and have twelve million people vouch, without being asked, for his right to be there, I would dress him in exactly this green, and I would not need to invent anything. The city had already invented it for the food.
+
+I closed the notebook on the log and the log's first rule, which I had written at the top of the page in block letters: EVERY GREEN GETS LOGGED. NO EXCEPTIONS FOR BEING NORMAL.
+
+---
+
+At 7:47 Wednesday the alarm went off, Radar, and the rotation had come round to template two, and I sent it: กินข้าวยัง. The cat came back at 7:54, the eating one, which was either an answer or a mirror. On Thursday, template three, อย่าลืมร่ม, and the cat with the umbrella arrived at 7:50, and outside my window the sky was staging its usual late-August argument with itself, so for once the template did honest work.
+
+Her account sent nothing on Wednesday night and nothing on Thursday night. I checked at 2:47 both nights, awake at the desk, phone flat, and both nights the chat showed what it had shown since Tuesday: my three words, ใครอยู่ตรงนั้น, and under them อ่านแล้ว, and under that a silence with its modesty still switched on. Read, and no more. Whatever had opened its eyes when I asked was apparently content to have established that it had eyes.
+
+The cleaner came Thursday at ten. I stayed home while she worked, which I have not done in years, and sat at the desk pretending the desk needed me. She has cleaned this unit every Thursday for six years. She dusted the bookshelf and lifted the offline camera and set it down in the same orientation, because she is precise, and I found I was watching her hands, and I made myself stop.
+
+At 3:26 that afternoon I stood at the drinks cooler of the 7-Eleven at the mouth of the soi with the door open and the cold rolling out against my shins, and I picked up a bottle of น้ำลำไย, brown-gold, cold enough already to sweat in my hand. I don't know why I picked it up. It was hot, I had slept in units again, the bottle was cold. I held it long enough for the label to warm under my thumb. Then I did the arithmetic a forty-four-year-old does about sugar at three in the afternoon, and put it back, aligned with its row, and bought two Birdys instead, ฿38, from the clerk with the star tattooed on the back of her neck, home ink, five points, slightly listing. I kept the receipt. Receipt number 1147, 15:27. I am telling you these numbers now because of what the numbers did later.
+
+At 3:58 I walked past the mouth of the clinic's soi, which was not on my way to anything. I had decided to have no way; I decided each turn at the turn, by whichever foot was leading. There was a rider at the soi mouth. Engine off. Visor down. Phone no. Plate 1ขค 8804 — a different plate. There is always a different plate. I logged him from the far pavement and walked on and did not look back, because looking back is data you give away for free.
+
+---
+
+The receipt was under my door on Friday morning.
+
+I found it at 6:10, going out. It had been folded twice into a strip and slid beneath the door's sweep, and the first thing I did — before reading it, and I take a certain cold professional pride in this ordering — was check the jamb. The strip of receipt paper I keep folded in the door jamb, hinge side, at knee height, the habit I brought home from a hotel in Shanghai, was exactly where I had set it. The door had not been opened. Whatever had arrived had come flat, along the floor, under the sweep, from the corridor of a building whose lift requires a resident key card after ten at night.
+
+I unfolded it on the kitchen counter under the hood light.
+
+Thermal paper. The header of the 7-Eleven at the mouth of my soi — branch number 08214, which I have known by heart for years, because it heads a nine-year drift of receipts in my drawer. Tax ID. POS 2. Date: Thursday the twenty-seventh. Time: 15:26.
+
+One item.
+
+น้ำลำไย 1 × 25.00
+รวม 25.00
+เงินสด 25.00
+
+Receipt number 1146.
+
+I stood there for some time. The refrigerator changed registers behind me. Then I went to the drawer and took out Thursday's real receipt, mine, the two Birdys, and set the two slips side by side on the counter, and they sat there being siblings. Number 1146 and number 1147. Same branch, same terminal, one minute apart. The till's own memory says that at 15:26 somebody stood where I was standing and paid twenty-five baht in cash for the drink I was holding, and put it back — except that nobody did, because I was the man at that cooler at 15:26, and the aisle was empty, and the drink went back on the shelf with its label warmed by my thumb, unsold, aligned with its row.
+
+Somewhere in the world there is a printed record of a purchase that consists entirely of my hesitation. Itemized. Paid in full. Slid under my door.
+
+I made coffee, because after the photograph I had learned that the correct response to the impossible is a procedure, and while the water came up I ran the tree, honestly, branch by branch, because that is the one obligation my own character has never once let me skip.
+
+Branch one: ad-tech. The phone in my pocket, the beacons in the store, the machinery that knows a man paused in the beverage aisle. I have written adjacent software; I know what the industry can infer and what it merely claims at conferences. It can put a longan-juice advertisement in front of me for a week. It addresses screens. It does not print on the store's own till, one serial number ahead of my real purchase, and it does not employ anyone whose job is a fourth-floor corridor at night.
+
+Branch two: audio. I said nothing at the cooler. I thought about sugar. Thought is not audio. Cameras, then — the store has two, and there exist models, common knowledge in my own adjacent trade, trained to watch a shopper's hand and mark the frame where wanting becomes not-buying. Retail calls it intent analytics and buys it by the month. Fine. Grant the camera, grant the model, grant that some system marked my frame. The output of such a system is a dashboard in a head office. Between a dashboard and a folded slip under my door stands a printer, a person, a motorcycle, a key card, and a motive, and the branch snaps under the weight of the middle three.
+
+Branch three: coincidence. Somebody genuinely bought a longan juice at 15:26 — the register misfired its sequence, or I misread the aisle's emptiness — and their dropped receipt traveled four hundred meters and one lift ride and chose, among the two hundred and twelve doors of this building, mine. I sat with this one longest, because coincidence deserves counsel; it is dismissed first and innocent most often. But coincidence is not a low card you can count on being somewhere in the deck. It is the joker. You may deal it to yourself once. I had already spent it, weeks of it, on wreaths and riders, and the deck does not hold two.
+
+Branch four: a person. Someone ringing the sale and voiding it, keeping the slip, walking it here. The clerk with the star tattoo. Golf. A neighbor. This is the branch a sane man is supposed to prefer, and I gave it its full hour. It requires a human being to have watched my hand at the cooler at 15:26, obtained the slip the till says exists, entered a key-carded building, and delivered, for no money and at real risk, a document whose entire content is: we saw you decide against something. As harassment it is inefficient. As a joke it has no punchline and no audience. As a message it is flawless, which is the problem, because flawless messages are not what people produce. People produce misspellings and grudges you can trace.
+
+Each branch held. None of them reached the ground. I wrote that sentence in the notebook, and then I wrote the other sentence, the one the coffee had gone cold waiting for: the photograph knew where I sleep. The receipt knows what I almost do. The instrument set is improving.
+
+---
+
+Thermal paper carries no ink. I did not know this until years ago a receipt I needed for a warranty came out of the drawer blank, and I looked it up with the specific irritation of a man who has just been quietly robbed. The paper is coated with a dye that stays colorless until heat touches it; the printer writes with a hot wire, and what you carry out of the shop is not a document in any old sense but a pattern of small burns. Scar tissue arranged into numbers. And it is fugitive — heat undoes it, sunlight undoes it, time alone undoes it; leave a receipt on a dashboard in this city and by Songkran it is a white flag. The archives of the state are acid-free and meant to outlive the officials who sign them. The archive of everyone else — the poor, the careful, the audited, me — is written in disappearing burn marks, itemized to the satang and fading on a schedule nobody prints on the back. Every 7-Eleven in the country issues you a record and a countdown in the same slip. Whatever had begun corresponding with me had chosen this medium: exact to the minute, and designed to forget itself. I photographed receipt 1146 twice under the hood light, sealed it in a zip-lock bag with Thursday's date on a strip of masking tape, and put it in the drawer where the burns are kept out of the sun.
+
+---
+
+Friday afternoon I walked to Sukhumvit 22. Not to buy. I told myself it was to log the location, and that was even true.
+
+The rider was at the mouth of the sub-soi where the control group had eaten. One bike, engine off, visor down, phone no, plate 3ฒผ 662 — a different plate. I stood across the mouth of the soi and logged him openly, notebook out, pen moving, watching the visor for any acknowledgment that a subject knows it has become one. The visor gave back the street, curved and small, with a man in it.
+
+Golf was in his doorway when I turned, under the Middle Path sign, a jar in one hand.
+
+He looked at my hands, which were carrying nothing but the notebook. "Not buying."
+
+"Calibrating," I said. "I'm cutting the dose in half for a while. I want to see what's the smoke and what's the street."
+
+Golf nodded once, on the exhale, his agreement compressed into the same small breathing exercise it always was. He looked past me at the mouth of the sub-soi, at the bike, and the look lasted longer than looks he wastes.
+
+"The eaters, I like," he said. "Riders know every kitchen in the city and they get eleven minutes. Best diners we have." He tipped the jar a few degrees, read its angle, tipped it back. "That one doesn't eat."
+
+"You've seen him before."
+
+"I've seen the jacket before," Golf said, which was answered so precisely to the wrong question that it took me until Rama IV, hours later, to understand it was the exact answer to the right one. "Maybe he's fasting. Even hungry ghosts get their day of the month." He laughed at his own line, in advance, apologetically, and went inside to his jars.
+
+That night I entered it in the ledger: ศุกร์ 28 ส.ค. — Elephant Grass 0.2 — 21:20. Half of 0.4. The resolution came up only half a step past what the world needs; the curtain kept most of its grain to itself. Saturday I skipped entirely and wrote the dash. I halved the dose, and then I zeroed it, and this was the test, stated in advance in my own handwriting so I could not grade it on a curve: paranoia scales with dose. Weather doesn't.
+
+Saturday at 7:47, Radar, and the rotation came round to template five, and for the first time in some four hundred and thirty mornings I sat with my thumb over the send arrow and did not press it for eleven seconds. คิดถึง. I had typed that word once already this month, to a dead woman's account, at midnight, and deleted it with my stomach turning over, and now the rotation was handing it back. I sent it, because a control you skip stops being a control. The cat came back at 7:52, the one in the graduation cap, which I have never learned to read. Median is 7:52. Everything in its channel.
+
+At 5:38 that afternoon the man in the green jacket was at the mouth of my soi, and I halved nothing, and he had halved nothing, and I went down.
+
+---
+
+I want the mechanics of it on the record, because the mechanics are the strangest thing I have.
+
+I came out of the lobby and crossed toward him at an ordinary walking pace, and at thirty meters — I paced it off afterward against the shophouse fronts — the Wave's engine took, quietly, no throttle, and he rolled. Not away. Ahead. He drifted down Soi 26 at the speed of a man walking with intent, ten, twelve kilometers an hour, and held the gap. When I slowed at a stall and stood for a full three minutes handling rambutans I had no plans for, the bike waited at the next corner beside a utility pole, engine idling so low the sound kept losing itself under the soi's ordinary noise. When I crossed to the other pavement, he let two blocks pass and drifted across too. I took out the phone and photographed him twice. The first frame contains most of a truck. The second contains all of a bus. I have the photographs. They are pictures of Bangkok traffic, which is what any lawyer, any friend, any version of me from six weeks ago would tell you they are.
+
+Soi 26 runs south and gives out onto Rama IV, and he led me — I am using the verb the mechanics earned — across Rama IV with the crossing light, which a rider fleeing does not use, and into Khlong Toei.
+
+The market was changing shifts around me, the day side hosing down, fish water braided with rain water along the gutters, ice trucks backing into the dark with their beepers going, the night vendors setting up under bulbs the color of longan flesh. Past the market the sois go industrial: godowns, freight yards, stacked blue containers, the port's cranes standing over everything against the last of the light. I walked forty-one minutes by the phone's count. The bike held its thirty meters the whole way, through turns I could not have predicted because I was not predicting them, and somewhere along Sunthon Kosa Road I stopped pretending to myself that I was following him. You do not follow at a constant gap for forty-one minutes. You are towed.
+
+The gates were in a fence topped with three courses of barbed wire, in a soi that smelled of diesel and dried squid and, under those, faintly, of ammonia — the old refrigerant ghost that never leaves a cold-storage building, the smell of decades of holding things at a temperature they didn't choose. The building behind the fence was the real thing: pre-war walls a meter thick if they were anything, the small high vents of a warehouse built to be sealed, and along the second story a course of bricked-in windows, newer brick in older wall, openings that had been eyes once and had been deliberately filled. At the old loading dock somebody had installed a new aluminum-and-glass door, and above the gate, on a white panel, small, was a blue square logo and lettering in a typeface with no opinions.
+
+The shift was arriving. Motorcycles came in past me in ones and twos, and a songthaew emptied eleven people at the gate, women mostly, lunch bags and cardigans — cardigans, in August, which told me the building kept its old habits about temperature. And there were riders at the gate, three or four of them, green jackets, handing food bags across to the arriving shift, and my rider slotted in among them the way a raindrop returns to rain. He put the bike in the rank along the fence. He dismounted. He walked into the knot of green at the gate with a bag or without one, I could not tell, and the knot shifted, and bodies moved through bodies, and when the group loosened there were four jackets, then five, then three, and none of them was him, or any of them was. I counted them in and I counted them out and the arithmetic refused to convict anyone. Sixty meters is sixty meters. A uniform is a uniform. That is the entire design.
+
+I stood at the gate until the guard in the booth took an interest. He was sixty or so, luk thung coming small and tinny out of a radio on his shelf, hands laced over his stomach, and he looked at me carefully and without hurry, the specific attention gate men keep in reserve for farang-adjacent men in clean shirts who arrive on foot in freight sois at seven in the evening.
+
+"ที่นี่บริษัทอะไรครับ" I asked him.
+
+"ห้ามจอดตรงหน้าประตู," he said, to the motorcycles, to history, to me — the same four words gate men have kept in reserve since gates existed. Then, after a moment, because Thai kindness leaks around Thai procedure even when procedure has already answered, he nodded back at the building and added: "กะดึกเขาเข้ากันแล้ว. นั่งดูหนังกันทั้งคืน ทั้งตึก. แอร์เย็นเหมือนสมัยเก็บปลา."
+
+He had not named the company. He had told me, instead, that the night shift was filing in now, that the whole building would sit up watching something until dawn, and that the air conditioning still ran at whatever temperature the place had kept for the fish, because nobody had ever filed the paperwork to ask it to warm up.
+
+I looked past him at the white panel over the gate. The blue square, and beside it, in letters I copied into the notebook one at a time, in capitals, the copying itself slow and careful, a word in a language I did not yet read:
+
+COGNITA (THAILAND) CO., LTD.
+
+Under it I wrote the time, 18:51, and the plate of the parked Wave, 2ขง 1957 — Wednesday's plate, my soi's plate, the first repetition in the log, the first raindrop with a serial number — and I stood there while the last of the cardigans went in through the aluminum door and the door closed on its pneumatic hinge with the sound of something sealing to specification. The building was not an answer. It was exactly what it was: a structure built to hold something cold for a very long time, its windows bricked to keep it that way, and somewhere inside it, in cardigans, under air-conditioning set to the fish's old requirements, the watching of videos was beginning for the night.
+
+I walked home. It took fifty-two minutes, and the city was full of green jackets the whole way, every one of them weather, every one of them eating.

@@ -1,0 +1,63 @@
+## INTERLUDE A — The House in Nakhon Pathom
+
+At twenty to six in the morning the mother sat down at the kitchen table with a ballpoint pen and the free calendar from the Kasikorn branch in town, turned the October page over to its blank back, and began to count.
+
+Monks, four. Envelopes for the monks, four, at five hundred baht. The sala at Wat Lam Duan, if the abbot gave them the small one, four thousand five hundred for the night. Chairs came with the sala but the tent did not, and it was October and it would rain in the afternoon the way it rained every afternoon now, so a tent, one thousand two hundred, from the shop that also rented the loudspeakers. Ice. Drinking water in the small bottles, six cases. Rice, oil; the aunts would bring vegetables. Khanom for the guests who would come out of respect for her late husband, who had taught at the municipal school for thirty-one years and was still remembered at the market by women he had once caned.
+
+The bedroom door at the end of the house was closed. Her younger daughter was in there. The doctor from the hospital in town had been telephoned at 5:12 and had said he would come himself, before rounds, because he had looked after Pornpimol for four years and knew the family.
+
+There was, at twenty to six, no one yet to hold a funeral for. There would be, by seven, officially. The counting did not wait for that. The counting was the one thing in the house that would hold still.
+
+Aoy, the younger daughter, four years younger, had come at 5:25 on the Honda Wave, in the T-shirt she slept in, and had gone into the bedroom and come out of it once since. When she came out she was holding, low against her thigh, two brown plastic pill bottles. She went through the kitchen without stopping and out the back door to the cistern.
+
+The labels were from a pharmacy on Phran Nok, across from the hospital in Bangkok, and carried her sister's full name, Mrs. Pornpimol Srisuwan, and the name of the medicine, which Aoy read once, the once it took to know it, and not again. She filled the bottles at the tap and emptied them and filled them again. She worked the labels off under the water with her thumbnail, patiently, leaving no paper. Then she put both bottles in the woven sack against the fence where the fish-sauce bottles and the M-150 bottles waited for the recycling man, pushing them down under the fish-sauce bottles, and washed her hands twice with the bar soap.
+
+She had not decided anything, standing at the cistern. There was nothing to decide. Her sister had been sick a long time; the doctor was coming; a doctor walks through a house and the house should be a house he can walk through. That was all. She went in and put the kettle on and set out three cups, and then after a moment took one cup back.
+
+The doctor came at 6:40 in his own grey Camry, parked it in the shade of the tamarind without being told, and was in the bedroom for nineteen minutes. When he came out he sat at the kitchen table and accepted the coffee and took out his own pen.
+
+He asked two questions. The first was about the night — when she had gone to bed, who had seen her last. The mother told him: after nine, and herself, carrying in the fan. The second was about the medicines, whether she had been taking anything besides what the hospital gave.
+
+"She took what she was given," the mother said. "She was tired. She'd been sick a long time."
+
+That was true. The doctor had the file in his memory without needing it in his hand: the counts from August, the transfusion in June, four years of it. He clicked the pen twice, which was a habit his nurses timed things by, and filled in the cause line: complications of lymphoma. Nothing he wrote was untrue. It was a document made entirely of true things, and he signed it and drank half the coffee out of politeness and stood, and at the door he paused and said the temple should be told that with her condition the family would want to move quickly, and that he would say the same to the district office if anyone asked, and no one ever asked.
+
+Wichai arrived at 9:20, in yesterday's clothes. He came up the steps and wai'd the mother, shallow, late by half a beat, and under the cigarettes on him there was hotel soap and something floral that no one in this house wore. Samut Prakan was two hours by the ring road. Nobody said the name of the district. The aunts, who had begun arriving with vegetables and morning-glory in plastic bags, read all of it in one glance, and went on unpacking.
+
+His phone went off four times in the first hour. Twice he walked to the fence to take it, holding his shoulder up against the house. The figures traded at the noodle stall ran anywhere from eight hundred thousand to two million; everyone in the district knew roughly and no one knew exactly. Aoy knew exactly. One million seven. Pui had told her once, flat, the way you report a water bill.
+
+Before ten he had asked where her bank book was kept. Aoy brought it to him because it was faster than watching him look. He went through the dresser anyway — lifted the work lanyard on its blue cord and set it aside, moved a school notebook with a rubber band around it from one side of the dresser top to the other — and then sat on the end of the bed with the bank book and turned pages. The balance was four thousand two hundred and seventeen baht. He turned back three months, and then further back, and whatever he was looking for did not appear as a line in a passbook, because she had not been a stupid woman. He put it down and said, แค่นี้เหรอ, and Aoy said, ค่ารักษามันแพง, and left the room with the laundry she had not come in for.
+
+At 10:30 the mother and Aoy went to the temple, leaving the aunts the house. The abbot was old and had known their father. He received them on the low platform by the bo tree and listened with his eyes closed to what the mother asked for: the bathing rite that evening, one night of chanting, the cremation tomorrow afternoon.
+
+For a family of schoolteachers, with a sala full of former students to expect, three nights was ordinary and seven was not unheard of. The abbot sat with it. He said one word, เร็ว, quietly, not as an objection but as a fact being set down on the platform between them.
+
+"She was sick a long time, Luang Por," the mother said. "The family is tired."
+
+He looked at her for a while. Then he named the fee for the small sala, told her the novices would see to the chairs, and asked the name to be chanted, and wrote พรพิมล on his palm with his finger while she spelled it, and that was the negotiation, all of it conducted in what was not said.
+
+By early afternoon the noodle stall had done the arithmetic out loud. Two days meant either no money or a reason, and this family was not poor. Someone said it was the disease, that with the disease you don't keep the body, it isn't kind. Someone else moved her chin the way that means insurance without costing a word. Both of them said อนิจจา and finished their noodles, because the rain was starting and the awning leaked on the outer table.
+
+Aoy chose the photograph that afternoon at the print shop, from the eleven photos on her phone that had her sister in them. In ten of them Pui looked straight at the camera with the face she made for cameras. In the eleventh, Songkran five years ago, she stood holding a paper cone of roasted chestnuts, looking off to the left of the frame at something no one had ever established, about to laugh. Aoy paid two hundred and forty baht for the enlargement and the frame and did not explain her choice to anyone, because the woman in the ten photos was posing and the woman in the eleventh was her sister.
+
+The agent from the insurance company came the next morning at nine, the morning of the cremation, in a grey suit that had done many such mornings. Her name was Khun Orn; she came up from the Bangkok office herself, which was either respect or something else wearing respect's clothes. She wai'd the enlarged photograph on its easel before she wai'd anyone living, which was correct, and refused coffee twice before accepting it, which was also correct.
+
+On the table she laid the folder squarely, aligned with the table's edge. Policy number read aloud. Sum insured: four million baht. The named conditions, the schedule of documents — death certificate, two copies; house registration; the ID card, which Aoy went to get from the dresser. Khun Orn read the standard clauses in a clear, kind, uninflected voice, evenly, and among them, neither slower nor faster than the rest: the Company shall not pay the sum insured in the event that the insured dies by intentional self-harm within one year from the commencement of coverage, or within one year from the most recent reinstatement of the policy.
+
+The policy, she noted, turning the page without looking up, had been reinstated the previous November, when the insured had resumed premium payments after an interruption.
+
+Wichai, who had sat forward since the words four million, said, ขออ่านตรงนั้นอีกรอบได้ไหมครับ.
+
+Khun Orn read it again. Identically. The same pace, the same kindness, not one word interpreted, so that whatever a listener needed it to mean, he would have to do the meaning himself. The mother watched her son-in-law listen to it the second time. His face went still with arithmetic. The clause said within one year from the most recent reinstatement, and November was eleven months ago, and everyone at the table could count, and no one at the table counted out loud.
+
+"The company will process the claim within forty-five working days," Khun Orn said, "provided—" and she let the word stand a moment, alone, like a guest nobody introduces, and then smiled and finished, "provided the documents are complete. In cases of illness the documents are usually complete." She took a copy of the death certificate, read the cause line, and copied it into her form in handwriting rounder and more patient than the doctor's. Complications of lymphoma. She thanked them. At the door she wai'd the photograph a second time, and it was impossible, watching her do it, to say whether the politeness was terrible or whether it was the only sincere thing that had happened at that table.
+
+The cremation was at four. It rained at half past two, hard, on schedule, and stopped in time, and what happened at the temple happened the way it happens, and is not this chapter's to tell.
+
+That night the house was quiet in the particular way of a house that has been full of aunts. The mother went down the hall to turn off the light in the bedroom, which Aoy had left on, either by oversight or by something that looks like oversight.
+
+The room had been tidied twice, once by Aoy at dawn the day before and once by the aunts, and so it held almost nothing of the two days. The fan. The folded blanket. On the dresser, where Wichai had moved things and Aoy had moved them back: a work lanyard on a blue cord, the laminated card face-up. COGNITA (THAILAND) CO., LTD. — P. SRISUWAN — NIGHT. In the little photo she was looking at the camera with the face she made for cameras. The mother picked the lanyard up because it was her daughter's name, and put it down again because it was a company's plastic.
+
+Beside it, the school notebook, the cheap kind with the times tables printed on the back cover, a rubber band around it holding something in — receipts, or nothing. Wichai had moved it aside without opening it. Aoy had straightened it without opening it. The mother stood in front of it with her hand already out for the light switch, and did not open it either, because a funeral is paid for with one truth at a time, and the house had already bought the one it could carry.
+
+She turned off the light. In the morning there would be the monks' envelopes to make up, and the ice to settle, and the borrowed chairs to send back to the temple, forty of the sixty unused because of the rain. She had counted. There was enough.
