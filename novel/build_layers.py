@@ -283,6 +283,15 @@ HTML = f'''<!DOCTYPE html>
       --arc-paper: #0c1016; --arc-ink: #d6dde6; --arc-soft: #8b96a5; --arc-faint: #5a6573;
       --arc-accent: #f59e0b; --arc-rule: #243041;
     }}
+    /* surface.css styles all `main` as a narrow book column — kill that here */
+    main.reader, .reader {{
+      max-width: none !important;
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      flex: 1 1 auto;
+      min-height: 0; /* flex child must shrink for absolute spreads to fill */
+    }}
     .lh {{
       flex: 0 0 auto; padding: 0.85rem clamp(1rem, 3vw, 1.8rem);
       border-bottom: 1px solid var(--rule); background: var(--paper); z-index: 10;
@@ -334,10 +343,10 @@ HTML = f'''<!DOCTYPE html>
     }}
     .pivot button.active {{ background: var(--ink); color: var(--paper); border-color: var(--ink); }}
 
-    .reader {{ flex: 1 1 auto; position: relative; overflow: hidden; }}
+    .reader {{ position: relative; overflow: hidden; }}
     .spread {{ position: absolute; inset: 0; display: none; }}
     .spread.active {{ display: block; }}
-    .split {{ height: 100%; display: grid; grid-template-columns: 1fr 2px 1fr; }}
+    .split {{ height: 100%; width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) 2px minmax(0, 1fr); }}
     .gutter {{ background: var(--rule); position: relative; }}
     .gutter::before {{
       content: ''; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
@@ -345,8 +354,8 @@ HTML = f'''<!DOCTYPE html>
     }}
 
     .col {{
-      height: 100%; overflow-y: auto;
-      padding: clamp(1.8rem, 4vw, 3rem) clamp(1.2rem, 4vw, 3rem) 6rem;
+      height: 100%; overflow-y: auto; min-width: 0;
+      padding: clamp(1.4rem, 3vw, 2.4rem) clamp(1rem, 2.5vw, 2.2rem) 6rem;
       scrollbar-width: thin; position: relative;
     }}
     .col.sim {{ background: var(--sim-paper); color: var(--sim-ink); }}
@@ -496,9 +505,9 @@ HTML = f'''<!DOCTYPE html>
     </div>
   </nav>
 
-  <main class="reader" id="reader">
+  <div class="reader" id="reader" role="main">
 {spreads()}
-  </main>
+  </div>
 
   <footer class="lf">
     <p>Artworks: Wikimedia Commons &amp; Art Institute of Chicago · Videos arrive as Doc receives them · <a href="/">Universe →</a></p>
