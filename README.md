@@ -8,7 +8,7 @@ The point is the **biography**. Everything else is the *making* of it, kept hone
 
 | Surface | Path | What it is |
 |---|---|---|
-| **Two Layers** | `/layers/` | The invented novel / 3026 archive. Ten chapters, two layers (2026 Simulation · 3026 Archive), one chapter per view, punk brutalist reader. Built from `data/two-layers.json` via `build.py`. |
+| **Two Layers** | `/layers/` | Dual-timeline binge novel — Doc (2026) and Pui (3026). Chapter-gated split screen: finish 2026 → unlock 3026 → unlock next. Videos arrive as Doc receives them. Source: `novel/layers-chapters/` → `novel/build_layers.py`. |
 | **The Biography** | `/book/` | The record. Twelve chapters, first-person, book typography (Literata, warm paper, no accent). The single source of truth. |
 | **The Workshop** | `/workshop/` | Split screen — the machine (live compute console + eight workers) beside the biography (embedded). Click a worker; it lights the passage it produced. Analytics ledger toggle. |
 | **The Self-Portrait** | `/portrait/` | A portrait assembled from his own verbatim sentences — 38-line source-verified pool, 20 drawn fresh on every visit. |
