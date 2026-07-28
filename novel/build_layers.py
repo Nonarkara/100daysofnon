@@ -234,8 +234,11 @@ def spreads() -> str:
 {c["sim_html"]}
           </div>
           <div class="gate-end" data-end="sim" hidden>
-            <p class="gate-msg">End of 2026 · Chapter {c["id"]}. Cross the gutter — read 3026 to unlock the next.</p>
+            <p class="gate-msg">End of 2026 · Chapter {c["id"]}. Open the archive on the right to go on.</p>
             <button type="button" class="gate-btn" data-unlock="arc">Open 3026 archive →</button>
+          </div>
+          <div class="gate-end gate-handoff" data-end="handoff" hidden>
+            <p class="gate-msg">Archive open. Scroll the right column (3026) to the end.</p>
           </div>
         </div>
 
@@ -455,6 +458,8 @@ HTML = f'''<!DOCTYPE html>
     }}
     .gate-btn:active {{ transform: scale(0.97); }}
     .gate-btn:hover {{ filter: brightness(1.05); }}
+    .col.arc.just-unlocked {{ outline: 2px solid var(--amber); outline-offset: -2px; }}
+    .gate-handoff .gate-msg {{ color: var(--amber); }}
 
     .lf {{
       flex: 0 0 auto; padding: 0.7rem clamp(1rem, 3vw, 1.8rem);
@@ -515,7 +520,7 @@ HTML = f'''<!DOCTYPE html>
 
   <script>
   (function () {{
-    var KEY = 'two-layers-gate-v2';
+    var KEY = 'two-layers-gate-v3';
     var state = {{ ch: 1, unlockedArc: {{}}, unlockedCh: {{ '1': true }}, doneArc: {{}} }};
     try {{
       var saved = JSON.parse(localStorage.getItem(KEY) || 'null');
@@ -533,9 +538,12 @@ HTML = f'''<!DOCTYPE html>
       try {{ localStorage.setItem(KEY, JSON.stringify(state)); }} catch (e) {{}}
     }}
 
-    function showChapter(n, world) {{
+    function showChapter(n, world, opts) {{
+      opts = opts || {{}};
       n = Number(n);
       if (!state.unlockedCh[String(n)]) return;
+      var prev = Number(state.ch) || 1;
+      var chapterChanged = prev !== n;
       state.ch = n;
       spreads.forEach(function (s) {{
         var id = Number(s.getAttribute('data-ch'));
@@ -551,6 +559,7 @@ HTML = f'''<!DOCTYPE html>
       var spread = document.querySelector('.spread[data-ch="' + n + '"]');
       if (!spread) return;
       var arc = spread.querySelector('.col.arc');
+      var sim = spread.querySelector('.col.sim');
       var arcUnlocked = !!state.unlockedArc[String(n)];
       arc.classList.toggle('is-locked', !arcUnlocked);
       var w = world || (arcUnlocked && spread.getAttribute('data-world') === 'arc' ? 'arc' : 'sim');
@@ -564,15 +573,26 @@ HTML = f'''<!DOCTYPE html>
         b.setAttribute('aria-selected', on ? 'true' : 'false');
         if (bw === 'arc') b.disabled = !arcUnlocked;
       }});
-      // reset scroll on chapter change
-      spread.querySelectorAll('.col').forEach(function (c) {{ c.scrollTop = 0; }});
-      // reveal gate-end once unlocked appropriately — visibility driven by scroll watchers
+      // Only jump scroll when changing chapters — never yank the reader back to vitamins
+      if (chapterChanged && !opts.keepScroll) {{
+        sim.scrollTop = 0;
+        arc.scrollTop = 0;
+      }}
+      if (opts.focusArc) {{
+        arc.scrollTop = 0;
+        arc.classList.add('just-unlocked');
+        setTimeout(function () {{ arc.classList.remove('just-unlocked'); }}, 1200);
+        if (!isDesktop()) window.scrollTo(0, 0);
+      }}
       refreshGateEnds(spread);
       save();
     }}
 
     function nearBottom(el) {{
-      return el.scrollTop + el.clientHeight >= el.scrollHeight - 48;
+      if (!el) return false;
+      var room = el.scrollHeight - el.clientHeight;
+      if (room <= 8) return true; // short column: already at end
+      return el.scrollTop + el.clientHeight >= el.scrollHeight - 120;
     }}
 
     function refreshGateEnds(spread) {{
@@ -580,18 +600,25 @@ HTML = f'''<!DOCTYPE html>
       var n = spread.getAttribute('data-ch');
       var sim = spread.querySelector('.col.sim');
       var arc = spread.querySelector('.col.arc');
-      var simEnd = sim.querySelector('.gate-end');
-      var arcEnd = arc.querySelector('.gate-end');
-      // On mobile, columns aren't scroll containers — show end after content
+      var simEnd = sim.querySelector('.gate-end[data-end="sim"]');
+      var handoff = sim.querySelector('.gate-end[data-end="handoff"]');
+      var arcEnd = arc.querySelector('.gate-end[data-end="arc"]');
+      var arcUnlocked = !!state.unlockedArc[n];
+
       if (!isDesktop()) {{
-        simEnd.hidden = false;
-        if (!arc.classList.contains('is-locked')) arcEnd.hidden = false;
+        simEnd.hidden = arcUnlocked;
+        if (handoff) handoff.hidden = !arcUnlocked;
+        arcEnd.hidden = !arcUnlocked;
         return;
       }}
-      simEnd.hidden = !nearBottom(sim);
-      if (!arc.classList.contains('is-locked')) {{
+
+      if (arcUnlocked) {{
+        simEnd.hidden = true;
+        if (handoff) handoff.hidden = !nearBottom(sim);
         arcEnd.hidden = !nearBottom(arc);
       }} else {{
+        simEnd.hidden = !nearBottom(sim);
+        if (handoff) handoff.hidden = true;
         arcEnd.hidden = true;
       }}
     }}
@@ -601,13 +628,6 @@ HTML = f'''<!DOCTYPE html>
         col.addEventListener('scroll', function () {{
           if (col.classList.contains('is-locked')) return;
           refreshGateEnds(spread);
-          // Auto-offer unlock when hitting bottom of sim
-          if (col.getAttribute('data-side') === 'sim' && nearBottom(col)) {{
-            var n = col.getAttribute('data-ch');
-            if (!state.unlockedArc[n]) {{
-              // keep button visible; user confirms
-            }}
-          }}
         }}, {{ passive: true }});
       }});
     }});
@@ -615,17 +635,14 @@ HTML = f'''<!DOCTYPE html>
     document.addEventListener('click', function (e) {{
       var btn = e.target.closest('.gate-btn');
       if (!btn) return;
+      e.preventDefault();
       var spread = btn.closest('.spread');
       var n = Number(spread.getAttribute('data-ch'));
       var action = btn.getAttribute('data-unlock');
       if (action === 'arc') {{
         state.unlockedArc[String(n)] = true;
         save();
-        showChapter(n, 'arc');
-        var arc = spread.querySelector('.col.arc');
-        arc.classList.remove('is-locked');
-        if (isDesktop()) arc.scrollTop = 0;
-        else window.scrollTo(0, 0);
+        showChapter(n, 'arc', {{ keepScroll: true, focusArc: true }});
       }} else if (action === 'next') {{
         state.doneArc[String(n)] = true;
         var next = n + 1;
@@ -652,22 +669,18 @@ HTML = f'''<!DOCTYPE html>
         if (b.disabled) return;
         var spread = document.querySelector('.spread.active');
         if (!spread) return;
-        showChapter(spread.getAttribute('data-ch'), b.getAttribute('data-world'));
+        var w = b.getAttribute('data-world');
+        showChapter(spread.getAttribute('data-ch'), w, {{ keepScroll: true }});
         if (!isDesktop()) window.scrollTo(0, 0);
       }});
     }});
 
     window.addEventListener('resize', function () {{
-      var spread = document.querySelector('.spread.active');
-      refreshGateEnds(spread);
+      refreshGateEnds(document.querySelector('.spread.active'));
     }});
 
-    // boot
-    showChapter(state.ch || 1);
-    // mobile: gate-ends always available at bottom of content
-    if (!isDesktop()) {{
-      spreads.forEach(refreshGateEnds);
-    }}
+    showChapter(state.ch || 1, null, {{ keepScroll: true }});
+    if (!isDesktop()) spreads.forEach(refreshGateEnds);
   }})();
   </script>
 </body>
