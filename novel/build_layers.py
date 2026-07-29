@@ -392,25 +392,83 @@ HTML = f'''<!DOCTYPE html>
     .col.sim .col-tag {{ color: var(--sim-faint); }}
     .col.arc .col-tag {{ color: var(--arc-faint); }}
 
+    .prose {{
+      max-width: 38rem;
+    }}
     .prose p {{
       font-family: var(--serif);
-      font-size: clamp(1.0625rem, 1.6vw, 1.1875rem);
-      line-height: 1.72; margin-bottom: 1.1em; text-wrap: pretty;
+      font-size: 1.3125rem;
+      line-height: 1.72;
+      margin-bottom: 1.2em;
+      text-wrap: pretty;
+      color: inherit;
     }}
     .col.sim .prose p:first-of-type {{
-      font-size: clamp(1.25rem, 2vw, 1.5rem); line-height: 1.55;
+      font-size: 1.3125rem;
+      line-height: 1.72;
+    }}
+    .col.arc .prose {{
+      max-width: 40rem;
     }}
     .col.arc .prose p {{
-      font-family: var(--mono); font-size: 0.8125rem; line-height: 1.65;
+      font-family: var(--mono); font-size: 1.0625rem; line-height: 1.68;
       letter-spacing: 0.01em;
     }}
     .col.arc .prose p.signal {{
       color: var(--amber); border-left: 2px solid var(--amber);
       padding-left: 0.9rem; margin: 1.6em 0; font-style: italic;
+      font-size: 1.0625rem;
     }}
     .col.arc .prose p.meta {{
-      color: var(--arc-faint); font-size: 0.7rem; letter-spacing: 0.08em;
+      color: var(--arc-faint); font-size: 0.75rem; letter-spacing: 0.08em;
       text-transform: uppercase;
+    }}
+    .msg-video .msg-text, .msg-text-only p {{
+      font-family: var(--mono) !important; font-size: 1.05rem !important;
+      color: inherit; padding: 0.75rem; margin: 0 !important; letter-spacing: 0.02em;
+    }}
+    .col-tag {{
+      font-style: italic; font-family: var(--serif); font-size: 1rem;
+      margin-bottom: 1.8rem; line-height: 1.5;
+    }}
+    .col-head {{
+      font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.18em;
+      text-transform: uppercase; margin-bottom: 0.4rem;
+    }}
+    .plate figcaption {{
+      font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em;
+      padding: 0.55rem 0.7rem; line-height: 1.45; text-transform: uppercase;
+    }}
+    .gate-msg {{
+      font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 1rem; opacity: 0.8;
+    }}
+    .gate-btn {{
+      font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.12em;
+      text-transform: uppercase; background: var(--amber); color: #111;
+      border: 1px solid var(--amber); padding: 0.95rem 1.3rem; cursor: pointer;
+      min-height: 48px;
+    }}
+    .lf {{
+      flex: 0 0 auto; padding: 0.7rem clamp(1rem, 3vw, 1.8rem);
+      border-top: 1px solid var(--rule); background: var(--paper);
+      font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em;
+      color: var(--soft); text-transform: uppercase;
+    }}
+    @media (max-width: 900px) {{
+      .prose p {{ font-size: 1.25rem; line-height: 1.78; }}
+      .col.sim .prose p:first-of-type {{ font-size: 1.25rem; }}
+      .col.arc .prose p, .col.arc .prose p.signal {{ font-size: 1.05rem; }}
+      .col {{
+        padding: 1.4rem 1.15rem 5rem;
+      }}
+      .pivot button {{ flex: 1; font-size: 0.7rem; }}
+    }}
+    @media (min-width: 901px) {{
+      .split {{ grid-template-columns: minmax(0, 1.08fr) 2px minmax(0, 0.92fr); }}
+      .col {{
+        padding: clamp(1.6rem, 3vw, 2.6rem) clamp(1.4rem, 3vw, 2.8rem) 6rem;
+      }}
     }}
 
     .plate {{
