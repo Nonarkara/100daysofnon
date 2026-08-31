@@ -58,4 +58,4 @@ Minimalistic, detailed, *it rhymes*. **Walter Gropius** (Bauhaus grid) · **New 
 
 ## License
 
-Dr. Non. Public domain.
+Original code is MIT, copyright Non Arkaraprasertkul (see LICENSE); the biography, diary, novel, photographs, illustrations, and third-party paintings are writing and art and are not covered by that grant.
