@@ -37,3 +37,6 @@ voice/models/
 
 # virtual env
 .venv-omnivoice/
+
+# local Wrangler state (account cache — do not commit)
+.wrangler/
