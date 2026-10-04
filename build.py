@@ -605,7 +605,7 @@ def render_html(data):
       color:var(--ink); text-decoration:none; font-weight:700;
     }}
     body.view-3026 .logo {{ color:#fff; }}
-    .head-tools {{ display:flex; align-items:center; gap:0.6rem; }}
+    .head-tools {{ display:flex; flex-wrap:wrap; align-items:center; gap:0.6rem; }}
     .head-btn, .lang-switch button {{
       font-family:var(--mono); font-size:0.6rem; letter-spacing:0.1em; text-transform:uppercase;
       background:transparent; border:1px solid var(--rule); color:var(--soft);
@@ -807,6 +807,7 @@ def render_html(data):
     <div class="head-row">
       <a class="logo" href="/">Two Layers</a>
       <div class="head-tools">
+        <a class="head-btn" href="/experience/" style="text-decoration:none;">Enter Four Seconds ↗</a>
         <a class="head-btn" href="/universe/" style="text-decoration:none;">Universe</a>
         <button id="lore-open" class="head-btn">Lore</button>
         <div class="lang-switch" role="group" aria-label="Language">

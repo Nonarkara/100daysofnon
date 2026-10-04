@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11110f">
+  <title>Four Seconds | An Interactive Two Layers</title>
+  <meta name="description" content="A message from a number that does not exist. Someone has been keeping your life. An interactive adaptation of Two Layers by Dr Non.">
+  <link rel="canonical" href="https://100.nonarkara.org/experience/">
+  <meta property="og:title" content="Four Seconds | Two Layers">
+  <meta property="og:description" content="Bangkok, 2026. A thousand years away, someone is waiting. Enter the story.">
+  <meta property="og:image" content="https://100.nonarkara.org/assets/artworks/hopper-nighthawks.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./experience.css?v=1">
+  <script src="./experience.js?v=1" defer></script>
+</head>
+<body>
+  <div class="scene-image" aria-hidden="true"><img id="backdrop" src="/assets/artworks/hopper-nighthawks.jpg" alt=""></div>
+  <header class="masthead">
+    <a class="wordmark" href="/">TWO LAYERS<span>AN INTERACTIVE STORY BY DR NON</span></a>
+    <div class="tools">
+      <button id="sound" class="text-button" type="button" aria-pressed="false">Sound off</button>
+      <button id="notebook-open" class="text-button" type="button" aria-controls="notebook">Notebook <span id="note-count">00</span></button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="opening" class="opening" aria-labelledby="opening-title">
+      <div class="opening-copy">
+        <p class="eyebrow"><span class="small-line"></span> BANGKOK, 2026 / THE HUB, 3026</p>
+        <h1 id="opening-title">FOUR<br><span>SECONDS.</span></h1>
+        <p class="opening-deck">Someone has been keeping your life.<br>You are about to find out why.</p>
+        <button id="begin" class="primary" type="button">Answer the message <span aria-hidden="true">↗</span></button>
+        <button id="resume" class="text-button resume" type="button" hidden>Continue your last session</button>
+        <p class="opening-instruction">Ten encounters. Two worlds. One moment of contact.<br>Read at your own pace. Headphones optional.</p>
+      </div>
+      <div class="opening-message" aria-label="Incoming message">
+        <div class="message-top"><span class="signal-dot"></span> UNKNOWN SENDER <span>02:47</span></div>
+        <p>stop testing the edges<br>with your body</p>
+        <div class="message-bottom"><span>NO REGISTERED NUMBER</span><span aria-hidden="true">↗</span></div>
+      </div>
+      <div class="opening-foot"><span>ADAPTED FROM THE TWO LAYERS MANUSCRIPT</span><span>01 / 10</span></div>
+    </section>
+
+    <section id="experience" class="experience" hidden aria-label="Interactive story">
+      <div class="scene-top"><span id="scene-location" class="eyebrow"></span><span id="scene-number" class="eyebrow"></span></div>
+      <div class="stage">
+        <article class="scene-copy">
+          <p id="scene-kicker" class="eyebrow"></p>
+          <h1 id="scene-title" tabindex="-1"></h1>
+          <div id="scene-prose" class="scene-prose"></div>
+          <button id="read-full" class="read-full text-button" type="button">Read the complete encounter <span aria-hidden="true">↗</span></button>
+          <div id="archive" class="archive" hidden>
+            <p class="eyebrow">THE OTHER SIDE OF THIS MOMENT</p>
+            <div id="archive-prose"></div>
+            <div class="chair-plan" aria-label="Chair 44 beside Chair 43">
+              <svg viewBox="0 0 380 115" role="img" aria-label="Two chairs with a twelve-centimetre gap between their armrests">
+                <path d="M35 90V15h110v75M25 52h130v48H25zM235 90V15h110v75M225 52h130v48H225z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M155 68h70M155 62v12M225 62v12" fill="none" stroke="currentColor" stroke-width="1"/>
+                <text x="90" y="40" text-anchor="middle">43</text><text x="290" y="40" text-anchor="middle">44</text>
+                <text x="190" y="56" text-anchor="middle">12 cm</text>
+                <circle id="hand-position" cx="225" cy="68" r="4" fill="#f59e0b"/>
+              </svg>
+              <p class="eyebrow">A DISTANCE THE SYSTEM KEEPS MEASURING.</p>
+            </div>
+            <button id="archive-full" class="text-button" type="button">Read the complete archive ↗</button>
+          </div>
+        </article>
+        <aside class="phone" aria-label="Your phone">
+          <div class="phone-status"><span id="phone-time">02:47</span><span>NO SERVICE <span aria-hidden="true">▥</span></span></div>
+          <div class="phone-contact"><span class="contact-symbol" aria-hidden="true">—</span><div><span id="phone-name">Unknown sender</span><p id="phone-subtitle">This number does not exist.</p></div></div>
+          <div id="phone-content" class="phone-content"></div>
+          <div id="reply-result" class="reply-result" hidden role="status"></div>
+          <div id="choices" class="choices"></div>
+          <p class="phone-foot">END-TO-END ENCRYPTED. FROM WHERE?</p>
+        </aside>
+      </div>
+
+      <section id="object-space" class="object-space" aria-label="Examine an object" hidden></section>
+      <section id="contact" class="contact" hidden aria-labelledby="contact-title">
+        <p class="eyebrow">NO PROTOCOL FOR THIS</p>
+        <h2 id="contact-title">Twelve centimetres.</h2>
+        <p>All that distance. All those years. Move her hand.</p>
+        <label for="reach" class="eyebrow">THE SPACE BETWEEN TWO ARMRESTS</label>
+        <input id="reach" type="range" min="0" max="123" value="0" aria-valuetext="12.3 centimetres remaining">
+        <div class="reach-labels"><span>CHAIR 44</span><output id="gap" for="reach">12.3 cm</output><span>CHAIR 43</span></div>
+        <button id="reach-button" class="primary" type="button">Reach across <span aria-hidden="true">→</span></button>
+        <div id="contact-moment" class="contact-moment" hidden>
+          <span id="contact-count" class="contact-count" aria-hidden="true">1</span>
+          <p id="contact-line" role="status"></p>
+        </div>
+        <div id="ending" class="ending" hidden>
+          <p class="eyebrow">THE CLOCKS AGREE. THEN THEY DON'T.</p>
+          <h2>“Thank you.”</h2>
+          <p>The railing is cold again. The rain falls over the place her hand was.<br>Nothing is proved. Something has happened.</p>
+          <p id="ending-note"></p>
+          <div class="ending-links"><button id="end-notebook" class="primary" type="button">Keep what you noticed ↗</button><button id="another-pass" class="text-button" type="button">Begin another pass</button></div>
+        </div>
+      </section>
+
+      <nav class="story-controls" aria-label="Story controls">
+        <button id="behind" class="behind" type="button" aria-pressed="false"><span class="lens-icon" aria-hidden="true">◉</span><span id="behind-label">Look behind the world</span><span class="key-hint">SPACE</span></button>
+        <div class="scene-progress" id="scene-progress" aria-label="Encounters"></div>
+        <button id="next" class="next" type="button">Continue <span aria-hidden="true">→</span></button>
+      </nav>
+      <footer class="story-footer"><div class="clock"><span>YOUR READING TIME</span><b id="real-clock">00:00</b></div><div class="clock"><span id="inside-label">AT THE HUB'S 1:8,760 RATIO</span><b id="inside-clock">00d 00h 00m</b></div><span id="art-credit" class="art-credit"></span></footer>
+    </section>
+    <p id="load-status" class="load-status" role="status"></p>
+    <noscript><p class="load-status">This interactive story needs JavaScript. <a href="/layers/">Read Two Layers in the original reader.</a></p></noscript>
+  </main>
+
+  <dialog id="reader" class="reader-dialog" aria-labelledby="reader-title">
+    <div class="dialog-head"><p id="reader-title" class="eyebrow"></p><button class="dialog-close text-button" type="button">Close ×</button></div>
+    <article id="reader-body" class="reader-body"></article>
+  </dialog>
+  <dialog id="notebook" class="notebook-dialog" aria-labelledby="notebook-title">
+    <div class="dialog-head"><p class="eyebrow">THE THINGS YOU CHOSE TO KEEP</p><button class="dialog-close text-button" type="button">Close ×</button></div>
+    <h2 id="notebook-title">Your notebook.</h2>
+    <p class="notebook-intro">This is not evidence of anything.<br>This is a record of what you noticed.</p>
+    <div id="notebook-body"></div>
+    <button id="download-notes" class="primary" type="button">Take these pages with you ↓</button>
+    <p class="privacy-note">Saved on this device. Never sent anywhere.</p>
+  </dialog>
+</body>
+</html>
