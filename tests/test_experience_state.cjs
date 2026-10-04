@@ -19,11 +19,16 @@ function harness(saved, storageBlocked = false) {
     return elements.get(id);
   };
   const frames = [];
+  const listeners = new Map();
+  let now = 0;
   const context = vm.createContext({
     document: {
       body: element('body'), hidden: false,
       getElementById: element, querySelectorAll: () => [],
-      addEventListener() {},
+      addEventListener(name, fn) {
+        if (!listeners.has(name)) listeners.set(name, []);
+        listeners.get(name).push(fn);
+      },
     },
     window: {addEventListener() {}, scrollTo() {}},
     localStorage: {
@@ -33,12 +38,19 @@ function harness(saved, storageBlocked = false) {
       },
       setItem() { if (storageBlocked) throw new Error('Storage blocked'); },
     },
-    performance: {now: () => 0},
+    performance: {now: () => now},
     setInterval() {},
     requestAnimationFrame: fn => frames.push(fn),
   });
   vm.runInContext(source, context);
-  return {element, frames, run: code => vm.runInContext(code, context)};
+  return {
+    element, frames, run: code => vm.runInContext(code, context),
+    visibility(hidden, time) {
+      now = time;
+      context.document.hidden = hidden;
+      for (const fn of listeners.get('visibilitychange') || []) fn();
+    },
+  };
 }
 
 test('malformed and unavailable browser storage still allow the story to start', () => {
@@ -88,4 +100,19 @@ test('contact from the archive restores Bangkok and takes four foreground second
   assert.equal(h.run('state.completed'), true);
   assert.equal(h.element('ending').hidden, false);
   assert.equal(h.run('state.notes[0].key'), 'contact');
+});
+
+test('a suspended animation frame does not count time in a hidden tab', () => {
+  const h = harness(null);
+  h.run('started = true; state.scene = 9; beginContact()');
+  h.frames.shift()(1000);
+  h.visibility(true, 1000);
+  // Browsers suspend animation frames while the tab is hidden.
+  h.visibility(false, 61000);
+  h.frames.shift()(62000);
+  assert.equal(h.run('state.completed'), false);
+  h.frames.shift()(63000);
+  assert.equal(h.run('state.completed'), false);
+  h.frames.shift()(64000);
+  assert.equal(h.run('state.completed'), true);
 });

@@ -26,7 +26,7 @@ user gesture, no autoplay video, safe local-storage fallback. The final reach
 can be activated with a button as well as a slider. Full-text passages and
 unresolved questions remain visible in the source reader.
 
-Verification: five manuscript preservation tests and five JavaScript state tests
+Verification: five manuscript preservation tests and six JavaScript state tests
 pass. The full ten-encounter route, both complete-text dialogs, optional video
 playback, archive transitions, sound toggle, keyboard slider, alternate reach
 button, four-second ending, reload/resume, and notebook-preserving replay were

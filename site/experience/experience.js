@@ -128,6 +128,7 @@ let chapters = null;
 let started = false;
 let inArchive = false;
 let contactRunning = false;
+let contactLastTick = 0;
 let activeMs = 0;
 let lastTick = performance.now();
 let audio = null;
@@ -378,10 +379,10 @@ function beginContact() {
   $('behind').disabled = true;
   const lines = ['A hand on the wet railing.', '“Pui,” she says.', 'The rain falls through both of you equally.', 'For once, a second is a second.'];
   let elapsed = 0;
-  let previous = performance.now();
+  contactLastTick = performance.now();
   const tick = now => {
-    if (!document.hidden) elapsed += now - previous;
-    previous = now;
+    if (!document.hidden) elapsed += now - contactLastTick;
+    contactLastTick = now;
     const second = Math.min(4, Math.floor(elapsed / 1000) + 1);
     $('contact-count').textContent = String(second);
     $('contact-line').textContent = lines[second - 1];
@@ -487,6 +488,7 @@ $('download-notes').addEventListener('click', () => {
 });
 document.addEventListener('visibilitychange', () => {
   lastTick = performance.now();
+  contactLastTick = lastTick;
   save();
   if (audio) audio.gain.gain.setTargetAtTime(soundEnabled && !document.hidden ? .06 : 0, audio.context.currentTime, .1);
 });
