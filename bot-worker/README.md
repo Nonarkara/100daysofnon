@@ -8,6 +8,7 @@ A Cloudflare Worker that wires the museum's chat UI to the Claude API.
 - Retrieves the 3 most-relevant blog posts from `corpus-index.json` (keyword overlap)
 - Builds a system prompt from `voice-anchor.json` + the 49 demo Q&As + the retrieved excerpts
 - Calls Claude (default: `claude-sonnet-4-5`) and returns `{ kind, answer, cite, retrieved[] }`
+- Refuses that call when the page is off-site, the connection is over its limit, or the museum has hit its daily cap
 - The frontend renders the answer in Dr Non's voice with the four-kind tag
 
 ## Wire it up in 3 minutes
@@ -53,11 +54,40 @@ Add a DNS CNAME `api.100 → 100days-bot.<your-handle>.workers.dev` in Cloudflar
 - Each bot call sends ~3,500 tokens of system prompt (voice + 12 demos + 3 retrieved excerpts) + the user question, and receives ~200–500 tokens.
 - Order of magnitude: $0.015 per chat exchange.
 - Cloudflare Workers Free tier: 100,000 requests/day. The museum will not hit that.
+- Cloudflare does not enforce a hard spend cap on the model this route calls. The guards below are that cap.
+
+## Cost and abuse guards
+
+`POST /api/ask` checks three things before it calls the model. A normal visit is unchanged: same JSON, same CORS headers, and a person asking a handful of questions never sees a 429.
+
+1. **Site check.** `Origin`, or `Referer` when Origin is missing, must be the museum (`https://100.nonarkara.org` by default). A client can set the header, so this only cuts casual use from other pages. `GET /api/health` stays open.
+2. **Per connection.** Token bucket of **10 questions a minute** and **100 a day**, keyed by `CF-Connecting-IP` (not `X-Forwarded-For`). The day resets at midnight in Asia/Bangkok.
+3. **Whole museum.** **200 model calls a day.** Past that the worker returns HTTP 429 and does not call the model. At the estimate above, a day that hits the cap is about $3.
+
+Tune them in `wrangler.toml` under `[vars]`: `RATE_LIMIT_PER_MINUTE`, `RATE_LIMIT_PER_DAY`, `GLOBAL_DAILY_CAP`, `ALLOWED_ORIGINS` (comma-separated). Set `GLOBAL_DAILY_CAP` to `0` to stop model calls without deleting the key.
+
+Counts live in one SQLite Durable Object, `AskLimiter`. The first `npx wrangler deploy` creates it. If that binding is missing or the object cannot be reached, `/api/ask` returns 503 and does not call the model.
+
+The site does not use Cloudflare Turnstile, so this worker does not add it.
+
+To try the route from a shell, send the museum origin:
+
+```bash
+curl -s https://100.nonarkara.org/api/ask \
+  -H 'origin: https://100.nonarkara.org' \
+  -H 'content-type: application/json' \
+  -d '{"question":"Where is Bangkok?"}'
+```
+
+Run the tests from this directory:
+
+```bash
+node --test
+```
 
 ## What's NOT in this worker (by design)
 
 - No conversation memory. Each `ask` is stateless. (Add a `messages[]` parameter if you want threading.)
-- No rate limiting beyond Cloudflare's defaults. If the museum gets popular, add a KV-based throttle.
 - No moderation step. Add an Anthropic Claude classifier or an OpenAI moderation pass if needed.
 - No analytics. The Worker logs nothing about questions. Add a KV write if you want a research record.
 
