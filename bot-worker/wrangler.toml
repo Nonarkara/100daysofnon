@@ -14,3 +14,22 @@ compatibility_flags = ["nodejs_compat"]
 [[routes]]
 pattern = "100.nonarkara.org/api/*"
 zone_name = "nonarkara.org"
+
+# Spend guards. Cloudflare does not cap model spend, so the worker does.
+# A day is midnight-to-midnight in Asia/Bangkok. GLOBAL_DAILY_CAP=0 stops
+# model calls without removing the API key.
+[vars]
+RATE_LIMIT_PER_MINUTE = "10"
+RATE_LIMIT_PER_DAY = "100"
+GLOBAL_DAILY_CAP = "200"
+ALLOWED_ORIGINS = "https://100.nonarkara.org"
+
+# SQLite Durable Object — the backend Workers Free can create.
+# One object ("global") stores the per-IP buckets and the daily model count.
+[[durable_objects.bindings]]
+name = "ASK_LIMITER"
+class_name = "AskLimiter"
+
+[[migrations]]
+tag = "v1-ask-limiter"
+new_sqlite_classes = ["AskLimiter"]

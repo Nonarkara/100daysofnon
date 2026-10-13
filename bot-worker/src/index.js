@@ -13,8 +13,22 @@
 //   ANTHROPIC_API_KEY   — Claude API key (sk-ant-...)
 //
 // Optional vars (in wrangler.toml [vars]):
-//   ANTHROPIC_MODEL     — defaults to "claude-sonnet-4-5"
-//   ALLOWED_ORIGIN      — defaults to "*" (set to your domain for tighter CORS)
+//   ANTHROPIC_MODEL         — defaults to "claude-sonnet-4-5"
+//   ALLOWED_ORIGINS         — pages allowed to call the model
+//   RATE_LIMIT_PER_MINUTE   — per-IP token bucket (default 10)
+//   RATE_LIMIT_PER_DAY      — per-IP daily questions (default 100)
+//   GLOBAL_DAILY_CAP        — model calls for the whole museum (default 200)
+//
+// CORS stays `*` so the museum page can read answers from a workers.dev host.
+// ALLOWED_ORIGINS is a separate check on Origin / Referer before any model call.
+
+import { AskLimiter } from './limiter.js';
+import {
+  MESSAGES,
+  clientIp,
+  isAllowedSiteRequest,
+  readLimits,
+} from './limits.js';
 
 const VOICE_ANCHOR_URL = 'https://100.nonarkara.org/data/voice-anchor.json';
 const BOT_DEMOS_URL    = 'https://100.nonarkara.org/data/bot-demos.json';
@@ -26,56 +40,141 @@ const CORS_HEADERS = {
   'Access-Control-Allow-Headers': 'Content-Type',
 };
 
+export { AskLimiter };
+
 export default {
   async fetch(request, env) {
-    const url = new URL(request.url);
-
-    if (request.method === 'OPTIONS') {
-      return new Response(null, { headers: CORS_HEADERS });
-    }
-
-    if (url.pathname === '/api/health') {
-      return json({ ok: true, ts: new Date().toISOString() });
-    }
-
-    if (url.pathname === '/api/ask' && request.method === 'POST') {
-      try {
-        const body = await request.json();
-        const q = (body.question || '').toString().trim();
-        if (!q || q.length > 500) {
-          return json({ error: 'Question must be 1–500 chars.' }, 400);
-        }
-        const result = await ask(q, env);
-        return json(result);
-      } catch (e) {
-        return json({ error: String(e).slice(0, 200) }, 500);
-      }
-    }
-
-    return json({ error: 'Not found' }, 404);
-  }
+    return handleRequest(request, env);
+  },
 };
 
-function json(obj, status = 200) {
-  return new Response(JSON.stringify(obj), {
-    status,
-    headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' },
+export async function handleRequest(request, env = {}, deps = {}) {
+  const url = new URL(request.url);
+
+  if (request.method === 'OPTIONS') {
+    return new Response(null, { headers: CORS_HEADERS });
+  }
+
+  if (url.pathname === '/api/health') {
+    return json({ ok: true, ts: new Date().toISOString() });
+  }
+
+  if (url.pathname === '/api/ask' && request.method === 'POST') {
+    try {
+      return await handleAsk(request, env, deps);
+    } catch (e) {
+      return json({ error: String(e).slice(0, 200) }, 500);
+    }
+  }
+
+  return json({ error: 'Not found' }, 404);
+}
+
+async function handleAsk(request, env, deps) {
+  if (!isAllowedSiteRequest(request, env)) {
+    return json({ error: MESSAGES.origin, code: 'origin' }, 403, {
+      'Cache-Control': 'no-store',
+    });
+  }
+
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return json({ error: 'Question must be 1–500 chars.' }, 400);
+  }
+  const q = (body && body.question || '').toString().trim();
+  if (!q || q.length > 500) {
+    return json({ error: 'Question must be 1–500 chars.' }, 400);
+  }
+
+  const now = typeof deps.now === 'function' ? deps.now() : Date.now();
+  const decision = await reserveAsk(env, request, {
+    chargeGlobal: Boolean(env.ANTHROPIC_API_KEY),
+    now,
+  }, deps);
+  if (!decision.ok) return limitResponse(decision);
+
+  const result = await ask(q, env, deps.fetch);
+  return json(result);
+}
+
+async function reserveAsk(env, request, opts, deps) {
+  if (deps.reserve) return deps.reserve(env, request, opts);
+  return reserveWithDurableObject(env, request, opts);
+}
+
+async function reserveWithDurableObject(env, request, opts) {
+  const ns = env && env.ASK_LIMITER;
+  if (!ns || typeof ns.idFromName !== 'function' || typeof ns.get !== 'function') {
+    return { ok: false, reason: 'limiter_unavailable', retryAfter: 30 };
+  }
+  try {
+    const stub = ns.get(ns.idFromName('global'));
+    const res = await stub.fetch('https://limiter.internal/consume', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ip: clientIp(request),
+        now: opts.now,
+        limits: readLimits(env),
+        chargeGlobal: Boolean(opts.chargeGlobal),
+      }),
+    });
+    if (!res.ok) return { ok: false, reason: 'limiter_unavailable', retryAfter: 30 };
+    const decision = await res.json();
+    if (!decision || typeof decision.ok !== 'boolean') {
+      return { ok: false, reason: 'limiter_unavailable', retryAfter: 30 };
+    }
+    return {
+      ok: decision.ok,
+      reason: decision.reason || null,
+      retryAfter: decision.retryAfter || 0,
+    };
+  } catch {
+    return { ok: false, reason: 'limiter_unavailable', retryAfter: 30 };
+  }
+}
+
+function limitResponse(decision) {
+  const reason = decision.reason || 'limiter_unavailable';
+  const status = reason === 'limiter_unavailable' ? 503 : 429;
+  const code = reason === 'global_day'
+    ? 'daily_cap'
+    : reason === 'limiter_unavailable'
+      ? 'unavailable'
+      : 'rate_limited';
+  const retryAfter = Math.max(1, Number(decision.retryAfter) || 1);
+  return json({
+    error: MESSAGES[reason] || MESSAGES.limiter_unavailable,
+    code,
+    retry_after: retryAfter,
+  }, status, {
+    'Cache-Control': 'no-store',
+    'Retry-After': String(retryAfter),
   });
 }
 
-async function loadVoice() {
-  const r = await fetch(VOICE_ANCHOR_URL, { cf: { cacheTtl: 3600 } });
+function json(obj, status = 200, extraHeaders = {}) {
+  return new Response(JSON.stringify(obj), {
+    status,
+    headers: { ...CORS_HEADERS, 'Content-Type': 'application/json', ...extraHeaders },
+  });
+}
+
+async function loadVoice(fetcher) {
+  const r = await fetcher(VOICE_ANCHOR_URL, { cf: { cacheTtl: 3600 } });
   return r.json();
 }
 
-async function loadDemos() {
-  const r = await fetch(BOT_DEMOS_URL, { cf: { cacheTtl: 3600 } });
+async function loadDemos(fetcher) {
+  const r = await fetcher(BOT_DEMOS_URL, { cf: { cacheTtl: 3600 } });
   const d = await r.json();
   return d.qa || [];
 }
 
-async function loadCorpusIndex() {
-  const r = await fetch(CORPUS_INDEX_URL, { cf: { cacheTtl: 3600 } });
+async function loadCorpusIndex(fetcher) {
+  const r = await fetcher(CORPUS_INDEX_URL, { cf: { cacheTtl: 3600 } });
   return r.json();
 }
 
@@ -138,8 +237,12 @@ Respond as JSON only, no prose outside the JSON:
 ${demoSample}${corpus}`;
 }
 
-async function ask(question, env) {
-  const [voice, demos, index] = await Promise.all([loadVoice(), loadDemos(), loadCorpusIndex()]);
+async function ask(question, env, fetcher = fetch) {
+  const [voice, demos, index] = await Promise.all([
+    loadVoice(fetcher),
+    loadDemos(fetcher),
+    loadCorpusIndex(fetcher),
+  ]);
   const retrieved = retrieve(question, index, 3);
   const systemPrompt = buildSystemPrompt(voice, demos, retrieved);
 
@@ -152,7 +255,7 @@ async function ask(question, env) {
     };
   }
 
-  const r = await fetch('https://api.anthropic.com/v1/messages', {
+  const r = await fetcher('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
