@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>TWO LAYERS — Trailer · 100 Days of Non</title>
+  <meta name="description" content="The official 2-minute trailer for TWO LAYERS — a novel, a film, a document of days actually lived. 100.nonarkara.org">
+  <link rel="preload" as="audio" href="/assets/trailer/audio/bed.mp3">
+  <link rel="preload" as="audio" href="/assets/trailer/audio/voice-main.mp3">
+  <link rel="preload" as="audio" href="/assets/trailer/audio/voice-finale.mp3">
+  <link rel="preload" as="image" href="/assets/trailer/plates/01-chamber.png">
+  <link rel="preload" as="image" href="/assets/trailer/plates/08-hands-railing.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Literata:opsz,wght@7..72,400;7..72,500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #000;
+      --cream: #f6f1e8;
+      --cream-soft: #fdfcf9;
+      --amber: #c2741a;
+      --cyan: #7dd3fc;
+      --char: #1a1a1a;
+      --hair: rgba(246, 241, 232, 0.12);
+      --type: 'Literata', Georgia, serif;
+      --mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+    }
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--cream);
+      font-family: var(--type);
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    body {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .stage {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      max-width: calc(100vh * 9 / 16);
+      max-height: calc(100vw * 16 / 9);
+      background: var(--bg);
+      overflow: hidden;
+    }
+    /* plate layer */
+    .plate {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+      will-change: opacity;
+    }
+    .plate.show { opacity: 1; }
+    .plate.cut { transition: none; }
+    .plate.flash-out { opacity: 1; }
+    /* text layer */
+    .text {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 6vh;
+      padding: 0 6vw;
+      font-family: var(--mono);
+      font-size: clamp(10px, 1.7vw, 14px);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cream);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.6s ease-in-out;
+      mix-blend-mode: difference;
+    }
+    .text.show { opacity: 0.92; }
+    .text.center { text-align: center; }
+    .text.headline {
+      bottom: 38vh;
+      font-family: var(--type);
+      font-size: clamp(28px, 7vw, 64px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 0.95;
+      text-transform: none;
+      mix-blend-mode: normal;
+    }
+    .text.headline.small {
+      font-size: clamp(20px, 4vw, 36px);
+      letter-spacing: -0.01em;
+    }
+    .text b {
+      font-weight: 700;
+      color: var(--cream);
+    }
+    /* the hub clock */
+    .clock {
+      position: absolute;
+      left: 6vw;
+      bottom: 4vh;
+      font-family: var(--mono);
+      font-size: clamp(11px, 1.9vw, 16px);
+      letter-spacing: 0.1em;
+      color: var(--cyan);
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+      mix-blend-mode: screen;
+    }
+    .clock.show { opacity: 0.9; }
+    .clock .label { color: var(--cream); opacity: 0.5; margin-right: 0.6em; }
+    /* ratio card */
+    .ratio {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--mono);
+      text-align: center;
+      color: var(--cream);
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+      pointer-events: none;
+      mix-blend-mode: difference;
+    }
+    .ratio.show { opacity: 0.95; }
+    .ratio .big {
+      font-size: clamp(48px, 11vw, 110px);
+      font-weight: 500;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--cream);
+    }
+    .ratio .sm {
+      font-size: clamp(10px, 1.6vw, 13px);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-top: 1.2em;
+    }
+    /* overlay / vignette */
+    .vignette {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.55) 100%);
+    }
+    .top-rule, .bottom-rule {
+      position: absolute;
+      left: 6vw;
+      right: 6vw;
+      height: 1px;
+      background: var(--cream);
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+      mix-blend-mode: difference;
+    }
+    .top-rule { top: 6vh; }
+    .bottom-rule { bottom: 4vh; }
+    .top-rule.show, .bottom-rule.show { opacity: 0.35; }
+    /* closing card */
+    .closing {
+      position: absolute;
+      inset: 0;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 8vw;
+      opacity: 0;
+      transition: opacity 1.4s ease-in-out;
+      text-align: center;
+    }
+    .closing.show { opacity: 1; }
+    .closing .mark {
+      font-family: var(--mono);
+      font-size: clamp(10px, 1.6vw, 13px);
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--cream);
+      opacity: 0.5;
+      margin-bottom: 2em;
+    }
+    .closing .title {
+      font-family: var(--type);
+      font-size: clamp(40px, 10vw, 96px);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--cream);
+      margin-bottom: 0.6em;
+    }
+    .closing .sub {
+      font-family: var(--type);
+      font-style: italic;
+      font-size: clamp(14px, 2.4vw, 22px);
+      color: var(--cream);
+      opacity: 0.7;
+      margin-bottom: 3em;
+      line-height: 1.4;
+    }
+    .closing .url {
+      font-family: var(--mono);
+      font-size: clamp(11px, 1.8vw, 14px);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+    /* start screen */
+    .start {
+      position: absolute;
+      inset: 0;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 8vw;
+      text-align: center;
+      z-index: 20;
+      transition: opacity 0.8s ease-in-out;
+    }
+    .start.gone { opacity: 0; pointer-events: none; }
+    .start .label {
+      font-family: var(--mono);
+      font-size: clamp(10px, 1.6vw, 13px);
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--cream);
+      opacity: 0.5;
+      margin-bottom: 2em;
+    }
+    .start .title {
+      font-family: var(--type);
+      font-size: clamp(48px, 12vw, 120px);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--cream);
+      margin-bottom: 0.3em;
+    }
+    .start .one {
+      font-family: var(--mono);
+      font-size: clamp(11px, 1.8vw, 14px);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 3em;
+    }
+    .start .play {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: clamp(12px, 2vw, 15px);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--cream);
+      padding: 18px 36px;
+      border: 0;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .start .play:hover { background: var(--amber); color: var(--bg); }
+    .start .play:active { transform: translateY(1px); }
+    .start .meta {
+      margin-top: 3em;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream);
+      opacity: 0.4;
+      line-height: 1.8;
+    }
+    /* end screen */
+    .end {
+      position: absolute;
+      inset: 0;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 8vw;
+      text-align: center;
+      z-index: 20;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.8s ease-in-out;
+    }
+    .end.show { opacity: 1; pointer-events: auto; }
+    .end .title {
+      font-family: var(--type);
+      font-size: clamp(36px, 9vw, 88px);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--cream);
+      margin-bottom: 0.4em;
+    }
+    .end .sub {
+      font-family: var(--type);
+      font-style: italic;
+      font-size: clamp(13px, 2.2vw, 20px);
+      color: var(--cream);
+      opacity: 0.65;
+      margin-bottom: 2.5em;
+      line-height: 1.5;
+      max-width: 28em;
+    }
+    .end .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      align-items: center;
+    }
+    .end .btn {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: clamp(11px, 1.8vw, 14px);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--cream);
+      background: transparent;
+      border: 1px solid var(--cream);
+      padding: 14px 28px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .end .btn:hover { background: var(--cream); color: var(--bg); }
+    .end .btn.primary { background: var(--cream); color: var(--bg); border-color: var(--cream); }
+    .end .btn.primary:hover { background: var(--amber); border-color: var(--amber); }
+    /* progress bar */
+    .progress {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      background: rgba(246, 241, 232, 0.08);
+      z-index: 15;
+    }
+    .progress .bar {
+      height: 100%;
+      background: var(--amber);
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+    /* mobile tweaks */
+    @media (max-width: 600px) {
+      .text.headline { bottom: 36vh; }
+      .ratio .big { font-size: 56px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="universe-nav" aria-label="The universe" style="position: absolute; top: 0; left: 0; right: 0; z-index: 30; padding: 1rem 6vw; display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream); background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);">
+    <span style="opacity: 0.5; margin-right: 0.4rem;">100 Days of Non</span>
+    <a href="/layers/" style="color: var(--cream); text-decoration: none; opacity: 0.7;">Two Layers</a><span style="opacity: 0.3;">·</span>
+    <a href="/convenience/" style="color: var(--cream); text-decoration: none; opacity: 0.7;">The Convenience</a><span style="opacity: 0.3;">·</span>
+    <a href="/book/" style="color: var(--cream); text-decoration: none; opacity: 0.7;">Biography</a><span style="opacity: 0.3;">·</span>
+    <a href="/atlas/" style="color: var(--cream); text-decoration: none; opacity: 0.7;">Atlas</a><span style="opacity: 0.3;">·</span>
+    <a href="/questions/" style="color: var(--cream); text-decoration: none; opacity: 0.7;">Questions</a><span style="opacity: 0.3;">·</span>
+    <a href="/trailer/" aria-current="page" style="color: var(--amber); text-decoration: none; font-weight: 700;">Trailer</a><span style="opacity: 0.3;">·</span>
+    <a href="/" style="color: var(--cream); text-decoration: none; opacity: 0.7;">100.nonarkara.org</a>
+  </nav>
+
+  <div class="stage" id="stage">
+    <div class="top-rule" id="topRule"></div>
+    <div class="bottom-rule" id="bottomRule"></div>
+    <div class="vignette"></div>
+
+    <img class="plate" id="plate-1" src="/assets/trailer/plates/01-chamber.png" alt="The Hub chamber — forty-four white chairs, the last one with a flower">
+    <img class="plate" id="plate-2" src="/assets/trailer/plates/02-pui-console.png" alt="Pui at the console, from behind">
+    <img class="plate" id="plate-3" src="/assets/trailer/plates/03-window-2am.png" alt="The architect at the window, 2:14am Bangkok">
+    <img class="plate" id="plate-4" src="/assets/trailer/plates/04-two-eggs.png" alt="Two eggs in a steady hand">
+    <img class="plate" id="plate-5" src="/assets/trailer/plates/05-dental-glimpse.png" alt="The glimpse — the chamber seen from the dental chair">
+    <img class="plate" id="plate-6" src="/assets/trailer/plates/06-cremation-smoke.png" alt="Cremation smoke into a white sky">
+    <img class="plate" id="plate-7" src="/assets/trailer/plates/07-bicycle-rain.png" alt="The woman on the bicycle, 2:47am, looking up">
+    <img class="plate" id="plate-8" src="/assets/trailer/plates/08-hands-railing.png" alt="Two hands an inch apart on a wet railing">
+
+    <div class="text" id="text-1">Two Layers</div>
+    <div class="text" id="text-2">Chair 44 · Session 2848</div>
+    <div class="text" id="text-3">2:14 AM</div>
+    <div class="text" id="text-4">Bangkok, 2026</div>
+    <div class="text" id="text-5">— glimpse —</div>
+    <div class="text" id="text-6">Michael · May 3 · 2026</div>
+    <div class="text" id="text-7">2:47 AM</div>
+    <div class="text" id="text-8">Four seconds</div>
+    <div class="text" id="text-9" style="bottom: 12vh; right: 6vw; left: auto; text-align: right;">9 h · 44 m</div>
+
+    <div class="clock" id="clock"><span class="label">HUB T+</span><span id="clockTime">00:00:00</span></div>
+
+    <div class="ratio" id="ratio">
+      <div class="big">1 : 8,760</div>
+      <div class="sm">one hour · one year</div>
+    </div>
+
+    <div class="closing" id="closing">
+      <div class="mark">TWO LAYERS</div>
+      <div class="title">A novel.<br>A film.<br>A document.</div>
+      <div class="sub">A story whose facts are citations,<br>and whose emotional beats are theorems<br>of its own stated physics.</div>
+      <div class="url">100.nonarkara.org</div>
+    </div>
+
+    <div class="progress"><div class="bar" id="progressBar"></div></div>
+
+    <div class="start" id="start">
+      <div class="label">100 Days of Non · 2026</div>
+      <div class="title">Two Layers</div>
+      <div class="one">Official trailer · 2:00</div>
+      <button class="play" id="playBtn" aria-label="Play trailer">▶ Play</button>
+      <div class="meta">Sound on · Headphones recommended</div>
+    </div>
+
+    <div class="end" id="end">
+      <div class="title">Two Layers</div>
+      <div class="sub">A novel, a film, a document of days actually lived. Verified fiction — every number in the trailer is a citation.</div>
+      <div class="actions">
+        <a class="btn primary" href="/layers/">Read the book</a>
+        <a class="btn" href="/">100.nonarkara.org</a>
+        <button class="btn" id="replayBtn" style="border: 1px solid var(--cream-soft); background: transparent; color: var(--cream-soft);">Replay trailer</button>
+      </div>
+    </div>
+
+    <audio id="audio-bed" src="/assets/trailer/audio/bed.mp3" preload="auto" loop></audio>
+    <audio id="audio-voice-main" src="/assets/trailer/audio/voice-main.mp3" preload="auto"></audio>
+    <audio id="audio-voice-finale" src="/assets/trailer/audio/voice-finale.mp3" preload="auto"></audio>
+  </div>
+
+  <script>
+    // The exact beat-by-beat timeline. Times in milliseconds.
+    // Each scene: { start, plate, text, transition, audio, clockStart, clockEnd, ratio, topRule, bottomRule, closing }
+    const SCENES = [
+      // 0:00 — 0:08 — Cold open, black
+      { start: 0,    end: 8000,   transition: 'cut',  plate: null, topRule: false, bottomRule: false, clock: false, ratio: false, text: null },
+
+      // 0:08 — 0:18 — The chamber (plate 1)
+      { start: 8000,  end: 18000,  transition: 'fade', plate: 1,   topRule: true,  bottomRule: true,  clock: false, ratio: false, text: 1 },
+
+      // 0:18 — 0:32 — Pui at the console (plate 2)
+      { start: 18000, end: 32000,  transition: 'fade', plate: 2,   topRule: true,  bottomRule: false, clock: false, ratio: false, text: 2 },
+
+      // 0:32 — 0:38 — The window 2:14am (plate 3) — HARD CUT
+      { start: 32000, end: 38000,  transition: 'cut',  plate: 3,   topRule: false, bottomRule: false, clock: false, ratio: false, text: 3 },
+
+      // 0:38 — 0:42 — Two eggs (plate 4) — HARD CUT
+      { start: 38000, end: 42000,  transition: 'cut',  plate: 4,   topRule: false, bottomRule: false, clock: false, ratio: false, text: null },
+
+      // 0:42 — 0:47 — Two eggs hold (plate 4) with location text
+      { start: 42000, end: 47000,  transition: 'cut',  plate: 4,   topRule: false, bottomRule: false, clock: false, ratio: false, text: 4 },
+
+      // 0:47 — 0:50 — Dental glimpse flash (plate 5) — FLASH
+      { start: 47000, end: 50000,  transition: 'flash', plate: 5,  topRule: false, bottomRule: false, clock: false, ratio: false, text: 5 },
+
+      // 0:50 — 1:12 — The ratio stated — clock animates, plate 2 (Pui's empty chair — re-use)
+      { start: 50000, end: 72000,  transition: 'fade', plate: 2,   topRule: true,  bottomRule: true,  clock: true,  ratio: true,  text: null, clockStart: 0, clockEnd: 8760 },
+
+      // 1:12 — 1:18 — Empty chair / Pui's seat vacant (plate 2)
+      { start: 72000, end: 78000,  transition: 'fade', plate: 2,   topRule: true,  bottomRule: true,  clock: true,  ratio: false, text: null },
+
+      // 1:18 — 1:24 — Cremation smoke (plate 6)
+      { start: 78000, end: 84000,  transition: 'cut',  plate: 6,   topRule: false, bottomRule: false, clock: false, ratio: false, text: 6 },
+
+      // 1:24 — 1:30 — Audit (back to chamber, plate 1)
+      { start: 84000, end: 90000,  transition: 'fade', plate: 1,   topRule: true,  bottomRule: true,  clock: false, ratio: false, text: null },
+
+      // 1:30 — 1:36 — The flower, plate 1 re-used
+      { start: 90000, end: 96000,  transition: 'fade', plate: 1,   topRule: true,  bottomRule: true,  clock: false, ratio: false, text: null },
+
+      // 1:36 — 1:42 — Bicycle in rain (plate 7)
+      { start: 96000, end: 102000, transition: 'cut',  plate: 7,   topRule: false, bottomRule: false, clock: false, ratio: false, text: 7 },
+
+      // 1:42 — 1:46 — Audit redaction (plate 1 again, but darker via overlay)
+      { start: 102000, end: 106000, transition: 'fade', plate: 1,  topRule: true,  bottomRule: true,  clock: false, ratio: false, text: null },
+
+      // 1:46 — 1:50 — Plate 1 hold (the pill organizer is implicit — text only here)
+      { start: 106000, end: 110000, transition: 'fade', plate: 1, topRule: true,  bottomRule: true,  clock: false, ratio: false, text: null },
+
+      // 1:50 — 1:55 — Hands on railing (plate 8)
+      { start: 110000, end: 115000, transition: 'fade', plate: 8,  topRule: false, bottomRule: false, clock: false, ratio: false, text: 8 },
+
+      // 1:55 — 1:58 — Hands, with 9h44m in upper-right
+      { start: 115000, end: 118000, transition: 'fade', plate: 8,  topRule: false, bottomRule: false, clock: false, ratio: false, text: 9 },
+
+      // 1:58 — 2:00 — Black
+      { start: 118000, end: 120000, transition: 'cut', plate: null, topRule: false, bottomRule: false, clock: false, ratio: false, text: null },
+
+      // 2:00 — Closing card
+      { start: 120000, end: 125000, transition: 'fade', plate: null, closing: true, text: null },
+    ];
+
+    // Audio trigger points (ms)
+    // bed plays from 0 (loops, 41.76s)
+    // voice-main 74.12s starts at 8s -> ends at 82s (1:22)
+    // voice-finale 48.31s starts at 82s -> ends at 130s, the "9h44m" line lands on the four-seconds scene at ~1:59
+    const AUDIO = {
+      bed: 0,
+      voiceMain: 8000,
+      voiceFinale: 82000
+    };
+
+    let startTime = 0;
+    let running = false;
+    let currentScene = -1;
+    let clockRaf = null;
+    let progressRaf = null;
+    const progressBar = document.getElementById('progressBar');
+    const clockTime = document.getElementById('clockTime');
+
+    const plates = Array.from({length: 8}, (_, i) => document.getElementById('plate-' + (i+1)));
+    const texts = Array.from({length: 9}, (_, i) => document.getElementById('text-' + (i+1)));
+    const topRule = document.getElementById('topRule');
+    const bottomRule = document.getElementById('bottomRule');
+    const clockEl = document.getElementById('clock');
+    const ratioEl = document.getElementById('ratio');
+    const closingEl = document.getElementById('closing');
+
+    function hideAllPlates() { plates.forEach(p => p.classList.remove('show', 'cut', 'flash-out')); }
+    function hideAllTexts() { texts.forEach(t => t.classList.remove('show')); }
+
+    function applyScene(scene) {
+      // plates
+      hideAllPlates();
+      if (scene.plate) {
+        const p = plates[scene.plate - 1];
+        if (scene.transition === 'cut') p.classList.add('cut', 'show');
+        else if (scene.transition === 'flash') {
+          p.classList.add('cut', 'show');
+          setTimeout(() => p.classList.add('flash-out'), 200);
+        }
+        else p.classList.add('show');
+      }
+      // text
+      hideAllTexts();
+      if (scene.text) {
+        const t = texts[scene.text - 1];
+        t.classList.add('show');
+      }
+      // rules
+      topRule.classList.toggle('show', !!scene.topRule);
+      bottomRule.classList.toggle('show', !!scene.bottomRule);
+      // clock
+      clockEl.classList.toggle('show', !!scene.clock);
+      // ratio
+      ratioEl.classList.toggle('show', !!scene.ratio);
+      // closing
+      closingEl.classList.toggle('show', !!scene.closing);
+    }
+
+    function fmtClock(seconds) {
+      const h = Math.floor(seconds / 3600);
+      const m = Math.floor((seconds % 3600) / 60);
+      const s = Math.floor(seconds % 60);
+      return String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+    }
+
+    function tickClock() {
+      if (!running) return;
+      const elapsed = Date.now() - startTime;
+      // find the current clock scene
+      const cs = SCENES.find(s => s.clock && s.start <= elapsed && elapsed < s.end);
+      if (cs) {
+        const t = (elapsed - cs.start) / (cs.end - cs.start);
+        const sec = cs.clockStart + t * (cs.clockEnd - cs.clockStart);
+        clockTime.textContent = fmtClock(sec);
+      }
+      clockRaf = requestAnimationFrame(tickClock);
+    }
+
+    function tickProgress() {
+      if (!running) return;
+      const elapsed = Date.now() - startTime;
+      const pct = Math.min(100, (elapsed / 120000) * 100);
+      progressBar.style.width = pct + '%';
+      if (elapsed < 120000) {
+        progressRaf = requestAnimationFrame(tickProgress);
+      }
+    }
+
+    function findScene(elapsed) {
+      return SCENES.find(s => s.start <= elapsed && elapsed < s.end);
+    }
+
+    function runLoop() {
+      if (!running) return;
+      const elapsed = Date.now() - startTime;
+      const scene = findScene(elapsed);
+      if (scene) {
+        const idx = SCENES.indexOf(scene);
+        if (idx !== currentScene) {
+          currentScene = idx;
+          applyScene(scene);
+        }
+      }
+      if (elapsed >= 124000) {
+        // hold closing card; show end screen
+        document.getElementById('end').classList.add('show');
+        document.getElementById('audio-bed').pause();
+        document.getElementById('audio-voice-main').pause();
+        document.getElementById('audio-voice-finale').pause();
+        running = false;
+        return;
+      }
+      requestAnimationFrame(runLoop);
+    }
+
+    function startTrailer() {
+      document.getElementById('start').classList.add('gone');
+      document.getElementById('end').classList.remove('show');
+      // reset
+      currentScene = -1;
+      startTime = Date.now();
+      running = true;
+      // audio
+      const bed = document.getElementById('audio-bed');
+      const vmain = document.getElementById('audio-voice-main');
+      const vfin = document.getElementById('audio-voice-finale');
+      bed.currentTime = 0; bed.volume = 0.65; bed.play().catch(()=>{});
+      setTimeout(() => { vmain.currentTime = 0; vmain.volume = 0.95; vmain.play().catch(()=>{}); }, AUDIO.voiceMain);
+      setTimeout(() => { vfin.currentTime = 0; vfin.volume = 0.7; vfin.play().catch(()=>{}); }, AUDIO.voiceFinale);
+      // run
+      runLoop();
+      tickClock();
+      tickProgress();
+    }
+
+    function resetTrailer() {
+      document.getElementById('end').classList.remove('show');
+      document.getElementById('closing').classList.remove('show');
+      hideAllPlates(); hideAllTexts();
+      topRule.classList.remove('show'); bottomRule.classList.remove('show');
+      clockEl.classList.remove('show'); ratioEl.classList.remove('show');
+      currentScene = -1;
+      startTime = Date.now();
+      running = true;
+      const bed = document.getElementById('audio-bed');
+      const vmain = document.getElementById('audio-voice-main');
+      const vfin = document.getElementById('audio-voice-finale');
+      bed.currentTime = 0; bed.volume = 0.65; bed.play().catch(()=>{});
+      setTimeout(() => { vmain.currentTime = 0; vmain.volume = 0.95; vmain.play().catch(()=>{}); }, AUDIO.voiceMain);
+      setTimeout(() => { vfin.currentTime = 0; vfin.volume = 0.7; vfin.play().catch(()=>{}); }, AUDIO.voiceFinale);
+      progressBar.style.width = '0%';
+      runLoop();
+      tickClock();
+      tickProgress();
+    }
+
+    document.getElementById('playBtn').addEventListener('click', startTrailer);
+    document.getElementById('replayBtn').addEventListener('click', resetTrailer);
+    // also allow space/enter on start screen
+    document.addEventListener('keydown', (e) => {
+      if (!running && (e.key === ' ' || e.key === 'Enter')) {
+        if (!document.getElementById('start').classList.contains('gone')) startTrailer();
+        else if (document.getElementById('end').classList.contains('show')) resetTrailer();
+      }
+    });
+  </script>
+</body>
+</html>
